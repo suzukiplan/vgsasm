@@ -49,8 +49,8 @@ LABEL1:
 
 JP FOO          ; Jump to FOO:
 JP @FOO         ; Jump to FOO@LABEL1
-JP LABEL1@FOO   ; Jump to FOO@LABEL1
-JP LABEL2@FOO   ; Jump to FOO@LABEL2
+JP FOO@LABEL1   ; Jump to FOO@LABEL1
+JP FOO@LABEL2   ; Jump to FOO@LABEL2
 
 # Normal label (same as LABEL:)
 .LABEL2
@@ -60,8 +60,8 @@ JP LABEL2@FOO   ; Jump to FOO@LABEL2
 
 JP FOO          ; Jump to FOO:
 JP @FOO         ; Jump to FOO@LABEL2
-JP LABEL1@FOO   ; Jump to FOO@LABEL1
-JP LABEL2@FOO   ; Jump to FOO@LABEL2
+JP FOO@LABEL1   ; Jump to FOO@LABEL1
+JP FOO@LABEL2   ; Jump to FOO@LABEL2
 ```
 
 - Labels are written in the format `LABEL:` or `.LABEL`.
