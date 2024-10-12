@@ -2,6 +2,7 @@
 #include "file.hpp"
 #include "mnemonic.hpp"
 #include "label.hpp"
+#include "numeric.hpp"
 
 static int assemble(std::vector<LineData*> lines)
 {
@@ -12,6 +13,11 @@ static int assemble(std::vector<LineData*> lines)
             error = true;
         } else {
             parse_label(line);
+            parse_numeric(line);
+            if (line->error) {
+                printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
+                error = true;
+            }
         }
     }
     if (error) {

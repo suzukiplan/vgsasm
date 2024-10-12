@@ -15,6 +15,7 @@ enum class TokenType {
     Address, // アドレス (xxx)
     Label,   // ラベル（HOGE: or .HOGE）
     LabelAt, // @HOGE 形式のラベル
+    Numeric, // 数値
     Other    // その他
 };
 
