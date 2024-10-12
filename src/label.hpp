@@ -3,6 +3,7 @@
 #include "file.hpp"
 
 std::map<std::string, LineData*> labelTable;
+static std::string lastLabel = "";
 
 void parse_label(LineData* line)
 {
@@ -19,12 +20,15 @@ void parse_label(LineData* line)
     if (str[0] == '.') {
         token->first = TokenType::Label;
         label = str + 1;
+        lastLabel = label;
     } else if (str[strlen(str) - 1] == ':') {
         token->first = TokenType::Label;
         label = token->second.substr(0, token->second.length() - 1);
+        lastLabel = label;
     } else if (str[0] == '@') {
         token->first = TokenType::LabelAt;
         label = str + 1;
+        label += "@" + lastLabel;
     }
     if (!label.empty()) {
         if (labelTable.find(label) != labelTable.end()) {
