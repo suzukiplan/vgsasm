@@ -23,6 +23,7 @@
 - Case insensitive (except for string literals)
 - Hexadecimal numbers can be written in the format `$ABCD` or `0xABCD`.
 - Binary numbers can be written in the format `%0101` or `0b0101`.
+- Strings after `;` or `//` are ignored as comments.
 
 ## Preprocessor
 
@@ -38,13 +39,13 @@
 ### Labels
 
 ```z80
-# Normal label
+// Normal label
 FOO:
 
-# Normal label
+// Normal label
 LABEL1:
 
-# Inner label at LABEL1: FOO@LABEL1
+// Inner label at LABEL1: FOO@LABEL1
 @FOO
 
 JP FOO          ; Jump to FOO:
@@ -52,10 +53,10 @@ JP @FOO         ; Jump to FOO@LABEL1
 JP FOO@LABEL1   ; Jump to FOO@LABEL1
 JP FOO@LABEL2   ; Jump to FOO@LABEL2
 
-# Normal label (same as LABEL:)
+// Normal label (same as LABEL:)
 .LABEL2
 
-# Inner label at LABEL2: FOO@LABEL2
+// Inner label at LABEL2: FOO@LABEL2
 @FOO
 
 JP FOO          ; Jump to FOO:
