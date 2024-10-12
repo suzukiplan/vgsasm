@@ -16,6 +16,11 @@ enum class TokenType {
     Label,   // ラベル（HOGE: or .HOGE）
     LabelAt, // @HOGE 形式のラベル
     Numeric, // 数値
+    Split,   // カンマ
+    Plus,    // プラス
+    Minus,   // マイナス
+    Div,     // 割り算 (/)
+    Mul,     // 掛け算 (*)
     Other    // その他
 };
 

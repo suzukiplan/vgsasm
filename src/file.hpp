@@ -108,8 +108,11 @@ class LineData
                         parseEnd = true;
                         break;
                     case ' ':
+                        cp++;
+                        break;
                     case ',':
                         cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Split, ","));
                         break;
                     case '\"': {
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::String, slets[sletIndex++].c_str()));
@@ -159,6 +162,9 @@ class LineData
                             memset(work, 0, sizeof(work));
                             memcpy(work, cp, ed - cp);
                             this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Other, work));
+                            switch (*(ed)) {
+                                case ',': this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Split, ",")); break;
+                            }
                             cp = ed + 1;
                             while (' ' == *cp) {
                                 cp++;
