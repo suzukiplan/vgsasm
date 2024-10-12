@@ -18,6 +18,57 @@
 - [ ] 構文解析（ざっくり）
 - [ ] その他色々 
 
+## Basic Syntax
+
+- Case insensitive (except for string literals)
+- Hexadecimal numbers can be written in the format `$ABCD` or `0xABCD`.
+- Binary numbers can be written in the format `%0101` or `0b0101`.
+
+## Preprocessor
+
+### `#include`
+
+```z80
+#include "/path/to/file"
+```
+
+- Other source files can be combined.
+- Duplicate `#include` for the same source file are automatically ignored.
+
+### Labels
+
+```z80
+# Normal label
+FOO:
+
+# Normal label
+LABEL1:
+
+# Inner label at LABEL1: FOO@LABEL1
+@FOO
+
+JP FOO          ; Jump to FOO:
+JP @FOO         ; Jump to FOO@LABEL1
+JP LABEL1@FOO   ; Jump to FOO@LABEL1
+JP LABEL2@FOO   ; Jump to FOO@LABEL2
+
+# Normal label (same as LABEL:)
+.LABEL2
+
+# Inner label at LABEL2: FOO@LABEL2
+@FOO
+
+JP FOO          ; Jump to FOO:
+JP @FOO         ; Jump to FOO@LABEL2
+JP LABEL1@FOO   ; Jump to FOO@LABEL1
+JP LABEL2@FOO   ; Jump to FOO@LABEL2
+```
+
+- Labels are written in the format `LABEL:` or `.LABEL`.
+- Inner labels are written in `@LABEL` format.
+- Labels and inner labels are not case sensitive.
+- The label and inner label are symbols that uniquely identify all source files with `#include`.
+
 ## License
 
 [GPLv3](LICENSE.txt)
