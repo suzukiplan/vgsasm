@@ -1,10 +1,5 @@
+#pragma once
 #include "common.hpp"
-
-enum class TokenType {
-    String,  // 文字列 "str" or 'str'
-    Address, // アドレス (xxx)
-    Other    // その他
-};
 
 static std::vector<std::string> includeFiles;
 

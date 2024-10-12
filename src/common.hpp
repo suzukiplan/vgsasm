@@ -10,6 +10,14 @@
 #include <map>
 #include <algorithm>
 
+enum class TokenType {
+    String,  // 文字列 "str" or 'str'
+    Address, // アドレス (xxx)
+    Label,   // ラベル（HOGE: or .HOGE）
+    LabelAt, // @HOGE 形式のラベル
+    Other    // その他
+};
+
 void trimstring(char* src)
 {
     int i, j;
