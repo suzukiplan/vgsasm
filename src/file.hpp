@@ -164,10 +164,7 @@ class LineData
                             memset(work, 0, sizeof(work));
                             memcpy(work, cp, ed - cp);
                             this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Other, work));
-                            switch (*(ed)) {
-                                case ',': this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Split, ",")); break;
-                            }
-                            cp = ed + 1;
+                            cp = ed;
                             while (' ' == *cp) {
                                 cp++;
                             }
