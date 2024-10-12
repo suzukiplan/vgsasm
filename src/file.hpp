@@ -141,7 +141,7 @@ class LineData
                             this->errmsg = "Parentheses are not closed.";
                         } else {
                             ed--;
-                            char work[4096];
+                            char work[sizeof(formed)];
                             memset(work, 0, sizeof(work));
                             memcpy(work, cp, ed - cp);
                             this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Address, work));
@@ -158,7 +158,7 @@ class LineData
                             ed++;
                         }
                         if (*ed) {
-                            char work[4096];
+                            char work[sizeof(formed)];
                             memset(work, 0, sizeof(work));
                             memcpy(work, cp, ed - cp);
                             this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Other, work));
