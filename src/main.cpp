@@ -15,6 +15,14 @@ static int assemble(std::vector<LineData*> lines)
         return -1;
     }
 
+    for (auto line : lines) {
+        printf("%16s:%04d", line->path.c_str(), line->lineNumber);
+        for (auto token : line->token) {
+            printf(" `%s`", token.second.c_str());
+        }
+        printf("\n");
+    }
+
     return 0;
 }
 
