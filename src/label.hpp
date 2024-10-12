@@ -26,6 +26,5 @@ void parse_label(LineData* line)
     }
     if (!label.empty()) {
         token->second = label;
-        printf("label detect: %s\n", label.c_str());
     }
 }
