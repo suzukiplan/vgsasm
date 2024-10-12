@@ -2,6 +2,8 @@
 #include "common.hpp"
 #include "file.hpp"
 
+std::map<std::string, LineData*> labelTable;
+
 void parse_label(LineData* line)
 {
     if (line->token.empty()) {
@@ -25,6 +27,12 @@ void parse_label(LineData* line)
         label = str + 1;
     }
     if (!label.empty()) {
-        token->second = label;
+        if (labelTable.find(label) != labelTable.end()) {
+            line->error = true;
+            line->errmsg = "Duplicate label: " + label;
+        } else {
+            token->second = label;
+            labelTable[label] = line;
+        }
     }
 }
