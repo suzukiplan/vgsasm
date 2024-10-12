@@ -116,6 +116,22 @@ class LineData
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Split, ","));
                         break;
+                    case '+':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Plus, "+"));
+                        break;
+                    case '-':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Minus, "-"));
+                        break;
+                    case '/':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Div, "/"));
+                        break;
+                    case '*':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Mul, "*"));
+                        break;
                     case '\"': {
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::String, slets[sletIndex++].c_str()));
                         cp = strchr(cp + 1, '\"') + 1;
@@ -154,7 +170,15 @@ class LineData
                     default: {
                         ed = cp + 1;
                         while (*ed) {
-                            if (' ' == *ed || '(' == *ed || '\"' == *ed || '\'' == *ed || ',' == *ed) {
+                            if (' ' == *ed ||
+                                '(' == *ed ||
+                                '\"' == *ed ||
+                                '\'' == *ed ||
+                                '+' == *ed ||
+                                '-' == *ed ||
+                                '*' == *ed ||
+                                '/' == *ed ||
+                                ',' == *ed) {
                                 break;
                             }
                             ed++;
