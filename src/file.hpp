@@ -219,8 +219,8 @@ std::vector<LineData*> readFile(const char* filePath)
         std::string subStr(str, first, last - first);
         auto line = new LineData(filePath, ++lineNumber, subStr);
 
-        // #Iinclude は他のプリプロセッサよりも優先して先に展開
-        if (2 == line->token.size() && 0 == strcmp("#INCLUDE", line->token[0].second.c_str()) && TokenType::String == line->token[1].first) {
+        // #include は他のプリプロセッサよりも優先して先に展開
+        if (2 == line->token.size() && line->token[0].second == "#INCLUDE" && TokenType::String == line->token[1].first) {
             auto path = line->token[1].second.c_str();
             bool alreadyIncluded = false;
             for (auto includeFile : includeFiles) {
