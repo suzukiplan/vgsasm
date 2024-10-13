@@ -17,6 +17,10 @@ void evaluate_formulas(LineData* line)
             if (it->first == TokenType::Mul || it->first == TokenType::Div) {
                 // 直前のトークンが　Numeric 型かチェック
                 if (line->token.end() == prev || prev->first != TokenType::Numeric) {
+                    // 直前のトークンが BracketEnd の場合は無視
+                    if (line->token.end() != prev && prev->first == TokenType::BracketEnd) {
+                        continue;
+                    }
                     line->error = true;
                     line->errmsg = "Illegal expression with no specification of the number of operations to be performed.";
                     puts(prev->second.c_str());
@@ -25,6 +29,10 @@ void evaluate_formulas(LineData* line)
                 // 次のトークンが　Numeric 型かチェック
                 next = it + 1;
                 if (next == line->token.end() || next->first != TokenType::Numeric) {
+                    // 次のトークンが BracketBegin の場合は無視
+                    if (line->token.end() != next && next->first == TokenType::BracketBegin) {
+                        continue;
+                    }
                     line->error = true;
                     line->errmsg = "Illegal expression with no specification of the number of operations to be performed.";
                     return;
@@ -66,6 +74,10 @@ void evaluate_formulas(LineData* line)
                     if (line->token.end() != prev && prev->first == TokenType::Operand) {
                         continue;
                     }
+                    // 直前のトークンが BracketEnd の場合は無視
+                    if (line->token.end() != prev && prev->first == TokenType::BracketEnd) {
+                        continue;
+                    }
                     line->error = true;
                     line->errmsg = "Illegal expression with no specification of the number of operations to be performed.";
                     puts(prev->second.c_str());
@@ -74,6 +86,10 @@ void evaluate_formulas(LineData* line)
                 // 次のトークンが　Numeric 型かチェック
                 next = it + 1;
                 if (next == line->token.end() || next->first != TokenType::Numeric) {
+                    // 次のトークンが BracketBegin の場合は無視
+                    if (line->token.end() != next && next->first == TokenType::BracketBegin) {
+                        continue;
+                    }
                     line->error = true;
                     line->errmsg = "Illegal expression with no specification of the number of operations to be performed.";
                     return;
