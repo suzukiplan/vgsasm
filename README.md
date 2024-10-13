@@ -29,6 +29,10 @@ vgsasm /path/to/source.asm
 - Case insensitive (except for string literals)
 - Hexadecimal numbers can be written in the format `$ABCD` or `0xABCD`.
 - Binary numbers can be written in the format `%0101` or `0b0101`.
+- Binary, decimal, and hexadecimal numbers can be four arithmetic operations (`+`, `-`, `*`, `/`)
+  - `LD A, 1 + 2 + 3` is `LD A, 6`
+  - `LD A, (0x10 + 3 * 2 - %0101)` is `LD A, (17)`
+  - `LD A, (0x10 + 3 * 2 - %0101) / 3` is `LD A, 5`
 - Strings after `;` or `//` are ignored as comments.
 
 ## Preprocessor
