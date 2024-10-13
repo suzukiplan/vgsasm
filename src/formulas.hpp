@@ -62,6 +62,10 @@ void evaluate_formulas(LineData* line)
             if (it->first == TokenType::Plus || it->first == TokenType::Minus) {
                 // 直前のトークンが　Numeric 型かチェック
                 if (line->token.end() == prev || prev->first != TokenType::Numeric) {
+                    // 直前のトークンが Operand の場合は無視（IX+dなどに対応するため）
+                    if (line->token.end() != prev && prev->first == TokenType::Operand) {
+                        continue;
+                    }
                     line->error = true;
                     line->errmsg = "Illegal expression with no specification of the number of operations to be performed.";
                     puts(prev->second.c_str());
