@@ -132,46 +132,45 @@ class LineData
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Mul, "*"));
                         break;
+                    case '[':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrayBegin, "["));
+                        break;
+                    case ']':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrayEnd, "]"));
+                        break;
+                    case '(':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::BracketBegin, "("));
+                        break;
+                    case ')':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::BracketEnd, ")"));
+                        break;
+                    case '{':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ScopeBegin, "{"));
+                        break;
+                    case '}':
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ScopeEnd, "}"));
+                        break;
                     case '\"': {
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::String, slets[sletIndex++].c_str()));
                         cp = strchr(cp + 1, '\"') + 1;
-                        break;
-                    }
-                    case '(': {
-                        cp++;
-                        ed = cp;
-                        int nest = 1;
-                        while (0 < nest && *ed) {
-                            switch (*ed) {
-                                case ')': nest--; break;
-                                case '(': nest++; break;
-                                case '"': {
-                                    this->error = true;
-                                    this->errmsg = "String literals cannot be written in parentheses.";
-                                    break;
-                                }
-                            }
-                            ed++;
-                        }
-                        if (0 == *ed) {
-                            // カッコが閉じられていない
-                            this->error = true;
-                            this->errmsg = "Parentheses are not closed.";
-                        } else {
-                            ed--;
-                            char work[sizeof(formed)];
-                            memset(work, 0, sizeof(work));
-                            memcpy(work, cp, ed - cp);
-                            this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Address, work));
-                            cp = ed + 1;
-                        }
                         break;
                     }
                     default: {
                         ed = cp + 1;
                         while (*ed) {
                             if (' ' == *ed ||
+                                '[' == *ed ||
+                                ']' == *ed ||
                                 '(' == *ed ||
+                                ')' == *ed ||
+                                '{' == *ed ||
+                                '}' == *ed ||
                                 '\"' == *ed ||
                                 '\'' == *ed ||
                                 '+' == *ed ||

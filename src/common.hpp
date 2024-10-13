@@ -11,17 +11,22 @@
 #include <algorithm>
 
 enum class TokenType {
-    String,  // 文字列 "str" or 'str'
-    Address, // アドレス (xxx)
-    Label,   // ラベル（HOGE: or .HOGE）
-    LabelAt, // @HOGE 形式のラベル
-    Numeric, // 数値
-    Split,   // カンマ
-    Plus,    // プラス
-    Minus,   // マイナス
-    Div,     // 割り算 (/)
-    Mul,     // 掛け算 (*)
-    Other    // その他
+    String,       // 文字列 "str" or 'str'
+    Label,        // ラベル（HOGE: or .HOGE）
+    LabelAt,      // @HOGE 形式のラベル
+    Numeric,      // 数値
+    Split,        // , カンマ
+    Plus,         // - プラス
+    Minus,        // * マイナス
+    Div,          // / 割り算
+    Mul,          // * 掛け算
+    ArrayBegin,   // [ 配列起点
+    ArrayEnd,     // ] 配列終点
+    BracketBegin, // ( カッコ
+    BracketEnd,   // ) カッコ
+    ScopeBegin,   // { スコープ起点
+    ScopeEnd,     // } スコープ終点
+    Other         // その他
 };
 
 void trimstring(char* src)
