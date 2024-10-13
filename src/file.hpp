@@ -2,6 +2,9 @@
 #include "common.hpp"
 
 static std::vector<std::string> includeFiles;
+static int arrayCount = 0;
+static int bracketCount = 0;
+static int scopeCount = 0;
 
 class LineData
 {
@@ -135,26 +138,48 @@ class LineData
                     case '[':
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrayBegin, "["));
+                        arrayCount++;
                         break;
                     case ']':
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrayEnd, "]"));
+                        arrayCount--;
+                        if (arrayCount < 0) {
+                            this->error = true;
+                            this->errmsg = "Invalid `]` without corresponding `[`.";
+                        }
                         break;
                     case '(':
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::BracketBegin, "("));
+                        bracketCount++;
                         break;
                     case ')':
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::BracketEnd, ")"));
+                        bracketCount--;
+                        if (bracketCount < 0) {
+                            this->error = true;
+                            this->errmsg = "Invalid `)` without corresponding `(`.";
+                        }
                         break;
                     case '{':
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ScopeBegin, "{"));
+                        scopeCount++;
+                        if (1 < scopeCount) {
+                            this->error = true;
+                            this->errmsg = "Duplicate `{` designation.";
+                        }
                         break;
                     case '}':
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ScopeEnd, "}"));
+                        scopeCount--;
+                        if (scopeCount < 0) {
+                            this->error = true;
+                            this->errmsg = "Invalid `}` without corresponding `{`.";
+                        }
                         break;
                     case '\"': {
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::String, slets[sletIndex++].c_str()));
@@ -198,6 +223,18 @@ class LineData
                     }
                 }
             }
+        }
+        // 配列は1行内でクローズ必須
+        if (arrayCount) {
+            this->error = true;
+            this->errmsg = "`[` is not closed with `]`.";
+            arrayCount = 0;
+        }
+        // カッコは1行内でクローズ必須
+        if (bracketCount) {
+            this->error = true;
+            this->errmsg = "`(` is not closed with `)`.";
+            bracketCount = 0;
         }
     }
 };
