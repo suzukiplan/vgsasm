@@ -12,12 +12,12 @@ static int assemble(std::vector<LineData*> lines)
     bool error = false;
     int errorCount = 0;
     for (auto line : lines) {
-        parse_label(line);
-        parse_mneoimonic(line);
-        parse_operand(line);
-        bracket_to_address(line);
-        parse_numeric(line);
-        evaluate_formulas(line);
+        parse_label(line);        // Other -> Label or LabelAt
+        parse_mneoimonic(line);   // Other -> Mnemonic
+        parse_operand(line);      // Other -> Operand
+        bracket_to_address(line); // Braket -> Address
+        parse_numeric(line);      // Other -> Numeric
+        evaluate_formulas(line);  // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
         if (line->error) {
             printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
             error = true;
