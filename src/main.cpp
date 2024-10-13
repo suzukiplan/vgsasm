@@ -18,6 +18,12 @@ static int assemble(std::vector<LineData*> lines)
         bracket_to_address(line); // Braket -> Address
         parse_numeric(line);      // Other -> Numeric
         evaluate_formulas(line);  // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
+
+        // ( Numric ) -> Numeric and formulas again
+        while (bracket_eliminate(line)) {
+            evaluate_formulas(line);
+        }
+
         if (line->error) {
             printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
             error = true;
@@ -35,6 +41,10 @@ static int assemble(std::vector<LineData*> lines)
         for (auto token : line->token) {
             if (token.first == TokenType::Mnemonic || token.first == TokenType::Operand) {
                 printf(" <%s>", token.second.c_str());
+            } else if (token.first == TokenType::AddressBegin) {
+                printf(" _(");
+            } else if (token.first == TokenType::AddressEnd) {
+                printf(" )_");
             } else {
                 printf(" `%s`", token.second.c_str());
             }
