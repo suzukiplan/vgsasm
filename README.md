@@ -70,6 +70,31 @@ JP FOO@LABEL2   ; Jump to FOO@LABEL2
 - Labels and inner labels are not case sensitive.
 - The label and inner label are symbols that uniquely identify all source files with `#include`.
 
+### `struct`
+
+```z80
+struct name $C000 {
+    var1 ds.b 1     ; name.var1 = $C000
+    var2 ds.w 1     ; name.var2 = $C001
+    var3 ds.b 4     ; name.var3 = $C003
+    var4 ds.w 4     ; name.var4 = $C007
+}                   ; sizeof(name) = 15
+
+// Array access
+// name[0].var1 = $C000
+// name[1].var1 = $C00F
+// name[2].var1 = $C01E
+```
+
+- You can define a structure with `struct name start_address`.
+- A struct is a grouping of single or multiple attributes in a common namespace.
+- Attributes are specified in the form `attribute_name {ds.b|ds.w|name} count`.
+  - `ds.b` ... 1 byte
+  - `ds.w` ... 2 bytes
+  - `name` ... `sizeof(name)`
+- The `start_address` is usually assumed to be an absolute address in RAM (0xC000 to 0xFFFF).
+- This structure has no boundary.
+
 ## License
 
 [GPLv3](LICENSE.txt)
