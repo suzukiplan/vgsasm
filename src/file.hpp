@@ -1,10 +1,13 @@
 #pragma once
 #include "common.hpp"
 
+class LineData;
+
 static std::vector<std::string> includeFiles;
 static int arrayCount = 0;
 static int bracketCount = 0;
 static int scopeCount = 0;
+static LineData* lastScopeBegin = nullptr;
 
 class LineData
 {
@@ -170,6 +173,8 @@ class LineData
                         if (1 < scopeCount) {
                             this->error = true;
                             this->errmsg = "Duplicate `{` designation.";
+                        } else {
+                            lastScopeBegin = this;
                         }
                         break;
                     case '}':
@@ -296,5 +301,12 @@ std::vector<LineData*> readFile(const char* filePath)
             last = str.size();
         }
     }
+
+    // スコープが閉じられているかチェック
+    if (0 != scopeCount) {
+        lastScopeBegin->error = true;
+        lastScopeBegin->errmsg = "The scope `{` specified in this line is not closed with `}`.";
+    }
+
     return result;
 }
