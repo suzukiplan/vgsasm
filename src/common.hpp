@@ -11,6 +11,7 @@
 #include <algorithm>
 
 enum class TokenType {
+    None,         // トークンが無い
     String,       // 文字列 "str" or 'str'
     Label,        // ラベル（HOGE: or .HOGE）
     LabelAt,      // @HOGE 形式のラベル

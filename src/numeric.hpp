@@ -72,6 +72,18 @@ void parse_numeric(LineData* line)
                 line->errmsg = "Invalid binary number";
                 return;
             }
+        } else {
+            bool isNumeric = true;
+            while (*str) {
+                if (!isdigit(*str)) {
+                    isNumeric = false;
+                    break;
+                }
+                str++;
+            }
+            if (isNumeric) {
+                it->first = TokenType::Numeric;
+            }
         }
     }
 }

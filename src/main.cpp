@@ -3,20 +3,21 @@
 #include "mnemonic.hpp"
 #include "label.hpp"
 #include "numeric.hpp"
+#include "formulas.hpp"
 
 static int assemble(std::vector<LineData*> lines)
 {
     bool error = false;
+    int errorCount = 0;
     for (auto line : lines) {
+        parse_label(line);
+        parse_numeric(line);
+        evaluate_formulas(line);
         if (line->error) {
             printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
             error = true;
-        } else {
-            parse_label(line);
-            parse_numeric(line);
-            if (line->error) {
-                printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
-                error = true;
+            if (100 < ++errorCount) {
+                break;
             }
         }
     }
