@@ -1,7 +1,7 @@
 # WIP: Z80 Assembler for VGS-Zero
 
 - VGS-Zero のツールチェインに組み込み予定の Z80 アセンブラ
-- 完成したら [suzukiplan/vgszero](https://github/suzukiplan/vgszero) に組み込み予定
+- 完成したら [suzukiplan/vgszero](https://github.com/suzukiplan/vgszero) に組み込み予定
 - 基本的には z88dk の z80asm の構文をサポート予定（全部ではない）
 - IXH,IXL,IYH,IYL対応
 - 色々なエイリアスを追加予定
