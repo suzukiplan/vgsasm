@@ -18,6 +18,12 @@
 - [ ] 構文解析（ざっくり）
 - [ ] その他色々 
 
+## Usage
+
+```bash
+vgsasm /path/to/source.asm
+```
+
 ## Basic Syntax
 
 - Case insensitive (except for string literals)
@@ -94,6 +100,7 @@ struct name $C000 {
   - `name` ... `sizeof(name)`
 - The `start_address` is usually assumed to be an absolute address in RAM (0xC000 to 0xFFFF).
 - This structure has no boundary.
+- Can also be accessed as an array in the form `name[index]`.
 
 ## License
 

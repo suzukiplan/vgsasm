@@ -4,6 +4,7 @@
 #include "label.hpp"
 #include "numeric.hpp"
 #include "formulas.hpp"
+#include "bracket.hpp"
 
 static int assemble(std::vector<LineData*> lines)
 {
@@ -11,6 +12,8 @@ static int assemble(std::vector<LineData*> lines)
     int errorCount = 0;
     for (auto line : lines) {
         parse_label(line);
+        parse_mneoimonic(line);
+        bracket_to_address(line);
         parse_numeric(line);
         evaluate_formulas(line);
         if (line->error) {

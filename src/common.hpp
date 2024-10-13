@@ -12,6 +12,7 @@
 
 enum class TokenType {
     None,         // トークンが無い
+    Mnemonic,     // ニーモニック
     String,       // 文字列 "str" or 'str'
     Label,        // ラベル（HOGE: or .HOGE）
     LabelAt,      // @HOGE 形式のラベル
@@ -25,9 +26,91 @@ enum class TokenType {
     ArrayEnd,     // ] 配列終点
     BracketBegin, // ( カッコ
     BracketEnd,   // ) カッコ
+    AddressBegin, // ( カッコ（※特定箇所のみ）
+    AddressEnd,   // ) カッコ (※特定箇所のみ)
     ScopeBegin,   // { スコープ起点
     ScopeEnd,     // } スコープ終点
     Other         // その他
+};
+
+enum class Mnemonic {
+    None = 0,
+    LD,
+    LDI,
+    LDD,
+    LDIR,
+    LDDR,
+    PUSH,
+    POP,
+    EX,
+    EXX,
+    CP,
+    CPI,
+    CPIR,
+    CPD,
+    CPDR,
+    ADD,
+    ADC,
+    SUB,
+    SBC,
+    AND,
+    OR,
+    XOR,
+    INC,
+    DEC,
+    DAA,
+    CPL,
+    NEG,
+    CCF,
+    SCF,
+    NOP,
+    HALT,
+    RL,
+    RLA,
+    RLC,
+    RLCA,
+    RR,
+    RRA,
+    RRC,
+    RRCA,
+    SLA,
+    SLL,
+    SRA,
+    SRL,
+    RLD,
+    RRD,
+    BIT,
+    SET,
+    RES,
+    JP,
+    JR,
+    JZ,
+    JNZ,
+    JC,
+    JNC,
+    JPO,
+    JPE,
+    JPP,
+    JPM,
+    DJNZ,
+    CALL,
+    RET,
+    RETI,
+    RETN,
+    RST,
+    OUT,
+    OUTI,
+    OTIR,
+    OUTD,
+    OTDR,
+    IN,
+    INI,
+    INIR,
+    IND,
+    INDR,
+    DI,
+    EI,
+    IM,
 };
 
 void trimstring(char* src)

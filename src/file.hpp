@@ -18,6 +18,7 @@ class LineData
     int lineNumber;
     std::string text;
     std::vector<std::pair<TokenType, std::string>> token;
+    Mnemonic mnemonic;
 
     LineData(std::string text) { LineData(nullptr, 0, text); }
 
@@ -26,6 +27,7 @@ class LineData
         this->path = path;
         this->lineNumber = lineNumber;
         this->text = text;
+        this->mnemonic = Mnemonic::None;
         char formed[4096];
         memset(formed, 0, sizeof(formed));
 
