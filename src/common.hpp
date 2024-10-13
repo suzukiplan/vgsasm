@@ -13,6 +13,7 @@
 enum class TokenType {
     None,         // トークンが無い
     Mnemonic,     // ニーモニック
+    Operand,      // オペランド
     String,       // 文字列 "str" or 'str'
     Label,        // ラベル（HOGE: or .HOGE）
     LabelAt,      // @HOGE 形式のラベル
@@ -111,6 +112,28 @@ enum class Mnemonic {
     DI,
     EI,
     IM,
+};
+
+enum class Operand {
+    A,
+    B,
+    C,
+    D,
+    E,
+    H,
+    L,
+    IXH,
+    IXL,
+    IYH,
+    IYL,
+    AF,
+    AF_dash,
+    BC,
+    DE,
+    HL,
+    IX,
+    IY,
+    SP,
 };
 
 void trimstring(char* src)

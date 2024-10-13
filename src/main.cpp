@@ -1,6 +1,7 @@
 #include "common.hpp"
 #include "file.hpp"
 #include "mnemonic.hpp"
+#include "operand.hpp"
 #include "label.hpp"
 #include "numeric.hpp"
 #include "formulas.hpp"
@@ -13,6 +14,7 @@ static int assemble(std::vector<LineData*> lines)
     for (auto line : lines) {
         parse_label(line);
         parse_mneoimonic(line);
+        parse_operand(line);
         bracket_to_address(line);
         parse_numeric(line);
         evaluate_formulas(line);
@@ -31,7 +33,7 @@ static int assemble(std::vector<LineData*> lines)
     for (auto line : lines) {
         printf("%16s:%04d", line->path.c_str(), line->lineNumber);
         for (auto token : line->token) {
-            if (token.first == TokenType::Mnemonic) {
+            if (token.first == TokenType::Mnemonic || token.first == TokenType::Operand) {
                 printf(" <%s>", token.second.c_str());
             } else {
                 printf(" `%s`", token.second.c_str());
