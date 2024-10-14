@@ -37,6 +37,39 @@ vgsasm /path/to/source.asm
 
 ## Preprocessor
 
+### `org`
+
+Specifies the starting address for binary output.
+
+```z80
+org $0000
+```
+
+In vgsasm, multiple `ORG`s can be specified, for example, if the code for IM1 interrupt is to be generated from 0x0038, it can be written as follows:
+
+```z80
+org $0000
+.Reset
+    ld sp, 0
+    im 1
+    ei
+    jp Main
+
+org $0038
+.Interrupt
+    // Interrupt procedure
+    reti
+
+org $0100
+.Main
+    // Main procedure
+```
+
+The following points should be noted:
+
+- `ORG` must be defined in ascending order from the beginning of the source code.
+- The free space from `ORG` to the next `ORG` is filled with 0xFF.
+
 ### `#include`
 
 ```z80
