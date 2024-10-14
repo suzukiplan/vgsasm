@@ -108,6 +108,14 @@ std::string evaluate_formulas(std::vector<std::pair<TokenType, std::string>>* to
 
 void evaluate_formulas(LineData* line)
 {
+    // sizeof を検出した行の計算をスキップ
+    for (auto t : line->token) {
+        if (t.first == TokenType::SizeOf) {
+            return;
+        }
+    }
+
+    // 計算を実行
     auto errmsg = evaluate_formulas(&line->token);
     if (!errmsg.empty()) {
         line->error = true;
