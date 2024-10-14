@@ -10,6 +10,8 @@
 #include <map>
 #include <algorithm>
 
+class LineData;
+
 enum class TokenType {
     None,         // トークンが無い
     Delete,       // 削除マーク
@@ -119,25 +121,38 @@ enum class Mnemonic {
 class StructField
 {
   public:
+    LineData* line;
     std::string name;
     std::vector<std::pair<TokenType, std::string>> token;
+    int size;
+    int count;
+    int address;
 
-    StructField(std::string name)
+    StructField(LineData* line, std::string name)
     {
+        this->line = line;
         this->name = name;
+        this->size = 0;
+        this->count = 0;
+        this->address = 0;
     }
 };
 
 class Struct
 {
   public:
+    LineData* line;
     std::string name;
     int start;
+    int size;
     std::vector<StructField*> fields;
 
-    Struct(std::string name)
+    Struct(LineData* line, std::string name)
     {
+        this->line = line;
         this->name = name;
+        this->start = 0;
+        this->size = 0;
     }
 };
 

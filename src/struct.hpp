@@ -41,7 +41,7 @@ bool struct_syntax_check(std::vector<LineData*>* lines)
                                 return false;
                             }
                         }
-                        newField = new StructField(it2->second);
+                        newField = new StructField(line, it2->second);
                         newStruct->fields.push_back(newField);
                         it2->first = TokenType::Delete;
                     }
@@ -66,7 +66,7 @@ bool struct_syntax_check(std::vector<LineData*>* lines)
                             line->errmsg = "Duplicate structure name: " + it2->second;
                             return false;
                         }
-                        newStruct = new Struct(it2->second);
+                        newStruct = new Struct(line, it2->second);
                         structTable[it2->second] = newStruct;
                         expect = TokenType::Numeric;
                         break;
@@ -84,4 +84,51 @@ bool struct_syntax_check(std::vector<LineData*>* lines)
     }
 
     return false;
+}
+
+bool struct_check_size()
+{
+    bool needRetry = false;
+    for (auto s = structTable.begin(); s != structTable.end(); s++) {
+        int sizeOfStruct = 0;
+        bool skip = false;
+        for (auto f = s->second->fields.begin(); f != s->second->fields.end(); f++) {
+            auto field = *f;
+            if (field->token.size() != 2) {
+                field->line->error = true;
+                field->line->errmsg = "Invalid field " + field->name + " in structure " + s->first;
+                continue;
+            }
+            if (TokenType::Numeric != field->token[1].first) {
+                field->line->error = true;
+                field->line->errmsg = "Specify non-numeric number of field " + field->name + " in structure " + s->first + ": " + field->token[1].second;
+                continue;
+            }
+            if (field->token[0].second == "DS.B") {
+                field->size = 1;
+            } else if (field->token[0].second == "DS.W") {
+                field->size = 2;
+            } else {
+                auto ss = structTable.find(field->token[0].second);
+                if (ss == structTable.end()) {
+                    field->line->error = true;
+                    field->line->errmsg = "Unknown structure name " + field->token[0].second + " specified in field " + field->name + " of structure " + s->first;
+                    continue;
+                }
+                if (0 == ss->second->size) {
+                    // 構造体サイズが確定していないのでリトライを要求してスキップ
+                    needRetry = true;
+                    skip = true;
+                    continue;
+                }
+                field->size = ss->second->size;
+            }
+            field->count = atoi(field->token[1].second.c_str());
+            sizeOfStruct += field->size * field->count;
+        }
+        if (!skip) {
+            s->second->size = sizeOfStruct;
+        }
+    }
+    return needRetry;
 }

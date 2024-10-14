@@ -51,7 +51,7 @@ static int assemble(std::vector<LineData*> lines)
 {
     bool error = false;
 
-    // Ph.1 基本構文解析
+    // 基本構文解析
     for (auto line : lines) {
         parse_label(line);        // Other -> Label or LabelAt
         parse_mneoimonic(line);   // Other -> Mnemonic
@@ -71,23 +71,39 @@ static int assemble(std::vector<LineData*> lines)
         return -1;
     }
 
-    // Ph.2 struct 構文解析
+    // struct 構文解析
     while (struct_syntax_check(&lines)) {
         if (check_error(lines)) {
             return -1;
         }
-        clear_delete_token(&lines);
     }
+    int retryCount = 0;
+    while (struct_check_size()) {
+        if (check_error(lines)) {
+            return -1;
+        }
+        retryCount++;
+        if (structTable.size() <= retryCount) {
+            // 循環参照が発生している構造体をエラーにする
+            for (auto it = structTable.begin(); it != structTable.end(); it++) {
+                if (0 == it->second->size) {
+                    it->second->line->error = true;
+                    it->second->line->errmsg = "Detects circular references between structures";
+                    break;
+                }
+            }
+        }
+    }
+    if (check_error(lines)) {
+        return -1;
+    }
+    clear_delete_token(&lines);
 
     // struct解析結果を出力（デバッグ）
     for (auto s : structTable) {
-        printf("Struct: %s (0x%X)\n", s.first.c_str(), s.second->start);
+        printf("Struct: %s (0x%X) size = %d\n", s.first.c_str(), s.second->start, s.second->size);
         for (auto f : s.second->fields) {
-            printf(" - %s:", f->name.c_str());
-            for (auto t : f->token) {
-                printf(" %s", t.second.c_str());
-            }
-            printf("\n");
+            printf(" - %s (size=%d, count=%d)\n", f->name.c_str(), f->size, f->count);
         }
     }
 
