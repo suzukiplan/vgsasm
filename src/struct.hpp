@@ -91,6 +91,7 @@ bool struct_check_size()
     bool needRetry = false;
     for (auto s = structTable.begin(); s != structTable.end(); s++) {
         int sizeOfStruct = 0;
+        int startAddress = s->second->start;
         bool skip = false;
         for (auto f = s->second->fields.begin(); f != s->second->fields.end(); f++) {
             auto field = *f;
@@ -124,6 +125,8 @@ bool struct_check_size()
                 field->size = ss->second->size;
             }
             field->count = atoi(field->token[1].second.c_str());
+            field->address = startAddress;
+            startAddress += field->size * field->count;
             sizeOfStruct += field->size * field->count;
         }
         if (!skip) {

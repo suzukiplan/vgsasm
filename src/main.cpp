@@ -103,7 +103,7 @@ static int assemble(std::vector<LineData*> lines)
     for (auto s : structTable) {
         printf("Struct: %s (0x%X) size = %d\n", s.first.c_str(), s.second->start, s.second->size);
         for (auto f : s.second->fields) {
-            printf(" - %s (size=%d, count=%d)\n", f->name.c_str(), f->size, f->count);
+            printf(" - %s (size=%d, count=%d addr=0x%X)\n", f->name.c_str(), f->size, f->count, f->address);
         }
     }
 
