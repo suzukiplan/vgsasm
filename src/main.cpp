@@ -7,6 +7,7 @@
 #include "formulas.hpp"
 #include "bracket.hpp"
 #include "struct.hpp"
+#include "sizeof.hpp"
 
 int errorCount = 0;
 
@@ -59,6 +60,7 @@ static int assemble(std::vector<LineData*> lines)
         parse_struct(line);       // Other -> Struct
         bracket_to_address(line); // Braket -> Address
         parse_numeric(line);      // Other -> Numeric
+        parse_sizeof(line);       // Other -> Sizeof
         evaluate_formulas(line);  // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
 
         // ( Numric ) -> Numeric and formulas again
@@ -117,6 +119,8 @@ static int assemble(std::vector<LineData*> lines)
                 printf(" _(");
             } else if (token.first == TokenType::AddressEnd) {
                 printf(" )_");
+            } else if (token.first == TokenType::SizeOf) {
+                printf(" sizeof(%s)", token.second.c_str());
             } else {
                 printf(" `%s`", token.second.c_str());
             }

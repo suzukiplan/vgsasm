@@ -18,6 +18,7 @@ enum class TokenType {
     Mnemonic,     // ニーモニック
     Operand,      // オペランド
     Struct,       // 構造体
+    SizeOf,       // 構造体サイズ
     String,       // 文字列 "str" or 'str'
     Label,        // ラベル（HOGE: or .HOGE）
     LabelAt,      // @HOGE 形式のラベル
