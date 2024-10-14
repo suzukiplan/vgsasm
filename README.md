@@ -106,6 +106,13 @@ struct name $C000 {
 - This structure has no boundary.
 - Can also be accessed as an array in the form `name[index]`.
 
+## Auto-expand Instructions
+
+| Instruction | Auto-expand |
+|:------------|:------------|
+| `LD (HL++), {r｜n}` | `LD (HL), {r｜n}` <br> `INC HL` |
+| `LD (++HL), {r｜n}` | `INC HL` <br> `LD (HL), {r｜n}` |
+
 ## License
 
 [GPLv3](LICENSE.txt)
