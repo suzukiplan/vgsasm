@@ -5,7 +5,6 @@
 
 void parse_sizeof(LineData* line)
 {
-    TokenType expect = TokenType::None;
     for (auto it = line->token.begin(); it != line->token.end(); it++) {
         if (it->first == TokenType::Other) {
             if (it->second == "SIZEOF") {
@@ -32,6 +31,22 @@ void parse_sizeof(LineData* line)
                 }
                 it->first = TokenType::Delete;
             }
+        }
+    }
+}
+
+void replace_sizeof(LineData* line)
+{
+    for (auto it = line->token.begin(); it != line->token.end(); it++) {
+        if (it->first == TokenType::SizeOf) {
+            auto s = structTable.find(it->second);
+            if (s == structTable.end()) {
+                line->error = true;
+                line->errmsg = "Undefined structure " + it->second + " is specified in sizeof.";
+                return;
+            }
+            it->first = TokenType::Numeric;
+            it->second = std::to_string(s->second->size);
         }
     }
 }

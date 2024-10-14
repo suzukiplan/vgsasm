@@ -101,6 +101,15 @@ static int assemble(std::vector<LineData*> lines)
     }
     clear_delete_token(&lines);
 
+    // sizeofを適切なサイズに置換して再演算
+    for (auto line : lines) {
+        replace_sizeof(line);
+        evaluate_formulas(line);
+    }
+    if (check_error(lines)) {
+        return -1;
+    }
+
     // struct解析結果を出力（デバッグ）
     for (auto s : structTable) {
         printf("Struct: %s (0x%X) size = %d\n", s.first.c_str(), s.second->start, s.second->size);
