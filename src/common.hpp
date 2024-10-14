@@ -12,8 +12,10 @@
 
 enum class TokenType {
     None,         // トークンが無い
+    Delete,       // 削除マーク
     Mnemonic,     // ニーモニック
     Operand,      // オペランド
+    Struct,       // 構造体
     String,       // 文字列 "str" or 'str'
     Label,        // ラベル（HOGE: or .HOGE）
     LabelAt,      // @HOGE 形式のラベル
@@ -31,7 +33,7 @@ enum class TokenType {
     AddressEnd,   // ) カッコ (※特定箇所のみ)
     ScopeBegin,   // { スコープ起点
     ScopeEnd,     // } スコープ終点
-    Other         // その他
+    Other         // その他 (構文解析の仮定で最終的にはなくなる)
 };
 
 enum class Mnemonic {
@@ -112,6 +114,31 @@ enum class Mnemonic {
     DI,
     EI,
     IM,
+};
+
+class StructField
+{
+  public:
+    std::string name;
+    std::vector<std::pair<TokenType, std::string>> token;
+
+    StructField(std::string name)
+    {
+        this->name = name;
+    }
+};
+
+class Struct
+{
+  public:
+    std::string name;
+    int start;
+    std::vector<StructField*> fields;
+
+    Struct(std::string name)
+    {
+        this->name = name;
+    }
 };
 
 enum class Operand {
