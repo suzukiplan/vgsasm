@@ -136,3 +136,48 @@ void evaluate_formulas(LineData* line)
         line->errmsg = errmsg;
     }
 }
+
+void evaluate_formulas_array(LineData* line)
+{
+    std::vector<std::pair<TokenType, std::string>> before;
+    std::vector<std::pair<TokenType, std::string>> elements;
+    std::vector<std::pair<TokenType, std::string>> after;
+    int skip = 0;
+    bool retry = true;
+
+    while (retry) {
+        retry = false;
+        int count = 0;
+        for (auto it = line->token.begin(); it != line->token.end(); it++) {
+            before.push_back(std::make_pair(it->first, it->second));
+            if (it->first == TokenType::ArrayBegin) {
+                count++;
+                if (skip < count) {
+                    for (it++; it->first != TokenType::ArrayEnd; it++) {
+                        elements.push_back(std::make_pair(it->first, it->second));
+                    }
+                    after.push_back(std::make_pair(it->first, it->second));
+                    for (it++; it != line->token.end(); it++) {
+                        after.push_back(std::make_pair(it->first, it->second));
+                    }
+                    auto error = evaluate_formulas(&elements);
+                    if (!error.empty()) {
+                        line->error = true;
+                        line->errmsg = error;
+                        return;
+                    }
+                    line->token.clear();
+                    line->token.insert(line->token.end(), before.begin(), before.end());
+                    line->token.insert(line->token.end(), elements.begin(), elements.end());
+                    line->token.insert(line->token.end(), after.begin(), after.end());
+                    before.clear();
+                    elements.clear();
+                    after.clear();
+                    skip++;
+                    retry = true;
+                    break;
+                }
+            }
+        }
+    }
+}

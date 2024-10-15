@@ -10,3 +10,4 @@
     ld (OAM[2].x), a 
     ld (OAM[3].x), a 
     ld (OAM[1+2*3].x), a 
+    ld (OAM[1+2*3].x + 3), a 

@@ -221,6 +221,7 @@ bool bracket_eliminate(LineData* line);                                         
 std::vector<LineData*> readFile(const char* filePath);                                // file.cpp
 std::string evaluate_formulas(std::vector<std::pair<TokenType, std::string>>* token); // formulas.cpp
 void evaluate_formulas(LineData* line);                                               // formulas.cpp
+void evaluate_formulas_array(LineData* line);                                         // formulas.cpp
 void parse_label(LineData* line);                                                     // label.cpp
 void parse_mneoimonic(LineData* line);                                                // mnemonic.cpp
 std::string hex2dec(const char* hex);                                                 // numeric.cpp

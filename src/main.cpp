@@ -64,7 +64,7 @@ static int check_error(LineData* line)
 {
     if (line->error) {
         printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
-        // line->printDebug();
+        line->printDebug();
         return -1;
     }
     return 0;
@@ -181,6 +181,7 @@ static int assemble(std::vector<LineData*> lines)
     // 構造体トークンをパース
     for (auto line : lines) {
         parse_struct_name(line);
+        evaluate_formulas_array(line);
         parse_struct_array(line);
     }
     if (check_error(lines)) {
@@ -192,6 +193,14 @@ static int assemble(std::vector<LineData*> lines)
     for (auto line : lines) {
         replace_struct(line);
         replace_sizeof(line);
+    }
+    if (check_error(lines)) {
+        return -1;
+    }
+    clear_delete_token(&lines);
+
+    // 最終計算
+    for (auto line : lines) {
         evaluate_formulas(line);
     }
     if (check_error(lines)) {
