@@ -22,9 +22,17 @@
 
 ## Usage
 
-```bash
-vgsasm /path/to/source.asm
 ```
+vgsasm [-b size_of_binary] /path/to/source.asm
+```
+
+- `-b size_of_binary`
+  - Specify the size of the output binary.
+  - The `size_of_binary` can be specified in decimal or hexadecimal (ex: `0xABCD`)
+  - The `size_of_binary` cannot be less than `1`.
+  - The upper limit of `size_of_binary` is `65536` (`0x10000`)
+  - Assembly will fail if the specified size is exceeded.
+  - Boundary areas that do not meet the specified size are filled with `0xFF`.
 
 ## Basic Syntax
 
