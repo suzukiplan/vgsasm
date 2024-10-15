@@ -14,7 +14,7 @@ OBJECTS = \
 	struct.o \
 	main.o
 
-all: vgsasm
+all: ../vgsasm
 
 clean:
 	rm -f ${OBJECTS}
