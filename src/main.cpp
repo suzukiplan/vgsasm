@@ -250,7 +250,12 @@ static int assemble(std::vector<LineData*> lines)
 
 static int assemble(const char* path)
 {
-    return assemble(readFile(path));
+    auto lines = readFile(path);
+    if (lines.empty()) {
+        printf("Error: Cannot open \"%s\".\n", path);
+        return -1;
+    }
+    return assemble(lines);
 }
 
 int main(int argc, char* argv[])
