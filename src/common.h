@@ -207,7 +207,8 @@ extern int scopeCount;
 extern LineData* lastScopeBegin;
 
 void addNameTable(std::string name, LineData* line);                                  // main.cpp
-void trimstring(char* src);                                                           // main.cpp
+void trim_string(char* src);                                                          // main.cpp
+std::vector<std::string> split_token(std::string str, char del);                      // main.cpp
 bool parse_define(LineData* line);                                                    // define.cpp
 void replace_define(LineData* line);                                                  // define.cpp
 void bracket_to_address(LineData* line);                                              // bracket.cpp
@@ -226,3 +227,4 @@ void replace_sizeof(LineData* line);                                            
 void parse_struct(LineData* line);                                                    // struct.cpp
 bool struct_syntax_check(std::vector<LineData*>* lines);                              // struct.cpp
 bool struct_check_size();                                                             // struct.cpp
+void replace_struct(LineData* line);                                                  // struct.cpp

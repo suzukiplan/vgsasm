@@ -132,3 +132,49 @@ bool struct_check_size()
     }
     return needRetry;
 }
+
+void replace_struct(LineData* line)
+{
+    for (auto it = line->token.begin(); it != line->token.end(); it++) {
+        if (it->first == TokenType::Other) {
+            // A.B (ドットあり 2 トークン) または A (ドットなし) ならチェック
+            auto token = it->second;
+            auto tokens = split_token(token, '.');
+            if (1 == tokens.size()) {
+                // 1 トークンの場合構造体名であればスタートアドレスに置換
+                puts("1");
+                auto str = structTable.find(tokens[0]);
+                if (str != structTable.end()) {
+                    it->first = TokenType::Numeric;
+                    it->second = std::to_string(str->second->start);
+                } else {
+                    // 構造体ではないので無視
+                }
+            } else if (2 == tokens.size()) {
+                // 2 トークンの場合構造体名のフィールド名に該当するアドレスに置換
+                puts("2");
+                auto str = structTable.find(tokens[0]);
+                if (str != structTable.end()) {
+                    bool found = false;
+                    for (auto field : str->second->fields) {
+                        if (field->name == tokens[1]) {
+                            it->first = TokenType::Numeric;
+                            it->second = std::to_string(field->address);
+                            found = true;
+                            break;
+                        }
+                    }
+                    // フィールド名が見つからなかった場合はエラー
+                    if (!found) {
+                        line->error = true;
+                        line->errmsg = "Unknown field name in structure " + tokens[0] + ": " + tokens[1];
+                    }
+                } else {
+                    // 構造体ではないので無視
+                }
+            } else {
+                // 構造体ではないので無視
+            }
+        }
+    }
+}

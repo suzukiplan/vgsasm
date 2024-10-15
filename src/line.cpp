@@ -88,7 +88,7 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
         }
 
         // 前後の空白をトリム
-        trimstring(formed);
+        trim_string(formed);
 
         // トークン分割
         cp = formed;

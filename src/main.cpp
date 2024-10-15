@@ -7,7 +7,7 @@ std::map<std::string, LineData*> labelTable;
 std::map<std::string, Struct*> structTable;
 int errorCount = 0;
 
-void trimstring(char* src)
+void trim_string(char* src)
 {
     int i, j;
     int len;
@@ -21,6 +21,26 @@ void trimstring(char* src)
     for (len = (int)strlen(src) - 1; 0 <= len && ' ' == src[len]; len--) {
         src[len] = '\0';
     }
+}
+
+std::vector<std::string> split_token(std::string str, char del)
+{
+    std::vector<std::string> elems;
+    std::string item;
+    for (char ch : str) {
+        if (ch == del) {
+            if (!item.empty()) {
+                elems.push_back(item);
+            }
+            item.clear();
+        } else {
+            item += ch;
+        }
+    }
+    if (!item.empty()) {
+        elems.push_back(item);
+    }
+    return elems;
 }
 
 void addNameTable(std::string name, LineData* line)
@@ -157,8 +177,9 @@ static int assemble(std::vector<LineData*> lines)
     }
     clear_delete_token(&lines);
 
-    // sizeofを適切なサイズに置換して再演算
+    // 構造体とsizeofを適切なサイズに置換して再演算
     for (auto line : lines) {
+        replace_struct(line);
         replace_sizeof(line);
         evaluate_formulas(line);
     }
