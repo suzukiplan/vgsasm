@@ -133,7 +133,7 @@ bool struct_check_size()
     return needRetry;
 }
 
-void replace_struct(LineData* line)
+void parse_struct_name(LineData* line)
 {
     for (auto it = line->token.begin(); it != line->token.end(); it++) {
         if (it->first == TokenType::Other) {
@@ -142,24 +142,20 @@ void replace_struct(LineData* line)
             auto tokens = split_token(token, '.');
             if (1 == tokens.size()) {
                 // 1 トークンの場合構造体名であればスタートアドレスに置換
-                puts("1");
                 auto str = structTable.find(tokens[0]);
                 if (str != structTable.end()) {
-                    it->first = TokenType::Numeric;
-                    it->second = std::to_string(str->second->start);
+                    it->first = TokenType::StructName;
                 } else {
                     // 構造体ではないので無視
                 }
             } else if (2 == tokens.size()) {
                 // 2 トークンの場合構造体名のフィールド名に該当するアドレスに置換
-                puts("2");
                 auto str = structTable.find(tokens[0]);
                 if (str != structTable.end()) {
                     bool found = false;
                     for (auto field : str->second->fields) {
                         if (field->name == tokens[1]) {
-                            it->first = TokenType::Numeric;
-                            it->second = std::to_string(field->address);
+                            it->first = TokenType::StructName;
                             found = true;
                             break;
                         }
@@ -174,6 +170,27 @@ void replace_struct(LineData* line)
                 }
             } else {
                 // 構造体ではないので無視
+            }
+        }
+    }
+}
+
+void replace_struct(LineData* line)
+{
+    for (auto it = line->token.begin(); it != line->token.end(); it++) {
+        if (it->first == TokenType::StructName) {
+            it->first = TokenType::Numeric;
+            auto token = it->second;
+            auto tokens = split_token(token, '.');
+            auto str = structTable.find(tokens[0]);
+            if (tokens.size() == 1) {
+                it->second = std::to_string(str->second->start);
+            } else {
+                for (auto field : str->second->fields) {
+                    if (field->name == tokens[1]) {
+                        it->second = std::to_string(field->address);
+                    }
+                }
             }
         }
     }

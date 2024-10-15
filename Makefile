@@ -18,7 +18,7 @@ all: vgsasm
 
 clean:
 	rm -f ${OBJECTS}
-	rm -f ../vgsasm
+	rm -f vgsasm
 
 vgsasm: ${OBJECTS}
 	${CPP} ${CPPFLAGS} -o vgsasm ${OBJECTS}

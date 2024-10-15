@@ -106,10 +106,26 @@ std::string evaluate_formulas(std::vector<std::pair<TokenType, std::string>>* to
 
 void evaluate_formulas(LineData* line)
 {
-    // sizeof を検出した行の計算をスキップ
-    for (auto t : line->token) {
-        if (t.first == TokenType::SizeOf) {
-            return;
+    // sizeof または 演算子前後が Other の演算を検出した行の計算をスキップ
+    for (auto it = line->token.begin(); it != line->token.end(); it++) {
+        switch (it->first) {
+            case TokenType::SizeOf:
+                return;
+            case TokenType::Plus:
+            case TokenType::Minus:
+            case TokenType::Mul:
+            case TokenType::Div:
+                if (it != line->token.begin()) {
+                    if ((it - 1)->first == TokenType::Other) {
+                        return;
+                    }
+                }
+                if (it + 1 != line->token.end()) {
+                    if ((it + 1)->first == TokenType::Other) {
+                        return;
+                    }
+                }
+                break;
         }
     }
 

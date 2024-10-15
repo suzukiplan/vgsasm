@@ -17,6 +17,7 @@ enum class TokenType {
     Mnemonic,     // ニーモニック
     Operand,      // オペランド
     Struct,       // 構造体
+    StructName,   // 構造体名
     SizeOf,       // 構造体サイズ
     String,       // 文字列 "str" or 'str'
     Label,        // ラベル（HOGE: or .HOGE）
@@ -128,6 +129,7 @@ class LineData
     std::string text;
     std::vector<std::pair<TokenType, std::string>> token;
     Mnemonic mnemonic;
+    std::vector<uint8_t> machine;
     LineData(std::string text) { LineData(nullptr, 0, text); }
     LineData(const char* path, int lineNumber, std::string text);
 };
@@ -227,4 +229,5 @@ void replace_sizeof(LineData* line);                                            
 void parse_struct(LineData* line);                                                    // struct.cpp
 bool struct_syntax_check(std::vector<LineData*>* lines);                              // struct.cpp
 bool struct_check_size();                                                             // struct.cpp
+void parse_struct_name(LineData* line);                                               // struct.cpp
 void replace_struct(LineData* line);                                                  // struct.cpp

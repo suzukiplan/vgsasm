@@ -177,8 +177,9 @@ static int assemble(std::vector<LineData*> lines)
     }
     clear_delete_token(&lines);
 
-    // 構造体とsizeofを適切なサイズに置換して再演算
+    // StructName と sizeof を数値に置換
     for (auto line : lines) {
+        parse_struct_name(line);
         replace_struct(line);
         replace_sizeof(line);
         evaluate_formulas(line);
