@@ -175,6 +175,60 @@ void parse_struct_name(LineData* line)
     }
 }
 
+void parse_struct_array(LineData* line)
+{
+    for (auto it = line->token.begin(); it != line->token.end(); it++) {
+        if (it->first == TokenType::StructName) {
+            auto str = structTable.find(it->second);
+            if (++it == line->token.end()) {
+                return;
+            }
+            if (it->first != TokenType::ArrayBegin) {
+                continue;
+            }
+            it->first = TokenType::Delete;
+            // ArrayBegin があれば同一行内に必ず ArrayEnd がある
+            if ((++it)->first != TokenType::Numeric) {
+                line->error = true;
+                line->errmsg = "Illegal array structure element: " + it->second;
+                return;
+            }
+            it->first = TokenType::StructArray;
+            if ((++it)->first != TokenType::ArrayEnd) {
+                line->error = true;
+                line->errmsg = "Illegal array structure element: " + it->second;
+                return;
+            }
+            it->first = TokenType::Delete;
+            if (++it == line->token.end()) {
+                return;
+            }
+            if (it->first == TokenType::Other) {
+                auto field = it->second.c_str();
+                if ('.' != *field) {
+                    line->error = true;
+                    line->errmsg = "Invalid array field designation: " + it->second;
+                    return;
+                }
+                field++;
+                for (auto f : str->second->fields) {
+                    if (f->name == field) {
+                        it->first = TokenType::StructArrayField;
+                        it->second = field;
+                        puts(field);
+                    }
+                }
+                if (it->first != TokenType::StructArrayField) {
+                    line->error = true;
+                    line->errmsg = "Non-existent structure field: ";
+                    line->errmsg += field;
+                    return;
+                }
+            }
+        }
+    }
+}
+
 void replace_struct(LineData* line)
 {
     for (auto it = line->token.begin(); it != line->token.end(); it++) {
@@ -184,7 +238,24 @@ void replace_struct(LineData* line)
             auto tokens = split_token(token, '.');
             auto str = structTable.find(tokens[0]);
             if (tokens.size() == 1) {
-                it->second = std::to_string(str->second->start);
+                if (it + 1 != line->token.end() && (it + 1)->first == TokenType::StructArray) {
+                    auto n = str->second->size * atoi((it + 1)->second.c_str());
+                    if (it + 2 != line->token.end() && ((it + 2)->first) == TokenType::StructArrayField) {
+                        (it + 1)->first = TokenType::Delete;
+                        (it + 2)->first = TokenType::Delete;
+                        for (auto field : str->second->fields) {
+                            if (field->name == (it + 2)->second) {
+                                break;
+                            }
+                            n += field->size * field->count;
+                        }
+                    } else {
+                        (it + 1)->first = TokenType::Delete;
+                    }
+                    it->second = std::to_string(str->second->start + n);
+                } else {
+                    it->second = std::to_string(str->second->start);
+                }
             } else {
                 for (auto field : str->second->fields) {
                     if (field->name == tokens[1]) {

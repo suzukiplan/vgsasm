@@ -1,5 +1,5 @@
 CPP = g++
-CPPFLAGS = -std=c++17 -O2
+CPPFLAGS = -std=c++17 -g
 OBJECTS = \
 	bracket.o \
 	define.o \
