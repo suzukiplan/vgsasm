@@ -134,6 +134,7 @@ class LineData
     std::vector<uint8_t> machine;
     LineData(std::string text) { LineData(nullptr, 0, text); }
     LineData(const char* path, int lineNumber, std::string text);
+    void printDebug();
 };
 
 class StructField

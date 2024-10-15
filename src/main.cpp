@@ -226,23 +226,7 @@ static int assemble(std::vector<LineData*> lines)
 
     // 解析結果を出力（デバッグ）
     for (auto line : lines) {
-        printf("%16s:%04d", line->path.c_str(), line->lineNumber);
-        for (auto token : line->token) {
-            if (token.first == TokenType::Mnemonic || token.first == TokenType::Operand) {
-                printf(" <%s>", token.second.c_str());
-            } else if (token.first == TokenType::AddressBegin) {
-                printf(" _(");
-            } else if (token.first == TokenType::AddressEnd) {
-                printf(" )_");
-            } else if (token.first == TokenType::SizeOf) {
-                printf(" sizeof(%s)", token.second.c_str());
-            } else if (token.first == TokenType::Numeric) {
-                printf(" 0x%X", atoi(token.second.c_str()));
-            } else {
-                printf(" `%s`", token.second.c_str());
-            }
-        }
-        printf("\n");
+        line->printDebug();
     }
 
     return 0;
