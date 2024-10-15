@@ -47,7 +47,24 @@ vgsasm [-b size_of_binary] /path/to/source.asm
 
 ## Preprocessor
 
-### `org`
+### `#include`
+
+```z80
+#include "/path/to/file"
+```
+
+- Other source files can be combined.
+- Duplicate `#include` for the same source file are automatically ignored.
+
+### `#define`
+
+```
+#define DEFINITION_NAME Expanded expression
+```
+
+The `DEFINITION_NAME` in the source code is expanded to an `Expanded expression`.
+
+## `org`
 
 Specifies the starting address for binary output.
 
@@ -80,24 +97,7 @@ The following points should be noted:
 - `ORG` must be defined in ascending order from the beginning of the source code.
 - The free space from `ORG` to the next `ORG` is filled with 0xFF.
 
-### `#include`
-
-```z80
-#include "/path/to/file"
-```
-
-- Other source files can be combined.
-- Duplicate `#include` for the same source file are automatically ignored.
-
-### `#define`
-
-```
-#define DEFINITION_NAME Expanded expression
-```
-
-The `DEFINITION_NAME` in the source code is expanded to an `Expanded expression`.
-
-### Labels
+## Labels
 
 ```z80
 // Normal label
@@ -131,14 +131,14 @@ JP FOO@LABEL2   ; Jump to FOO@LABEL2
 - Labels and inner labels are not case sensitive.
 - The label and inner label are symbols that uniquely identify all source files with `#include`.
 
-### `struct`
+## `struct`
 
 ```z80
 struct name $C000 {
-    var1 ds.b 1     ; name.var1 = $C000
-    var2 ds.w 1     ; name.var2 = $C001
-    var3 ds.b 4     ; name.var3 = $C003
-    var4 ds.w 4     ; name.var4 = $C007
+    var1 ds.b 1     ; name.var1 = $C000 ... offset(name.var1) = 0
+    var2 ds.w 1     ; name.var2 = $C001 ... offset(name.var2) = 1
+    var3 ds.b 4     ; name.var3 = $C003 ... offset(name.var3) = 3
+    var4 ds.w 4     ; name.var4 = $C007 ... offset(name.var4) = 7
 }                   ; sizeof(name) = 15
 
 // Array access
@@ -156,6 +156,8 @@ struct name $C000 {
 - The `start_address` is usually assumed to be an absolute address in RAM (0xC000 to 0xFFFF).
 - This structure has no boundary.
 - Can also be accessed as an array in the form `name[index]`.
+- `sizeof(structure_name)`: size of structure
+- `offset(structure_name.field)` : field address offset
 
 ## Auto-expand Instructions
 
