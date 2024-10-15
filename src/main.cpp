@@ -1,5 +1,6 @@
 #include "common.hpp"
 #include "file.hpp"
+#include "define.hpp"
 #include "mnemonic.hpp"
 #include "operand.hpp"
 #include "label.hpp"
@@ -51,6 +52,33 @@ void clear_delete_token(std::vector<LineData*>* lines)
 static int assemble(std::vector<LineData*> lines)
 {
     bool error = false;
+
+    // #define のテーブル作成
+    bool searchDefine = true;
+    while (searchDefine && !error) {
+        searchDefine = false;
+        for (auto it = lines.begin(); it != lines.end(); it++) {
+            if (parse_define(*it)) {
+                searchDefine = true;
+                lines.erase(it);
+                break;
+            } else {
+                error = check_error(*it) ? true : error;
+            }
+        }
+    }
+    if (error) {
+        return -1;
+    }
+
+    // #define 定義名の展開
+    for (auto it = lines.begin(); it != lines.end(); it++) {
+        replace_define(*it);
+        error = check_error(*it) ? true : error;
+    }
+    if (error) {
+        return -1;
+    }
 
     // 基本構文解析
     for (auto line : lines) {

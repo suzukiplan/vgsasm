@@ -79,6 +79,14 @@ The following points should be noted:
 - Other source files can be combined.
 - Duplicate `#include` for the same source file are automatically ignored.
 
+### `#define`
+
+```
+#define DEFINITION_NAME Expanded expression
+```
+
+The `DEFINITION_NAME` in the source code is expanded to an `Expanded expression`.
+
 ### Labels
 
 ```z80
