@@ -64,6 +64,7 @@ static int check_error(LineData* line)
 {
     if (line->error) {
         printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
+        // line->printDebug();
         return -1;
     }
     return 0;
@@ -226,6 +227,7 @@ static int assemble(std::vector<LineData*> lines)
 
     // 解析結果を出力（デバッグ）
     for (auto line : lines) {
+        printf("%16s:%04d", line->path.c_str(), line->lineNumber);
         line->printDebug();
     }
 

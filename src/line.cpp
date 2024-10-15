@@ -229,7 +229,6 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
 
 void LineData::printDebug()
 {
-    printf("%16s:%04d", this->path.c_str(), this->lineNumber);
     for (auto token : this->token) {
         if (token.first == TokenType::Mnemonic || token.first == TokenType::Operand) {
             printf(" <%s>", token.second.c_str());
