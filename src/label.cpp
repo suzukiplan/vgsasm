@@ -1,8 +1,5 @@
-#pragma once
-#include "common.hpp"
-#include "file.hpp"
+#include "common.h"
 
-std::map<std::string, LineData*> labelTable;
 static std::string lastLabel = "";
 
 void parse_label(LineData* line)

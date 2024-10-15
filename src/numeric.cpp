@@ -1,6 +1,4 @@
-#pragma once
-#include "common.hpp"
-#include "file.hpp"
+#include "common.h"
 
 std::string hex2dec(const char* hex)
 {

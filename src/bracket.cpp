@@ -1,6 +1,4 @@
-#pragma once
-#include "common.hpp"
-#include "file.hpp"
+#include "common.h"
 
 // 特定箇所の BrakectBegin ~ BracketEnd を AddressBegin ~ AddressEnd に置き換える
 void bracket_to_address(LineData* line)

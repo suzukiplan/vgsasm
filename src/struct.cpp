@@ -1,8 +1,4 @@
-#pragma once
-#include "common.hpp"
-#include "file.hpp"
-
-std::map<std::string, Struct*> structTable;
+#include "common.h"
 
 void parse_struct(LineData* line)
 {

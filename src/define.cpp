@@ -1,9 +1,4 @@
-#pragma once
-#include "common.hpp"
-#include "file.hpp"
-#include "struct.hpp"
-
-std::map<std::string, std::vector<std::pair<TokenType, std::string>>> defineTable;
+#include "common.h"
 
 bool parse_define(LineData* line)
 {

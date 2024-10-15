@@ -1,4 +1,5 @@
-all: vgsasm
+all:
+	cd src && make
 
-vgsasm: src/*
-	g++ -std=c++11 -O2 -o vgsasm src/main.cpp
+clean:
+	cd src && make clean

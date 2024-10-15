@@ -1,8 +1,6 @@
-#pragma once
-#include "common.hpp"
-#include "file.hpp"
+#include "common.h"
 
-static std::map<std::string, Mnemonic> mnemonicTable = {
+std::map<std::string, Mnemonic> mnemonicTable = {
     {"LD", Mnemonic::LD},
     {"LDI", Mnemonic::LDI},
     {"LDIR", Mnemonic::LDIR},
@@ -85,7 +83,7 @@ static std::map<std::string, Mnemonic> mnemonicTable = {
     {"IM", Mnemonic::IM},
 };
 
-bool parseMneimonicSkipScope = false;
+static bool parseMneimonicSkipScope = false;
 
 void parse_mneoimonic(LineData* line)
 {

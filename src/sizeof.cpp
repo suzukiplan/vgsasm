@@ -1,7 +1,4 @@
-#pragma once
-#include "common.hpp"
-#include "file.hpp"
-#include "struct.hpp"
+#include "common.h"
 
 void parse_sizeof(LineData* line)
 {

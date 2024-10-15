@@ -1,8 +1,6 @@
-#pragma once
-#include "common.hpp"
-#include "file.hpp"
+#include "common.h"
 
-static std::map<std::string, Operand> operandTable = {
+std::map<std::string, Operand> operandTable = {
     {"A", Operand::A},
     {"B", Operand::B},
     {"C", Operand::C},
@@ -24,7 +22,7 @@ static std::map<std::string, Operand> operandTable = {
     {"SP", Operand::SP},
 };
 
-bool parseOperandSkipScope = false;
+static bool parseOperandSkipScope = false;
 
 void parse_operand(LineData* line)
 {

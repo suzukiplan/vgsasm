@@ -1,16 +1,27 @@
-#include "common.hpp"
-#include "file.hpp"
-#include "define.hpp"
-#include "mnemonic.hpp"
-#include "operand.hpp"
-#include "label.hpp"
-#include "numeric.hpp"
-#include "formulas.hpp"
-#include "bracket.hpp"
-#include "struct.hpp"
-#include "sizeof.hpp"
+#include "common.h"
 
+std::map<std::string, LineData*> nameTable;
+std::vector<std::string> includeFiles;
+std::map<std::string, std::vector<std::pair<TokenType, std::string>>> defineTable;
+std::map<std::string, LineData*> labelTable;
+std::map<std::string, Struct*> structTable;
 int errorCount = 0;
+
+void trimstring(char* src)
+{
+    int i, j;
+    int len;
+    for (i = 0; ' ' == src[i]; i++);
+    if (i) {
+        for (j = 0; src[i] != '\0'; j++, i++) {
+            src[j] = src[i];
+        }
+        src[j] = '\0';
+    }
+    for (len = (int)strlen(src) - 1; 0 <= len && ' ' == src[len]; len--) {
+        src[len] = '\0';
+    }
+}
 
 void addNameTable(std::string name, LineData* line)
 {
