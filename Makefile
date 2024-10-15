@@ -23,38 +23,38 @@ clean:
 vgsasm: ${OBJECTS}
 	${CPP} ${CPPFLAGS} -o vgsasm ${OBJECTS}
 
-bracket.o: src/bracket.cpp src/*.h
+bracket.o: src/bracket.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-define.o: src/define.cpp src/*.h
+define.o: src/define.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-file.o: src/file.cpp src/*.h
+file.o: src/file.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-formulas.o: src/formulas.cpp src/*.h
+formulas.o: src/formulas.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-label.o: src/label.cpp src/*.h
+label.o: src/label.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-line.o: src/line.cpp src/*.h
+line.o: src/line.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-mnemonic.o: src/mnemonic.cpp src/*.h
+mnemonic.o: src/mnemonic.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-numeric.o: src/numeric.cpp src/*.h
+numeric.o: src/numeric.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-operand.o: src/operand.cpp src/*.h
+operand.o: src/operand.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-sizeof.o: src/sizeof.cpp src/*.h
+sizeof.o: src/sizeof.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-struct.o: src/struct.cpp src/*.h
+struct.o: src/struct.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-main.o: src/main.cpp src/*.h
+main.o: src/main.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
