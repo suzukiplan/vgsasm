@@ -166,6 +166,20 @@ static int assemble(std::vector<LineData*> lines)
         return -1;
     }
 
+    // この時点で Other が残っていたらエラーにする
+    for (auto line = lines.begin(); line != lines.end(); line++) {
+        for (auto token : (*line)->token) {
+            if (token.first == TokenType::Other) {
+                (*line)->error = true;
+                (*line)->errmsg = "Invalid symbol: " + token.second;
+            }
+        }
+    }
+
+    if (check_error(lines)) {
+        return -1;
+    }
+
     // struct解析結果を出力（デバッグ）
     for (auto s : structTable) {
         printf("Struct: %s (0x%X) size = %d\n", s.first.c_str(), s.second->start, s.second->size);

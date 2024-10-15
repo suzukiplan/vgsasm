@@ -7,4 +7,4 @@
 .Main
     ClearA
     Hoge
-    R Hige X
+    Hige
