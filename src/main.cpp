@@ -212,6 +212,7 @@ static int assemble(std::vector<LineData*> lines)
     }
 
     // struct解析結果を出力（デバッグ）
+#if 0
     for (auto s : structTable) {
         auto name = s.first.c_str();
         auto start = s.second->start;
@@ -221,6 +222,7 @@ static int assemble(std::vector<LineData*> lines)
             printf(" - %s (size=%d, count=%d addr=0x%X)\n", f->name.c_str(), f->size, f->count, f->address);
         }
     }
+#endif
 
     // 解析結果を出力（デバッグ）
     for (auto line : lines) {
@@ -234,6 +236,8 @@ static int assemble(std::vector<LineData*> lines)
                 printf(" )_");
             } else if (token.first == TokenType::SizeOf) {
                 printf(" sizeof(%s)", token.second.c_str());
+            } else if (token.first == TokenType::Numeric) {
+                printf(" 0x%X", atoi(token.second.c_str()));
             } else {
                 printf(" `%s`", token.second.c_str());
             }

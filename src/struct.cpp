@@ -215,7 +215,6 @@ void parse_struct_array(LineData* line)
                     if (f->name == field) {
                         it->first = TokenType::StructArrayField;
                         it->second = field;
-                        puts(field);
                     }
                 }
                 if (it->first != TokenType::StructArrayField) {
