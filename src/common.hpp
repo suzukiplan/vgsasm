@@ -180,6 +180,10 @@ enum class Operand {
     SP,
 };
 
+std::map<std::string, LineData*> nameTable;
+
+void addNameTable(std::string name, LineData* line);
+
 void trimstring(char* src)
 {
     int i, j;

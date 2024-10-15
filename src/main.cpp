@@ -12,6 +12,23 @@
 
 int errorCount = 0;
 
+void addNameTable(std::string name, LineData* line)
+{
+    auto o = mnemonicTable.find(name);
+    if (o != mnemonicTable.end() || name == "SIZEOF") {
+        line->error = true;
+        line->errmsg = "Reserved symbol name " + name + " was specified.";
+    } else {
+        auto n = nameTable.find(name);
+        if (n == nameTable.end()) {
+            nameTable[name] = line;
+        } else {
+            line->error = true;
+            line->errmsg = "Duplicate symbol name " + name + " was specified.";
+        }
+    }
+}
+
 static int check_error(LineData* line)
 {
     if (line->error) {

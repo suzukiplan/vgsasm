@@ -35,6 +35,7 @@ void parse_label(LineData* line)
             line->error = true;
             line->errmsg = "Duplicate label: " + label;
         } else {
+            addNameTable(label, line);
             token->second = label;
             labelTable[label] = line;
         }
