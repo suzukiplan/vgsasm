@@ -226,6 +226,13 @@ static int assemble(std::vector<LineData*> lines)
     }
     clear_delete_token(&lines);
 
+    // ニーモニック書式チェック
+    mnemonic_syntax_check(&lines);
+    if (check_error(lines)) {
+        return -1;
+    }
+    clear_delete_token(&lines);
+
     // この時点で Other が残っていたらエラーにする
     for (auto line = lines.begin(); line != lines.end(); line++) {
         for (auto token : (*line)->token) {

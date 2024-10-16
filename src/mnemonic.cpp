@@ -126,3 +126,69 @@ void parse_mneoimonic(LineData* line)
         }
     }
 }
+
+bool mnemonic_format_check(LineData* line, int size, ...)
+{
+    if (line->token.size() != size) {
+        line->error = true;
+        line->errmsg = "Excessive or insufficient number of operands.";
+        return false;
+    }
+    if (1 == size) {
+        return true;
+    }
+    va_list arg;
+    va_start(arg, size);
+    bool error = false;
+    for (auto it = line->token.begin() + 1; it != line->token.end(); it++) {
+        auto expect = va_arg(arg, TokenType);
+        if (!error) {
+            error = it->first != expect;
+            if (error) {
+                line->error = true;
+                line->errmsg = "Unexpected operand: " + it->second;
+            }
+        }
+    }
+    va_end(arg);
+    return !line->error;
+}
+
+void mnemonic_NOP(LineData* line)
+{
+    if (mnemonic_format_check(line, 1)) {
+        line->machine.push_back(0x00);
+    }
+}
+
+void mnemonic_IM(LineData* line)
+{
+    if (mnemonic_format_check(line, 2, TokenType::Numeric)) {
+        line->machine.push_back(0xED);
+        switch (atoi(line->token[1].second.c_str())) {
+            case 0: line->machine.push_back(0x46); break;
+            case 1: line->machine.push_back(0x56); break;
+            case 2: line->machine.push_back(0x5E); break;
+            default:
+                line->error = true;
+                line->errmsg = "Unsupported interrupt mode: " + line->token[1].second;
+        }
+    }
+}
+
+void mnemonic_syntax_check(std::vector<LineData*>* lines)
+{
+    for (auto line : *lines) {
+        if (line->token.empty()) {
+            continue;
+        }
+        if (line->token[0].first != TokenType::Mnemonic) {
+            continue;
+        }
+        auto m = mnemonicTable[line->token[0].second];
+        switch (m) {
+            case Mnemonic::NOP: mnemonic_NOP(line); break;
+            case Mnemonic::IM: mnemonic_IM(line); break;
+        }
+    }
+}
