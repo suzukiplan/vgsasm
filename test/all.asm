@@ -77,3 +77,24 @@ Calc8:
     AND (IY)
     AND (IY-128)
     AND (IY+127*1)
+
+@Or
+    OR A
+    OR B
+    OR C
+    OR D
+    OR E
+    OR H
+    OR L
+    OR IXH
+    OR IXL
+    OR IYH
+    OR IYL
+    OR $FF
+    OR (HL)
+    OR (IX)
+    OR (IX-128)
+    OR (IX+127*1)
+    OR (IY)
+    OR (IY-128)
+    OR (IY+127*1)

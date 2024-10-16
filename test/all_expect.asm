@@ -61,3 +61,22 @@
                     and       (iy+$00)                      ;[005f] fd a6 00
                     and       (iy-$80)                      ;[0062] fd a6 80
                     and       (iy+$7f)                      ;[0065] fd a6 7f
+                    or        a                             ;[0068] b7
+                    or        b                             ;[0069] b0
+                    or        c                             ;[006a] b1
+                    or        d                             ;[006b] b2
+                    or        e                             ;[006c] b3
+                    or        h                             ;[006d] b4
+                    or        l                             ;[006e] b5
+                    or        ixh                           ;[006f] dd b4
+                    or        ixl                           ;[0071] dd b5
+                    or        iyh                           ;[0073] fd b4
+                    or        iyl                           ;[0075] fd b5
+                    or        $ff                           ;[0077] f6 ff
+                    or        (hl)                          ;[0079] b6
+                    or        (ix+$00)                      ;[007a] dd b6 00
+                    or        (ix-$80)                      ;[007d] dd b6 80
+                    or        (ix+$7f)                      ;[0080] dd b6 7f
+                    or        (iy+$00)                      ;[0083] fd b6 00
+                    or        (iy-$80)                      ;[0086] fd b6 80
+                    or        (iy+$7f)                      ;[0089] fd b6 7f
