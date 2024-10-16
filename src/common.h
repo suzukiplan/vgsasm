@@ -123,6 +123,13 @@ enum class Operand {
     IX,
     IY,
     SP,
+    NZ,
+    Z,
+    NC,
+    PO,
+    PE,
+    P,
+    M,
 };
 
 // tables (defined in main.cpp)
