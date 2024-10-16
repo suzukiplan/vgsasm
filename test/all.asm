@@ -40,3 +40,9 @@ org $0000
     CPIR
     CPD
     CPDR
+    OUTI
+    OTIR
+    OUTIR
+    OUTD
+    OTDR
+    OUTDR

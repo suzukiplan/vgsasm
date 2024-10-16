@@ -346,6 +346,10 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::CPIR: mnemonic_Repeat(line, 0xB1); break;
             case Mnemonic::CPD: mnemonic_Repeat(line, 0xA9); break;
             case Mnemonic::CPDR: mnemonic_Repeat(line, 0xB9); break;
+            case Mnemonic::OUTI: mnemonic_Repeat(line, 0xA3); break;
+            case Mnemonic::OTIR: mnemonic_Repeat(line, 0xB3); break;
+            case Mnemonic::OUTD: mnemonic_Repeat(line, 0xAB); break;
+            case Mnemonic::OTDR: mnemonic_Repeat(line, 0xBB); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
