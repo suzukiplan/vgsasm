@@ -161,6 +161,27 @@ void mnemonic_NOP(LineData* line)
     }
 }
 
+void mnemonic_DI(LineData* line)
+{
+    if (mnemonic_format_check(line, 1)) {
+        line->machine.push_back(0xF3);
+    }
+}
+
+void mnemonic_EI(LineData* line)
+{
+    if (mnemonic_format_check(line, 1)) {
+        line->machine.push_back(0xFB);
+    }
+}
+
+void mnemonic_HALT(LineData* line)
+{
+    if (mnemonic_format_check(line, 1)) {
+        line->machine.push_back(0x76);
+    }
+}
+
 void mnemonic_IM(LineData* line)
 {
     if (mnemonic_format_check(line, 2, TokenType::Numeric)) {
@@ -176,19 +197,45 @@ void mnemonic_IM(LineData* line)
     }
 }
 
+static void setpc(LineData* prev, LineData* cur)
+{
+    if (cur->programCounterInit) {
+        return;
+    }
+    cur->programCounterInit = true;
+    if (prev) {
+        cur->programCounter = prev->programCounter + prev->machine.size();
+    } else {
+        cur->programCounter = 0;
+    }
+}
+
 void mnemonic_syntax_check(std::vector<LineData*>* lines)
 {
+    LineData* prev = nullptr;
     for (auto line : *lines) {
         if (line->token.empty()) {
+            prev = line;
+            setpc(prev, line);
             continue;
         }
         if (line->token[0].first != TokenType::Mnemonic) {
+            prev = line;
+            setpc(prev, line);
             continue;
         }
         auto m = mnemonicTable[line->token[0].second];
         switch (m) {
             case Mnemonic::NOP: mnemonic_NOP(line); break;
             case Mnemonic::IM: mnemonic_IM(line); break;
+            case Mnemonic::DI: mnemonic_DI(line); break;
+            case Mnemonic::EI: mnemonic_EI(line); break;
+            case Mnemonic::HALT: mnemonic_HALT(line); break;
+            default:
+                printf("Not implemented: %s\n", line->token[0].second.c_str());
+                exit(-1);
         }
+        setpc(prev, line);
+        prev = line;
     }
 }
