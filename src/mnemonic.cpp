@@ -310,6 +310,12 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::EI: mnemonic_signle(line, 0xFB); break;
             case Mnemonic::HALT: mnemonic_signle(line, 0x76); break;
             case Mnemonic::EXX: mnemonic_signle(line, 0xD9); break;
+
+            case Mnemonic::DAA: mnemonic_signle(line, 0x27); break;
+            case Mnemonic::CPL: mnemonic_signle(line, 0x2F); break;
+            case Mnemonic::CCF: mnemonic_signle(line, 0x3F); break;
+            case Mnemonic::SCF: mnemonic_signle(line, 0x37); break;
+
             case Mnemonic::LDI: mnemonic_Repeat(line, 0xA0); break;
             case Mnemonic::LDIR: mnemonic_Repeat(line, 0xB0); break;
             case Mnemonic::LDD: mnemonic_Repeat(line, 0xA8); break;

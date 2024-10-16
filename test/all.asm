@@ -1,7 +1,6 @@
 org $0000
 
 .Main
-    NOP
 
 @Interrupt
     IM 0
@@ -48,3 +47,10 @@ org $0000
     OUTD
     OTDR
     OUTDR
+
+@Other
+    NOP
+    DAA
+    CPL
+    CCF
+    SCF
