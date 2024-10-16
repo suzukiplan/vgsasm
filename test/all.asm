@@ -22,3 +22,10 @@ org $0000
     POP HL
     POP IX
     POP IY
+
+@Exchange
+    EX DE, HL
+    EX AF, AF'
+    EX (SP), HL
+    EX (SP), IX
+    EX (SP), IY

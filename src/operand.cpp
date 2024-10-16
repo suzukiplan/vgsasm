@@ -13,7 +13,7 @@ std::map<std::string, Operand> operandTable = {
     {"IYH", Operand::IYH},
     {"IYL", Operand::IYL},
     {"AF", Operand::AF},
-    {"AF_dash", Operand::AF_dash},
+    {"AF'", Operand::AF_dash},
     {"BC", Operand::BC},
     {"DE", Operand::DE},
     {"HL", Operand::HL},
