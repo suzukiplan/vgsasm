@@ -292,6 +292,14 @@ void mnemonic_EXX(LineData* line)
     }
 }
 
+void mnemonic_Repeat(LineData* line, uint8_t code)
+{
+    if (mnemonic_format_check(line, 1)) {
+        line->machine.push_back(0xED);
+        line->machine.push_back(code);
+    }
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -330,6 +338,14 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::POP: mnemonic_POP(line); break;
             case Mnemonic::EX: mnemonic_EX(line); break;
             case Mnemonic::EXX: mnemonic_EXX(line); break;
+            case Mnemonic::LDI: mnemonic_Repeat(line, 0xA0); break;
+            case Mnemonic::LDIR: mnemonic_Repeat(line, 0xB0); break;
+            case Mnemonic::LDD: mnemonic_Repeat(line, 0xA8); break;
+            case Mnemonic::LDDR: mnemonic_Repeat(line, 0xB8); break;
+            case Mnemonic::CPI: mnemonic_Repeat(line, 0xA1); break;
+            case Mnemonic::CPIR: mnemonic_Repeat(line, 0xB1); break;
+            case Mnemonic::CPD: mnemonic_Repeat(line, 0xA9); break;
+            case Mnemonic::CPDR: mnemonic_Repeat(line, 0xB9); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

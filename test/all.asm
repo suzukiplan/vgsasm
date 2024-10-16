@@ -30,3 +30,13 @@ org $0000
     EX (SP), IX
     EX (SP), IY
     EXX
+
+@Repeart
+    LDI
+    LDIR
+    LDD
+    LDDR
+    CPI
+    CPIR
+    CPD
+    CPDR
