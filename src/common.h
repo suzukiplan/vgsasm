@@ -21,6 +21,7 @@ enum class TokenType {
     StructArray,      // 構造体配列
     StructArrayField, // 構造体配列のフィールド指定
     SizeOf,           // 構造体サイズ
+    Offset,           // 構造体フィールドのオフセット
     String,           // 文字列 "str" or 'str'
     Label,            // ラベル（HOGE: or .HOGE）
     LabelAt,          // @HOGE 形式のラベル
@@ -230,6 +231,8 @@ void parse_numeric(LineData* line);                                             
 void parse_operand(LineData* line);                                                   // operand.cpp
 void parse_sizeof(LineData* line);                                                    // sizeof.cpp
 void replace_sizeof(LineData* line);                                                  // sizeof.cpp
+void parse_offset(LineData* line);                                                    // offset.cpp
+void replace_offset(LineData* line);                                                  // offset.cpp
 void parse_struct(LineData* line);                                                    // struct.cpp
 bool struct_syntax_check(std::vector<LineData*>* lines);                              // struct.cpp
 bool struct_check_size();                                                             // struct.cpp

@@ -11,6 +11,7 @@ OBJECTS = \
 	numeric.o \
 	operand.o \
 	sizeof.o \
+	offset.o \
 	struct.o \
 	main.o
 
@@ -51,6 +52,9 @@ operand.o: src/operand.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 sizeof.o: src/sizeof.cpp
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+offset.o: src/offset.cpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 struct.o: src/struct.cpp

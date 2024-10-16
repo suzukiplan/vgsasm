@@ -45,8 +45,9 @@ std::vector<std::string> split_token(std::string str, char del)
 
 void addNameTable(std::string name, LineData* line)
 {
-    auto o = mnemonicTable.find(name);
-    if (o != mnemonicTable.end() || name == "SIZEOF") {
+    if (mnemonicTable.find(name) != mnemonicTable.end() ||
+        name == "SIZEOF" ||
+        name == "OFFSET") {
         line->error = true;
         line->errmsg = "Reserved symbol name " + name + " was specified.";
     } else {
@@ -138,6 +139,7 @@ static int assemble(std::vector<LineData*> lines)
         bracket_to_address(line); // Braket -> Address
         parse_numeric(line);      // Other -> Numeric
         parse_sizeof(line);       // Other -> Sizeof
+        parse_offset(line);       // Other -> Offset
         evaluate_formulas(line);  // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
 
         // ( Numric ) -> Numeric and formulas again
@@ -189,10 +191,11 @@ static int assemble(std::vector<LineData*> lines)
     }
     clear_delete_token(&lines);
 
-    // 構造体 と sizeof を数値に置換して演算をリトライ
+    // 構造体, sizeof, offset を数値に置換
     for (auto line : lines) {
         replace_struct(line);
         replace_sizeof(line);
+        replace_offset(line);
     }
     if (check_error(lines)) {
         return -1;
@@ -209,6 +212,7 @@ static int assemble(std::vector<LineData*> lines)
     clear_delete_token(&lines);
 
     // この時点で Other が残っていたらエラーにする
+#if 0
     for (auto line = lines.begin(); line != lines.end(); line++) {
         for (auto token : (*line)->token) {
             if (token.first == TokenType::Other) {
@@ -220,6 +224,7 @@ static int assemble(std::vector<LineData*> lines)
     if (check_error(lines)) {
         return -1;
     }
+#endif
 
     // struct解析結果を出力（デバッグ）
 #if 0
