@@ -53,3 +53,4 @@
                     and       ixl                           ;[004d] dd a5
                     and       iyh                           ;[004f] fd a4
                     and       iyl                           ;[0051] fd a5
+                    and       $ff                           ;[0053] e6 ff

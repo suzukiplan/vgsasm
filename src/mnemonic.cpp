@@ -154,6 +154,16 @@ bool mnemonic_format_check(LineData* line, int size, ...)
     return !line->error;
 }
 
+bool mnemonic_range_bit8(LineData* line, int n)
+{
+    if (n < -128 || 255 < n) {
+        line->error = true;
+        line->errmsg = "Numerical range incorrect: " + std::to_string(n);
+        return false;
+    }
+    return true;
+}
+
 void mnemonic_single(LineData* line, uint8_t code)
 {
     if (mnemonic_format_check(line, 1)) {
@@ -299,6 +309,12 @@ void mnemonic_calc8(LineData* line, Mnemonic mne, uint8_t code)
                 return;
         }
         line->machine.push_back(code);
+    } else if (line->token.size() == 2 && line->token[1].first == TokenType::Numeric) {
+        auto n = atoi(line->token[1].second.c_str());
+        if (mnemonic_range_bit8(line, n)) {
+            line->machine.push_back(code | 0x46);
+            line->machine.push_back(n & 0xFF);
+        }
     } else {
         line->error = true;
         line->errmsg = "Illegal 8-bit arithmetic instruction.";

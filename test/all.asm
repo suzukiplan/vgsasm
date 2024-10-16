@@ -69,3 +69,4 @@ Calc8:
     AND IXL
     AND IYH
     AND IYL
+    AND $FF
