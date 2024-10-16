@@ -131,22 +131,28 @@ static int assemble(std::vector<LineData*> lines)
     }
 
     // 基本構文解析
-    for (auto line : lines) {
-        parse_label(line);        // Other -> Label or LabelAt
-        parse_mneoimonic(line);   // Other -> Mnemonic
-        parse_operand(line);      // Other -> Operand
-        parse_struct(line);       // Other -> Struct
-        bracket_to_address(line); // Braket -> Address
-        parse_numeric(line);      // Other -> Numeric
-        parse_sizeof(line);       // Other -> Sizeof
-        parse_offset(line);       // Other -> Offset
-        evaluate_formulas(line);  // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
+    for (auto line = lines.begin(); line != lines.end(); line++) {
+        // Other -> Label or LabelAt
+        auto newLine = parse_label(*line);
+        if (newLine) {
+            lines.insert(line + 1, newLine);
+            line = lines.begin();
+        }
+
+        parse_mneoimonic(*line);   // Other -> Mnemonic
+        parse_operand(*line);      // Other -> Operand
+        parse_struct(*line);       // Other -> Struct
+        bracket_to_address(*line); // Braket -> Address
+        parse_numeric(*line);      // Other -> Numeric
+        parse_sizeof(*line);       // Other -> Sizeof
+        parse_offset(*line);       // Other -> Offset
+        evaluate_formulas(*line);  // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
 
         // ( Numric ) -> Numeric and formulas again
-        while (bracket_eliminate(line)) {
-            evaluate_formulas(line);
+        while (bracket_eliminate(*line)) {
+            evaluate_formulas(*line);
         }
-        error = check_error(line) ? true : error;
+        error = check_error(*line) ? true : error;
     }
     if (error) {
         return -1;

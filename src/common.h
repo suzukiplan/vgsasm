@@ -61,6 +61,7 @@ class LineData
     std::vector<uint8_t> machine;
     LineData(std::string text) { LineData(nullptr, 0, text); }
     LineData(const char* path, int lineNumber, std::string text);
+    LineData(LineData* from);
     void printDebug();
 };
 
@@ -149,7 +150,7 @@ std::vector<LineData*> readFile(const char* filePath);                          
 std::string evaluate_formulas(std::vector<std::pair<TokenType, std::string>>* token); // formulas.cpp
 void evaluate_formulas(LineData* line);                                               // formulas.cpp
 void evaluate_formulas_array(LineData* line);                                         // formulas.cpp
-void parse_label(LineData* line);                                                     // label.cpp
+LineData* parse_label(LineData* line);                                                // label.cpp
 void parse_label_jump(LineData* line);                                                // label.cpp
 void parse_mneoimonic(LineData* line);                                                // mnemonic.cpp
 std::string hex2dec(const char* hex);                                                 // numeric.cpp

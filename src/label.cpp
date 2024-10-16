@@ -2,14 +2,14 @@
 
 static std::string lastLabel = "";
 
-void parse_label(LineData* line)
+LineData* parse_label(LineData* line)
 {
     if (line->token.empty()) {
-        return;
+        return nullptr;
     }
     auto token = &line->token[0];
     if (token->first != TokenType::Other || token->second.empty()) {
-        return;
+        return nullptr;
     }
 
     auto str = token->second.c_str();
@@ -30,16 +30,27 @@ void parse_label(LineData* line)
         label += "@" + lastLabel;
         token->second = label;
     }
-    if (!label.empty()) {
-        if (labelTable.find(label) != labelTable.end()) {
-            line->error = true;
-            line->errmsg = "Duplicate label: " + label;
-        } else {
-            addNameTable(label, line);
-            token->second = label;
-            labelTable[label] = line;
-        }
+    if (label.empty()) {
+        return nullptr;
     }
+    if (labelTable.find(label) != labelTable.end()) {
+        line->error = true;
+        line->errmsg = "Duplicate label: " + label;
+        return nullptr;
+    }
+    addNameTable(label, line);
+    token->second = label;
+    labelTable[label] = line;
+
+    // ラベル以降のトークンがあれば次の行に移す
+    if (line->token.size() < 2) {
+        return nullptr; // ない
+    }
+    auto newLine = new LineData(line);
+    line->token.clear();
+    line->token.push_back(newLine->token[0]);
+    newLine->token.erase(newLine->token.begin());
+    return newLine;
 }
 
 void parse_label_jump(LineData* line)

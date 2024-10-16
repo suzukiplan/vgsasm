@@ -16,4 +16,4 @@ org $0100
     HALT
 
 org $2000
-    DB "Hello, World!"
+ Data:  DB "Hello, World!", 0x00

@@ -230,6 +230,24 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
     }
 }
 
+LineData::LineData(LineData* line)
+{
+    this->error = false;
+    this->errmsg = "";
+    this->path = line->path;
+    this->lineNumber = line->lineNumber;
+    this->programCounter = line->programCounter;
+    this->programCounterInit = line->programCounterInit;
+    this->text = line->text;
+    this->mnemonic = line->mnemonic;
+    for (auto t : line->token) {
+        this->token.push_back(std::make_pair(t.first, t.second));
+    }
+    for (auto t : line->machine) {
+        this->machine.push_back(t);
+    }
+}
+
 void LineData::printDebug()
 {
     for (auto token : this->token) {
