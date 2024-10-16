@@ -55,3 +55,9 @@
                     and       iyl                           ;[0051] fd a5
                     and       $ff                           ;[0053] e6 ff
                     and       (hl)                          ;[0055] a6
+                    and       (ix+$00)                      ;[0056] dd a6 00
+                    and       (ix-$80)                      ;[0059] dd a6 80
+                    and       (ix+$7f)                      ;[005c] dd a6 7f
+                    and       (iy+$00)                      ;[005f] fd a6 00
+                    and       (iy-$80)                      ;[0062] fd a6 80
+                    and       (iy+$7f)                      ;[0065] fd a6 7f

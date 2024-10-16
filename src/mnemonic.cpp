@@ -154,9 +154,9 @@ bool mnemonic_format_check(LineData* line, int size, ...)
     return !line->error;
 }
 
-bool mnemonic_range_bit8(LineData* line, int n)
+bool mnemonic_range(LineData* line, int n, int min, int max)
 {
-    if (n < -128 || 255 < n) {
+    if (n < min || max < n) {
         line->error = true;
         line->errmsg = "Numerical range incorrect: " + std::to_string(n);
         return false;
@@ -311,7 +311,7 @@ void mnemonic_calc8(LineData* line, Mnemonic mne, uint8_t code)
         line->machine.push_back(code);
     } else if (line->token.size() == 2 && line->token[1].first == TokenType::Numeric) {
         auto n = atoi(line->token[1].second.c_str());
-        if (mnemonic_range_bit8(line, n)) {
+        if (mnemonic_range(line, n, -128, 255)) {
             line->machine.push_back(code | 0x46);
             line->machine.push_back(n & 0xFF);
         }
@@ -319,15 +319,41 @@ void mnemonic_calc8(LineData* line, Mnemonic mne, uint8_t code)
                line->token[1].first == TokenType::AddressBegin &&
                line->token[2].first == TokenType::Operand) {
         auto op = operandTable[line->token[2].second];
-        switch (op) {
-            case Operand::HL:
-                if (4 != line->token.size() && line->token[3].first == TokenType::AddressEnd) {
-                    line->error = true;
-                    line->errmsg = "Illegal 8-bit arithmetic instruction.";
-                } else {
-                    line->machine.push_back(code | 0x06);
+        if (op == Operand::HL) {
+            if (4 != line->token.size() && line->token[3].first == TokenType::AddressEnd) {
+                line->error = true;
+                line->errmsg = "Illegal 8-bit arithmetic instruction.";
+            } else {
+                line->machine.push_back(code | 0x06);
+            }
+        } else if (op == Operand::IX || op == Operand::IY) {
+            line->machine.push_back(op == Operand::IX ? 0xDD : 0xFD);
+            line->machine.push_back(code | 0x06);
+            if (4 == line->token.size() && line->token[3].first == TokenType::AddressEnd) {
+                line->machine.push_back(0x00);
+            } else if (6 == line->token.size() &&
+                       line->token[3].first == TokenType::Plus &&
+                       line->token[4].first == TokenType::Numeric &&
+                       line->token[5].first == TokenType::AddressEnd) {
+                auto n = atoi(line->token[4].second.c_str());
+                if (mnemonic_range(line, n, 0, 127)) {
+                    line->machine.push_back(n & 0xFF);
                 }
-                break;
+            } else if (6 == line->token.size() &&
+                       line->token[3].first == TokenType::Minus &&
+                       line->token[4].first == TokenType::Numeric &&
+                       line->token[5].first == TokenType::AddressEnd) {
+                auto n = atoi(line->token[4].second.c_str());
+                if (mnemonic_range(line, n, 0, 128)) {
+                    line->machine.push_back((0 - n) & 0xFF);
+                }
+            } else {
+                line->error = true;
+                line->errmsg = "Illegal 8-bit arithmetic instruction.";
+            }
+        } else {
+            line->error = true;
+            line->errmsg = "Illegal 8-bit arithmetic instruction.";
         }
     } else {
         line->error = true;

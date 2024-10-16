@@ -71,3 +71,9 @@ Calc8:
     AND IYL
     AND $FF
     AND (HL)
+    AND (IX)
+    AND (IX-128)
+    AND (IX+127*1)
+    AND (IY)
+    AND (IY-128)
+    AND (IY+127*1)
