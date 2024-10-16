@@ -29,3 +29,4 @@ org $0000
     EX (SP), HL
     EX (SP), IX
     EX (SP), IY
+    EXX

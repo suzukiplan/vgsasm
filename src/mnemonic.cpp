@@ -285,6 +285,13 @@ void mnemonic_EX(LineData* line)
     }
 }
 
+void mnemonic_EXX(LineData* line)
+{
+    if (mnemonic_format_check(line, 1)) {
+        line->machine.push_back(0xD9);
+    }
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -322,6 +329,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::PUSH: mnemonic_PUSH(line); break;
             case Mnemonic::POP: mnemonic_POP(line); break;
             case Mnemonic::EX: mnemonic_EX(line); break;
+            case Mnemonic::EXX: mnemonic_EXX(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
