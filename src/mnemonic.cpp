@@ -419,6 +419,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::AND: mnemonic_calc8(line, Mnemonic::AND, 0xA0); break;
             case Mnemonic::OR: mnemonic_calc8(line, Mnemonic::OR, 0xB0); break;
             case Mnemonic::XOR: mnemonic_calc8(line, Mnemonic::XOR, 0xA8); break;
+            case Mnemonic::CP: mnemonic_calc8(line, Mnemonic::XOR, 0xB8); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

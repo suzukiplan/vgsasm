@@ -80,3 +80,41 @@
                     or        (iy+$00)                      ;[0083] fd b6 00
                     or        (iy-$80)                      ;[0086] fd b6 80
                     or        (iy+$7f)                      ;[0089] fd b6 7f
+                    xor       a                             ;[008c] af
+                    xor       b                             ;[008d] a8
+                    xor       c                             ;[008e] a9
+                    xor       d                             ;[008f] aa
+                    xor       e                             ;[0090] ab
+                    xor       h                             ;[0091] ac
+                    xor       l                             ;[0092] ad
+                    xor       ixh                           ;[0093] dd ac
+                    xor       ixl                           ;[0095] dd ad
+                    xor       iyh                           ;[0097] fd ac
+                    xor       iyl                           ;[0099] fd ad
+                    xor       $ff                           ;[009b] ee ff
+                    xor       (hl)                          ;[009d] ae
+                    xor       (ix+$00)                      ;[009e] dd ae 00
+                    xor       (ix-$80)                      ;[00a1] dd ae 80
+                    xor       (ix+$7f)                      ;[00a4] dd ae 7f
+                    xor       (iy+$00)                      ;[00a7] fd ae 00
+                    xor       (iy-$80)                      ;[00aa] fd ae 80
+                    xor       (iy+$7f)                      ;[00ad] fd ae 7f
+                    cp        a                             ;[00b0] bf
+                    cp        b                             ;[00b1] b8
+                    cp        c                             ;[00b2] b9
+                    cp        d                             ;[00b3] ba
+                    cp        e                             ;[00b4] bb
+                    cp        h                             ;[00b5] bc
+                    cp        l                             ;[00b6] bd
+                    cp        ixh                           ;[00b7] dd bc
+                    cp        ixl                           ;[00b9] dd bd
+                    cp        iyh                           ;[00bb] fd bc
+                    cp        iyl                           ;[00bd] fd bd
+                    cp        $ff                           ;[00bf] fe ff
+                    cp        (hl)                          ;[00c1] be
+                    cp        (ix+$00)                      ;[00c2] dd be 00
+                    cp        (ix-$80)                      ;[00c5] dd be 80
+                    cp        (ix+$7f)                      ;[00c8] dd be 7f
+                    cp        (iy+$00)                      ;[00cb] fd be 00
+                    cp        (iy-$80)                      ;[00ce] fd be 80
+                    cp        (iy+$7f)                      ;[00d1] fd be 7f

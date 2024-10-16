@@ -119,3 +119,24 @@ Calc8:
     XOR (IY)
     XOR (IY-128)
     XOR (IY+127*1)
+
+@Compare
+    CP A
+    CP B
+    CP C
+    CP D
+    CP E
+    CP H
+    CP L
+    CP IXH
+    CP IXL
+    CP IYH
+    CP IYL
+    CP $FF
+    CP (HL)
+    CP (IX)
+    CP (IX-128)
+    CP (IX+127*1)
+    CP (IY)
+    CP (IY-128)
+    CP (IY+127*1)
