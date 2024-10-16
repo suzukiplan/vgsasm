@@ -65,7 +65,7 @@ static int check_error(LineData* line)
 {
     if (line->error) {
         printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
-        line->printDebug();
+        // line->printDebug();
         return -1;
     }
     return 0;
@@ -191,18 +191,19 @@ static int assemble(std::vector<LineData*> lines)
     }
     clear_delete_token(&lines);
 
-    // 構造体, sizeof, offset を数値に置換
+    // 残存パース処理
     for (auto line : lines) {
-        replace_struct(line);
-        replace_sizeof(line);
-        replace_offset(line);
+        replace_struct(line);   // 構造体 -> 数値
+        replace_sizeof(line);   // sizeof -> 数値
+        replace_offset(line);   // offset -> 数値
+        parse_label_jump(line); // Other -> LabelJump
     }
     if (check_error(lines)) {
         return -1;
     }
     clear_delete_token(&lines);
 
-    // 最終計算
+    // 展開された全ての数値計算を実行
     for (auto line : lines) {
         evaluate_formulas(line);
     }
@@ -212,7 +213,6 @@ static int assemble(std::vector<LineData*> lines)
     clear_delete_token(&lines);
 
     // この時点で Other が残っていたらエラーにする
-#if 0
     for (auto line = lines.begin(); line != lines.end(); line++) {
         for (auto token : (*line)->token) {
             if (token.first == TokenType::Other) {
@@ -224,7 +224,6 @@ static int assemble(std::vector<LineData*> lines)
     if (check_error(lines)) {
         return -1;
     }
-#endif
 
     // struct解析結果を出力（デバッグ）
 #if 0

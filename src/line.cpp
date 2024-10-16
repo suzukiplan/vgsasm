@@ -11,6 +11,8 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
     this->lineNumber = lineNumber;
     this->text = text;
     this->mnemonic = Mnemonic::None;
+    this->programCounter = 0;
+    this->programCounterInit = false;
     char formed[4096];
     memset(formed, 0, sizeof(formed));
 
@@ -230,7 +232,13 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
 void LineData::printDebug()
 {
     for (auto token : this->token) {
-        if (token.first == TokenType::Mnemonic || token.first == TokenType::Operand) {
+        if (token.first == TokenType::Mnemonic) {
+            if (this->programCounterInit) {
+                printf(" $%04X <%s>", this->programCounter, token.second.c_str());
+            } else {
+                printf(" $\?\?\?\? <%s>", token.second.c_str());
+            }
+        } else if (token.first == TokenType::Operand) {
             printf(" <%s>", token.second.c_str());
         } else if (token.first == TokenType::AddressBegin) {
             printf(" _(");
@@ -240,6 +248,12 @@ void LineData::printDebug()
             printf(" sizeof(%s)", token.second.c_str());
         } else if (token.first == TokenType::Numeric) {
             printf(" 0x%X", atoi(token.second.c_str()));
+        } else if (token.first == TokenType::Label || token.first == TokenType::LabelAt) {
+            if (this->programCounterInit) {
+                printf(" $%04X %s:", this->programCounter, token.second.c_str());
+            } else {
+                printf(" $\?\?\?\? %s:", token.second.c_str());
+            }
         } else {
             printf(" `%s`", token.second.c_str());
         }

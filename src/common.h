@@ -25,6 +25,7 @@ enum class TokenType {
     String,           // 文字列 "str" or 'str'
     Label,            // ラベル（HOGE: or .HOGE）
     LabelAt,          // @HOGE 形式のラベル
+    LabelJump,        // ジャンプ先ラベル
     Numeric,          // 数値
     Split,            // , カンマ
     Plus,             // - プラス
@@ -129,6 +130,8 @@ class LineData
     std::string errmsg;
     std::string path;
     int lineNumber;
+    int programCounter;
+    bool programCounterInit;
     std::string text;
     std::vector<std::pair<TokenType, std::string>> token;
     Mnemonic mnemonic;
@@ -224,6 +227,7 @@ std::string evaluate_formulas(std::vector<std::pair<TokenType, std::string>>* to
 void evaluate_formulas(LineData* line);                                               // formulas.cpp
 void evaluate_formulas_array(LineData* line);                                         // formulas.cpp
 void parse_label(LineData* line);                                                     // label.cpp
+void parse_label_jump(LineData* line);                                                // label.cpp
 void parse_mneoimonic(LineData* line);                                                // mnemonic.cpp
 std::string hex2dec(const char* hex);                                                 // numeric.cpp
 std::string bin2dec(const char* bin);                                                 // numeric.cpp
