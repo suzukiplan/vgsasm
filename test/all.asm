@@ -70,3 +70,4 @@ Calc8:
     AND IYH
     AND IYL
     AND $FF
+    AND (HL)

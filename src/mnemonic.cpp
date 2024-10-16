@@ -315,6 +315,20 @@ void mnemonic_calc8(LineData* line, Mnemonic mne, uint8_t code)
             line->machine.push_back(code | 0x46);
             line->machine.push_back(n & 0xFF);
         }
+    } else if (4 <= line->token.size() &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand) {
+        auto op = operandTable[line->token[2].second];
+        switch (op) {
+            case Operand::HL:
+                if (4 != line->token.size() && line->token[3].first == TokenType::AddressEnd) {
+                    line->error = true;
+                    line->errmsg = "Illegal 8-bit arithmetic instruction.";
+                } else {
+                    line->machine.push_back(code | 0x06);
+                }
+                break;
+        }
     } else {
         line->error = true;
         line->errmsg = "Illegal 8-bit arithmetic instruction.";
