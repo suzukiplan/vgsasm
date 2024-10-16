@@ -18,8 +18,6 @@ OBJECTS = \
 	main.o
 
 all: vgsasm
-
-check: all
 	./vgsasm -o all.bin test/all.asm
 	z88dk.z88dk-dis all.bin >test/all_disassemble.asm
 	diff test/all_expect.asm test/all_disassemble.asm
