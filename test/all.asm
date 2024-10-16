@@ -141,6 +141,27 @@ Calc8:
     CP (IY-128)
     CP (IY+127*1)
 
+@Add
+    ADD A, A
+    ADD A, B
+    ADD A, C
+    ADD A, D
+    ADD A, E
+    ADD A, H
+    ADD A, L
+    ADD A, IXH
+    ADD A, IXL
+    ADD A, IYH
+    ADD A, IYL
+    ADD A, $FF
+    ADD A, (HL)
+    ADD A, (IX)
+    ADD A, (IX-128)
+    ADD A, (IX+127*1)
+    ADD A, (IY)
+    ADD A, (IY-128)
+    ADD A, (IY+127*1)
+
 @Add_omit_A
     ADD A
     ADD B

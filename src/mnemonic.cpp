@@ -369,6 +369,25 @@ static void mnemonic_ADD(LineData* line)
         mnemonic_calc8(line, Mnemonic::ADD, 0x80);
     } else if (3 <= line->token.size() && line->token[1].first == TokenType::AddressBegin) {
         mnemonic_calc8(line, Mnemonic::ADD, 0x80);
+    } else if (3 < line->token.size() && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split) {
+        auto op = operandTable[line->token[1].second];
+        if (op == Operand::A) {
+            auto it = line->token.begin() + 1;
+            line->token.erase(it);
+            line->token.erase(it);
+            mnemonic_calc8(line, Mnemonic::ADD, 0x80);
+        } else {
+            switch (op) {
+                case Operand::BC: /* TODO*/ break;
+                case Operand::DE: /* TODO*/ break;
+                case Operand::HL: /* TODO*/ break;
+                case Operand::IX: /* TODO*/ break;
+                case Operand::IY: /* TODO*/ break;
+                default:
+                    line->error = true;
+                    line->errmsg = "Illegal 8-bit arithmetic instruction.";
+            }
+        }
     } else {
         line->error = true;
         line->errmsg = "Illegal 8-bit arithmetic instruction.";

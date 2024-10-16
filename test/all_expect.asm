@@ -137,3 +137,22 @@
                     add       (iy+$00)                      ;[00ef] fd 86 00
                     add       (iy-$80)                      ;[00f2] fd 86 80
                     add       (iy+$7f)                      ;[00f5] fd 86 7f
+                    add       a                             ;[00f8] 87
+                    add       b                             ;[00f9] 80
+                    add       c                             ;[00fa] 81
+                    add       d                             ;[00fb] 82
+                    add       e                             ;[00fc] 83
+                    add       h                             ;[00fd] 84
+                    add       l                             ;[00fe] 85
+                    add       ixh                           ;[00ff] dd 84
+                    add       ixl                           ;[0101] dd 85
+                    add       iyh                           ;[0103] fd 84
+                    add       iyl                           ;[0105] fd 85
+                    add       $ff                           ;[0107] c6 ff
+                    add       (hl)                          ;[0109] 86
+                    add       (ix+$00)                      ;[010a] dd 86 00
+                    add       (ix-$80)                      ;[010d] dd 86 80
+                    add       (ix+$7f)                      ;[0110] dd 86 7f
+                    add       (iy+$00)                      ;[0113] fd 86 00
+                    add       (iy-$80)                      ;[0116] fd 86 80
+                    add       (iy+$7f)                      ;[0119] fd 86 7f
