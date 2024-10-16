@@ -98,3 +98,24 @@ Calc8:
     OR (IY)
     OR (IY-128)
     OR (IY+127*1)
+
+@Xor
+    XOR A
+    XOR B
+    XOR C
+    XOR D
+    XOR E
+    XOR H
+    XOR L
+    XOR IXH
+    XOR IXL
+    XOR IYH
+    XOR IYL
+    XOR $FF
+    XOR (HL)
+    XOR (IX)
+    XOR (IX-128)
+    XOR (IX+127*1)
+    XOR (IY)
+    XOR (IY-128)
+    XOR (IY+127*1)
