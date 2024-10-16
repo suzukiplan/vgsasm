@@ -7,6 +7,10 @@ std::map<std::string, LineData*> labelTable;
 std::map<std::string, Struct*> structTable;
 int errorCount = 0;
 
+uint8_t bin[0x10000];
+size_t binStart;
+size_t binSize;
+
 void trim_string(char* src)
 {
     int i, j;
@@ -261,9 +265,24 @@ static int assemble(std::vector<LineData*> lines)
 #endif
 
     // 解析結果を出力（デバッグ）
+#if 0
     for (auto line : lines) {
         printf("%16s:%04d", line->path.c_str(), line->lineNumber);
         line->printDebug();
+    }
+#endif
+
+    // バイナリ出力
+    binSize = 0;
+    if (!lines.empty()) {
+        memset(bin, 0xFF, sizeof(bin));
+        binStart = lines[0]->programCounter;
+        for (auto line : lines) {
+            for (int n = 0; n < line->machine.size(); n++) {
+                bin[line->programCounter + n] = line->machine[n];
+            }
+            binSize += line->machine.size();
+        }
     }
 
     return 0;
@@ -281,10 +300,75 @@ static int assemble(const char* path)
 
 int main(int argc, char* argv[])
 {
+    char in[1024];
+    char out[1024];
+    in[0] = 0;
+    out[0] = 0;
+    bool error = false;
     for (int i = 1; i < argc; i++) {
-        if (!assemble(argv[i])) {
-            return -1;
+        if ('-' == argv[i][0]) {
+            switch (tolower(argv[i][1])) {
+                case 'o':
+                    i++;
+                    if (argc <= i) {
+                        error = true;
+                        break;
+                    }
+                    strcpy(out, argv[i]);
+                    break;
+                default:
+                    error = true;
+                    break;
+            }
+        } else {
+            if (in[0]) {
+                error = true;
+                break;
+            } else {
+                strcpy(in, argv[i]);
+            }
         }
     }
+
+    if (error || !in[0]) {
+        puts("usage: vgsasm [-o /path/to/output.bin]");
+        puts("               /path/to/input.asm");
+        return 1;
+    }
+
+    if (!out[0]) {
+        const char* file = strrchr(in, '/');
+        if (file) {
+            file++;
+        } else {
+            file = in;
+        }
+        strcpy(out, file);
+        char* cp = strrchr(out, '.');
+        if (cp) {
+            *cp = 0;
+        }
+        strcat(out, ".bin");
+    }
+    if (assemble(in)) {
+        return -1;
+    }
+
+    if (binSize < 1) {
+        puts("No binary data.");
+    } else {
+        FILE* fp = fopen(out, "wb");
+        if (!fp) {
+            puts("File open error.");
+            return -1;
+        }
+        if (binSize != fwrite(&bin[binStart], 1, binSize, fp)) {
+            puts("File write error.");
+            fclose(fp);
+            return -1;
+        }
+        fclose(fp);
+    }
+
     return 0;
 }

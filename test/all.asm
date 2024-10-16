@@ -4,7 +4,9 @@ org $0000
     NOP
 
 @Interrupt
+    IM 0
     IM 1
+    IM 2
     DI
     EI
     HALT
