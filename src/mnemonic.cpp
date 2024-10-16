@@ -261,13 +261,13 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
     LineData* prev = nullptr;
     for (auto line : *lines) {
         if (line->token.empty()) {
-            prev = line;
             setpc(prev, line);
+            prev = line;
             continue;
         }
         if (line->token[0].first != TokenType::Mnemonic) {
-            prev = line;
             setpc(prev, line);
+            prev = line;
             continue;
         }
         auto m = mnemonicTable[line->token[0].second];
