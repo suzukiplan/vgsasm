@@ -12,16 +12,7 @@
 
 ## WIP Status
 
-- [x] トークン分割
-- [x] `#include` を実装
-- [x] ラベルパーサー
-- [x] 構文解析（ざっくり）
-- [ ] ニーモニック解析
-- [ ] アドレス解決
-- [ ] バイナリ出力
-- [ ] ドキュメンテーション
-- [ ] テスト準備
-- [ ] CI 対応
+[Issues](https://github.com/suzukiplan/vgsasm/issues?q=is%3Aopen+is%3Aissue+label%3AWIP) を参照
 
 ## Usage
 
