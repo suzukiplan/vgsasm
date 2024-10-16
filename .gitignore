@@ -2,4 +2,6 @@
 vgsasm
 *.o
 *.bin
+test/all_disassemble.asm
+
 
