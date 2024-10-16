@@ -118,3 +118,22 @@
                     cp        (iy+$00)                      ;[00cb] fd be 00
                     cp        (iy-$80)                      ;[00ce] fd be 80
                     cp        (iy+$7f)                      ;[00d1] fd be 7f
+                    add       a                             ;[00d4] 87
+                    add       b                             ;[00d5] 80
+                    add       c                             ;[00d6] 81
+                    add       d                             ;[00d7] 82
+                    add       e                             ;[00d8] 83
+                    add       h                             ;[00d9] 84
+                    add       l                             ;[00da] 85
+                    add       ixh                           ;[00db] dd 84
+                    add       ixl                           ;[00dd] dd 85
+                    add       iyh                           ;[00df] fd 84
+                    add       iyl                           ;[00e1] fd 85
+                    add       $ff                           ;[00e3] c6 ff
+                    add       (hl)                          ;[00e5] 86
+                    add       (ix+$00)                      ;[00e6] dd 86 00
+                    add       (ix-$80)                      ;[00e9] dd 86 80
+                    add       (ix+$7f)                      ;[00ec] dd 86 7f
+                    add       (iy+$00)                      ;[00ef] fd 86 00
+                    add       (iy-$80)                      ;[00f2] fd 86 80
+                    add       (iy+$7f)                      ;[00f5] fd 86 7f

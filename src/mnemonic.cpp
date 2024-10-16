@@ -361,6 +361,20 @@ void mnemonic_calc8(LineData* line, Mnemonic mne, uint8_t code)
     }
 }
 
+static void mnemonic_ADD(LineData* line)
+{
+    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+        mnemonic_calc8(line, Mnemonic::ADD, 0x80);
+    } else if (line->token.size() == 2 && line->token[1].first == TokenType::Numeric) {
+        mnemonic_calc8(line, Mnemonic::ADD, 0x80);
+    } else if (3 <= line->token.size() && line->token[1].first == TokenType::AddressBegin) {
+        mnemonic_calc8(line, Mnemonic::ADD, 0x80);
+    } else {
+        line->error = true;
+        line->errmsg = "Illegal 8-bit arithmetic instruction.";
+    }
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -420,6 +434,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::OR: mnemonic_calc8(line, Mnemonic::OR, 0xB0); break;
             case Mnemonic::XOR: mnemonic_calc8(line, Mnemonic::XOR, 0xA8); break;
             case Mnemonic::CP: mnemonic_calc8(line, Mnemonic::XOR, 0xB8); break;
+            case Mnemonic::ADD: mnemonic_ADD(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
