@@ -179,15 +179,15 @@ struct OAM $9000 {
 org $0000
 
 .Main
-    ld ix, OAM[16]
-    ld b, 4
+    ld ix, OAM[16]                      ; ix = $9000 + 8 * 16
+    ld b, 4                             ; djnz loop times = 4
 @Loop
-    ld (ix + offset(OAM.x)), 0x10
-    ld (ix + offset(OAM.y)), 0x20
-    ld (ix + offset(OAM.ptn)), 0x30
-    ld (ix + offset(OAM.bank)), 0x40
-    add ix, sizeof(OAM)
-    djnz @Loop
+    ld (ix + offset(OAM.x)), 0x10       ; ld (ix + 1), 0x10
+    ld (ix + offset(OAM.y)), 0x20       ; ld (ix + 0), 0x20
+    ld (ix + offset(OAM.ptn)), 0x30     ; ld (ix + 2), 0x30
+    ld (ix + offset(OAM.bank)), 0x40    ; ld (ix + 6), 0x40
+    add ix, sizeof(OAM)                 ; ix += 8
+    djnz @Loop                          ; loop
 ```
 
 ## Auto-expand Instructions
