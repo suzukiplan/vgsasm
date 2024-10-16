@@ -1,4 +1,5 @@
 #include "common.h"
+#include "mnemonic.h"
 
 std::map<std::string, Mnemonic> mnemonicTable = {
     {"LD", Mnemonic::LD},
@@ -41,9 +42,11 @@ std::map<std::string, Mnemonic> mnemonicTable = {
     {"RRC", Mnemonic::RRC},
     {"RRCA", Mnemonic::RRCA},
     {"SLA", Mnemonic::SLA},
+    {"SL", Mnemonic::SLA},
     {"SLL", Mnemonic::SLL},
     {"SRA", Mnemonic::SRA},
     {"SRL", Mnemonic::SRL},
+    {"SR", Mnemonic::SRL},
     {"RLD", Mnemonic::RLD},
     {"RRD", Mnemonic::RRD},
     {"BIT", Mnemonic::BIT},
@@ -81,6 +84,12 @@ std::map<std::string, Mnemonic> mnemonicTable = {
     {"DI", Mnemonic::DI},
     {"EI", Mnemonic::EI},
     {"IM", Mnemonic::IM},
+    {"DB", Mnemonic::DB},
+    {"DEFB", Mnemonic::DB},
+    {"DW", Mnemonic::DW},
+    {"DEFW", Mnemonic::DW},
+    {"BYTE", Mnemonic::DB},
+    {"WORD", Mnemonic::DW},
 };
 
 static bool parseMneimonicSkipScope = false;

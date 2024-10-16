@@ -14,6 +14,7 @@ OBJECTS = \
 	sizeof.o \
 	offset.o \
 	struct.o \
+	org.o \
 	main.o
 
 all: vgsasm
@@ -59,6 +60,9 @@ offset.o: src/offset.cpp ${HEADERS}
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 struct.o: src/struct.cpp ${HEADERS}
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+org.o: src/org.cpp ${HEADERS}
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 main.o: src/main.cpp ${HEADERS}

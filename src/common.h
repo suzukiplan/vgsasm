@@ -16,6 +16,7 @@ enum class TokenType {
     Delete,           // 削除マーク
     Mnemonic,         // ニーモニック
     Operand,          // オペランド
+    Org,              // 開始アドレス
     Struct,           // 構造体
     StructName,       // 構造体名
     StructArray,      // 構造体配列
@@ -43,85 +44,7 @@ enum class TokenType {
     Other             // その他 (構文解析の仮定で最終的にはなくなる)
 };
 
-enum class Mnemonic {
-    None = 0,
-    LD,
-    LDI,
-    LDD,
-    LDIR,
-    LDDR,
-    PUSH,
-    POP,
-    EX,
-    EXX,
-    CP,
-    CPI,
-    CPIR,
-    CPD,
-    CPDR,
-    ADD,
-    ADC,
-    SUB,
-    SBC,
-    AND,
-    OR,
-    XOR,
-    INC,
-    DEC,
-    DAA,
-    CPL,
-    NEG,
-    CCF,
-    SCF,
-    NOP,
-    HALT,
-    RL,
-    RLA,
-    RLC,
-    RLCA,
-    RR,
-    RRA,
-    RRC,
-    RRCA,
-    SLA,
-    SLL,
-    SRA,
-    SRL,
-    RLD,
-    RRD,
-    BIT,
-    SET,
-    RES,
-    JP,
-    JR,
-    JZ,
-    JNZ,
-    JC,
-    JNC,
-    JPO,
-    JPE,
-    JPP,
-    JPM,
-    DJNZ,
-    CALL,
-    RET,
-    RETI,
-    RETN,
-    RST,
-    OUT,
-    OUTI,
-    OTIR,
-    OUTD,
-    OTDR,
-    IN,
-    INI,
-    INIR,
-    IND,
-    INDR,
-    DI,
-    EI,
-    IM,
-};
+enum class Mnemonic;
 
 class LineData
 {
@@ -243,3 +166,5 @@ bool struct_check_size();                                                       
 void parse_struct_name(LineData* line);                                               // struct.cpp
 void parse_struct_array(LineData* line);                                              // struct.cpp
 void replace_struct(LineData* line);                                                  // struct.cpp
+void parse_org(LineData* line);                                                       // org.cpp
+void setpc_org(std::vector<LineData*>* lines);                                        // org.cpp

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "mnemonic.h"
 
 int arrayCount = 0;
 int bracketCount = 0;

@@ -197,6 +197,7 @@ static int assemble(std::vector<LineData*> lines)
         replace_sizeof(line);   // sizeof -> 数値
         replace_offset(line);   // offset -> 数値
         parse_label_jump(line); // Other -> LabelJump
+        parse_org(line);        // Other -> org
     }
     if (check_error(lines)) {
         return -1;
@@ -207,6 +208,13 @@ static int assemble(std::vector<LineData*> lines)
     for (auto line : lines) {
         evaluate_formulas(line);
     }
+    if (check_error(lines)) {
+        return -1;
+    }
+    clear_delete_token(&lines);
+
+    // org があれば org の次の行のプログラムカウンタを初期化
+    setpc_org(&lines);
     if (check_error(lines)) {
         return -1;
     }

@@ -9,6 +9,8 @@ struct OAM $9000 {
     reserved    ds.b    1
 }
 
+org $0000
+
 .Main
     ld ix, OAM[16]
     ld b, 4
