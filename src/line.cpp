@@ -11,7 +11,6 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
     this->path = path;
     this->lineNumber = lineNumber;
     this->text = text;
-    this->mnemonic = Mnemonic::None;
     this->programCounter = 0;
     this->programCounterInit = false;
     char formed[4096];
@@ -239,7 +238,6 @@ LineData::LineData(LineData* line)
     this->programCounter = line->programCounter;
     this->programCounterInit = line->programCounterInit;
     this->text = line->text;
-    this->mnemonic = line->mnemonic;
     for (auto t : line->token) {
         this->token.push_back(std::make_pair(t.first, t.second));
     }

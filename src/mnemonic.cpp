@@ -115,12 +115,11 @@ void parse_mneoimonic(LineData* line)
         if (it->first == TokenType::Other) {
             auto m = mnemonicTable.find(it->second);
             if (m != mnemonicTable.end()) {
-                if (line->mnemonic == Mnemonic::None) {
-                    line->mnemonic = m->second;
+                if (it == line->token.begin()) {
                     it->first = TokenType::Mnemonic;
                 } else {
                     line->error = true;
-                    line->errmsg = "Multiple mnemonics specified in one line";
+                    line->errmsg = "A mnemonic specified position was incorrect.";
                     return;
                 }
             }

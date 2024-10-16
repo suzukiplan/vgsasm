@@ -57,7 +57,6 @@ class LineData
     bool programCounterInit;
     std::string text;
     std::vector<std::pair<TokenType, std::string>> token;
-    Mnemonic mnemonic;
     std::vector<uint8_t> machine;
     LineData(std::string text) { LineData(nullptr, 0, text); }
     LineData(const char* path, int lineNumber, std::string text);
