@@ -197,6 +197,52 @@ void mnemonic_IM(LineData* line)
     }
 }
 
+void mnemonic_PUSH(LineData* line)
+{
+    if (mnemonic_format_check(line, 2, TokenType::Operand)) {
+        switch (operandTable[line->token[1].second]) {
+            case Operand::BC: line->machine.push_back(0xC5); break;
+            case Operand::DE: line->machine.push_back(0xD5); break;
+            case Operand::HL: line->machine.push_back(0xE5); break;
+            case Operand::AF: line->machine.push_back(0xF5); break;
+            case Operand::IX:
+                line->machine.push_back(0xDD);
+                line->machine.push_back(0xE5);
+                break;
+            case Operand::IY:
+                line->machine.push_back(0xFD);
+                line->machine.push_back(0xE5);
+                break;
+            default:
+                line->error = true;
+                line->errmsg = "Unsupported PUSH operand: " + line->token[1].second;
+        }
+    }
+}
+
+void mnemonic_POP(LineData* line)
+{
+    if (mnemonic_format_check(line, 2, TokenType::Operand)) {
+        switch (operandTable[line->token[1].second]) {
+            case Operand::BC: line->machine.push_back(0xC1); break;
+            case Operand::DE: line->machine.push_back(0xD1); break;
+            case Operand::HL: line->machine.push_back(0xE1); break;
+            case Operand::AF: line->machine.push_back(0xF1); break;
+            case Operand::IX:
+                line->machine.push_back(0xDD);
+                line->machine.push_back(0xE1);
+                break;
+            case Operand::IY:
+                line->machine.push_back(0xFD);
+                line->machine.push_back(0xE1);
+                break;
+            default:
+                line->error = true;
+                line->errmsg = "Unsupported POP operand: " + line->token[1].second;
+        }
+    }
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -231,6 +277,8 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::DI: mnemonic_DI(line); break;
             case Mnemonic::EI: mnemonic_EI(line); break;
             case Mnemonic::HALT: mnemonic_HALT(line); break;
+            case Mnemonic::PUSH: mnemonic_PUSH(line); break;
+            case Mnemonic::POP: mnemonic_POP(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

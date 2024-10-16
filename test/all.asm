@@ -2,7 +2,23 @@ org $0000
 
 .Main
     NOP
+
+@Interrupt
     IM 1
     DI
     EI
     HALT
+
+@Stack
+    PUSH AF
+    PUSH BC
+    PUSH DE
+    PUSH HL
+    PUSH IX
+    PUSH IY
+    POP AF
+    POP BC
+    POP DE
+    POP HL
+    POP IX
+    POP IY
