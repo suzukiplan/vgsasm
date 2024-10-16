@@ -154,7 +154,7 @@ bool mnemonic_format_check(LineData* line, int size, ...)
     return !line->error;
 }
 
-void mnemonic_signle(LineData* line, uint8_t code)
+void mnemonic_single(LineData* line, uint8_t code)
 {
     if (mnemonic_format_check(line, 1)) {
         line->machine.push_back(code);
@@ -305,15 +305,15 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::PUSH: mnemonic_PUSH(line); break;
             case Mnemonic::POP: mnemonic_POP(line); break;
             case Mnemonic::EX: mnemonic_EX(line); break;
-            case Mnemonic::NOP: mnemonic_signle(line, 0x00); break;
-            case Mnemonic::DI: mnemonic_signle(line, 0xF3); break;
-            case Mnemonic::EI: mnemonic_signle(line, 0xFB); break;
-            case Mnemonic::HALT: mnemonic_signle(line, 0x76); break;
-            case Mnemonic::EXX: mnemonic_signle(line, 0xD9); break;
-            case Mnemonic::DAA: mnemonic_signle(line, 0x27); break;
-            case Mnemonic::CPL: mnemonic_signle(line, 0x2F); break;
-            case Mnemonic::CCF: mnemonic_signle(line, 0x3F); break;
-            case Mnemonic::SCF: mnemonic_signle(line, 0x37); break;
+            case Mnemonic::NOP: mnemonic_single(line, 0x00); break;
+            case Mnemonic::DI: mnemonic_single(line, 0xF3); break;
+            case Mnemonic::EI: mnemonic_single(line, 0xFB); break;
+            case Mnemonic::HALT: mnemonic_single(line, 0x76); break;
+            case Mnemonic::EXX: mnemonic_single(line, 0xD9); break;
+            case Mnemonic::DAA: mnemonic_single(line, 0x27); break;
+            case Mnemonic::CPL: mnemonic_single(line, 0x2F); break;
+            case Mnemonic::CCF: mnemonic_single(line, 0x3F); break;
+            case Mnemonic::SCF: mnemonic_single(line, 0x37); break;
             case Mnemonic::NEG: mnemonic_single_ED(line, 0x44); break;
             case Mnemonic::LDI: mnemonic_single_ED(line, 0xA0); break;
             case Mnemonic::LDIR: mnemonic_single_ED(line, 0xB0); break;
