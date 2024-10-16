@@ -55,3 +55,17 @@ org $0000
     CCF
     SCF
     NEG
+
+Calc8:
+@And
+    AND A
+    AND B
+    AND C
+    AND D
+    AND E
+    AND H
+    AND L
+    AND IXH
+    AND IXL
+    AND IYH
+    AND IYL

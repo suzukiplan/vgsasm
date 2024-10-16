@@ -42,3 +42,14 @@
                     ccf                                     ;[0040] 3f
                     scf                                     ;[0041] 37
                     neg                                     ;[0042] ed 44
+                    and       a                             ;[0044] a7
+                    and       b                             ;[0045] a0
+                    and       c                             ;[0046] a1
+                    and       d                             ;[0047] a2
+                    and       e                             ;[0048] a3
+                    and       h                             ;[0049] a4
+                    and       l                             ;[004a] a5
+                    and       ixh                           ;[004b] dd a4
+                    and       ixl                           ;[004d] dd a5
+                    and       iyh                           ;[004f] fd a4
+                    and       iyl                           ;[0051] fd a5

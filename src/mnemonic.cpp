@@ -272,6 +272,39 @@ void mnemonic_EX(LineData* line)
     }
 }
 
+void mnemonic_calc8(LineData* line, Mnemonic mne, uint8_t code)
+{
+    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+        auto op = operandTable[line->token[1].second];
+        if (op == Operand::IXH || op == Operand::IXL) {
+            line->machine.push_back(0xDD);
+        } else if (op == Operand::IYH || op == Operand::IYL) {
+            line->machine.push_back(0xFD);
+        }
+        switch (op) {
+            case Operand::A: code |= 0x07; break;
+            case Operand::B: code |= 0x00; break;
+            case Operand::C: code |= 0x01; break;
+            case Operand::D: code |= 0x02; break;
+            case Operand::E: code |= 0x03; break;
+            case Operand::H: code |= 0x04; break;
+            case Operand::L: code |= 0x05; break;
+            case Operand::IXH: code |= 0x04; break;
+            case Operand::IXL: code |= 0x05; break;
+            case Operand::IYH: code |= 0x04; break;
+            case Operand::IYL: code |= 0x05; break;
+            default:
+                line->error = true;
+                line->errmsg = "Illegal 8-bit arithmetic instruction.";
+                return;
+        }
+        line->machine.push_back(code);
+    } else {
+        line->error = true;
+        line->errmsg = "Illegal 8-bit arithmetic instruction.";
+    }
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -327,6 +360,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::OTIR: mnemonic_single_ED(line, 0xB3); break;
             case Mnemonic::OUTD: mnemonic_single_ED(line, 0xAB); break;
             case Mnemonic::OTDR: mnemonic_single_ED(line, 0xBB); break;
+            case Mnemonic::AND: mnemonic_calc8(line, Mnemonic::AND, 0xA0); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
