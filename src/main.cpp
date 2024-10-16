@@ -46,6 +46,7 @@ std::vector<std::string> split_token(std::string str, char del)
 void addNameTable(std::string name, LineData* line)
 {
     if (mnemonicTable.find(name) != mnemonicTable.end() ||
+        operandTable.find(name) != operandTable.end() ||
         name == "SIZEOF" ||
         name == "OFFSET") {
         line->error = true;
