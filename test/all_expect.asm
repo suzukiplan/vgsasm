@@ -156,3 +156,15 @@
                     add       (iy+$00)                      ;[0113] fd 86 00
                     add       (iy-$80)                      ;[0116] fd 86 80
                     add       (iy+$7f)                      ;[0119] fd 86 7f
+                    add       hl,bc                         ;[011c] 09
+                    add       hl,de                         ;[011d] 19
+                    add       hl,hl                         ;[011e] 29
+                    add       hl,sp                         ;[011f] 39
+                    add       ix,bc                         ;[0120] dd 09
+                    add       ix,de                         ;[0122] dd 19
+                    add       ix,ix                         ;[0124] dd 29
+                    add       ix,sp                         ;[0126] dd 39
+                    add       iy,bc                         ;[0128] fd 09
+                    add       iy,de                         ;[012a] fd 19
+                    add       iy,iy                         ;[012c] fd 29
+                    add       iy,sp                         ;[012e] fd 39

@@ -182,3 +182,17 @@ Calc8:
     ADD (IY)
     ADD (IY-128)
     ADD (IY+127*1)
+
+@Add16
+    ADD HL, BC
+    ADD HL, DE
+    ADD HL, HL
+    ADD HL, SP
+    ADD IX, BC
+    ADD IX, DE
+    ADD IX, IX
+    ADD IX, SP
+    ADD IY, BC
+    ADD IY, DE
+    ADD IY, IY
+    ADD IY, SP

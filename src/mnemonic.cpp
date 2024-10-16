@@ -164,6 +164,20 @@ bool mnemonic_range(LineData* line, int n, int min, int max)
     return true;
 }
 
+bool mnemonic_is_reg16(Operand op)
+{
+    switch (op) {
+        case Operand::AF: return true;
+        case Operand::BC: return true;
+        case Operand::DE: return true;
+        case Operand::HL: return true;
+        case Operand::IX: return true;
+        case Operand::IY: return true;
+        case Operand::SP: return true;
+        default: return false;
+    }
+}
+
 void mnemonic_single(LineData* line, uint8_t code)
 {
     if (mnemonic_format_check(line, 1)) {
@@ -361,6 +375,51 @@ void mnemonic_calc8(LineData* line, Mnemonic mne, uint8_t code)
     }
 }
 
+static void mnemonic_ADD16(LineData* line)
+{
+    if (line->token.size() == 4 || line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Operand) {
+        auto op1 = operandTable[line->token[1].second];
+        auto op2 = operandTable[line->token[3].second];
+        if (op1 != Operand::HL && op1 != Operand::IX && op1 != Operand::IY) {
+            line->error = true;
+            line->errmsg = "Illegal 16-bit ADD instruction.";
+            return;
+        }
+        if (op1 == Operand::HL) {
+            if (op2 != Operand::BC && op2 != Operand::DE && op2 != Operand::HL && op2 != Operand::SP) {
+                line->error = true;
+                line->errmsg = "Illegal 16-bit ADD instruction.";
+                return;
+            }
+        } else if (op1 == Operand::IX) {
+            line->machine.push_back(0xDD);
+            if (op2 != Operand::BC && op2 != Operand::DE && op2 != Operand::IX && op2 != Operand::SP) {
+                line->error = true;
+                line->errmsg = "Illegal 16-bit ADD instruction.";
+                return;
+            }
+        } else if (op1 == Operand::IY) {
+            line->machine.push_back(0xFD);
+            if (op2 != Operand::BC && op2 != Operand::DE && op2 != Operand::IY && op2 != Operand::SP) {
+                line->error = true;
+                line->errmsg = "Illegal 16-bit ADD instruction.";
+                return;
+            }
+        }
+        switch (op2) {
+            case Operand::BC: line->machine.push_back(0x09); break;
+            case Operand::DE: line->machine.push_back(0x19); break;
+            case Operand::HL: line->machine.push_back(0x29); break;
+            case Operand::IX: line->machine.push_back(0x29); break;
+            case Operand::IY: line->machine.push_back(0x29); break;
+            case Operand::SP: line->machine.push_back(0x39); break;
+        }
+    } else {
+        line->error = true;
+        line->errmsg = "Illegal 16-bit ADD instruction.";
+    }
+}
+
 static void mnemonic_ADD(LineData* line)
 {
     if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
@@ -376,17 +435,11 @@ static void mnemonic_ADD(LineData* line)
             line->token.erase(it);
             line->token.erase(it);
             mnemonic_calc8(line, Mnemonic::ADD, 0x80);
+        } else if (mnemonic_is_reg16(op)) {
+            mnemonic_ADD16(line);
         } else {
-            switch (op) {
-                case Operand::BC: /* TODO*/ break;
-                case Operand::DE: /* TODO*/ break;
-                case Operand::HL: /* TODO*/ break;
-                case Operand::IX: /* TODO*/ break;
-                case Operand::IY: /* TODO*/ break;
-                default:
-                    line->error = true;
-                    line->errmsg = "Illegal 8-bit arithmetic instruction.";
-            }
+            line->error = true;
+            line->errmsg = "Illegal 8-bit arithmetic instruction.";
         }
     } else {
         line->error = true;
