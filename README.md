@@ -165,6 +165,8 @@ struct name $C000 {
 |:------------|:------------|
 | `LD (HL++), {r｜n}` | `LD (HL), {r｜n}` <br> `INC HL` |
 | `LD (++HL), {r｜n}` | `INC HL` <br> `LD (HL), {r｜n}` |
+| `ADD IX, nn` | `PUSH DE` <br> `PUSH HL` <br> `LD H, IXH` <br> `LD L, IXL` <br> `LD D, n<H>` <br> `LD E, n<L>` <br> `ADD HL, DE` <br> `LD IXH, H` <br> `LD IXL, L` <br> `POP HL` <br> `POP DE`|
+| `ADD IY, nn` | `PUSH DE` <br> `PUSH HL` <br> `LD H, IYH` <br> `LD L, IYL` <br> `LD D, n<H>` <br> `LD E, n<L>` <br> `ADD HL, DE` <br> `LD IYH, H` <br> `LD IYL, L` <br> `POP HL` <br> `POP DE`|
 
 ## License
 
