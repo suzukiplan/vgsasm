@@ -154,31 +154,10 @@ bool mnemonic_format_check(LineData* line, int size, ...)
     return !line->error;
 }
 
-void mnemonic_NOP(LineData* line)
+void mnemonic_signle(LineData* line, uint8_t code)
 {
     if (mnemonic_format_check(line, 1)) {
-        line->machine.push_back(0x00);
-    }
-}
-
-void mnemonic_DI(LineData* line)
-{
-    if (mnemonic_format_check(line, 1)) {
-        line->machine.push_back(0xF3);
-    }
-}
-
-void mnemonic_EI(LineData* line)
-{
-    if (mnemonic_format_check(line, 1)) {
-        line->machine.push_back(0xFB);
-    }
-}
-
-void mnemonic_HALT(LineData* line)
-{
-    if (mnemonic_format_check(line, 1)) {
-        line->machine.push_back(0x76);
+        line->machine.push_back(code);
     }
 }
 
@@ -285,13 +264,6 @@ void mnemonic_EX(LineData* line)
     }
 }
 
-void mnemonic_EXX(LineData* line)
-{
-    if (mnemonic_format_check(line, 1)) {
-        line->machine.push_back(0xD9);
-    }
-}
-
 void mnemonic_Repeat(LineData* line, uint8_t code)
 {
     if (mnemonic_format_check(line, 1)) {
@@ -329,15 +301,15 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
         }
         auto m = mnemonicTable[line->token[0].second];
         switch (m) {
-            case Mnemonic::NOP: mnemonic_NOP(line); break;
             case Mnemonic::IM: mnemonic_IM(line); break;
-            case Mnemonic::DI: mnemonic_DI(line); break;
-            case Mnemonic::EI: mnemonic_EI(line); break;
-            case Mnemonic::HALT: mnemonic_HALT(line); break;
             case Mnemonic::PUSH: mnemonic_PUSH(line); break;
             case Mnemonic::POP: mnemonic_POP(line); break;
             case Mnemonic::EX: mnemonic_EX(line); break;
-            case Mnemonic::EXX: mnemonic_EXX(line); break;
+            case Mnemonic::NOP: mnemonic_signle(line, 0x00); break;
+            case Mnemonic::DI: mnemonic_signle(line, 0xF3); break;
+            case Mnemonic::EI: mnemonic_signle(line, 0xFB); break;
+            case Mnemonic::HALT: mnemonic_signle(line, 0x76); break;
+            case Mnemonic::EXX: mnemonic_signle(line, 0xD9); break;
             case Mnemonic::LDI: mnemonic_Repeat(line, 0xA0); break;
             case Mnemonic::LDIR: mnemonic_Repeat(line, 0xB0); break;
             case Mnemonic::LDD: mnemonic_Repeat(line, 0xA8); break;
