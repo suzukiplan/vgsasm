@@ -54,3 +54,4 @@ org $0000
     CPL
     CCF
     SCF
+    NEG

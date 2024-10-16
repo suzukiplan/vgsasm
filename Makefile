@@ -22,6 +22,9 @@ all: vgsasm
 	z88dk.z88dk-dis all.bin >test/all_disassemble.asm
 	diff test/all_expect.asm test/all_disassemble.asm
 
+update:
+	cp test/all_disassemble.asm test/all_expect.asm
+
 clean:
 	rm -f ${OBJECTS}
 	rm -f vgsasm

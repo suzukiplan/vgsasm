@@ -314,6 +314,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::CPL: mnemonic_signle(line, 0x2F); break;
             case Mnemonic::CCF: mnemonic_signle(line, 0x3F); break;
             case Mnemonic::SCF: mnemonic_signle(line, 0x37); break;
+            case Mnemonic::NEG: mnemonic_single_ED(line, 0x44); break;
             case Mnemonic::LDI: mnemonic_single_ED(line, 0xA0); break;
             case Mnemonic::LDIR: mnemonic_single_ED(line, 0xB0); break;
             case Mnemonic::LDD: mnemonic_single_ED(line, 0xA8); break;
