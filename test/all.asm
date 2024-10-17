@@ -56,7 +56,7 @@ org $0000
     SCF
     NEG
 
-Calc8:
+Calculation:
 @And
     AND A
     AND B
