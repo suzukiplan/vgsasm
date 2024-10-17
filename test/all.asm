@@ -78,6 +78,27 @@ Calc8:
     AND (IY-128)
     AND (IY+127*1)
 
+@And_with_A
+    AND A, A
+    AND A, B
+    AND A, C
+    AND A, D
+    AND A, E
+    AND A, H
+    AND A, L
+    AND A, IXH
+    AND A, IXL
+    AND A, IYH
+    AND A, IYL
+    AND A, $FF
+    AND A, (HL)
+    AND A, (IX)
+    AND A, (IX-128)
+    AND A, (IX+127*1)
+    AND A, (IY)
+    AND A, (IY-128)
+    AND A, (IY+127*1)
+
 @Or
     OR A
     OR B
@@ -98,6 +119,27 @@ Calc8:
     OR (IY)
     OR (IY-128)
     OR (IY+127*1)
+
+@Or_with_A
+    OR A, A
+    OR A, B
+    OR A, C
+    OR A, D
+    OR A, E
+    OR A, H
+    OR A, L
+    OR A, IXH
+    OR A, IXL
+    OR A, IYH
+    OR A, IYL
+    OR A, $FF
+    OR A, (HL)
+    OR A, (IX)
+    OR A, (IX-128)
+    OR A, (IX+127*1)
+    OR A, (IY)
+    OR A, (IY-128)
+    OR A, (IY+127*1)
 
 @Xor
     XOR A
@@ -120,6 +162,27 @@ Calc8:
     XOR (IY-128)
     XOR (IY+127*1)
 
+@Xor_with_A
+    XOR A, A
+    XOR A, B
+    XOR A, C
+    XOR A, D
+    XOR A, E
+    XOR A, H
+    XOR A, L
+    XOR A, IXH
+    XOR A, IXL
+    XOR A, IYH
+    XOR A, IYL
+    XOR A, $FF
+    XOR A, (HL)
+    XOR A, (IX)
+    XOR A, (IX-128)
+    XOR A, (IX+127*1)
+    XOR A, (IY)
+    XOR A, (IY-128)
+    XOR A, (IY+127*1)
+
 @Compare
     CP A
     CP B
@@ -140,6 +203,27 @@ Calc8:
     CP (IY)
     CP (IY-128)
     CP (IY+127*1)
+
+@Compare_with_A
+    CP A, A
+    CP A, B
+    CP A, C
+    CP A, D
+    CP A, E
+    CP A, H
+    CP A, L
+    CP A, IXH
+    CP A, IXL
+    CP A, IYH
+    CP A, IYL
+    CP A, $FF
+    CP A, (HL)
+    CP A, (IX)
+    CP A, (IX-128)
+    CP A, (IX+127*1)
+    CP A, (IY)
+    CP A, (IY-128)
+    CP A, (IY+127*1)
 
 @Add
     ADD A, A

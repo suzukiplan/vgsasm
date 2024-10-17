@@ -61,167 +61,281 @@
                     and       (iy+$00)                      ;[005f] fd a6 00
                     and       (iy-$80)                      ;[0062] fd a6 80
                     and       (iy+$7f)                      ;[0065] fd a6 7f
-                    or        a                             ;[0068] b7
-                    or        b                             ;[0069] b0
-                    or        c                             ;[006a] b1
-                    or        d                             ;[006b] b2
-                    or        e                             ;[006c] b3
-                    or        h                             ;[006d] b4
-                    or        l                             ;[006e] b5
-                    or        ixh                           ;[006f] dd b4
-                    or        ixl                           ;[0071] dd b5
-                    or        iyh                           ;[0073] fd b4
-                    or        iyl                           ;[0075] fd b5
-                    or        $ff                           ;[0077] f6 ff
-                    or        (hl)                          ;[0079] b6
-                    or        (ix+$00)                      ;[007a] dd b6 00
-                    or        (ix-$80)                      ;[007d] dd b6 80
-                    or        (ix+$7f)                      ;[0080] dd b6 7f
-                    or        (iy+$00)                      ;[0083] fd b6 00
-                    or        (iy-$80)                      ;[0086] fd b6 80
-                    or        (iy+$7f)                      ;[0089] fd b6 7f
-                    xor       a                             ;[008c] af
-                    xor       b                             ;[008d] a8
-                    xor       c                             ;[008e] a9
-                    xor       d                             ;[008f] aa
-                    xor       e                             ;[0090] ab
-                    xor       h                             ;[0091] ac
-                    xor       l                             ;[0092] ad
-                    xor       ixh                           ;[0093] dd ac
-                    xor       ixl                           ;[0095] dd ad
-                    xor       iyh                           ;[0097] fd ac
-                    xor       iyl                           ;[0099] fd ad
-                    xor       $ff                           ;[009b] ee ff
-                    xor       (hl)                          ;[009d] ae
-                    xor       (ix+$00)                      ;[009e] dd ae 00
-                    xor       (ix-$80)                      ;[00a1] dd ae 80
-                    xor       (ix+$7f)                      ;[00a4] dd ae 7f
-                    xor       (iy+$00)                      ;[00a7] fd ae 00
-                    xor       (iy-$80)                      ;[00aa] fd ae 80
-                    xor       (iy+$7f)                      ;[00ad] fd ae 7f
-                    cp        a                             ;[00b0] bf
-                    cp        b                             ;[00b1] b8
-                    cp        c                             ;[00b2] b9
-                    cp        d                             ;[00b3] ba
-                    cp        e                             ;[00b4] bb
-                    cp        h                             ;[00b5] bc
-                    cp        l                             ;[00b6] bd
-                    cp        ixh                           ;[00b7] dd bc
-                    cp        ixl                           ;[00b9] dd bd
-                    cp        iyh                           ;[00bb] fd bc
-                    cp        iyl                           ;[00bd] fd bd
-                    cp        $ff                           ;[00bf] fe ff
-                    cp        (hl)                          ;[00c1] be
-                    cp        (ix+$00)                      ;[00c2] dd be 00
-                    cp        (ix-$80)                      ;[00c5] dd be 80
-                    cp        (ix+$7f)                      ;[00c8] dd be 7f
-                    cp        (iy+$00)                      ;[00cb] fd be 00
-                    cp        (iy-$80)                      ;[00ce] fd be 80
-                    cp        (iy+$7f)                      ;[00d1] fd be 7f
-                    add       a                             ;[00d4] 87
-                    add       b                             ;[00d5] 80
-                    add       c                             ;[00d6] 81
-                    add       d                             ;[00d7] 82
-                    add       e                             ;[00d8] 83
-                    add       h                             ;[00d9] 84
-                    add       l                             ;[00da] 85
-                    add       ixh                           ;[00db] dd 84
-                    add       ixl                           ;[00dd] dd 85
-                    add       iyh                           ;[00df] fd 84
-                    add       iyl                           ;[00e1] fd 85
-                    add       $ff                           ;[00e3] c6 ff
-                    add       (hl)                          ;[00e5] 86
-                    add       (ix+$00)                      ;[00e6] dd 86 00
-                    add       (ix-$80)                      ;[00e9] dd 86 80
-                    add       (ix+$7f)                      ;[00ec] dd 86 7f
-                    add       (iy+$00)                      ;[00ef] fd 86 00
-                    add       (iy-$80)                      ;[00f2] fd 86 80
-                    add       (iy+$7f)                      ;[00f5] fd 86 7f
-                    add       a                             ;[00f8] 87
-                    add       b                             ;[00f9] 80
-                    add       c                             ;[00fa] 81
-                    add       d                             ;[00fb] 82
-                    add       e                             ;[00fc] 83
-                    add       h                             ;[00fd] 84
-                    add       l                             ;[00fe] 85
-                    add       ixh                           ;[00ff] dd 84
-                    add       ixl                           ;[0101] dd 85
-                    add       iyh                           ;[0103] fd 84
-                    add       iyl                           ;[0105] fd 85
-                    add       $ff                           ;[0107] c6 ff
-                    add       (hl)                          ;[0109] 86
-                    add       (ix+$00)                      ;[010a] dd 86 00
-                    add       (ix-$80)                      ;[010d] dd 86 80
-                    add       (ix+$7f)                      ;[0110] dd 86 7f
-                    add       (iy+$00)                      ;[0113] fd 86 00
-                    add       (iy-$80)                      ;[0116] fd 86 80
-                    add       (iy+$7f)                      ;[0119] fd 86 7f
-                    add       hl,bc                         ;[011c] 09
-                    add       hl,de                         ;[011d] 19
-                    add       hl,hl                         ;[011e] 29
-                    add       hl,sp                         ;[011f] 39
-                    add       ix,bc                         ;[0120] dd 09
-                    add       ix,de                         ;[0122] dd 19
-                    add       ix,ix                         ;[0124] dd 29
-                    add       ix,sp                         ;[0126] dd 39
-                    add       iy,bc                         ;[0128] fd 09
-                    add       iy,de                         ;[012a] fd 19
-                    add       iy,iy                         ;[012c] fd 29
-                    add       iy,sp                         ;[012e] fd 39
-                    push      de                            ;[0130] d5
-                    ld        d,$12                         ;[0131] 16 12
-                    ld        e,$34                         ;[0133] 1e 34
-                    add       hl,de                         ;[0135] 19
-                    pop       de                            ;[0136] d1
-                    push      de                            ;[0137] d5
-                    ld        d,$56                         ;[0138] 16 56
-                    ld        e,$78                         ;[013a] 1e 78
-                    add       ix,de                         ;[013c] dd 19
-                    pop       de                            ;[013e] d1
-                    push      de                            ;[013f] d5
-                    ld        d,$9a                         ;[0140] 16 9a
-                    ld        e,$bc                         ;[0142] 1e bc
-                    add       iy,de                         ;[0144] fd 19
-                    pop       de                            ;[0146] d1
-                    adc       a                             ;[0147] 8f
-                    adc       b                             ;[0148] 88
-                    adc       c                             ;[0149] 89
-                    adc       d                             ;[014a] 8a
-                    adc       e                             ;[014b] 8b
-                    adc       h                             ;[014c] 8c
-                    adc       l                             ;[014d] 8d
-                    adc       ixh                           ;[014e] dd 8c
-                    adc       ixl                           ;[0150] dd 8d
-                    adc       iyh                           ;[0152] fd 8c
-                    adc       iyl                           ;[0154] fd 8d
-                    adc       $ff                           ;[0156] ce ff
-                    adc       (hl)                          ;[0158] 8e
-                    adc       (ix+$00)                      ;[0159] dd 8e 00
-                    adc       (ix-$80)                      ;[015c] dd 8e 80
-                    adc       (ix+$7f)                      ;[015f] dd 8e 7f
-                    adc       (iy+$00)                      ;[0162] fd 8e 00
-                    adc       (iy-$80)                      ;[0165] fd 8e 80
-                    adc       (iy+$7f)                      ;[0168] fd 8e 7f
-                    adc       a                             ;[016b] 8f
-                    adc       b                             ;[016c] 88
-                    adc       c                             ;[016d] 89
-                    adc       d                             ;[016e] 8a
-                    adc       e                             ;[016f] 8b
-                    adc       h                             ;[0170] 8c
-                    adc       l                             ;[0171] 8d
-                    adc       ixh                           ;[0172] dd 8c
-                    adc       ixl                           ;[0174] dd 8d
-                    adc       iyh                           ;[0176] fd 8c
-                    adc       iyl                           ;[0178] fd 8d
-                    adc       $ff                           ;[017a] ce ff
-                    adc       (hl)                          ;[017c] 8e
-                    adc       (ix+$00)                      ;[017d] dd 8e 00
-                    adc       (ix-$80)                      ;[0180] dd 8e 80
-                    adc       (ix+$7f)                      ;[0183] dd 8e 7f
-                    adc       (iy+$00)                      ;[0186] fd 8e 00
-                    adc       (iy-$80)                      ;[0189] fd 8e 80
-                    adc       (iy+$7f)                      ;[018c] fd 8e 7f
-                    adc       hl,bc                         ;[018f] ed 4a
-                    adc       hl,de                         ;[0191] ed 5a
-                    adc       hl,hl                         ;[0193] ed 6a
-                    adc       hl,sp                         ;[0195] ed 7a
+                    and       a                             ;[0068] a7
+                    and       b                             ;[0069] a0
+                    and       c                             ;[006a] a1
+                    and       d                             ;[006b] a2
+                    and       e                             ;[006c] a3
+                    and       h                             ;[006d] a4
+                    and       l                             ;[006e] a5
+                    and       ixh                           ;[006f] dd a4
+                    and       ixl                           ;[0071] dd a5
+                    and       iyh                           ;[0073] fd a4
+                    and       iyl                           ;[0075] fd a5
+                    and       $ff                           ;[0077] e6 ff
+                    and       (hl)                          ;[0079] a6
+                    and       (ix+$00)                      ;[007a] dd a6 00
+                    and       (ix-$80)                      ;[007d] dd a6 80
+                    and       (ix+$7f)                      ;[0080] dd a6 7f
+                    and       (iy+$00)                      ;[0083] fd a6 00
+                    and       (iy-$80)                      ;[0086] fd a6 80
+                    and       (iy+$7f)                      ;[0089] fd a6 7f
+                    or        a                             ;[008c] b7
+                    or        b                             ;[008d] b0
+                    or        c                             ;[008e] b1
+                    or        d                             ;[008f] b2
+                    or        e                             ;[0090] b3
+                    or        h                             ;[0091] b4
+                    or        l                             ;[0092] b5
+                    or        ixh                           ;[0093] dd b4
+                    or        ixl                           ;[0095] dd b5
+                    or        iyh                           ;[0097] fd b4
+                    or        iyl                           ;[0099] fd b5
+                    or        $ff                           ;[009b] f6 ff
+                    or        (hl)                          ;[009d] b6
+                    or        (ix+$00)                      ;[009e] dd b6 00
+                    or        (ix-$80)                      ;[00a1] dd b6 80
+                    or        (ix+$7f)                      ;[00a4] dd b6 7f
+                    or        (iy+$00)                      ;[00a7] fd b6 00
+                    or        (iy-$80)                      ;[00aa] fd b6 80
+                    or        (iy+$7f)                      ;[00ad] fd b6 7f
+                    or        a                             ;[00b0] b7
+                    or        b                             ;[00b1] b0
+                    or        c                             ;[00b2] b1
+                    or        d                             ;[00b3] b2
+                    or        e                             ;[00b4] b3
+                    or        h                             ;[00b5] b4
+                    or        l                             ;[00b6] b5
+                    or        ixh                           ;[00b7] dd b4
+                    or        ixl                           ;[00b9] dd b5
+                    or        iyh                           ;[00bb] fd b4
+                    or        iyl                           ;[00bd] fd b5
+                    or        $ff                           ;[00bf] f6 ff
+                    or        (hl)                          ;[00c1] b6
+                    or        (ix+$00)                      ;[00c2] dd b6 00
+                    or        (ix-$80)                      ;[00c5] dd b6 80
+                    or        (ix+$7f)                      ;[00c8] dd b6 7f
+                    or        (iy+$00)                      ;[00cb] fd b6 00
+                    or        (iy-$80)                      ;[00ce] fd b6 80
+                    or        (iy+$7f)                      ;[00d1] fd b6 7f
+                    xor       a                             ;[00d4] af
+                    xor       b                             ;[00d5] a8
+                    xor       c                             ;[00d6] a9
+                    xor       d                             ;[00d7] aa
+                    xor       e                             ;[00d8] ab
+                    xor       h                             ;[00d9] ac
+                    xor       l                             ;[00da] ad
+                    xor       ixh                           ;[00db] dd ac
+                    xor       ixl                           ;[00dd] dd ad
+                    xor       iyh                           ;[00df] fd ac
+                    xor       iyl                           ;[00e1] fd ad
+                    xor       $ff                           ;[00e3] ee ff
+                    xor       (hl)                          ;[00e5] ae
+                    xor       (ix+$00)                      ;[00e6] dd ae 00
+                    xor       (ix-$80)                      ;[00e9] dd ae 80
+                    xor       (ix+$7f)                      ;[00ec] dd ae 7f
+                    xor       (iy+$00)                      ;[00ef] fd ae 00
+                    xor       (iy-$80)                      ;[00f2] fd ae 80
+                    xor       (iy+$7f)                      ;[00f5] fd ae 7f
+                    xor       a                             ;[00f8] af
+                    xor       b                             ;[00f9] a8
+                    xor       c                             ;[00fa] a9
+                    xor       d                             ;[00fb] aa
+                    xor       e                             ;[00fc] ab
+                    xor       h                             ;[00fd] ac
+                    xor       l                             ;[00fe] ad
+                    xor       ixh                           ;[00ff] dd ac
+                    xor       ixl                           ;[0101] dd ad
+                    xor       iyh                           ;[0103] fd ac
+                    xor       iyl                           ;[0105] fd ad
+                    xor       $ff                           ;[0107] ee ff
+                    xor       (hl)                          ;[0109] ae
+                    xor       (ix+$00)                      ;[010a] dd ae 00
+                    xor       (ix-$80)                      ;[010d] dd ae 80
+                    xor       (ix+$7f)                      ;[0110] dd ae 7f
+                    xor       (iy+$00)                      ;[0113] fd ae 00
+                    xor       (iy-$80)                      ;[0116] fd ae 80
+                    xor       (iy+$7f)                      ;[0119] fd ae 7f
+                    cp        a                             ;[011c] bf
+                    cp        b                             ;[011d] b8
+                    cp        c                             ;[011e] b9
+                    cp        d                             ;[011f] ba
+                    cp        e                             ;[0120] bb
+                    cp        h                             ;[0121] bc
+                    cp        l                             ;[0122] bd
+                    cp        ixh                           ;[0123] dd bc
+                    cp        ixl                           ;[0125] dd bd
+                    cp        iyh                           ;[0127] fd bc
+                    cp        iyl                           ;[0129] fd bd
+                    cp        $ff                           ;[012b] fe ff
+                    cp        (hl)                          ;[012d] be
+                    cp        (ix+$00)                      ;[012e] dd be 00
+                    cp        (ix-$80)                      ;[0131] dd be 80
+                    cp        (ix+$7f)                      ;[0134] dd be 7f
+                    cp        (iy+$00)                      ;[0137] fd be 00
+                    cp        (iy-$80)                      ;[013a] fd be 80
+                    cp        (iy+$7f)                      ;[013d] fd be 7f
+                    cp        a                             ;[0140] bf
+                    cp        b                             ;[0141] b8
+                    cp        c                             ;[0142] b9
+                    cp        d                             ;[0143] ba
+                    cp        e                             ;[0144] bb
+                    cp        h                             ;[0145] bc
+                    cp        l                             ;[0146] bd
+                    cp        ixh                           ;[0147] dd bc
+                    cp        ixl                           ;[0149] dd bd
+                    cp        iyh                           ;[014b] fd bc
+                    cp        iyl                           ;[014d] fd bd
+                    cp        $ff                           ;[014f] fe ff
+                    cp        (hl)                          ;[0151] be
+                    cp        (ix+$00)                      ;[0152] dd be 00
+                    cp        (ix-$80)                      ;[0155] dd be 80
+                    cp        (ix+$7f)                      ;[0158] dd be 7f
+                    cp        (iy+$00)                      ;[015b] fd be 00
+                    cp        (iy-$80)                      ;[015e] fd be 80
+                    cp        (iy+$7f)                      ;[0161] fd be 7f
+                    add       a                             ;[0164] 87
+                    add       b                             ;[0165] 80
+                    add       c                             ;[0166] 81
+                    add       d                             ;[0167] 82
+                    add       e                             ;[0168] 83
+                    add       h                             ;[0169] 84
+                    add       l                             ;[016a] 85
+                    add       ixh                           ;[016b] dd 84
+                    add       ixl                           ;[016d] dd 85
+                    add       iyh                           ;[016f] fd 84
+                    add       iyl                           ;[0171] fd 85
+                    add       $ff                           ;[0173] c6 ff
+                    add       (hl)                          ;[0175] 86
+                    add       (ix+$00)                      ;[0176] dd 86 00
+                    add       (ix-$80)                      ;[0179] dd 86 80
+                    add       (ix+$7f)                      ;[017c] dd 86 7f
+                    add       (iy+$00)                      ;[017f] fd 86 00
+                    add       (iy-$80)                      ;[0182] fd 86 80
+                    add       (iy+$7f)                      ;[0185] fd 86 7f
+                    add       a                             ;[0188] 87
+                    add       b                             ;[0189] 80
+                    add       c                             ;[018a] 81
+                    add       d                             ;[018b] 82
+                    add       e                             ;[018c] 83
+                    add       h                             ;[018d] 84
+                    add       l                             ;[018e] 85
+                    add       ixh                           ;[018f] dd 84
+                    add       ixl                           ;[0191] dd 85
+                    add       iyh                           ;[0193] fd 84
+                    add       iyl                           ;[0195] fd 85
+                    add       $ff                           ;[0197] c6 ff
+                    add       (hl)                          ;[0199] 86
+                    add       (ix+$00)                      ;[019a] dd 86 00
+                    add       (ix-$80)                      ;[019d] dd 86 80
+                    add       (ix+$7f)                      ;[01a0] dd 86 7f
+                    add       (iy+$00)                      ;[01a3] fd 86 00
+                    add       (iy-$80)                      ;[01a6] fd 86 80
+                    add       (iy+$7f)                      ;[01a9] fd 86 7f
+                    add       hl,bc                         ;[01ac] 09
+                    add       hl,de                         ;[01ad] 19
+                    add       hl,hl                         ;[01ae] 29
+                    add       hl,sp                         ;[01af] 39
+                    add       ix,bc                         ;[01b0] dd 09
+                    add       ix,de                         ;[01b2] dd 19
+                    add       ix,ix                         ;[01b4] dd 29
+                    add       ix,sp                         ;[01b6] dd 39
+                    add       iy,bc                         ;[01b8] fd 09
+                    add       iy,de                         ;[01ba] fd 19
+                    add       iy,iy                         ;[01bc] fd 29
+                    add       iy,sp                         ;[01be] fd 39
+                    push      de                            ;[01c0] d5
+                    ld        d,$12                         ;[01c1] 16 12
+                    ld        e,$34                         ;[01c3] 1e 34
+                    add       hl,de                         ;[01c5] 19
+                    pop       de                            ;[01c6] d1
+                    push      de                            ;[01c7] d5
+                    ld        d,$56                         ;[01c8] 16 56
+                    ld        e,$78                         ;[01ca] 1e 78
+                    add       ix,de                         ;[01cc] dd 19
+                    pop       de                            ;[01ce] d1
+                    push      de                            ;[01cf] d5
+                    ld        d,$9a                         ;[01d0] 16 9a
+                    ld        e,$bc                         ;[01d2] 1e bc
+                    add       iy,de                         ;[01d4] fd 19
+                    pop       de                            ;[01d6] d1
+                    adc       a                             ;[01d7] 8f
+                    adc       b                             ;[01d8] 88
+                    adc       c                             ;[01d9] 89
+                    adc       d                             ;[01da] 8a
+                    adc       e                             ;[01db] 8b
+                    adc       h                             ;[01dc] 8c
+                    adc       l                             ;[01dd] 8d
+                    adc       ixh                           ;[01de] dd 8c
+                    adc       ixl                           ;[01e0] dd 8d
+                    adc       iyh                           ;[01e2] fd 8c
+                    adc       iyl                           ;[01e4] fd 8d
+                    adc       $ff                           ;[01e6] ce ff
+                    adc       (hl)                          ;[01e8] 8e
+                    adc       (ix+$00)                      ;[01e9] dd 8e 00
+                    adc       (ix-$80)                      ;[01ec] dd 8e 80
+                    adc       (ix+$7f)                      ;[01ef] dd 8e 7f
+                    adc       (iy+$00)                      ;[01f2] fd 8e 00
+                    adc       (iy-$80)                      ;[01f5] fd 8e 80
+                    adc       (iy+$7f)                      ;[01f8] fd 8e 7f
+                    adc       a                             ;[01fb] 8f
+                    adc       b                             ;[01fc] 88
+                    adc       c                             ;[01fd] 89
+                    adc       d                             ;[01fe] 8a
+                    adc       e                             ;[01ff] 8b
+                    adc       h                             ;[0200] 8c
+                    adc       l                             ;[0201] 8d
+                    adc       ixh                           ;[0202] dd 8c
+                    adc       ixl                           ;[0204] dd 8d
+                    adc       iyh                           ;[0206] fd 8c
+                    adc       iyl                           ;[0208] fd 8d
+                    adc       $ff                           ;[020a] ce ff
+                    adc       (hl)                          ;[020c] 8e
+                    adc       (ix+$00)                      ;[020d] dd 8e 00
+                    adc       (ix-$80)                      ;[0210] dd 8e 80
+                    adc       (ix+$7f)                      ;[0213] dd 8e 7f
+                    adc       (iy+$00)                      ;[0216] fd 8e 00
+                    adc       (iy-$80)                      ;[0219] fd 8e 80
+                    adc       (iy+$7f)                      ;[021c] fd 8e 7f
+                    adc       hl,bc                         ;[021f] ed 4a
+                    adc       hl,de                         ;[0221] ed 5a
+                    adc       hl,hl                         ;[0223] ed 6a
+                    adc       hl,sp                         ;[0225] ed 7a
+                    sub       a                             ;[0227] 97
+                    sub       b                             ;[0228] 90
+                    sub       c                             ;[0229] 91
+                    sub       d                             ;[022a] 92
+                    sub       e                             ;[022b] 93
+                    sub       h                             ;[022c] 94
+                    sub       l                             ;[022d] 95
+                    sub       ixh                           ;[022e] dd 94
+                    sub       ixl                           ;[0230] dd 95
+                    sub       iyh                           ;[0232] fd 94
+                    sub       iyl                           ;[0234] fd 95
+                    sub       $ff                           ;[0236] d6 ff
+                    sub       (hl)                          ;[0238] 96
+                    sub       (ix+$00)                      ;[0239] dd 96 00
+                    sub       (ix-$80)                      ;[023c] dd 96 80
+                    sub       (ix+$7f)                      ;[023f] dd 96 7f
+                    sub       (iy+$00)                      ;[0242] fd 96 00
+                    sub       (iy-$80)                      ;[0245] fd 96 80
+                    sub       (iy+$7f)                      ;[0248] fd 96 7f
+                    sub       a                             ;[024b] 97
+                    sub       b                             ;[024c] 90
+                    sub       c                             ;[024d] 91
+                    sub       d                             ;[024e] 92
+                    sub       e                             ;[024f] 93
+                    sub       h                             ;[0250] 94
+                    sub       l                             ;[0251] 95
+                    sub       ixh                           ;[0252] dd 94
+                    sub       ixl                           ;[0254] dd 95
+                    sub       iyh                           ;[0256] fd 94
+                    sub       iyl                           ;[0258] fd 95
+                    sub       $ff                           ;[025a] d6 ff
+                    sub       (hl)                          ;[025c] 96
+                    sub       (ix+$00)                      ;[025d] dd 96 00
+                    sub       (ix-$80)                      ;[0260] dd 96 80
+                    sub       (ix+$7f)                      ;[0263] dd 96 7f
+                    sub       (iy+$00)                      ;[0266] fd 96 00
+                    sub       (iy-$80)                      ;[0269] fd 96 80
+                    sub       (iy+$7f)                      ;[026c] fd 96 7f
