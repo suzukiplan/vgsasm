@@ -85,6 +85,7 @@
 #define ML_INC_BC line->machine.push_back(0x03)
 #define ML_INC_DE line->machine.push_back(0x13)
 #define ML_INC_HL line->machine.push_back(0x23)
+#define ML_INC_ADDR_HL line->machine.push_back(0x34)
 #define ML_INC_SP line->machine.push_back(0x33)
 #define ML_INC_IXH                 \
     line->machine.push_back(0xDD); \
@@ -104,6 +105,14 @@
 #define ML_INC_IY                  \
     line->machine.push_back(0xFD); \
     line->machine.push_back(0x23)
+#define ML_INC_ADDR_IX(D)          \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x34); \
+    line->machine.push_back(D)
+#define ML_INC_ADDR_IY(D)          \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x34); \
+    line->machine.push_back(D)
 
 std::map<std::string, Mnemonic> mnemonicTable = {
     {"LD", Mnemonic::LD},
@@ -169,10 +178,10 @@ std::map<std::string, Mnemonic> mnemonicTable = {
     {"JPN", Mnemonic::JPM},
     {"DJNZ", Mnemonic::DJNZ},
     {"CALL", Mnemonic::CALL},
+    {"RST", Mnemonic::RST},
     {"RET", Mnemonic::RET},
     {"RETI", Mnemonic::RETI},
     {"RETN", Mnemonic::RETN},
-    {"RETN", Mnemonic::RST},
     {"OUT", Mnemonic::OUT},
     {"OUTI", Mnemonic::OUTI},
     {"OUTIR", Mnemonic::OTIR},
@@ -730,6 +739,36 @@ static void mnemonic_INC(LineData* line)
             case Operand::SP: ML_INC_SP; return;
             case Operand::IX: ML_INC_IX; return;
             case Operand::IY: ML_INC_IY; return;
+        }
+    } else if (line->token.size() == 4 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               line->token[3].first == TokenType::AddressEnd) {
+        switch (operandTable[line->token[2].second]) {
+            case Operand::HL: ML_INC_ADDR_HL; return;
+            case Operand::IX: ML_INC_ADDR_IX(0); return;
+            case Operand::IY: ML_INC_ADDR_IY(0); return;
+        }
+    } else if (line->token.size() == 6 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               (line->token[3].first == TokenType::Plus || line->token[3].first == TokenType::Minus) &&
+               line->token[4].first == TokenType::Numeric &&
+               line->token[5].first == TokenType::AddressEnd) {
+        int n = atoi(line->token[4].second.c_str());
+        if (line->token[3].first == TokenType::Plus) {
+            if (!mnemonic_range(line, n, 0, 127)) {
+                return;
+            }
+        } else {
+            if (!mnemonic_range(line, n, 0, 128)) {
+                return;
+            }
+            n = 0 - n;
+        }
+        switch (operandTable[line->token[2].second]) {
+            case Operand::IX: ML_INC_ADDR_IX(n); return;
+            case Operand::IY: ML_INC_ADDR_IY(n); return;
         }
     }
     line->error = true;

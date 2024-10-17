@@ -434,3 +434,10 @@
                     inc       sp                            ;[0331] 33
                     inc       ix                            ;[0332] dd 23
                     inc       iy                            ;[0334] fd 23
+                    inc       (hl)                          ;[0336] 34
+                    inc       (ix+$00)                      ;[0337] dd 34 00
+                    inc       (iy+$00)                      ;[033a] fd 34 00
+                    inc       (ix-$80)                      ;[033d] dd 34 80
+                    inc       (iy-$01)                      ;[0340] fd 34 ff
+                    inc       (ix+$01)                      ;[0343] dd 34 01
+                    inc       (iy+$7f)                      ;[0346] fd 34 7f

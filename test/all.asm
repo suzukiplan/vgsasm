@@ -516,3 +516,12 @@ Increment:
     INC SP
     INC IX
     INC IY
+
+@Address
+    INC (HL)
+    INC (IX)
+    INC (IY)
+    INC (IX-128)
+    INC (IY-1)
+    INC (IX+1)
+    INC (IY+127)
