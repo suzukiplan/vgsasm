@@ -480,3 +480,11 @@ BitOperation:
     BIT 0, (HL)
     SET 1, (HL)
     RES 2, (HL)
+
+@AddressIXY_without_d
+    BIT 0, (IX)
+    SET 1, (IX)
+    RES 2, (IX)
+    BIT 0, (IY)
+    SET 1, (IY)
+    RES 2, (IY)

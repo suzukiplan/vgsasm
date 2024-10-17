@@ -405,3 +405,9 @@
                     bit       0,(hl)                        ;[02e9] cb 46
                     set       1,(hl)                        ;[02eb] cb ce
                     res       2,(hl)                        ;[02ed] cb 96
+                    bit       0,(ix+$00)                    ;[02ef] dd cb 00 46
+                    set       1,(ix+$00)                    ;[02f3] dd cb 00 ce
+                    res       2,(ix+$00)                    ;[02f7] dd cb 00 96
+                    bit       0,(iy+$00)                    ;[02fb] fd cb 00 46
+                    set       1,(iy+$00)                    ;[02ff] fd cb 00 ce
+                    res       2,(iy+$00)                    ;[0303] fd cb 00 96

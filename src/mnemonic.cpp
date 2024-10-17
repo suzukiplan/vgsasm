@@ -594,8 +594,13 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
             line->token[2].first == TokenType::Split &&
             line->token[3].first == TokenType::AddressBegin &&
             line->token[4].first == TokenType::Operand &&
-            line->token[5].first == TokenType::AddressEnd &&
-            operandTable[line->token[4].second] == Operand::HL) {
+            line->token[5].first == TokenType::AddressEnd) {
+            bool setZero = true;
+            switch (operandTable[line->token[4].second]) {
+                case Operand::HL: setZero = false; break;
+                case Operand::IX: line->machine.push_back(0xDD); break;
+                case Operand::IY: line->machine.push_back(0xFD); break;
+            }
             int b = atoi(line->token[1].second.c_str());
             if (!mnemonic_range(line, b, 0, 7)) {
                 return;
@@ -612,6 +617,9 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
                     return;
             }
             line->machine.push_back(0xCB);
+            if (setZero) {
+                line->machine.push_back(0x00);
+            }
             line->machine.push_back(c | b);
             return;
         }
