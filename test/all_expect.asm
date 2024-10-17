@@ -402,3 +402,6 @@
                     res       2,e                           ;[02e3] cb 93
                     res       3,h                           ;[02e5] cb 9c
                     res       4,l                           ;[02e7] cb a5
+                    bit       0,(hl)                        ;[02e9] cb 46
+                    set       1,(hl)                        ;[02eb] cb ce
+                    res       2,(hl)                        ;[02ed] cb 96

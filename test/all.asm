@@ -475,3 +475,8 @@ BitOperation:
     RES 2, E
     RES 3, H
     RES 4, L
+
+@AddressHL
+    BIT 0, (HL)
+    SET 1, (HL)
+    RES 2, (HL)

@@ -589,6 +589,32 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
             line->machine.push_back(c | b | r);
             return;
         }
+    } else if (line->token.size() == 6) {
+        if (line->token[1].first == TokenType::Numeric &&
+            line->token[2].first == TokenType::Split &&
+            line->token[3].first == TokenType::AddressBegin &&
+            line->token[4].first == TokenType::Operand &&
+            line->token[5].first == TokenType::AddressEnd &&
+            operandTable[line->token[4].second] == Operand::HL) {
+            int b = atoi(line->token[1].second.c_str());
+            if (!mnemonic_range(line, b, 0, 7)) {
+                return;
+            }
+            b <<= 3;
+            uint8_t c;
+            switch (mne) {
+                case Mnemonic::BIT: c = 0b01000110; break;
+                case Mnemonic::SET: c = 0b11000110; break;
+                case Mnemonic::RES: c = 0b10000110; break;
+                default:
+                    line->error = true;
+                    line->errmsg = "Illegal BIT/SET/RES instruction.";
+                    return;
+            }
+            line->machine.push_back(0xCB);
+            line->machine.push_back(c | b);
+            return;
+        }
     }
     line->error = true;
     line->errmsg = "Illegal BIT/SET/RES instruction.";
