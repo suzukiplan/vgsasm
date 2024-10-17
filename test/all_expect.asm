@@ -475,3 +475,149 @@
                     ld        h,$12                         ;[037d] 26 12
                     dec       (hl)                          ;[037f] 35
                     pop       hl                            ;[0380] e1
+                    rlca                                    ;[0381] 07
+                    rla                                     ;[0382] 17
+                    rrca                                    ;[0383] 0f
+                    rra                                     ;[0384] 1f
+                    rlc       a                             ;[0385] cb 07
+                    rlc       b                             ;[0387] cb 00
+                    rlc       c                             ;[0389] cb 01
+                    rlc       d                             ;[038b] cb 02
+                    rlc       e                             ;[038d] cb 03
+                    rlc       h                             ;[038f] cb 04
+                    rlc       l                             ;[0391] cb 05
+                    rlc       (hl)                          ;[0393] cb 06
+                    rlc       (ix+$00)                      ;[0395] dd cb 00 06
+                    rlc       (iy+$00)                      ;[0399] fd cb 00 06
+                    rlc       (ix-$80)                      ;[039d] dd cb 80 06
+                    rlc       (iy-$01)                      ;[03a1] fd cb ff 06
+                    rlc       (ix+$01)                      ;[03a5] dd cb 01 06
+                    rlc       (iy+$7f)                      ;[03a9] fd cb 7f 06
+                    rl        a                             ;[03ad] cb 17
+                    rl        b                             ;[03af] cb 10
+                    rl        c                             ;[03b1] cb 11
+                    rl        d                             ;[03b3] cb 12
+                    rl        e                             ;[03b5] cb 13
+                    rl        h                             ;[03b7] cb 14
+                    rl        l                             ;[03b9] cb 15
+                    rl        (hl)                          ;[03bb] cb 16
+                    rl        (ix+$00)                      ;[03bd] dd cb 00 16
+                    rl        (iy+$00)                      ;[03c1] fd cb 00 16
+                    rl        (ix-$80)                      ;[03c5] dd cb 80 16
+                    rl        (iy-$01)                      ;[03c9] fd cb ff 16
+                    rl        (ix+$01)                      ;[03cd] dd cb 01 16
+                    rl        (iy+$7f)                      ;[03d1] fd cb 7f 16
+                    rrc       a                             ;[03d5] cb 0f
+                    rrc       b                             ;[03d7] cb 08
+                    rrc       c                             ;[03d9] cb 09
+                    rrc       d                             ;[03db] cb 0a
+                    rrc       e                             ;[03dd] cb 0b
+                    rrc       h                             ;[03df] cb 0c
+                    rrc       l                             ;[03e1] cb 0d
+                    rrc       (hl)                          ;[03e3] cb 0e
+                    rrc       (ix+$00)                      ;[03e5] dd cb 00 0e
+                    rrc       (iy+$00)                      ;[03e9] fd cb 00 0e
+                    rrc       (ix-$80)                      ;[03ed] dd cb 80 0e
+                    rrc       (iy-$01)                      ;[03f1] fd cb ff 0e
+                    rrc       (ix+$01)                      ;[03f5] dd cb 01 0e
+                    rrc       (iy+$7f)                      ;[03f9] fd cb 7f 0e
+                    rr        a                             ;[03fd] cb 1f
+                    rr        b                             ;[03ff] cb 18
+                    rr        c                             ;[0401] cb 19
+                    rr        d                             ;[0403] cb 1a
+                    rr        e                             ;[0405] cb 1b
+                    rr        h                             ;[0407] cb 1c
+                    rr        l                             ;[0409] cb 1d
+                    rr        (hl)                          ;[040b] cb 1e
+                    rr        (ix+$00)                      ;[040d] dd cb 00 1e
+                    rr        (iy+$00)                      ;[0411] fd cb 00 1e
+                    rr        (ix-$80)                      ;[0415] dd cb 80 1e
+                    rr        (iy-$01)                      ;[0419] fd cb ff 1e
+                    rr        (ix+$01)                      ;[041d] dd cb 01 1e
+                    rr        (iy+$7f)                      ;[0421] fd cb 7f 1e
+                    sla       a                             ;[0425] cb 27
+                    sla       b                             ;[0427] cb 20
+                    sla       c                             ;[0429] cb 21
+                    sla       d                             ;[042b] cb 22
+                    sla       e                             ;[042d] cb 23
+                    sla       h                             ;[042f] cb 24
+                    sla       l                             ;[0431] cb 25
+                    sla       (hl)                          ;[0433] cb 26
+                    sla       (ix+$00)                      ;[0435] dd cb 00 26
+                    sla       (iy+$00)                      ;[0439] fd cb 00 26
+                    sla       (ix-$80)                      ;[043d] dd cb 80 26
+                    sla       (iy-$01)                      ;[0441] fd cb ff 26
+                    sla       (ix+$01)                      ;[0445] dd cb 01 26
+                    sla       (iy+$7f)                      ;[0449] fd cb 7f 26
+                    sla       a                             ;[044d] cb 27
+                    sla       b                             ;[044f] cb 20
+                    sla       c                             ;[0451] cb 21
+                    sla       d                             ;[0453] cb 22
+                    sla       e                             ;[0455] cb 23
+                    sla       h                             ;[0457] cb 24
+                    sla       l                             ;[0459] cb 25
+                    sla       (hl)                          ;[045b] cb 26
+                    sla       (ix+$00)                      ;[045d] dd cb 00 26
+                    sla       (iy+$00)                      ;[0461] fd cb 00 26
+                    sla       (ix-$80)                      ;[0465] dd cb 80 26
+                    sla       (iy-$01)                      ;[0469] fd cb ff 26
+                    sla       (ix+$01)                      ;[046d] dd cb 01 26
+                    sla       (iy+$7f)                      ;[0471] fd cb 7f 26
+                    sll       a                             ;[0475] cb 37
+                    sll       b                             ;[0477] cb 30
+                    sll       c                             ;[0479] cb 31
+                    sll       d                             ;[047b] cb 32
+                    sll       e                             ;[047d] cb 33
+                    sll       h                             ;[047f] cb 34
+                    sll       l                             ;[0481] cb 35
+                    sll       (hl)                          ;[0483] cb 36
+                    sll       (ix+$00)                      ;[0485] dd cb 00 36
+                    sll       (iy+$00)                      ;[0489] fd cb 00 36
+                    sll       (ix-$80)                      ;[048d] dd cb 80 36
+                    sll       (iy-$01)                      ;[0491] fd cb ff 36
+                    sll       (ix+$01)                      ;[0495] dd cb 01 36
+                    sll       (iy+$7f)                      ;[0499] fd cb 7f 36
+                    sra       a                             ;[049d] cb 2f
+                    sra       b                             ;[049f] cb 28
+                    sra       c                             ;[04a1] cb 29
+                    sra       d                             ;[04a3] cb 2a
+                    sra       e                             ;[04a5] cb 2b
+                    sra       h                             ;[04a7] cb 2c
+                    sra       l                             ;[04a9] cb 2d
+                    sra       (hl)                          ;[04ab] cb 2e
+                    sra       (ix+$00)                      ;[04ad] dd cb 00 2e
+                    sra       (iy+$00)                      ;[04b1] fd cb 00 2e
+                    sra       (ix-$80)                      ;[04b5] dd cb 80 2e
+                    sra       (iy-$01)                      ;[04b9] fd cb ff 2e
+                    sra       (ix+$01)                      ;[04bd] dd cb 01 2e
+                    sra       (iy+$7f)                      ;[04c1] fd cb 7f 2e
+                    srl       a                             ;[04c5] cb 3f
+                    srl       b                             ;[04c7] cb 38
+                    srl       c                             ;[04c9] cb 39
+                    srl       d                             ;[04cb] cb 3a
+                    srl       e                             ;[04cd] cb 3b
+                    srl       h                             ;[04cf] cb 3c
+                    srl       l                             ;[04d1] cb 3d
+                    srl       (hl)                          ;[04d3] cb 3e
+                    srl       (ix+$00)                      ;[04d5] dd cb 00 3e
+                    srl       (iy+$00)                      ;[04d9] fd cb 00 3e
+                    srl       (ix-$80)                      ;[04dd] dd cb 80 3e
+                    srl       (iy-$01)                      ;[04e1] fd cb ff 3e
+                    srl       (ix+$01)                      ;[04e5] dd cb 01 3e
+                    srl       (iy+$7f)                      ;[04e9] fd cb 7f 3e
+                    srl       a                             ;[04ed] cb 3f
+                    srl       b                             ;[04ef] cb 38
+                    srl       c                             ;[04f1] cb 39
+                    srl       d                             ;[04f3] cb 3a
+                    srl       e                             ;[04f5] cb 3b
+                    srl       h                             ;[04f7] cb 3c
+                    srl       l                             ;[04f9] cb 3d
+                    srl       (hl)                          ;[04fb] cb 3e
+                    srl       (ix+$00)                      ;[04fd] dd cb 00 3e
+                    srl       (iy+$00)                      ;[0501] fd cb 00 3e
+                    srl       (ix-$80)                      ;[0505] dd cb 80 3e
+                    srl       (iy-$01)                      ;[0509] fd cb ff 3e
+                    srl       (ix+$01)                      ;[050d] dd cb 01 3e
+                    srl       (iy+$7f)                      ;[0511] fd cb 7f 3e
+                    rld                                     ;[0515] ed 6f
+                    rrd                                     ;[0517] ed 67

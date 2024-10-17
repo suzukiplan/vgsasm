@@ -556,3 +556,164 @@ Decrement:
     DEC (IX+1)
     DEC (IY+127)
     DEC ($1234)
+
+Rotate:
+    RLCA
+    RLA
+    RRCA
+    RRA
+
+    RLC A
+    RLC B
+    RLC C
+    RLC D
+    RLC E
+    RLC H
+    RLC L
+    RLC (HL)
+    RLC (IX)
+    RLC (IY)
+    RLC (IX-128)
+    RLC (IY-1)
+    RLC (IX+1)
+    RLC (IY+127)
+
+    RL A
+    RL B
+    RL C
+    RL D
+    RL E
+    RL H
+    RL L
+    RL (HL)
+    RL (IX)
+    RL (IY)
+    RL (IX-128)
+    RL (IY-1)
+    RL (IX+1)
+    RL (IY+127)
+
+
+    RRC A
+    RRC B
+    RRC C
+    RRC D
+    RRC E
+    RRC H
+    RRC L
+    RRC (HL)
+    RRC (IX)
+    RRC (IY)
+    RRC (IX-128)
+    RRC (IY-1)
+    RRC (IX+1)
+    RRC (IY+127)
+
+    RR A
+    RR B
+    RR C
+    RR D
+    RR E
+    RR H
+    RR L
+    RR (HL)
+    RR (IX)
+    RR (IY)
+    RR (IX-128)
+    RR (IY-1)
+    RR (IX+1)
+    RR (IY+127)
+
+Shift:
+    SLA A
+    SLA B
+    SLA C
+    SLA D
+    SLA E
+    SLA H
+    SLA L
+    SLA (HL)
+    SLA (IX)
+    SLA (IY)
+    SLA (IX-128)
+    SLA (IY-1)
+    SLA (IX+1)
+    SLA (IY+127)
+
+    SL A            ; alies of SLA
+    SL B            ; alies of SLA
+    SL C            ; alies of SLA
+    SL D            ; alies of SLA
+    SL E            ; alies of SLA
+    SL H            ; alies of SLA
+    SL L            ; alies of SLA
+    SL (HL)         ; alies of SLA
+    SL (IX)         ; alies of SLA
+    SL (IY)         ; alies of SLA
+    SL (IX-128)     ; alies of SLA
+    SL (IY-1)       ; alies of SLA
+    SL (IX+1)       ; alies of SLA
+    SL (IY+127)     ; alies of SLA
+
+    SLL A
+    SLL B
+    SLL C
+    SLL D
+    SLL E
+    SLL H
+    SLL L
+    SLL (HL)
+    SLL (IX)
+    SLL (IY)
+    SLL (IX-128)
+    SLL (IY-1)
+    SLL (IX+1)
+    SLL (IY+127)
+
+    SRA A
+    SRA B
+    SRA C
+    SRA D
+    SRA E
+    SRA H
+    SRA L
+    SRA (HL)
+    SRA (IX)
+    SRA (IY)
+    SRA (IX-128)
+    SRA (IY-1)
+    SRA (IX+1)
+    SRA (IY+127)
+
+    SRL A
+    SRL B
+    SRL C
+    SRL D
+    SRL E
+    SRL H
+    SRL L
+    SRL (HL)
+    SRL (IX)
+    SRL (IY)
+    SRL (IX-128)
+    SRL (IY-1)
+    SRL (IX+1)
+    SRL (IY+127)
+
+    SR A            ; alies of SRL
+    SR B            ; alies of SRL
+    SR C            ; alies of SRL
+    SR D            ; alies of SRL
+    SR E            ; alies of SRL
+    SR H            ; alies of SRL
+    SR L            ; alies of SRL
+    SR (HL)         ; alies of SRL
+    SR (IX)         ; alies of SRL
+    SR (IY)         ; alies of SRL
+    SR (IX-128)     ; alies of SRL
+    SR (IY-1)       ; alies of SRL
+    SR (IX+1)       ; alies of SRL
+    SR (IY+127)     ; alies of SRL
+
+    RLD
+    RRD

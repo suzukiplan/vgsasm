@@ -897,6 +897,77 @@ static void mnemonic_DEC(LineData* line)
     line->errmsg = "Illegal DEC instruction.";
 }
 
+static void mnemonic_shift(LineData* line, uint8_t code)
+{
+    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+        line->machine.push_back(0xCB);
+        switch (operandTable[line->token[1].second]) {
+            case Operand::A: line->machine.push_back(code | 0x07); return;
+            case Operand::B: line->machine.push_back(code | 0x00); return;
+            case Operand::C: line->machine.push_back(code | 0x01); return;
+            case Operand::D: line->machine.push_back(code | 0x02); return;
+            case Operand::E: line->machine.push_back(code | 0x03); return;
+            case Operand::H: line->machine.push_back(code | 0x04); return;
+            case Operand::L: line->machine.push_back(code | 0x05); return;
+        }
+    } else if (line->token.size() == 4 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               line->token[3].first == TokenType::AddressEnd) {
+        switch (operandTable[line->token[2].second]) {
+            case Operand::HL:;
+                line->machine.push_back(0xCB);
+                line->machine.push_back(code | 0x06);
+                return;
+            case Operand::IX:;
+                line->machine.push_back(0xDD);
+                line->machine.push_back(0xCB);
+                line->machine.push_back(0x00);
+                line->machine.push_back(code | 0x06);
+                return;
+            case Operand::IY:;
+                line->machine.push_back(0xFD);
+                line->machine.push_back(0xCB);
+                line->machine.push_back(0x00);
+                line->machine.push_back(code | 0x06);
+                return;
+        }
+    } else if (line->token.size() == 6 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               (line->token[3].first == TokenType::Plus || line->token[3].first == TokenType::Minus) &&
+               line->token[4].first == TokenType::Numeric &&
+               line->token[5].first == TokenType::AddressEnd) {
+        int n = atoi(line->token[4].second.c_str());
+        if (line->token[3].first == TokenType::Plus) {
+            if (!mnemonic_range(line, n, 0, 127)) {
+                return;
+            }
+        } else {
+            if (!mnemonic_range(line, n, 0, 128)) {
+                return;
+            }
+            n = 0 - n;
+        }
+        switch (operandTable[line->token[2].second]) {
+            case Operand::IX:
+                line->machine.push_back(0xDD);
+                line->machine.push_back(0xCB);
+                line->machine.push_back(n);
+                line->machine.push_back(code | 0x06);
+                return;
+            case Operand::IY:
+                line->machine.push_back(0xFD);
+                line->machine.push_back(0xCB);
+                line->machine.push_back(n);
+                line->machine.push_back(code | 0x06);
+                return;
+        }
+    }
+    line->error = true;
+    line->errmsg = "Illegal shift/rotate instruction.";
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -965,6 +1036,20 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::RES: mnemonic_bit_op(line, Mnemonic::RES); break;
             case Mnemonic::INC: mnemonic_INC(line); break;
             case Mnemonic::DEC: mnemonic_DEC(line); break;
+            case Mnemonic::RLCA: mnemonic_single(line, 0x07); break;
+            case Mnemonic::RLA: mnemonic_single(line, 0x17); break;
+            case Mnemonic::RRCA: mnemonic_single(line, 0x0F); break;
+            case Mnemonic::RRA: mnemonic_single(line, 0x1F); break;
+            case Mnemonic::RLC: mnemonic_shift(line, 0x00); break;
+            case Mnemonic::RL: mnemonic_shift(line, 0x10); break;
+            case Mnemonic::RRC: mnemonic_shift(line, 0x08); break;
+            case Mnemonic::RR: mnemonic_shift(line, 0x18); break;
+            case Mnemonic::SLA: mnemonic_shift(line, 0x20); break;
+            case Mnemonic::SRA: mnemonic_shift(line, 0x28); break;
+            case Mnemonic::SLL: mnemonic_shift(line, 0x30); break;
+            case Mnemonic::SRL: mnemonic_shift(line, 0x38); break;
+            case Mnemonic::RLD: mnemonic_single_ED(line, 0x6F); break;
+            case Mnemonic::RRD: mnemonic_single_ED(line, 0x67); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
