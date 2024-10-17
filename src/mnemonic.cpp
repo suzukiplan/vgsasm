@@ -600,6 +600,10 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
                 case Operand::HL: setZero = false; break;
                 case Operand::IX: line->machine.push_back(0xDD); break;
                 case Operand::IY: line->machine.push_back(0xFD); break;
+                default:
+                    line->error = true;
+                    line->errmsg = "Illegal BIT/SET/RES instruction.";
+                    return;
             }
             int b = atoi(line->token[1].second.c_str());
             if (!mnemonic_range(line, b, 0, 7)) {
@@ -620,6 +624,53 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
             if (setZero) {
                 line->machine.push_back(0x00);
             }
+            line->machine.push_back(c | b);
+            return;
+        }
+    } else if (line->token.size() == 8) {
+        if (line->token[1].first == TokenType::Numeric &&
+            line->token[2].first == TokenType::Split &&
+            line->token[3].first == TokenType::AddressBegin &&
+            line->token[4].first == TokenType::Operand &&
+            (line->token[5].first == TokenType::Plus || line->token[5].first == TokenType::Minus) &&
+            line->token[6].first == TokenType::Numeric &&
+            line->token[7].first == TokenType::AddressEnd) {
+            switch (operandTable[line->token[4].second]) {
+                case Operand::IX: line->machine.push_back(0xDD); break;
+                case Operand::IY: line->machine.push_back(0xFD); break;
+                default:
+                    line->error = true;
+                    line->errmsg = "Illegal BIT/SET/RES instruction.";
+                    return;
+            }
+            int b = atoi(line->token[1].second.c_str());
+            if (!mnemonic_range(line, b, 0, 7)) {
+                return;
+            }
+            b <<= 3;
+            int n = atoi(line->token[6].second.c_str());
+            if (line->token[5].first == TokenType::Plus) {
+                if (!mnemonic_range(line, n, 0, 127)) {
+                    return;
+                }
+            } else {
+                if (!mnemonic_range(line, n, 0, 128)) {
+                    return;
+                }
+                n = 0 - n;
+            }
+            uint8_t c;
+            switch (mne) {
+                case Mnemonic::BIT: c = 0b01000110; break;
+                case Mnemonic::SET: c = 0b11000110; break;
+                case Mnemonic::RES: c = 0b10000110; break;
+                default:
+                    line->error = true;
+                    line->errmsg = "Illegal BIT/SET/RES instruction.";
+                    return;
+            }
+            line->machine.push_back(0xCB);
+            line->machine.push_back(n & 0xFF);
             line->machine.push_back(c | b);
             return;
         }

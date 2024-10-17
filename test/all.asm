@@ -488,3 +488,11 @@ BitOperation:
     BIT 0, (IY)
     SET 1, (IY)
     RES 2, (IY)
+
+@AddressIXY
+    BIT 0, (IX+127)
+    SET 1, (IX+0)
+    RES 2, (IX-128)
+    BIT 0, (IY-1)
+    SET 1, (IY+64)
+    RES 2, (IY-64)

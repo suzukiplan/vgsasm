@@ -411,3 +411,9 @@
                     bit       0,(iy+$00)                    ;[02fb] fd cb 00 46
                     set       1,(iy+$00)                    ;[02ff] fd cb 00 ce
                     res       2,(iy+$00)                    ;[0303] fd cb 00 96
+                    bit       0,(ix+$7f)                    ;[0307] dd cb 7f 46
+                    set       1,(ix+$00)                    ;[030b] dd cb 00 ce
+                    res       2,(ix-$80)                    ;[030f] dd cb 80 96
+                    bit       0,(iy-$01)                    ;[0313] fd cb ff 46
+                    set       1,(iy+$40)                    ;[0317] fd cb 40 ce
+                    res       2,(iy-$40)                    ;[031b] fd cb c0 96
