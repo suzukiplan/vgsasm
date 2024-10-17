@@ -963,6 +963,42 @@ static void mnemonic_shift(LineData* line, uint8_t code)
                 line->machine.push_back(code | 0x06);
                 return;
         }
+    } else if (line->token.size() == 8 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               (line->token[3].first == TokenType::Plus || line->token[3].first == TokenType::Minus) &&
+               line->token[4].first == TokenType::Numeric &&
+               line->token[5].first == TokenType::AddressEnd &&
+               line->token[6].first == TokenType::And &&
+               line->token[7].first == TokenType::Operand) {
+        int n = atoi(line->token[4].second.c_str());
+        if (line->token[3].first == TokenType::Plus) {
+            if (!mnemonic_range(line, n, 0, 127)) {
+                return;
+            }
+        } else {
+            if (!mnemonic_range(line, n, 0, 128)) {
+                return;
+            }
+            n = 0 - n;
+        }
+        auto op1 = operandTable[line->token[2].second];
+        auto op2 = operandTable[line->token[7].second];
+        if (code == 0x00 && op1 == Operand::IX) {
+            line->machine.push_back(0xDD);
+            line->machine.push_back(0xCB);
+            line->machine.push_back(n);
+            switch (op2) {
+                case Operand::B: line->machine.push_back(0x00); return;
+                case Operand::C: line->machine.push_back(0x01); return;
+                case Operand::D: line->machine.push_back(0x02); return;
+                case Operand::E: line->machine.push_back(0x03); return;
+                case Operand::H: line->machine.push_back(0x04); return;
+                case Operand::L: line->machine.push_back(0x05); return;
+                case Operand::F: line->machine.push_back(0x06); return;
+                case Operand::A: line->machine.push_back(0x07); return;
+            }
+        }
     }
     line->error = true;
     line->errmsg = "Illegal shift/rotate instruction.";

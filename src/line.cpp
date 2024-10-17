@@ -125,6 +125,10 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                     cp++;
                     this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Mul, "*"));
                     break;
+                case '&':
+                    cp++;
+                    this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::And, "&"));
+                    break;
                 case '[':
                     cp++;
                     this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrayBegin, "["));
@@ -193,6 +197,7 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                             '-' == *ed ||
                             '*' == *ed ||
                             '/' == *ed ||
+                            '&' == *ed ||
                             ',' == *ed) {
                             break;
                         }

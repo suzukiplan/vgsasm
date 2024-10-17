@@ -42,6 +42,7 @@ enum class TokenType {
     AddressEnd,       // ) カッコ (※特定箇所のみ)
     ScopeBegin,       // { スコープ起点
     ScopeEnd,         // } スコープ終点
+    And,              // & アンパーサンド
     Other             // その他 (構文解析の仮定で最終的にはなくなる)
 };
 
@@ -109,6 +110,7 @@ enum class Operand {
     C,
     D,
     E,
+    F,
     H,
     L,
     IXH,

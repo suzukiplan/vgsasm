@@ -717,3 +717,13 @@ Shift:
 
     RLD
     RRD
+
+@Undocumented
+    RLC (IX+10) & A
+    RLC (IX+10) & B
+    RLC (IX+10) & C
+    RLC (IX+10) & D
+    RLC (IX+10) & E
+    RLC (IX+10) & F
+    RLC (IX+10) & H
+    RLC (IX+10) & L

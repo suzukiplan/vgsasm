@@ -6,6 +6,7 @@ std::map<std::string, Operand> operandTable = {
     {"C", Operand::C},
     {"D", Operand::D},
     {"E", Operand::E},
+    {"F", Operand::F},
     {"H", Operand::H},
     {"L", Operand::L},
     {"IXH", Operand::IXH},
