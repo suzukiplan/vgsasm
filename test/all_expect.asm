@@ -168,3 +168,18 @@
                     add       iy,de                         ;[012a] fd 19
                     add       iy,iy                         ;[012c] fd 29
                     add       iy,sp                         ;[012e] fd 39
+                    push      de                            ;[0130] d5
+                    ld        d,$12                         ;[0131] 16 12
+                    ld        e,$34                         ;[0133] 1e 34
+                    add       hl,de                         ;[0135] 19
+                    pop       de                            ;[0136] d1
+                    push      de                            ;[0137] d5
+                    ld        d,$56                         ;[0138] 16 56
+                    ld        e,$78                         ;[013a] 1e 78
+                    add       ix,de                         ;[013c] dd 19
+                    pop       de                            ;[013e] d1
+                    push      de                            ;[013f] d5
+                    ld        d,$9a                         ;[0140] 16 9a
+                    ld        e,$bc                         ;[0142] 1e bc
+                    add       iy,de                         ;[0144] fd 19
+                    pop       de                            ;[0146] d1

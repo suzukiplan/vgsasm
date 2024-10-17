@@ -1,6 +1,80 @@
 #include "common.h"
 #include "mnemonic.h"
 
+#define ML_PUSH_BC line->machine.push_back(0xC5)
+#define ML_PUSH_DE line->machine.push_back(0xD5)
+#define ML_PUSH_HL line->machine.push_back(0xE5)
+#define ML_PUSH_AF line->machine.push_back(0xF5)
+#define ML_PUSH_IX                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0xE5)
+#define ML_PUSH_IY                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0xE5)
+#define ML_POP_BC line->machine.push_back(0xC1)
+#define ML_POP_DE line->machine.push_back(0xD1)
+#define ML_POP_HL line->machine.push_back(0xE1)
+#define ML_POP_AF line->machine.push_back(0xF1)
+#define ML_POP_IX                  \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0xE1)
+#define ML_POP_IY                  \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0xE1)
+
+#define ML_LD_A_n(X)               \
+    line->machine.push_back(0x3E); \
+    line->machine.push_back(X)
+#define ML_LD_B_n(X)               \
+    line->machine.push_back(0x06); \
+    line->machine.push_back(X)
+#define ML_LD_C_n(X)               \
+    line->machine.push_back(0x0E); \
+    line->machine.push_back(X)
+#define ML_LD_D_n(X)               \
+    line->machine.push_back(0x16); \
+    line->machine.push_back(X)
+#define ML_LD_E_n(X)               \
+    line->machine.push_back(0x1E); \
+    line->machine.push_back(X)
+#define ML_LD_H_n(X)               \
+    line->machine.push_back(0x26); \
+    line->machine.push_back(X)
+#define ML_LD_L_n(X)               \
+    line->machine.push_back(0x2E); \
+    line->machine.push_back(X)
+
+#define ML_ADD_HL_BC line->machine.push_back(0x09)
+#define ML_ADD_HL_DE line->machine.push_back(0x19)
+#define ML_ADD_HL_HL line->machine.push_back(0x29)
+#define ML_ADD_HL_SP line->machine.push_back(0x39)
+
+#define ML_ADD_IX_BC               \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x09)
+#define ML_ADD_IX_DE               \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x19)
+#define ML_ADD_IX_IX               \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x29)
+#define ML_ADD_IX_SP               \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x39)
+
+#define ML_ADD_IY_BC               \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x09)
+#define ML_ADD_IY_DE               \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x19)
+#define ML_ADD_IY_IY               \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x29)
+#define ML_ADD_IY_SP               \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x39)
+
 std::map<std::string, Mnemonic> mnemonicTable = {
     {"LD", Mnemonic::LD},
     {"LDI", Mnemonic::LDI},
@@ -212,18 +286,12 @@ void mnemonic_PUSH(LineData* line)
 {
     if (mnemonic_format_check(line, 2, TokenType::Operand)) {
         switch (operandTable[line->token[1].second]) {
-            case Operand::BC: line->machine.push_back(0xC5); break;
-            case Operand::DE: line->machine.push_back(0xD5); break;
-            case Operand::HL: line->machine.push_back(0xE5); break;
-            case Operand::AF: line->machine.push_back(0xF5); break;
-            case Operand::IX:
-                line->machine.push_back(0xDD);
-                line->machine.push_back(0xE5);
-                break;
-            case Operand::IY:
-                line->machine.push_back(0xFD);
-                line->machine.push_back(0xE5);
-                break;
+            case Operand::BC: ML_PUSH_BC; break;
+            case Operand::DE: ML_PUSH_DE; break;
+            case Operand::HL: ML_PUSH_HL; break;
+            case Operand::AF: ML_PUSH_AF; break;
+            case Operand::IX: ML_PUSH_IX; break;
+            case Operand::IY: ML_PUSH_IY; break;
             default:
                 line->error = true;
                 line->errmsg = "Unsupported PUSH operand: " + line->token[1].second;
@@ -235,18 +303,12 @@ void mnemonic_POP(LineData* line)
 {
     if (mnemonic_format_check(line, 2, TokenType::Operand)) {
         switch (operandTable[line->token[1].second]) {
-            case Operand::BC: line->machine.push_back(0xC1); break;
-            case Operand::DE: line->machine.push_back(0xD1); break;
-            case Operand::HL: line->machine.push_back(0xE1); break;
-            case Operand::AF: line->machine.push_back(0xF1); break;
-            case Operand::IX:
-                line->machine.push_back(0xDD);
-                line->machine.push_back(0xE1);
-                break;
-            case Operand::IY:
-                line->machine.push_back(0xFD);
-                line->machine.push_back(0xE1);
-                break;
+            case Operand::BC: ML_POP_BC; break;
+            case Operand::DE: ML_POP_DE; break;
+            case Operand::HL: ML_POP_HL; break;
+            case Operand::AF: ML_POP_AF; break;
+            case Operand::IX: ML_POP_IX; break;
+            case Operand::IY: ML_POP_IY; break;
             default:
                 line->error = true;
                 line->errmsg = "Unsupported POP operand: " + line->token[1].second;
@@ -377,7 +439,7 @@ void mnemonic_calc8(LineData* line, Mnemonic mne, uint8_t code)
 
 static void mnemonic_ADD16(LineData* line)
 {
-    if (line->token.size() == 4 || line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Operand) {
+    if (line->token.size() == 4 && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Operand) {
         auto op1 = operandTable[line->token[1].second];
         auto op2 = operandTable[line->token[3].second];
         if (op1 != Operand::HL && op1 != Operand::IX && op1 != Operand::IY) {
@@ -413,6 +475,27 @@ static void mnemonic_ADD16(LineData* line)
             case Operand::IX: line->machine.push_back(0x29); break;
             case Operand::IY: line->machine.push_back(0x29); break;
             case Operand::SP: line->machine.push_back(0x39); break;
+        }
+    } else if (line->token.size() == 4 && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Numeric) {
+        auto op = operandTable[line->token[1].second];
+        auto nn = atoi(line->token[3].second.c_str());
+        if (op != Operand::HL && op != Operand::IX && op != Operand::IY) {
+            line->error = true;
+            line->errmsg = "Illegal 16-bit ADD instruction.";
+            return;
+        }
+        if (mnemonic_range(line, nn, -32768, 65535)) {
+            uint8_t nl = nn & 0xFF;
+            uint8_t nh = (nn & 0xFF00) >> 8;
+            ML_PUSH_DE;
+            ML_LD_D_n(nh);
+            ML_LD_E_n(nl);
+            switch (op) {
+                case Operand::HL: ML_ADD_HL_DE; break;
+                case Operand::IX: ML_ADD_IX_DE; break;
+                case Operand::IY: ML_ADD_IY_DE; break;
+            }
+            ML_POP_DE;
         }
     } else {
         line->error = true;

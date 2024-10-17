@@ -196,3 +196,8 @@ Calc8:
     ADD IY, DE
     ADD IY, IY
     ADD IY, SP
+
+@Add16_nn
+    ADD HL, $1234
+    ADD IX, $5678
+    ADD IY, $9ABC
