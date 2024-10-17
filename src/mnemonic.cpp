@@ -550,6 +550,50 @@ static void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
     }
 }
 
+static void mnemonic_bit_op(LineData* line, Mnemonic mne)
+{
+    if (line->token.size() == 4) {
+        if (line->token[1].first == TokenType::Numeric &&
+            line->token[2].first == TokenType::Split &&
+            line->token[3].first == TokenType::Operand) {
+            int b = atoi(line->token[1].second.c_str());
+            if (!mnemonic_range(line, b, 0, 7)) {
+                return;
+            }
+            b <<= 3;
+            uint8_t r;
+            switch (operandTable[line->token[3].second]) {
+                case Operand::A: r = 0b111; break;
+                case Operand::B: r = 0b000; break;
+                case Operand::C: r = 0b001; break;
+                case Operand::D: r = 0b010; break;
+                case Operand::E: r = 0b011; break;
+                case Operand::H: r = 0b100; break;
+                case Operand::L: r = 0b101; break;
+                default:
+                    line->error = true;
+                    line->errmsg = "Illegal BIT/SET/RES instruction.";
+                    return;
+            }
+            uint8_t c;
+            switch (mne) {
+                case Mnemonic::BIT: c = 0b01000000; break;
+                case Mnemonic::SET: c = 0b11000000; break;
+                case Mnemonic::RES: c = 0b10000000; break;
+                default:
+                    line->error = true;
+                    line->errmsg = "Illegal BIT/SET/RES instruction.";
+                    return;
+            }
+            line->machine.push_back(0xCB);
+            line->machine.push_back(c | b | r);
+            return;
+        }
+    }
+    line->error = true;
+    line->errmsg = "Illegal BIT/SET/RES instruction.";
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -613,6 +657,9 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::ADC: mnemonic_calcOH(line, 0x88, 0x4A); break;
             case Mnemonic::SUB: mnemonic_calc8(line, 0x90); break;
             case Mnemonic::SBC: mnemonic_calcOH(line, 0x98, 0x42); break;
+            case Mnemonic::BIT: mnemonic_bit_op(line, Mnemonic::BIT); break;
+            case Mnemonic::SET: mnemonic_bit_op(line, Mnemonic::SET); break;
+            case Mnemonic::RES: mnemonic_bit_op(line, Mnemonic::RES); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

@@ -381,3 +381,24 @@
                     sbc       hl,de                         ;[02b9] ed 52
                     sbc       hl,hl                         ;[02bb] ed 62
                     sbc       hl,sp                         ;[02bd] ed 72
+                    bit       0,a                           ;[02bf] cb 47
+                    bit       1,b                           ;[02c1] cb 48
+                    bit       2,c                           ;[02c3] cb 51
+                    bit       3,d                           ;[02c5] cb 5a
+                    bit       4,e                           ;[02c7] cb 63
+                    bit       5,h                           ;[02c9] cb 6c
+                    bit       6,l                           ;[02cb] cb 75
+                    set       7,a                           ;[02cd] cb ff
+                    set       0,b                           ;[02cf] cb c0
+                    set       1,c                           ;[02d1] cb c9
+                    set       2,d                           ;[02d3] cb d2
+                    set       3,e                           ;[02d5] cb db
+                    set       4,h                           ;[02d7] cb e4
+                    set       5,l                           ;[02d9] cb ed
+                    res       6,a                           ;[02db] cb b7
+                    res       7,b                           ;[02dd] cb b8
+                    res       0,c                           ;[02df] cb 81
+                    res       1,d                           ;[02e1] cb 8a
+                    res       2,e                           ;[02e3] cb 93
+                    res       3,h                           ;[02e5] cb 9c
+                    res       4,l                           ;[02e7] cb a5

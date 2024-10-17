@@ -449,3 +449,29 @@ Calculation:
     ; SBC HL, $1234 // unsupported
     ; SBC IX, $5678 // unsupported
     ; SBC IY, $9ABC // unsupported
+
+BitOperation:
+@Register
+    BIT 0, A
+    BIT 1, B
+    BIT 2, C
+    BIT 3, D
+    BIT 4, E
+    BIT 5, H
+    BIT 6, L
+
+    SET 7, A
+    SET 0, B
+    SET 1, C
+    SET 2, D
+    SET 3, E
+    SET 4, H
+    SET 5, L
+
+    RES 6, A
+    RES 7, B
+    RES 0, C
+    RES 1, D
+    RES 2, E
+    RES 3, H
+    RES 4, L
