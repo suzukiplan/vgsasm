@@ -525,3 +525,4 @@ Increment:
     INC (IY-1)
     INC (IX+1)
     INC (IY+127)
+    INC ($1234)

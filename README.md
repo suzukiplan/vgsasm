@@ -185,11 +185,17 @@ org $0000
 
 | Instruction | Auto-expand |
 |:------------|:------------|
-| `LD (HL++), {r｜n}` | `LD (HL), {r｜n}` <br> `INC HL` |
-| `LD (++HL), {r｜n}` | `INC HL` <br> `LD (HL), {r｜n}` |
-| `ADD HL, nn` | `PUSH DE` <br> `LD D, nH` <br> `LD E, nL` <br> `ADD HL, DE` <br> `POP DE`|
-| `ADD IX, nn` | `PUSH DE` <br> `LD D, nH` <br> `LD E, nL` <br> `ADD IX, DE` <br> `POP DE`|
-| `ADD IY, nn` | `PUSH DE` <br> `LD D, nH` <br> `LD E, nL` <br> `ADD IY, DE` <br> `POP DE`|
+| `LD (HL++),{r｜n}` | `LD (HL), {r｜n}`, `INC HL` |
+| `LD (++HL),{r｜n}` | `INC HL`, `LD (HL), {r｜n}` |
+| `LD BC,nn` | `LD B,n(high)`, `LD C,n(low)` |
+| `LD DE,nn` | `LD D,n(high)`, `LD E,n(low)` |
+| `LD HL,nn` | `LD H,n(high)`, `LD L,n(low)` |
+| `LD IX,nn` | `LD IXH,n(high)`, `LD IXL,n(low)` |
+| `LD IY,nn` | `LD IXH,n(high)`, `LD IXL,n(low)` |
+| `ADD HL,nn` | `PUSH DE`, `LD DE,nn`, `ADD HL,DE`, `POP DE`|
+| `ADD IX,nn` | `PUSH DE`, `LD DE,nn`, `ADD IX,DE`, `POP DE`|
+| `ADD IY,nn` | `PUSH DE`, `LD DE,nn`, `ADD IY,DE`, `POP DE`|
+| `INC (nn)` | `PUSH HL`, `LD HL,nn`, `INC (HL)` `POP HL`|
 
 ## License
 

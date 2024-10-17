@@ -441,3 +441,8 @@
                     inc       (iy-$01)                      ;[0340] fd 34 ff
                     inc       (ix+$01)                      ;[0343] dd 34 01
                     inc       (iy+$7f)                      ;[0346] fd 34 7f
+                    push      hl                            ;[0349] e5
+                    ld        l,$34                         ;[034a] 2e 34
+                    ld        h,$12                         ;[034c] 26 12
+                    inc       (hl)                          ;[034e] 34
+                    pop       hl                            ;[034f] e1

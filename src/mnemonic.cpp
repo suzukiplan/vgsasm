@@ -749,6 +749,19 @@ static void mnemonic_INC(LineData* line)
             case Operand::IX: ML_INC_ADDR_IX(0); return;
             case Operand::IY: ML_INC_ADDR_IY(0); return;
         }
+    } else if (line->token.size() == 4 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Numeric &&
+               line->token[3].first == TokenType::AddressEnd) {
+        int addr = atoi(line->token[2].second.c_str());
+        if (mnemonic_range(line, addr, 0x0000, 0xFFFF)) {
+            ML_PUSH_HL;
+            ML_LD_L_n(addr & 0x00FF);
+            ML_LD_H_n((addr & 0xFF00) >> 8);
+            ML_INC_ADDR_HL;
+            ML_POP_HL;
+            return;
+        }
     } else if (line->token.size() == 6 &&
                line->token[1].first == TokenType::AddressBegin &&
                line->token[2].first == TokenType::Operand &&
@@ -773,6 +786,7 @@ static void mnemonic_INC(LineData* line)
     }
     line->error = true;
     line->errmsg = "Illegal INC instruction.";
+    line->printDebug();
 }
 
 static void setpc(LineData* prev, LineData* cur)
