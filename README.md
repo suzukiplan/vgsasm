@@ -187,9 +187,9 @@ org $0000
 |:------------|:------------|
 | `LD (HL++), {r｜n}` | `LD (HL), {r｜n}` <br> `INC HL` |
 | `LD (++HL), {r｜n}` | `INC HL` <br> `LD (HL), {r｜n}` |
-| `ADD HL, nn` | `PUSH DE` <br> `LD DE, nn` <br> `ADD HL, DE` <br> `POP DE`|
-| `ADD IX, nn` | `PUSH DE` <br> `LD DE, nn` <br> `ADD IX, DE` <br> `POP DE`|
-| `ADD IY, nn` | `PUSH DE` <br> `LD DE, nn` <br> `ADD IY, DE` <br> `POP DE`|
+| `ADD HL, nn` | `PUSH DE` <br> `LD D, nH` <br> `LD E, nL` <br> `ADD HL, DE` <br> `POP DE`|
+| `ADD IX, nn` | `PUSH DE` <br> `LD D, nH` <br> `LD E, nL` <br> `ADD IX, DE` <br> `POP DE`|
+| `ADD IY, nn` | `PUSH DE` <br> `LD D, nH` <br> `LD E, nL` <br> `ADD IY, DE` <br> `POP DE`|
 
 ## License
 
