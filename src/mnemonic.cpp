@@ -454,6 +454,7 @@ static void mnemonic_calc16(LineData* line, uint8_t code)
     bool supportIXY = true;
     switch (mnemonicTable[line->token[0].second]) {
         case Mnemonic::ADC:
+        case Mnemonic::SBC:
             line->machine.push_back(0xED);
             supportImmediate = false;
             supportIXY = false;
@@ -611,6 +612,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::ADD: mnemonic_calcOH(line, 0x80, 0x09); break;
             case Mnemonic::ADC: mnemonic_calcOH(line, 0x88, 0x4A); break;
             case Mnemonic::SUB: mnemonic_calc8(line, 0x90); break;
+            case Mnemonic::SBC: mnemonic_calcOH(line, 0x98, 0x42); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

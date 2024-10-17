@@ -388,3 +388,64 @@ Calc8:
     SUB A, (IY)
     SUB A, (IY-128)
     SUB A, (IY+127*1)
+
+@Sbc
+    SBC A, A
+    SBC A, B
+    SBC A, C
+    SBC A, D
+    SBC A, E
+    SBC A, H
+    SBC A, L
+    SBC A, IXH
+    SBC A, IXL
+    SBC A, IYH
+    SBC A, IYL
+    SBC A, $FF
+    SBC A, (HL)
+    SBC A, (IX)
+    SBC A, (IX-128)
+    SBC A, (IX+127*1)
+    SBC A, (IY)
+    SBC A, (IY-128)
+    SBC A, (IY+127*1)
+
+@Sbc_omit_A
+    SBC A
+    SBC B
+    SBC C
+    SBC D
+    SBC E
+    SBC H
+    SBC L
+    SBC IXH
+    SBC IXL
+    SBC IYH
+    SBC IYL
+    SBC $FF
+    SBC (HL)
+    SBC (IX)
+    SBC (IX-128)
+    SBC (IX+127*1)
+    SBC (IY)
+    SBC (IY-128)
+    SBC (IY+127*1)
+
+@Sbc16
+    SBC HL, BC
+    SBC HL, DE
+    SBC HL, HL
+    SBC HL, SP
+    ; SBC IX, BC // unsupported
+    ; SBC IX, DE // unsupported
+    ; SBC IX, IX // unsupported
+    ; SBC IX, SP // unsupported
+    ; SBC IY, BC // unsupported
+    ; SBC IY, DE // unsupported
+    ; SBC IY, IY // unsupported
+    ; SBC IY, SP // unsupported
+
+@Sbc16_nn
+    ; SBC HL, $1234 // unsupported
+    ; SBC IX, $5678 // unsupported
+    ; SBC IY, $9ABC // unsupported

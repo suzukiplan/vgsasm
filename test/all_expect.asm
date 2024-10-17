@@ -339,3 +339,45 @@
                     sub       (iy+$00)                      ;[0266] fd 96 00
                     sub       (iy-$80)                      ;[0269] fd 96 80
                     sub       (iy+$7f)                      ;[026c] fd 96 7f
+                    sbc       a                             ;[026f] 9f
+                    sbc       b                             ;[0270] 98
+                    sbc       c                             ;[0271] 99
+                    sbc       d                             ;[0272] 9a
+                    sbc       e                             ;[0273] 9b
+                    sbc       h                             ;[0274] 9c
+                    sbc       l                             ;[0275] 9d
+                    sbc       ixh                           ;[0276] dd 9c
+                    sbc       ixl                           ;[0278] dd 9d
+                    sbc       iyh                           ;[027a] fd 9c
+                    sbc       iyl                           ;[027c] fd 9d
+                    sbc       $ff                           ;[027e] de ff
+                    sbc       (hl)                          ;[0280] 9e
+                    sbc       (ix+$00)                      ;[0281] dd 9e 00
+                    sbc       (ix-$80)                      ;[0284] dd 9e 80
+                    sbc       (ix+$7f)                      ;[0287] dd 9e 7f
+                    sbc       (iy+$00)                      ;[028a] fd 9e 00
+                    sbc       (iy-$80)                      ;[028d] fd 9e 80
+                    sbc       (iy+$7f)                      ;[0290] fd 9e 7f
+                    sbc       a                             ;[0293] 9f
+                    sbc       b                             ;[0294] 98
+                    sbc       c                             ;[0295] 99
+                    sbc       d                             ;[0296] 9a
+                    sbc       e                             ;[0297] 9b
+                    sbc       h                             ;[0298] 9c
+                    sbc       l                             ;[0299] 9d
+                    sbc       ixh                           ;[029a] dd 9c
+                    sbc       ixl                           ;[029c] dd 9d
+                    sbc       iyh                           ;[029e] fd 9c
+                    sbc       iyl                           ;[02a0] fd 9d
+                    sbc       $ff                           ;[02a2] de ff
+                    sbc       (hl)                          ;[02a4] 9e
+                    sbc       (ix+$00)                      ;[02a5] dd 9e 00
+                    sbc       (ix-$80)                      ;[02a8] dd 9e 80
+                    sbc       (ix+$7f)                      ;[02ab] dd 9e 7f
+                    sbc       (iy+$00)                      ;[02ae] fd 9e 00
+                    sbc       (iy-$80)                      ;[02b1] fd 9e 80
+                    sbc       (iy+$7f)                      ;[02b4] fd 9e 7f
+                    sbc       hl,bc                         ;[02b7] ed 42
+                    sbc       hl,de                         ;[02b9] ed 52
+                    sbc       hl,hl                         ;[02bb] ed 62
+                    sbc       hl,sp                         ;[02bd] ed 72
