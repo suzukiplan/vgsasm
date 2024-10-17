@@ -621,3 +621,11 @@
                     srl       (iy+$7f)                      ;[0511] fd cb 7f 3e
                     rld                                     ;[0515] ed 6f
                     rrd                                     ;[0517] ed 67
+                    ld        a,rlc (ix+$0a)                ;[0519] dd cb 0a 07
+                    ld        b,rlc (ix+$0a)                ;[051d] dd cb 0a 00
+                    ld        c,rlc (ix+$0a)                ;[0521] dd cb 0a 01
+                    ld        d,rlc (ix+$0a)                ;[0525] dd cb 0a 02
+                    ld        e,rlc (ix+$0a)                ;[0529] dd cb 0a 03
+                    rlc       (ix+$0a)                      ;[052d] dd cb 0a 06
+                    ld        h,rlc (ix+$0a)                ;[0531] dd cb 0a 04
+                    ld        l,rlc (ix+$0a)                ;[0535] dd cb 0a 05
