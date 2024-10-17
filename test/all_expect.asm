@@ -652,3 +652,32 @@
                     ld        b,set 5,(ix+$0a)              ;[0589] dd cb 0a e8
                     ld        b,set 6,(ix+$0a)              ;[058d] dd cb 0a f0
                     ld        b,set 7,(ix+$0a)              ;[0591] dd cb 0a f8
+                    in        a,($80)                       ;[0595] db 80
+                    in        a,(c)                         ;[0597] ed 78
+                    in        b,(c)                         ;[0599] ed 40
+                    in        c,(c)                         ;[059b] ed 48
+                    in        d,(c)                         ;[059d] ed 50
+                    in        e,(c)                         ;[059f] ed 58
+                    in        (c)                           ;[05a1] ed 70
+                    in        h,(c)                         ;[05a3] ed 60
+                    in        l,(c)                         ;[05a5] ed 68
+                    out       ($ff),a                       ;[05a7] d3 ff
+                    out       (c),a                         ;[05a9] ed 79
+                    out       (c),b                         ;[05ab] ed 41
+                    out       (c),c                         ;[05ad] ed 49
+                    out       (c),d                         ;[05af] ed 51
+                    out       (c),e                         ;[05b1] ed 59
+                    out       (c),0                         ;[05b3] ed 71
+                    out       (c),0                         ;[05b5] ed 71
+                    out       (c),h                         ;[05b7] ed 61
+                    out       (c),l                         ;[05b9] ed 69
+                    ini                                     ;[05bb] ed a2
+                    inir                                    ;[05bd] ed b2
+                    ind                                     ;[05bf] ed aa
+                    indr                                    ;[05c1] ed ba
+                    outi                                    ;[05c3] ed a3
+                    otir                                    ;[05c5] ed b3
+                    otir                                    ;[05c7] ed b3
+                    outd                                    ;[05c9] ed ab
+                    otdr                                    ;[05cb] ed bb
+                    otdr                                    ;[05cd] ed bb

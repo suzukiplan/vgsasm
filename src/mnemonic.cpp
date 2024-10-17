@@ -153,6 +153,13 @@
     line->machine.push_back(0x35); \
     line->machine.push_back(D)
 
+#define ML_IN_A(N)                 \
+    line->machine.push_back(0xDB); \
+    line->machine.push_back(n)
+#define ML_OUT_A(N)                \
+    line->machine.push_back(0xD3); \
+    line->machine.push_back(n)
+
 std::map<std::string, Mnemonic> mnemonicTable = {
     {"LD", Mnemonic::LD},
     {"LDI", Mnemonic::LDI},
@@ -574,7 +581,11 @@ static void mnemonic_calc16(LineData* line, uint8_t code)
             case Operand::IY: line->machine.push_back(code | 0x20); break;
             case Operand::SP: line->machine.push_back(code | 0x30); break;
         }
-    } else if (supportImmediate && line->token.size() == 4 && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Numeric) {
+    } else if (supportImmediate &&
+               line->token.size() == 4 &&
+               line->token[1].first == TokenType::Operand &&
+               line->token[2].first == TokenType::Split &&
+               line->token[3].first == TokenType::Numeric) {
         auto op = operandTable[line->token[1].second];
         auto nn = atoi(line->token[3].second.c_str());
         if (op != Operand::HL && op != Operand::IX && op != Operand::IY) {
@@ -1053,6 +1064,98 @@ static void mnemonic_shift(LineData* line, uint8_t code)
     line->errmsg = "Illegal shift/rotate instruction.";
 }
 
+static void mnemonic_IN(LineData* line)
+{
+    if (line->token.size() == 6 &&
+        line->token[1].first == TokenType::Operand &&
+        operandTable[line->token[1].second] == Operand::A &&
+        line->token[2].first == TokenType::Split &&
+        line->token[3].first == TokenType::AddressBegin &&
+        line->token[4].first == TokenType::Numeric &&
+        line->token[5].first == TokenType::AddressEnd) {
+        int n = atoi(line->token[4].second.c_str());
+        if (mnemonic_range(line, n, 0, 255)) {
+            ML_IN_A(n);
+            return;
+        }
+    } else if (line->token.size() == 6 &&
+               line->token[1].first == TokenType::Operand &&
+               line->token[2].first == TokenType::Split &&
+               line->token[3].first == TokenType::AddressBegin &&
+               line->token[4].first == TokenType::Operand &&
+               operandTable[line->token[4].second] == Operand::C &&
+               line->token[5].first == TokenType::AddressEnd) {
+        line->machine.push_back(0xED);
+        switch (operandTable[line->token[1].second]) {
+            case Operand::B: line->machine.push_back(0x40); return;
+            case Operand::C: line->machine.push_back(0x48); return;
+            case Operand::D: line->machine.push_back(0x50); return;
+            case Operand::E: line->machine.push_back(0x58); return;
+            case Operand::H: line->machine.push_back(0x60); return;
+            case Operand::L: line->machine.push_back(0x68); return;
+            case Operand::F: line->machine.push_back(0x70); return; // undocumented
+            case Operand::A: line->machine.push_back(0x78); return;
+        }
+    }
+    line->error = true;
+    line->errmsg = "Illegal IN instruction.";
+}
+
+static void mnemonic_OUT(LineData* line)
+{
+    if (line->token.size() == 6 &&
+        line->token[1].first == TokenType::AddressBegin &&
+        line->token[2].first == TokenType::Numeric &&
+        line->token[3].first == TokenType::AddressEnd &&
+        line->token[4].first == TokenType::Split &&
+        line->token[5].first == TokenType::Operand &&
+        operandTable[line->token[5].second] == Operand::A) {
+        int n = atoi(line->token[2].second.c_str());
+        if (mnemonic_range(line, n, 0, 255)) {
+            ML_OUT_A(n);
+            return;
+        }
+    } else if (line->token.size() == 6 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               operandTable[line->token[2].second] == Operand::C &&
+               line->token[3].first == TokenType::AddressEnd &&
+               line->token[4].first == TokenType::Split &&
+               line->token[5].first == TokenType::Operand) {
+        line->machine.push_back(0xED);
+        switch (operandTable[line->token[5].second]) {
+            case Operand::B: line->machine.push_back(0x41); return;
+            case Operand::C: line->machine.push_back(0x49); return;
+            case Operand::D: line->machine.push_back(0x51); return;
+            case Operand::E: line->machine.push_back(0x59); return;
+            case Operand::H: line->machine.push_back(0x61); return;
+            case Operand::L: line->machine.push_back(0x69); return;
+            case Operand::A: line->machine.push_back(0x79); return;
+        }
+    } else if (line->token.size() == 6 &&
+               line->token[1].first == TokenType::Operand &&
+               operandTable[line->token[1].second] == Operand::F &&
+               line->token[2].first == TokenType::Split &&
+               line->token[3].first == TokenType::AddressBegin &&
+               line->token[4].first == TokenType::Operand &&
+               operandTable[line->token[4].second] == Operand::C &&
+               line->token[5].first == TokenType::AddressEnd) {
+        line->machine.push_back(0xED);
+        line->machine.push_back(0x71);
+        return;
+    } else if (line->token.size() == 4 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               operandTable[line->token[2].second] == Operand::C &&
+               line->token[3].first == TokenType::AddressEnd) {
+        line->machine.push_back(0xED);
+        line->machine.push_back(0x71);
+        return;
+    }
+    line->error = true;
+    line->errmsg = "Illegal OUT instruction.";
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -1108,6 +1211,10 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::OTIR: mnemonic_single_ED(line, 0xB3); break;
             case Mnemonic::OUTD: mnemonic_single_ED(line, 0xAB); break;
             case Mnemonic::OTDR: mnemonic_single_ED(line, 0xBB); break;
+            case Mnemonic::INI: mnemonic_single_ED(line, 0xA2); break;
+            case Mnemonic::INIR: mnemonic_single_ED(line, 0xB2); break;
+            case Mnemonic::IND: mnemonic_single_ED(line, 0xAA); break;
+            case Mnemonic::INDR: mnemonic_single_ED(line, 0xBA); break;
             case Mnemonic::AND: mnemonic_calc8(line, 0xA0); break;
             case Mnemonic::OR: mnemonic_calc8(line, 0xB0); break;
             case Mnemonic::XOR: mnemonic_calc8(line, 0xA8); break;
@@ -1135,6 +1242,8 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::SRL: mnemonic_shift(line, 0x38); break;
             case Mnemonic::RLD: mnemonic_single_ED(line, 0x6F); break;
             case Mnemonic::RRD: mnemonic_single_ED(line, 0x67); break;
+            case Mnemonic::IN: mnemonic_IN(line); break;
+            case Mnemonic::OUT: mnemonic_OUT(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

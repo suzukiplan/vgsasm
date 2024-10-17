@@ -753,3 +753,41 @@ Shift:
     SET 5, (IX+10) & B
     SET 6, (IX+10) & B
     SET 7, (IX+10) & B
+
+IO:
+@IN
+    IN A, (0x80)
+    IN A, (C)
+    IN B, (C)
+    IN C, (C)
+    IN D, (C)
+    IN E, (C)
+    IN F, (C)   ; undocumented
+    IN H, (C)
+    IN L, (C)
+
+@OUT
+    OUT ($FF), A
+    OUT (C), A
+    OUT (C), B
+    OUT (C), C
+    OUT (C), D
+    OUT (C), E
+    OUT (C)     ; undocumented
+    OUT F, (C)  ; undocumented (same as OUT (C))
+    OUT (C), H
+    OUT (C), L
+
+@Repeat_IN
+    INI
+    INIR
+    IND
+    INDR
+
+@Repeat_OUT
+    OUTI
+    OTIR
+    OUTIR
+    OUTD
+    OTDR
+    OUTDR
