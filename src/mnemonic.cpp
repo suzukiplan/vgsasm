@@ -503,30 +503,30 @@ static void mnemonic_calc16(LineData* line, uint8_t code)
     }
 }
 
-static void mnemonic_ADD(LineData* line)
+static void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
 {
     if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
-        mnemonic_calc8(line, 0x80);
+        mnemonic_calc8(line, code8);
     } else if (line->token.size() == 2 && line->token[1].first == TokenType::Numeric) {
-        mnemonic_calc8(line, 0x80);
+        mnemonic_calc8(line, code8);
     } else if (3 <= line->token.size() && line->token[1].first == TokenType::AddressBegin) {
-        mnemonic_calc8(line, 0x80);
+        mnemonic_calc8(line, code8);
     } else if (3 < line->token.size() && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split) {
         auto op = operandTable[line->token[1].second];
         if (op == Operand::A) {
             auto it = line->token.begin() + 1;
             line->token.erase(it);
             line->token.erase(it);
-            mnemonic_calc8(line, 0x80);
+            mnemonic_calc8(line, code8);
         } else if (mnemonic_is_reg16(op)) {
-            mnemonic_calc16(line, 0x09);
+            mnemonic_calc16(line, code16);
         } else {
             line->error = true;
-            line->errmsg = "Illegal 8-bit arithmetic instruction.";
+            line->errmsg = "Illegal arithmetic instruction.";
         }
     } else {
         line->error = true;
-        line->errmsg = "Illegal 8-bit arithmetic instruction.";
+        line->errmsg = "Illegal arithmetic instruction.";
     }
 }
 
@@ -589,7 +589,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::OR: mnemonic_calc8(line, 0xB0); break;
             case Mnemonic::XOR: mnemonic_calc8(line, 0xA8); break;
             case Mnemonic::CP: mnemonic_calc8(line, 0xB8); break;
-            case Mnemonic::ADD: mnemonic_ADD(line); break;
+            case Mnemonic::ADD: mnemonic_calcOH(line, 0x80, 0x09); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
