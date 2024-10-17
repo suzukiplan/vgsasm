@@ -998,6 +998,19 @@ static void mnemonic_shift(LineData* line, uint8_t code)
                 case Operand::F: line->machine.push_back(0x06); return;
                 case Operand::A: line->machine.push_back(0x07); return;
             }
+        } else if (op1 == Operand::IX && op2 == Operand::B) {
+            line->machine.push_back(0xDD);
+            line->machine.push_back(0xCB);
+            line->machine.push_back(n);
+            switch (mnemonicTable[line->token[0].second]) {
+                case Mnemonic::RRC: line->machine.push_back(0x08); return;
+                case Mnemonic::RL: line->machine.push_back(0x10); return;
+                case Mnemonic::RR: line->machine.push_back(0x18); return;
+                case Mnemonic::SLA: line->machine.push_back(0x20); return;
+                case Mnemonic::SRA: line->machine.push_back(0x28); return;
+                case Mnemonic::SLL: line->machine.push_back(0x30); return;
+                case Mnemonic::SRL: line->machine.push_back(0x38); return;
+            }
         }
     }
     line->error = true;

@@ -629,3 +629,10 @@
                     rlc       (ix+$0a)                      ;[052d] dd cb 0a 06
                     ld        h,rlc (ix+$0a)                ;[0531] dd cb 0a 04
                     ld        l,rlc (ix+$0a)                ;[0535] dd cb 0a 05
+                    ld        b,rrc (ix+$0a)                ;[0539] dd cb 0a 08
+                    ld        b,rl (ix+$0a)                 ;[053d] dd cb 0a 10
+                    ld        b,rr (ix+$0a)                 ;[0541] dd cb 0a 18
+                    ld        b,sla (ix+$0a)                ;[0545] dd cb 0a 20
+                    ld        b,sra (ix+$0a)                ;[0549] dd cb 0a 28
+                    ld        b,sll (ix+$0a)                ;[054d] dd cb 0a 30
+                    ld        b,srl (ix+$0a)                ;[0551] dd cb 0a 38

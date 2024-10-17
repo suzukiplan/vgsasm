@@ -727,3 +727,11 @@ Shift:
     RLC (IX+10) & F
     RLC (IX+10) & H
     RLC (IX+10) & L
+
+    RRC (IX+10) & B
+    RL (IX+10) & B
+    RR (IX+10) & B
+    SLA (IX+10) & B
+    SRA (IX+10) & B
+    SLL (IX+10) & B
+    SRL (IX+10) & B
