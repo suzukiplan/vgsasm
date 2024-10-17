@@ -313,6 +313,27 @@ bool mnemonic_format_check(LineData* line, int size, ...)
     return !line->error;
 }
 
+bool mnemonic_format_test(LineData* line, int size, ...)
+{
+    if (line->token.size() != size) {
+        return false;
+    }
+    if (1 == size) {
+        return true;
+    }
+    va_list arg;
+    va_start(arg, size);
+    bool error = false;
+    for (auto it = line->token.begin() + 1; it != line->token.end(); it++) {
+        auto expect = va_arg(arg, TokenType);
+        if (!error) {
+            error = it->first != expect;
+        }
+    }
+    va_end(arg);
+    return !line->error;
+}
+
 bool mnemonic_range(LineData* line, int n, int min, int max)
 {
     if (n < min || max < n) {
@@ -1156,6 +1177,54 @@ static void mnemonic_OUT(LineData* line)
     line->errmsg = "Illegal OUT instruction.";
 }
 
+#define ML_LD_A_B line->machine.push_back(0x78)
+#define ML_LD_A_C line->machine.push_back(0x79)
+#define ML_LD_A_D line->machine.push_back(0x7A)
+#define ML_LD_A_E line->machine.push_back(0x7B)
+#define ML_LD_A_H line->machine.push_back(0x7C)
+#define ML_LD_A_L line->machine.push_back(0x7D)
+#define ML_LD_A_HL line->machine.push_back(0x7E)
+#define ML_LD_A_A line->machine.push_back(0x7F)
+#define ML_LD_A_IXH                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x7C)
+#define ML_LD_A_IXL                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x7D)
+#define ML_LD_A_IYH                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x7C)
+#define ML_LD_A_IYL                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x7D)
+
+static void mnemonic_LD(LineData* line)
+{
+    if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand)) {
+        auto op1 = operandTable[line->token[1].second];
+        auto op2 = operandTable[line->token[3].second];
+        switch (op1) {
+            case Operand::A:
+                switch (op2) {
+                    case Operand::A: ML_LD_A_A; return;     // LD A,A
+                    case Operand::B: ML_LD_A_B; return;     // LD A,B
+                    case Operand::C: ML_LD_A_C; return;     // LD A,C
+                    case Operand::D: ML_LD_A_D; return;     // LD A,D
+                    case Operand::E: ML_LD_A_E; return;     // LD A,E
+                    case Operand::H: ML_LD_A_H; return;     // LD A,H
+                    case Operand::L: ML_LD_A_L; return;     // LD A,L
+                    case Operand::IXH: ML_LD_A_IXH; return; // LD A,IXH
+                    case Operand::IXL: ML_LD_A_IXL; return; // LD A,IXL
+                    case Operand::IYH: ML_LD_A_IYH; return; // LD A,IYH
+                    case Operand::IYL: ML_LD_A_IYL; return; // LD A,IYL
+                }
+                break;
+        }
+    }
+    line->error = true;
+    line->errmsg = "Illegal LD instruction.";
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -1185,6 +1254,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
         }
         auto m = mnemonicTable[line->token[0].second];
         switch (m) {
+            case Mnemonic::LD: mnemonic_LD(line); break;
             case Mnemonic::IM: mnemonic_IM(line); break;
             case Mnemonic::PUSH: mnemonic_PUSH(line); break;
             case Mnemonic::POP: mnemonic_POP(line); break;

@@ -681,3 +681,14 @@
                     outd                                    ;[05c9] ed ab
                     otdr                                    ;[05cb] ed bb
                     otdr                                    ;[05cd] ed bb
+                    ld        a,a                           ;[05cf] 7f
+                    ld        a,b                           ;[05d0] 78
+                    ld        a,c                           ;[05d1] 79
+                    ld        a,d                           ;[05d2] 7a
+                    ld        a,e                           ;[05d3] 7b
+                    ld        a,h                           ;[05d4] 7c
+                    ld        a,l                           ;[05d5] 7d
+                    ld        a,ixh                         ;[05d6] dd 7c
+                    ld        a,ixl                         ;[05d8] dd 7d
+                    ld        a,iyh                         ;[05da] fd 7c
+                    ld        a,iyl                         ;[05dc] fd 7d

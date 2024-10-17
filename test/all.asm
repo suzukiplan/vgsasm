@@ -593,7 +593,6 @@ Rotate:
     RL (IX+1)
     RL (IY+127)
 
-
     RRC A
     RRC B
     RRC C
@@ -791,3 +790,18 @@ IO:
     OUTD
     OTDR
     OUTDR
+
+Load_and_Store:
+
+@LD_A_r
+    LD A, A
+    LD A, B
+    LD A, C
+    LD A, D
+    LD A, E
+    LD A, H
+    LD A, L
+    LD A, IXH
+    LD A, IXL
+    LD A, IYH
+    LD A, IYL
