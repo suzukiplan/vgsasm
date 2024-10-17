@@ -431,6 +431,17 @@ void mnemonic_calc8(LineData* line, uint8_t code)
             line->error = true;
             line->errmsg = "Illegal 8-bit arithmetic instruction.";
         }
+    } else if (3 < line->token.size() && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split) {
+        auto op = operandTable[line->token[1].second];
+        if (op == Operand::A) {
+            auto it = line->token.begin() + 1;
+            line->token.erase(it);
+            line->token.erase(it);
+            mnemonic_calc8(line, code);
+        } else {
+            line->error = true;
+            line->errmsg = "Illegal arithmetic instruction.";
+        }
     } else {
         line->error = true;
         line->errmsg = "Illegal 8-bit arithmetic instruction.";
@@ -599,6 +610,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::CP: mnemonic_calc8(line, 0xB8); break;
             case Mnemonic::ADD: mnemonic_calcOH(line, 0x80, 0x09); break;
             case Mnemonic::ADC: mnemonic_calcOH(line, 0x88, 0x4A); break;
+            case Mnemonic::SUB: mnemonic_calc8(line, 0x90); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

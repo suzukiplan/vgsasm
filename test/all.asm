@@ -202,9 +202,6 @@ Calc8:
     ADD IX, $5678
     ADD IY, $9ABC
 
-
-
-
 @Adc
     ADC A, A
     ADC A, B
@@ -265,3 +262,45 @@ Calc8:
     ; ADC HL, $1234 // unsupported
     ; ADC IX, $5678 // unsupported
     ; ADC IY, $9ABC // unsupported
+
+@Sub
+    SUB A
+    SUB B
+    SUB C
+    SUB D
+    SUB E
+    SUB H
+    SUB L
+    SUB IXH
+    SUB IXL
+    SUB IYH
+    SUB IYL
+    SUB $FF
+    SUB (HL)
+    SUB (IX)
+    SUB (IX-128)
+    SUB (IX+127*1)
+    SUB (IY)
+    SUB (IY-128)
+    SUB (IY+127*1)
+
+@Sub_with_A
+    SUB A, A
+    SUB A, B
+    SUB A, C
+    SUB A, D
+    SUB A, E
+    SUB A, H
+    SUB A, L
+    SUB A, IXH
+    SUB A, IXL
+    SUB A, IYH
+    SUB A, IYL
+    SUB A, $FF
+    SUB A, (HL)
+    SUB A, (IX)
+    SUB A, (IX-128)
+    SUB A, (IX+127*1)
+    SUB A, (IY)
+    SUB A, (IY-128)
+    SUB A, (IY+127*1)
