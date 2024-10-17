@@ -75,6 +75,36 @@
     line->machine.push_back(0xFD); \
     line->machine.push_back(0x39)
 
+#define ML_INC_A line->machine.push_back(0x3C)
+#define ML_INC_B line->machine.push_back(0x04)
+#define ML_INC_C line->machine.push_back(0x0C)
+#define ML_INC_D line->machine.push_back(0x14)
+#define ML_INC_E line->machine.push_back(0x1C)
+#define ML_INC_H line->machine.push_back(0x24)
+#define ML_INC_L line->machine.push_back(0x2C)
+#define ML_INC_BC line->machine.push_back(0x03)
+#define ML_INC_DE line->machine.push_back(0x13)
+#define ML_INC_HL line->machine.push_back(0x23)
+#define ML_INC_SP line->machine.push_back(0x33)
+#define ML_INC_IXH                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x24)
+#define ML_INC_IXL                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x2C)
+#define ML_INC_IYH                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x24)
+#define ML_INC_IYL                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x2C)
+#define ML_INC_IX                  \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x23)
+#define ML_INC_IY                  \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x23)
+
 std::map<std::string, Mnemonic> mnemonicTable = {
     {"LD", Mnemonic::LD},
     {"LDI", Mnemonic::LDI},
@@ -679,6 +709,33 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
     line->errmsg = "Illegal BIT/SET/RES instruction.";
 }
 
+static void mnemonic_INC(LineData* line)
+{
+    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+        switch (operandTable[line->token[1].second]) {
+            case Operand::A: ML_INC_A; return;
+            case Operand::B: ML_INC_B; return;
+            case Operand::C: ML_INC_C; return;
+            case Operand::D: ML_INC_D; return;
+            case Operand::E: ML_INC_E; return;
+            case Operand::H: ML_INC_H; return;
+            case Operand::L: ML_INC_L; return;
+            case Operand::IXH: ML_INC_IXH; return;
+            case Operand::IXL: ML_INC_IXL; return;
+            case Operand::IYH: ML_INC_IYH; return;
+            case Operand::IYL: ML_INC_IYL; return;
+            case Operand::BC: ML_INC_BC; return;
+            case Operand::DE: ML_INC_DE; return;
+            case Operand::HL: ML_INC_HL; return;
+            case Operand::SP: ML_INC_SP; return;
+            case Operand::IX: ML_INC_IX; return;
+            case Operand::IY: ML_INC_IY; return;
+        }
+    }
+    line->error = true;
+    line->errmsg = "Illegal INC instruction.";
+}
+
 static void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
@@ -745,6 +802,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::BIT: mnemonic_bit_op(line, Mnemonic::BIT); break;
             case Mnemonic::SET: mnemonic_bit_op(line, Mnemonic::SET); break;
             case Mnemonic::RES: mnemonic_bit_op(line, Mnemonic::RES); break;
+            case Mnemonic::INC: mnemonic_INC(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

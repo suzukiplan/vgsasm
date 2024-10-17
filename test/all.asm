@@ -496,3 +496,23 @@ BitOperation:
     BIT 0, (IY-1)
     SET 1, (IY+64)
     RES 2, (IY-64)
+
+Increment:
+@Register
+    INC A
+    INC B
+    INC C
+    INC D
+    INC E
+    INC H
+    INC L
+    INC IXH
+    INC IXL
+    INC IYH
+    INC IYL
+    INC BC
+    INC DE
+    INC HL
+    INC SP
+    INC IX
+    INC IY

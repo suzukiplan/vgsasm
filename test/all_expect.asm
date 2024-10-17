@@ -417,3 +417,20 @@
                     bit       0,(iy-$01)                    ;[0313] fd cb ff 46
                     set       1,(iy+$40)                    ;[0317] fd cb 40 ce
                     res       2,(iy-$40)                    ;[031b] fd cb c0 96
+                    inc       a                             ;[031f] 3c
+                    inc       b                             ;[0320] 04
+                    inc       c                             ;[0321] 0c
+                    inc       d                             ;[0322] 14
+                    inc       e                             ;[0323] 1c
+                    inc       h                             ;[0324] 24
+                    inc       l                             ;[0325] 2c
+                    inc       ixh                           ;[0326] dd 24
+                    inc       ixl                           ;[0328] dd 2c
+                    inc       iyh                           ;[032a] fd 24
+                    inc       iyl                           ;[032c] fd 2c
+                    inc       bc                            ;[032e] 03
+                    inc       de                            ;[032f] 13
+                    inc       hl                            ;[0330] 23
+                    inc       sp                            ;[0331] 33
+                    inc       ix                            ;[0332] dd 23
+                    inc       iy                            ;[0334] fd 23
