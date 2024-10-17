@@ -752,6 +752,42 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
             line->machine.push_back(c | b);
             return;
         }
+    } else if (line->token.size() == 10) {
+        if ((mne == Mnemonic::SET || mne == Mnemonic::RES) &&
+            line->token[1].first == TokenType::Numeric &&
+            line->token[2].first == TokenType::Split &&
+            line->token[3].first == TokenType::AddressBegin &&
+            line->token[4].first == TokenType::Operand &&
+            operandTable[line->token[4].second] == Operand::IX &&
+            (line->token[5].first == TokenType::Plus || line->token[5].first == TokenType::Minus) &&
+            line->token[6].first == TokenType::Numeric &&
+            line->token[7].first == TokenType::AddressEnd &&
+            line->token[8].first == TokenType::And &&
+            line->token[9].first == TokenType::Operand &&
+            operandTable[line->token[9].second] == Operand::B) {
+            int b = atoi(line->token[1].second.c_str());
+            if (!mnemonic_range(line, b, 0, 7)) {
+                return;
+            }
+            b <<= 3;
+            int n = atoi(line->token[6].second.c_str());
+            if (line->token[5].first == TokenType::Plus) {
+                if (!mnemonic_range(line, n, 0, 127)) {
+                    return;
+                }
+            } else {
+                if (!mnemonic_range(line, n, 0, 128)) {
+                    return;
+                }
+                n = 0 - n;
+            }
+            uint8_t c = mne == Mnemonic::SET ? 0xC0 : 0x80;
+            line->machine.push_back(0xDD);
+            line->machine.push_back(0xCB);
+            line->machine.push_back(n & 0xFF);
+            line->machine.push_back(c | b);
+            return;
+        }
     }
     line->error = true;
     line->errmsg = "Illegal BIT/SET/RES instruction.";

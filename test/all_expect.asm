@@ -636,3 +636,19 @@
                     ld        b,sra (ix+$0a)                ;[0549] dd cb 0a 28
                     ld        b,sll (ix+$0a)                ;[054d] dd cb 0a 30
                     ld        b,srl (ix+$0a)                ;[0551] dd cb 0a 38
+                    ld        b,res 0,(ix+$0a)              ;[0555] dd cb 0a 80
+                    ld        b,res 1,(ix+$0a)              ;[0559] dd cb 0a 88
+                    ld        b,res 2,(ix+$0a)              ;[055d] dd cb 0a 90
+                    ld        b,res 3,(ix+$0a)              ;[0561] dd cb 0a 98
+                    ld        b,res 4,(ix+$0a)              ;[0565] dd cb 0a a0
+                    ld        b,res 5,(ix+$0a)              ;[0569] dd cb 0a a8
+                    ld        b,res 6,(ix+$0a)              ;[056d] dd cb 0a b0
+                    ld        b,res 7,(ix+$0a)              ;[0571] dd cb 0a b8
+                    ld        b,set 0,(ix+$0a)              ;[0575] dd cb 0a c0
+                    ld        b,set 1,(ix+$0a)              ;[0579] dd cb 0a c8
+                    ld        b,set 2,(ix+$0a)              ;[057d] dd cb 0a d0
+                    ld        b,set 3,(ix+$0a)              ;[0581] dd cb 0a d8
+                    ld        b,set 4,(ix+$0a)              ;[0585] dd cb 0a e0
+                    ld        b,set 5,(ix+$0a)              ;[0589] dd cb 0a e8
+                    ld        b,set 6,(ix+$0a)              ;[058d] dd cb 0a f0
+                    ld        b,set 7,(ix+$0a)              ;[0591] dd cb 0a f8

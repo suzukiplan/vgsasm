@@ -735,3 +735,21 @@ Shift:
     SRA (IX+10) & B
     SLL (IX+10) & B
     SRL (IX+10) & B
+
+    RES 0, (IX+10) & B
+    RES 1, (IX+10) & B
+    RES 2, (IX+10) & B
+    RES 3, (IX+10) & B
+    RES 4, (IX+10) & B
+    RES 5, (IX+10) & B
+    RES 6, (IX+10) & B
+    RES 7, (IX+10) & B
+
+    SET 0, (IX+10) & B
+    SET 1, (IX+10) & B
+    SET 2, (IX+10) & B
+    SET 3, (IX+10) & B
+    SET 4, (IX+10) & B
+    SET 5, (IX+10) & B
+    SET 6, (IX+10) & B
+    SET 7, (IX+10) & B
