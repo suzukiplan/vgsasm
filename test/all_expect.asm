@@ -183,3 +183,45 @@
                     ld        e,$bc                         ;[0142] 1e bc
                     add       iy,de                         ;[0144] fd 19
                     pop       de                            ;[0146] d1
+                    adc       a                             ;[0147] 8f
+                    adc       b                             ;[0148] 88
+                    adc       c                             ;[0149] 89
+                    adc       d                             ;[014a] 8a
+                    adc       e                             ;[014b] 8b
+                    adc       h                             ;[014c] 8c
+                    adc       l                             ;[014d] 8d
+                    adc       ixh                           ;[014e] dd 8c
+                    adc       ixl                           ;[0150] dd 8d
+                    adc       iyh                           ;[0152] fd 8c
+                    adc       iyl                           ;[0154] fd 8d
+                    adc       $ff                           ;[0156] ce ff
+                    adc       (hl)                          ;[0158] 8e
+                    adc       (ix+$00)                      ;[0159] dd 8e 00
+                    adc       (ix-$80)                      ;[015c] dd 8e 80
+                    adc       (ix+$7f)                      ;[015f] dd 8e 7f
+                    adc       (iy+$00)                      ;[0162] fd 8e 00
+                    adc       (iy-$80)                      ;[0165] fd 8e 80
+                    adc       (iy+$7f)                      ;[0168] fd 8e 7f
+                    adc       a                             ;[016b] 8f
+                    adc       b                             ;[016c] 88
+                    adc       c                             ;[016d] 89
+                    adc       d                             ;[016e] 8a
+                    adc       e                             ;[016f] 8b
+                    adc       h                             ;[0170] 8c
+                    adc       l                             ;[0171] 8d
+                    adc       ixh                           ;[0172] dd 8c
+                    adc       ixl                           ;[0174] dd 8d
+                    adc       iyh                           ;[0176] fd 8c
+                    adc       iyl                           ;[0178] fd 8d
+                    adc       $ff                           ;[017a] ce ff
+                    adc       (hl)                          ;[017c] 8e
+                    adc       (ix+$00)                      ;[017d] dd 8e 00
+                    adc       (ix-$80)                      ;[0180] dd 8e 80
+                    adc       (ix+$7f)                      ;[0183] dd 8e 7f
+                    adc       (iy+$00)                      ;[0186] fd 8e 00
+                    adc       (iy-$80)                      ;[0189] fd 8e 80
+                    adc       (iy+$7f)                      ;[018c] fd 8e 7f
+                    adc       hl,bc                         ;[018f] ed 4a
+                    adc       hl,de                         ;[0191] ed 5a
+                    adc       hl,hl                         ;[0193] ed 6a
+                    adc       hl,sp                         ;[0195] ed 7a

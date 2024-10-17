@@ -201,3 +201,67 @@ Calc8:
     ADD HL, $1234
     ADD IX, $5678
     ADD IY, $9ABC
+
+
+
+
+@Adc
+    ADC A, A
+    ADC A, B
+    ADC A, C
+    ADC A, D
+    ADC A, E
+    ADC A, H
+    ADC A, L
+    ADC A, IXH
+    ADC A, IXL
+    ADC A, IYH
+    ADC A, IYL
+    ADC A, $FF
+    ADC A, (HL)
+    ADC A, (IX)
+    ADC A, (IX-128)
+    ADC A, (IX+127*1)
+    ADC A, (IY)
+    ADC A, (IY-128)
+    ADC A, (IY+127*1)
+
+@Adc_omit_A
+    ADC A
+    ADC B
+    ADC C
+    ADC D
+    ADC E
+    ADC H
+    ADC L
+    ADC IXH
+    ADC IXL
+    ADC IYH
+    ADC IYL
+    ADC $FF
+    ADC (HL)
+    ADC (IX)
+    ADC (IX-128)
+    ADC (IX+127*1)
+    ADC (IY)
+    ADC (IY-128)
+    ADC (IY+127*1)
+
+@Adc16
+    ADC HL, BC
+    ADC HL, DE
+    ADC HL, HL
+    ADC HL, SP
+    ; ADC IX, BC // unsupported
+    ; ADC IX, DE // unsupported
+    ; ADC IX, IX // unsupported
+    ; ADC IX, SP // unsupported
+    ; ADC IY, BC // unsupported
+    ; ADC IY, DE // unsupported
+    ; ADC IY, IY // unsupported
+    ; ADC IY, SP // unsupported
+
+@Adc16_nn
+    ; ADC HL, $1234 // unsupported
+    ; ADC IX, $5678 // unsupported
+    ; ADC IY, $9ABC // unsupported

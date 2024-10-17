@@ -439,34 +439,42 @@ void mnemonic_calc8(LineData* line, uint8_t code)
 
 static void mnemonic_calc16(LineData* line, uint8_t code)
 {
+    bool supportImmediate = true;
+    bool supportIXY = true;
+    switch (mnemonicTable[line->token[0].second]) {
+        case Mnemonic::ADC:
+            line->machine.push_back(0xED);
+            supportImmediate = false;
+            supportIXY = false;
+            break;
+    }
     if (line->token.size() == 4 && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Operand) {
         auto op1 = operandTable[line->token[1].second];
         auto op2 = operandTable[line->token[3].second];
-        if (op1 != Operand::HL && op1 != Operand::IX && op1 != Operand::IY) {
-            line->error = true;
-            line->errmsg = "Illegal 16-bit arithmetic instruction.";
-            return;
-        }
         if (op1 == Operand::HL) {
             if (op2 != Operand::BC && op2 != Operand::DE && op2 != Operand::HL && op2 != Operand::SP) {
                 line->error = true;
                 line->errmsg = "Illegal 16-bit arithmetic instruction.";
                 return;
             }
-        } else if (op1 == Operand::IX) {
+        } else if (supportIXY && op1 == Operand::IX) {
             line->machine.push_back(0xDD);
             if (op2 != Operand::BC && op2 != Operand::DE && op2 != Operand::IX && op2 != Operand::SP) {
                 line->error = true;
                 line->errmsg = "Illegal 16-bit arithmetic instruction.";
                 return;
             }
-        } else if (op1 == Operand::IY) {
+        } else if (supportIXY && op1 == Operand::IY) {
             line->machine.push_back(0xFD);
             if (op2 != Operand::BC && op2 != Operand::DE && op2 != Operand::IY && op2 != Operand::SP) {
                 line->error = true;
                 line->errmsg = "Illegal 16-bit arithmetic instruction.";
                 return;
             }
+        } else {
+            line->error = true;
+            line->errmsg = "Illegal 16-bit arithmetic instruction.";
+            return;
         }
         switch (op2) {
             case Operand::BC: line->machine.push_back(code); break;
@@ -476,7 +484,7 @@ static void mnemonic_calc16(LineData* line, uint8_t code)
             case Operand::IY: line->machine.push_back(code | 0x20); break;
             case Operand::SP: line->machine.push_back(code | 0x30); break;
         }
-    } else if (line->token.size() == 4 && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Numeric) {
+    } else if (supportImmediate && line->token.size() == 4 && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Numeric) {
         auto op = operandTable[line->token[1].second];
         auto nn = atoi(line->token[3].second.c_str());
         if (op != Operand::HL && op != Operand::IX && op != Operand::IY) {
@@ -590,6 +598,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::XOR: mnemonic_calc8(line, 0xA8); break;
             case Mnemonic::CP: mnemonic_calc8(line, 0xB8); break;
             case Mnemonic::ADD: mnemonic_calcOH(line, 0x80, 0x09); break;
+            case Mnemonic::ADC: mnemonic_calcOH(line, 0x88, 0x4A); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
