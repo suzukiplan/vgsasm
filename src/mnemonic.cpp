@@ -114,6 +114,45 @@
     line->machine.push_back(0x34); \
     line->machine.push_back(D)
 
+#define ML_DEC_A line->machine.push_back(0x3D)
+#define ML_DEC_B line->machine.push_back(0x05)
+#define ML_DEC_C line->machine.push_back(0x0D)
+#define ML_DEC_D line->machine.push_back(0x15)
+#define ML_DEC_E line->machine.push_back(0x1D)
+#define ML_DEC_H line->machine.push_back(0x25)
+#define ML_DEC_L line->machine.push_back(0x2D)
+#define ML_DEC_BC line->machine.push_back(0x0B)
+#define ML_DEC_DE line->machine.push_back(0x1B)
+#define ML_DEC_HL line->machine.push_back(0x2B)
+#define ML_DEC_ADDR_HL line->machine.push_back(0x35)
+#define ML_DEC_SP line->machine.push_back(0x3B)
+#define ML_DEC_IXH                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x25)
+#define ML_DEC_IXL                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x2D)
+#define ML_DEC_IYH                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x25)
+#define ML_DEC_IYL                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x2D)
+#define ML_DEC_IX                  \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x2B)
+#define ML_DEC_IY                  \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x2B)
+#define ML_DEC_ADDR_IX(D)          \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x35); \
+    line->machine.push_back(D)
+#define ML_DEC_ADDR_IY(D)          \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x35); \
+    line->machine.push_back(D)
+
 std::map<std::string, Mnemonic> mnemonicTable = {
     {"LD", Mnemonic::LD},
     {"LDI", Mnemonic::LDI},
@@ -786,7 +825,76 @@ static void mnemonic_INC(LineData* line)
     }
     line->error = true;
     line->errmsg = "Illegal INC instruction.";
-    line->printDebug();
+}
+
+static void mnemonic_DEC(LineData* line)
+{
+    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+        switch (operandTable[line->token[1].second]) {
+            case Operand::A: ML_DEC_A; return;
+            case Operand::B: ML_DEC_B; return;
+            case Operand::C: ML_DEC_C; return;
+            case Operand::D: ML_DEC_D; return;
+            case Operand::E: ML_DEC_E; return;
+            case Operand::H: ML_DEC_H; return;
+            case Operand::L: ML_DEC_L; return;
+            case Operand::IXH: ML_DEC_IXH; return;
+            case Operand::IXL: ML_DEC_IXL; return;
+            case Operand::IYH: ML_DEC_IYH; return;
+            case Operand::IYL: ML_DEC_IYL; return;
+            case Operand::BC: ML_DEC_BC; return;
+            case Operand::DE: ML_DEC_DE; return;
+            case Operand::HL: ML_DEC_HL; return;
+            case Operand::SP: ML_DEC_SP; return;
+            case Operand::IX: ML_DEC_IX; return;
+            case Operand::IY: ML_DEC_IY; return;
+        }
+    } else if (line->token.size() == 4 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               line->token[3].first == TokenType::AddressEnd) {
+        switch (operandTable[line->token[2].second]) {
+            case Operand::HL: ML_DEC_ADDR_HL; return;
+            case Operand::IX: ML_DEC_ADDR_IX(0); return;
+            case Operand::IY: ML_DEC_ADDR_IY(0); return;
+        }
+    } else if (line->token.size() == 4 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Numeric &&
+               line->token[3].first == TokenType::AddressEnd) {
+        int addr = atoi(line->token[2].second.c_str());
+        if (mnemonic_range(line, addr, 0x0000, 0xFFFF)) {
+            ML_PUSH_HL;
+            ML_LD_L_n(addr & 0x00FF);
+            ML_LD_H_n((addr & 0xFF00) >> 8);
+            ML_DEC_ADDR_HL;
+            ML_POP_HL;
+            return;
+        }
+    } else if (line->token.size() == 6 &&
+               line->token[1].first == TokenType::AddressBegin &&
+               line->token[2].first == TokenType::Operand &&
+               (line->token[3].first == TokenType::Plus || line->token[3].first == TokenType::Minus) &&
+               line->token[4].first == TokenType::Numeric &&
+               line->token[5].first == TokenType::AddressEnd) {
+        int n = atoi(line->token[4].second.c_str());
+        if (line->token[3].first == TokenType::Plus) {
+            if (!mnemonic_range(line, n, 0, 127)) {
+                return;
+            }
+        } else {
+            if (!mnemonic_range(line, n, 0, 128)) {
+                return;
+            }
+            n = 0 - n;
+        }
+        switch (operandTable[line->token[2].second]) {
+            case Operand::IX: ML_DEC_ADDR_IX(n); return;
+            case Operand::IY: ML_DEC_ADDR_IY(n); return;
+        }
+    }
+    line->error = true;
+    line->errmsg = "Illegal DEC instruction.";
 }
 
 static void setpc(LineData* prev, LineData* cur)
@@ -856,6 +964,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
             case Mnemonic::SET: mnemonic_bit_op(line, Mnemonic::SET); break;
             case Mnemonic::RES: mnemonic_bit_op(line, Mnemonic::RES); break;
             case Mnemonic::INC: mnemonic_INC(line); break;
+            case Mnemonic::DEC: mnemonic_DEC(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

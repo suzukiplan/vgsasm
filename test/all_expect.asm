@@ -446,3 +446,32 @@
                     ld        h,$12                         ;[034c] 26 12
                     inc       (hl)                          ;[034e] 34
                     pop       hl                            ;[034f] e1
+                    dec       a                             ;[0350] 3d
+                    dec       b                             ;[0351] 05
+                    dec       c                             ;[0352] 0d
+                    dec       d                             ;[0353] 15
+                    dec       e                             ;[0354] 1d
+                    dec       h                             ;[0355] 25
+                    dec       l                             ;[0356] 2d
+                    dec       ixh                           ;[0357] dd 25
+                    dec       ixl                           ;[0359] dd 2d
+                    dec       iyh                           ;[035b] fd 25
+                    dec       iyl                           ;[035d] fd 2d
+                    dec       bc                            ;[035f] 0b
+                    dec       de                            ;[0360] 1b
+                    dec       hl                            ;[0361] 2b
+                    dec       sp                            ;[0362] 3b
+                    dec       ix                            ;[0363] dd 2b
+                    dec       iy                            ;[0365] fd 2b
+                    dec       (hl)                          ;[0367] 35
+                    dec       (ix+$00)                      ;[0368] dd 35 00
+                    dec       (iy+$00)                      ;[036b] fd 35 00
+                    dec       (ix-$80)                      ;[036e] dd 35 80
+                    dec       (iy-$01)                      ;[0371] fd 35 ff
+                    dec       (ix+$01)                      ;[0374] dd 35 01
+                    dec       (iy+$7f)                      ;[0377] fd 35 7f
+                    push      hl                            ;[037a] e5
+                    ld        l,$34                         ;[037b] 2e 34
+                    ld        h,$12                         ;[037d] 26 12
+                    dec       (hl)                          ;[037f] 35
+                    pop       hl                            ;[0380] e1

@@ -526,3 +526,33 @@ Increment:
     INC (IX+1)
     INC (IY+127)
     INC ($1234)
+
+Decrement:
+@Register
+    DEC A
+    DEC B
+    DEC C
+    DEC D
+    DEC E
+    DEC H
+    DEC L
+    DEC IXH
+    DEC IXL
+    DEC IYH
+    DEC IYL
+    DEC BC
+    DEC DE
+    DEC HL
+    DEC SP
+    DEC IX
+    DEC IY
+
+@Address
+    DEC (HL)
+    DEC (IX)
+    DEC (IY)
+    DEC (IX-128)
+    DEC (IY-1)
+    DEC (IX+1)
+    DEC (IY+127)
+    DEC ($1234)
