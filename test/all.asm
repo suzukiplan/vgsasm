@@ -1041,3 +1041,13 @@ Transfer_Load_Store:
     LD IX, ($0831)
     LD IY, ($8931)
 
+@Load_immediate_address_label
+    LD A, (or@Calculation)
+    LD BC, (@Load_immediate_address_label)
+    LD DE, (@Load_immediate_address_label_end)
+    LD HL, (@Load_immediate_label_end)
+    LD SP, (@Load_immediate_label)
+    LD IX, (@Load_pair_register_from_HL)
+    LD IY, (@LD_SP_rr)
+@Load_immediate_address_label_end
+    NOP
