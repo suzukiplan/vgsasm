@@ -878,3 +878,26 @@
                     ld        iyh,a                         ;[06e6] fd 67
                     dec       hl                            ;[06e8] 2b
                     pop       af                            ;[06e9] f1
+                    ld        (hl),a                        ;[06ea] 77
+                    ld        (hl),b                        ;[06eb] 70
+                    ld        (hl),c                        ;[06ec] 71
+                    ld        (hl),d                        ;[06ed] 72
+                    ld        (hl),e                        ;[06ee] 73
+                    ld        (hl),h                        ;[06ef] 74
+                    ld        (hl),l                        ;[06f0] 75
+                    push      af                            ;[06f1] f5
+                    ld        a,ixh                         ;[06f2] dd 7c
+                    ld        (hl),a                        ;[06f4] 77
+                    pop       af                            ;[06f5] f1
+                    push      af                            ;[06f6] f5
+                    ld        a,ixl                         ;[06f7] dd 7d
+                    ld        (hl),a                        ;[06f9] 77
+                    pop       af                            ;[06fa] f1
+                    push      af                            ;[06fb] f5
+                    ld        a,iyh                         ;[06fc] fd 7c
+                    ld        (hl),a                        ;[06fe] 77
+                    pop       af                            ;[06ff] f1
+                    push      af                            ;[0700] f5
+                    ld        a,iyl                         ;[0701] fd 7d
+                    ld        (hl),a                        ;[0703] 77
+                    pop       af                            ;[0704] f1
