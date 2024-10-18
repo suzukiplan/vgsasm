@@ -946,57 +946,55 @@ static void mnemonic_OUT(LineData* line)
     line->errmsg = "Illegal OUT instruction.";
 }
 
+static bool check_ld_reg8(Operand op)
+{
+    return op == Operand::A ||
+           op == Operand::B ||
+           op == Operand::C ||
+           op == Operand::D ||
+           op == Operand::E ||
+           op == Operand::H ||
+           op == Operand::L ||
+           op == Operand::IXH ||
+           op == Operand::IXL ||
+           op == Operand::IYH ||
+           op == Operand::IYL;
+}
+
+static uint8_t get_bit_reg8(Operand op)
+{
+    switch (op) {
+        case Operand::B: return 0x00;
+        case Operand::C: return 0x01;
+        case Operand::D: return 0x02;
+        case Operand::E: return 0x03;
+        case Operand::H: return 0x04;
+        case Operand::L: return 0x05;
+        case Operand::A: return 0x07;
+        case Operand::IXH: return 0x04;
+        case Operand::IXL: return 0x05;
+        case Operand::IYH: return 0x04;
+        case Operand::IYL: return 0x05;
+    }
+    return 0xFF;
+}
+
 static void mnemonic_LD(LineData* line)
 {
     if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand)) {
         auto op1 = operandTable[line->token[1].second];
         auto op2 = operandTable[line->token[3].second];
-        switch (op1) {
-            case Operand::A:
-                switch (op2) {
-                    case Operand::A: ML_LD_A_A; return;     // LD A,A
-                    case Operand::B: ML_LD_A_B; return;     // LD A,B
-                    case Operand::C: ML_LD_A_C; return;     // LD A,C
-                    case Operand::D: ML_LD_A_D; return;     // LD A,D
-                    case Operand::E: ML_LD_A_E; return;     // LD A,E
-                    case Operand::H: ML_LD_A_H; return;     // LD A,H
-                    case Operand::L: ML_LD_A_L; return;     // LD A,L
-                    case Operand::IXH: ML_LD_A_IXH; return; // LD A,IXH
-                    case Operand::IXL: ML_LD_A_IXL; return; // LD A,IXL
-                    case Operand::IYH: ML_LD_A_IYH; return; // LD A,IYH
-                    case Operand::IYL: ML_LD_A_IYL; return; // LD A,IYL
-                }
-                break;
-            case Operand::B:
-                switch (op2) {
-                    case Operand::A: ML_LD_B_A; return;     // LD B,A
-                    case Operand::B: ML_LD_B_B; return;     // LD B,B
-                    case Operand::C: ML_LD_B_C; return;     // LD B,C
-                    case Operand::D: ML_LD_B_D; return;     // LD B,D
-                    case Operand::E: ML_LD_B_E; return;     // LD B,E
-                    case Operand::H: ML_LD_B_H; return;     // LD B,H
-                    case Operand::L: ML_LD_B_L; return;     // LD B,L
-                    case Operand::IXH: ML_LD_B_IXH; return; // LD B,IXH
-                    case Operand::IXL: ML_LD_B_IXL; return; // LD B,IXL
-                    case Operand::IYH: ML_LD_B_IYH; return; // LD B,IYH
-                    case Operand::IYL: ML_LD_B_IYL; return; // LD B,IYL
-                }
-                break;
-            case Operand::C:
-                switch (op2) {
-                    case Operand::A: ML_LD_C_A; return;     // LD C,A
-                    case Operand::B: ML_LD_C_B; return;     // LD C,B
-                    case Operand::C: ML_LD_C_C; return;     // LD C,C
-                    case Operand::D: ML_LD_C_D; return;     // LD C,D
-                    case Operand::E: ML_LD_C_E; return;     // LD C,E
-                    case Operand::H: ML_LD_C_H; return;     // LD C,H
-                    case Operand::L: ML_LD_C_L; return;     // LD C,L
-                    case Operand::IXH: ML_LD_C_IXH; return; // LD C,IXH
-                    case Operand::IXL: ML_LD_C_IXL; return; // LD C,IXL
-                    case Operand::IYH: ML_LD_C_IYH; return; // LD C,IYH
-                    case Operand::IYL: ML_LD_C_IYL; return; // LD C,IYL
-                }
-                break;
+        if (check_ld_reg8(op1) && check_ld_reg8(op2)) {
+            if (op2 == Operand::IXH || op2 == Operand::IXL) {
+                line->machine.push_back(0xDD);
+            } else if (op2 == Operand::IYH || op2 == Operand::IYL) {
+                line->machine.push_back(0xFD);
+            }
+            uint8_t code = 0x40;
+            code |= get_bit_reg8(op1) << 3;
+            code |= get_bit_reg8(op2);
+            line->machine.push_back(code);
+            return;
         }
     }
     line->error = true;
