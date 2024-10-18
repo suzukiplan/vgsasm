@@ -563,3 +563,31 @@ enum class Mnemonic {
 #define ML_LD_SP_IY                \
     line->machine.push_back(0xFD); \
     line->machine.push_back(0xF9)
+
+#define ML_LD_HL_A line->machine.push_back(0x77)
+#define ML_LD_HL_B line->machine.push_back(0x70)
+#define ML_LD_HL_C line->machine.push_back(0x71)
+#define ML_LD_HL_D line->machine.push_back(0x72)
+#define ML_LD_HL_E line->machine.push_back(0x73)
+#define ML_LD_HL_H line->machine.push_back(0x74)
+#define ML_LD_HL_L line->machine.push_back(0x75)
+#define ML_LD_HL_IXH \
+    ML_PUSH_AF;      \
+    ML_LD_A_IXH;     \
+    ML_LD_HL_A;      \
+    ML_POP_AF
+#define ML_LD_HL_IXL \
+    ML_PUSH_AF;      \
+    ML_LD_A_IXL;     \
+    ML_LD_HL_A;      \
+    ML_POP_AF
+#define ML_LD_HL_IYH \
+    ML_PUSH_AF;      \
+    ML_LD_A_IYH;     \
+    ML_LD_HL_A;      \
+    ML_POP_AF
+#define ML_LD_HL_IYL \
+    ML_PUSH_AF;      \
+    ML_LD_A_IYL;     \
+    ML_LD_HL_A;      \
+    ML_POP_AF

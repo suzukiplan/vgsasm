@@ -201,6 +201,7 @@ In vgsasm, instructions that __do not exist in the Z80__ are complemented by exi
 | `LD IX,nn` | `LD IXH,n(high)`, `LD IXL,n(low)` |
 | `LD IY,nn` | `LD IXH,n(high)`, `LD IXL,n(low)` |
 | `LD {IXH｜IXL｜IYH｜IYL},(HL)` | `PUSH AF`, `LD A,(HL)`, `LD {IXH｜IXL｜IYH｜IYL},A`, `POP AF` |
+| `LD (HL),{IXH｜IXL｜IYH｜IYL}` | `PUSH AF`, `LD A,{IXH｜IXL｜IYH｜IYL}`, `LD (HL),A`, `POP AF` |
 | `LD {BC｜DE},(HL)` | `LD rL,(HL)`, `INC HL`, `LD rH,(HL)`, `DEC HL` |
 | `LD {IX｜IY},(HL)` | `PUSH AF`, `LD A,(HL)`, `LD I{X｜Y}L,A`, `INC HL`,<br> `LD A,(HL)`, `LD I{X｜Y}H,A`, `DEC HL`, `POP AF` |
 | `ADD HL,nn` | `PUSH DE`, `LD DE,nn`, `ADD HL,DE`, `POP DE`|

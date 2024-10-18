@@ -972,7 +972,7 @@ Transfer_Load_Store:
     LD SP,IX
     LD SP,IY
 
-@LD_r_(HL)
+@Load_register_from_HL
     LD A, (HL)
     LD B, (HL)
     LD C, (HL)
@@ -985,8 +985,21 @@ Transfer_Load_Store:
     LD IYH, (HL) ; auto expand
     LD IYL, (HL) ; auto expand
 
-@LD_rr_(HL) ; auto expand all
+@Load_pair_register_from_HL ; auto expand all
     LD BC, (HL)
     LD DE, (HL)
     LD IX, (HL)
     LD IY, (HL)
+
+@Store_register_to_HL
+    LD (HL), A
+    LD (HL), B
+    LD (HL), C
+    LD (HL), D
+    LD (HL), E
+    LD (HL), H
+    LD (HL), L
+    LD (HL), IXH
+    LD (HL), IXL
+    LD (HL), IYH
+    LD (HL), IYL

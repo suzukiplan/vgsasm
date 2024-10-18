@@ -1138,6 +1138,23 @@ static void mnemonic_LD(LineData* line)
                 ML_POP_AF;
                 return;
         }
+    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd, TokenType::Split, TokenType::Operand) &&
+               operandTable[line->token[2].second] == Operand::HL) {
+        // LD (HL), r
+        switch (operandTable[line->token[5].second]) {
+            case Operand::A: ML_LD_HL_A; return;
+            case Operand::B: ML_LD_HL_B; return;
+            case Operand::C: ML_LD_HL_C; return;
+            case Operand::D: ML_LD_HL_D; return;
+            case Operand::E: ML_LD_HL_E; return;
+            case Operand::F: break; // this opcode $76 is HALT
+            case Operand::H: ML_LD_HL_H; return;
+            case Operand::L: ML_LD_HL_L; return;
+            case Operand::IXH: ML_LD_HL_IXH; return;
+            case Operand::IXL: ML_LD_HL_IXL; return;
+            case Operand::IYH: ML_LD_HL_IYH; return;
+            case Operand::IYL: ML_LD_HL_IYL; return;
+        }
     }
     line->error = true;
     line->errmsg = "Illegal LD instruction.";
