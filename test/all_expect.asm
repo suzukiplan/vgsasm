@@ -692,3 +692,14 @@
                     ld        a,ixl                         ;[05d8] dd 7d
                     ld        a,iyh                         ;[05da] fd 7c
                     ld        a,iyl                         ;[05dc] fd 7d
+                    ld        b,a                           ;[05de] 47
+                    ld        b,b                           ;[05df] 40
+                    ld        b,c                           ;[05e0] 41
+                    ld        b,d                           ;[05e1] 42
+                    ld        b,e                           ;[05e2] 43
+                    ld        b,h                           ;[05e3] 44
+                    ld        b,l                           ;[05e4] 45
+                    ld        b,ixh                         ;[05e5] dd 44
+                    ld        b,ixl                         ;[05e7] dd 45
+                    ld        b,iyh                         ;[05e9] fd 44
+                    ld        b,iyl                         ;[05eb] fd 45

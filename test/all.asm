@@ -805,3 +805,16 @@ Load_and_Store:
     LD A, IXL
     LD A, IYH
     LD A, IYL
+
+@LD_B_r
+    LD B, A
+    LD B, B
+    LD B, C
+    LD B, D
+    LD B, E
+    LD B, H
+    LD B, L
+    LD B, IXH
+    LD B, IXL
+    LD B, IYH
+    LD B, IYL
