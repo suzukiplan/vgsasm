@@ -265,7 +265,7 @@ void mnemonic_LD(LineData* line)
                 }
             }
         }
-    } else if (mnemonic_format_begin(line, 3, TokenType::Operand, TokenType::Split)) {
+    } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::LabelJump)) {
         auto op = operandTable[line->token[1].second];
         uint8_t code = 0x00;
         switch (op) {
@@ -283,20 +283,10 @@ void mnemonic_LD(LineData* line)
                 line->machine.push_back(0xFD);
             }
             line->machine.push_back(code);
-
-            // LabelJump があれば仮アドレスをセット
-            bool detected = false;
-            for (auto it = line->token.begin() + 3; it != line->token.end(); it++) {
-                if (it->first == TokenType::LabelJump) {
-                    tempAddrs.push_back(new TempAddr(line, it->second, line->machine.size(), false));
-                    line->machine.push_back(0x00);
-                    line->machine.push_back(0x00);
-                    detected = true;
-                }
-            }
-            if (detected) {
-                return; // 仮アドレスをセットしたのでリターン
-            }
+            tempAddrs.push_back(new TempAddr(line, line->token[3].second, line->machine.size(), false));
+            line->machine.push_back(0x00);
+            line->machine.push_back(0x00);
+            return;
         }
     }
     if (!line->error) {
