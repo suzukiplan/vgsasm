@@ -129,7 +129,7 @@ void parse_mneoimonic(LineData* line)
 
 bool mnemonic_format_check(LineData* line, int size, ...)
 {
-    if (line->token.size() != size) {
+    if (size < 1 || line->token.size() != size) {
         line->error = true;
         line->errmsg = "Excessive or insufficient number of operands.";
         return false;
@@ -156,7 +156,7 @@ bool mnemonic_format_check(LineData* line, int size, ...)
 
 bool mnemonic_format_test(LineData* line, int size, ...)
 {
-    if (line->token.size() != size) {
+    if (size < 1 || line->token.size() != size) {
         return false;
     }
     if (1 == size) {
@@ -172,7 +172,7 @@ bool mnemonic_format_test(LineData* line, int size, ...)
         }
     }
     va_end(arg);
-    return !line->error;
+    return !error;
 }
 
 bool mnemonic_range(LineData* line, int n, int min, int max)
@@ -307,7 +307,7 @@ void mnemonic_EX(LineData* line)
 
 void mnemonic_calc8(LineData* line, uint8_t code)
 {
-    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+    if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         auto op = operandTable[line->token[1].second];
         if (op == Operand::IXH || op == Operand::IXL) {
             line->machine.push_back(0xDD);
@@ -332,7 +332,7 @@ void mnemonic_calc8(LineData* line, uint8_t code)
                 return;
         }
         line->machine.push_back(code);
-    } else if (line->token.size() == 2 && line->token[1].first == TokenType::Numeric) {
+    } else if (mnemonic_format_test(line, 2, TokenType::Numeric)) {
         auto n = atoi(line->token[1].second.c_str());
         if (mnemonic_range(line, n, -128, 255)) {
             line->machine.push_back(code | 0x46);
@@ -407,7 +407,7 @@ static void mnemonic_calc16(LineData* line, uint8_t code)
             supportIXY = false;
             break;
     }
-    if (line->token.size() == 4 && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split && line->token[3].first == TokenType::Operand) {
+    if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand)) {
         auto op1 = operandTable[line->token[1].second];
         auto op2 = operandTable[line->token[3].second];
         if (op1 == Operand::HL) {
@@ -444,10 +444,7 @@ static void mnemonic_calc16(LineData* line, uint8_t code)
             case Operand::SP: line->machine.push_back(code | 0x30); break;
         }
     } else if (supportImmediate &&
-               line->token.size() == 4 &&
-               line->token[1].first == TokenType::Operand &&
-               line->token[2].first == TokenType::Split &&
-               line->token[3].first == TokenType::Numeric) {
+               mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Numeric)) {
         auto op = operandTable[line->token[1].second];
         auto nn = atoi(line->token[3].second.c_str());
         if (op != Operand::HL && op != Operand::IX && op != Operand::IY) {
