@@ -167,6 +167,7 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines);                      
 std::string hex2dec(const char* hex);                                                 // numeric.cpp
 std::string bin2dec(const char* bin);                                                 // numeric.cpp
 void parse_numeric(LineData* line);                                                   // numeric.cpp
+void parse_numeric_minus(LineData* line);                                             // numeric.cpp
 void parse_operand(LineData* line);                                                   // operand.cpp
 void parse_sizeof(LineData* line);                                                    // sizeof.cpp
 void replace_sizeof(LineData* line);                                                  // sizeof.cpp

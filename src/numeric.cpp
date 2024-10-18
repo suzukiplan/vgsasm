@@ -85,3 +85,19 @@ void parse_numeric(LineData* line)
         }
     }
 }
+
+// , - n を , -n にする
+void parse_numeric_minus(LineData* line)
+{
+    for (auto it = line->token.begin(); it != line->token.end(); it++) {
+        if (it->first == TokenType::Split) {
+            if (it + 1 != line->token.end() && it + 2 != line->token.end()) {
+                if ((it + 1)->first == TokenType::Minus && (it + 2)->first == TokenType::Numeric) {
+                    (it + 1)->first = TokenType::Delete;
+                    (it + 2)->second = "-" + (it + 2)->second;
+                    it += 2;
+                }
+            }
+        }
+    }
+}

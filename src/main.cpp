@@ -144,14 +144,15 @@ static int assemble(std::vector<LineData*> lines)
             line = lines.begin();
         }
 
-        parse_mneoimonic(*line);   // Other -> Mnemonic
-        parse_operand(*line);      // Other -> Operand
-        parse_struct(*line);       // Other -> Struct
-        bracket_to_address(*line); // Braket -> Address
-        parse_numeric(*line);      // Other -> Numeric
-        parse_sizeof(*line);       // Other -> Sizeof
-        parse_offset(*line);       // Other -> Offset
-        evaluate_formulas(*line);  // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
+        parse_mneoimonic(*line);    // Other -> Mnemonic
+        parse_operand(*line);       // Other -> Operand
+        parse_struct(*line);        // Other -> Struct
+        bracket_to_address(*line);  // Braket -> Address
+        parse_numeric(*line);       // Other -> Numeric
+        parse_numeric_minus(*line); // Split, Minus, Numeric -> Split, -Numeric
+        parse_sizeof(*line);        // Other -> Sizeof
+        parse_offset(*line);        // Other -> Offset
+        evaluate_formulas(*line);   // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
 
         // ( Numric ) -> Numeric and formulas again
         while (bracket_eliminate(*line)) {
