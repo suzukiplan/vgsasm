@@ -1057,3 +1057,21 @@ Transfer_Load_Store:
     LD A, (DE)
     LD (BC), A
     LD (DE), A
+
+@Load_from_IX
+    LD A, (IX - 128)
+    LD B, (IX - 1)
+    LD C, (IX)
+    LD D, (IX + 0)
+    LD E, (IX + 1)
+    LD H, (IX + 127)
+    LD L, (IX + 64)
+
+@Load_from_IY
+    LD A, (IY - 128)
+    LD B, (IY - 1)
+    LD C, (IY)
+    LD D, (IY + 0)
+    LD E, (IY + 1)
+    LD H, (IY + 127)
+    LD L, (IY + 64)

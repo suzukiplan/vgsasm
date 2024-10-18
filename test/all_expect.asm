@@ -942,3 +942,17 @@
                     ld        a,(de)                        ;[0778] 1a
                     ld        (bc),a                        ;[0779] 02
                     ld        (de),a                        ;[077a] 12
+                    ld        a,(ix-$80)                    ;[077b] dd 7e 80
+                    ld        b,(ix-$01)                    ;[077e] dd 46 ff
+                    ld        c,(ix+$00)                    ;[0781] dd 4e 00
+                    ld        d,(ix+$00)                    ;[0784] dd 56 00
+                    ld        e,(ix+$01)                    ;[0787] dd 5e 01
+                    ld        h,(ix+$7f)                    ;[078a] dd 66 7f
+                    ld        l,(ix+$40)                    ;[078d] dd 6e 40
+                    ld        a,(iy-$80)                    ;[0790] fd 7e 80
+                    ld        b,(iy-$01)                    ;[0793] fd 46 ff
+                    ld        c,(iy+$00)                    ;[0796] fd 4e 00
+                    ld        d,(iy+$00)                    ;[0799] fd 56 00
+                    ld        e,(iy+$01)                    ;[079c] fd 5e 01
+                    ld        h,(iy+$7f)                    ;[079f] fd 66 7f
+                    ld        l,(iy+$40)                    ;[07a2] fd 6e 40

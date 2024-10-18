@@ -224,25 +224,21 @@ void mnemonic_LD(LineData* line)
             case Operand::IYH: ML_LD_HL_IYH; return;
             case Operand::IYL: ML_LD_HL_IYL; return;
         }
-    } else if (mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd)) {
-        // LD r, (r)
-        auto op1 = operandTable[line->token[1].second];
-        auto op2 = operandTable[line->token[4].second];
-        if (op1 == Operand::A) {
-            switch (op2) {
-                case Operand::BC: line->machine.push_back(0x0A); return;
-                case Operand::DE: line->machine.push_back(0x1A); return;
-            }
+    } else if (mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd) &&
+               operandTable[line->token[1].second] == Operand::A &&
+               (operandTable[line->token[4].second] == Operand::BC ||
+                operandTable[line->token[4].second] == Operand::DE)) {
+        switch (operandTable[line->token[4].second]) {
+            case Operand::BC: line->machine.push_back(0x0A); return;
+            case Operand::DE: line->machine.push_back(0x1A); return;
         }
-    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd, TokenType::Split, TokenType::Operand)) {
-        // LD (r), r
-        auto op1 = operandTable[line->token[2].second];
-        auto op2 = operandTable[line->token[5].second];
-        if (op2 == Operand::A) {
-            switch (op1) {
-                case Operand::BC: line->machine.push_back(0x02); return;
-                case Operand::DE: line->machine.push_back(0x12); return;
-            }
+    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd, TokenType::Split, TokenType::Operand) &&
+               operandTable[line->token[5].second] == Operand::A &&
+               (operandTable[line->token[2].second] == Operand::BC ||
+                operandTable[line->token[2].second] == Operand::DE)) {
+        switch (operandTable[line->token[2].second]) {
+            case Operand::BC: line->machine.push_back(0x02); return;
+            case Operand::DE: line->machine.push_back(0x12); return;
         }
     } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Numeric)) {
         // `LD r, n` or `LD rr, nn`
@@ -349,6 +345,33 @@ void mnemonic_LD(LineData* line)
             line->machine.push_back(0x00);
             line->machine.push_back(0x00);
             return;
+        }
+    } else if (mnemonic_format_test(line, 8, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::PlusOrMinus, TokenType::Numeric, TokenType::AddressEnd)) {
+        // LD r, ({IX|IY}{+|-}d)
+        auto op1 = operandTable[line->token[1].second];
+        auto op2 = operandTable[line->token[4].second];
+        auto isPlus = line->token[5].first == TokenType::Plus;
+        auto d = atoi(line->token[6].second.c_str());
+        if (op2 == Operand::IX || op2 == Operand::IY) {
+            if (!isPlus) { d = 0 - d; }
+            if (isReg8(op1) && !isIX(op1) && !isIY(op1) && mnemonic_range(line, d, -128, 127)) {
+                line->machine.push_back(isIX(op2) ? 0xDD : 0xFD);
+                line->machine.push_back(0x46 | (getBitReg8(op1) << 3));
+                line->machine.push_back(d);
+                return;
+            }
+        }
+    } else if (mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd)) {
+        // LD r, ({IX|IY})
+        auto op1 = operandTable[line->token[1].second];
+        auto op2 = operandTable[line->token[4].second];
+        if (op2 == Operand::IX || op2 == Operand::IY) {
+            if (isReg8(op1) && !isIX(op1) && !isIY(op1)) {
+                line->machine.push_back(isIX(op2) ? 0xDD : 0xFD);
+                line->machine.push_back(0x46 | (getBitReg8(op1) << 3));
+                line->machine.push_back(0x00);
+                return;
+            }
         }
     }
     if (!line->error) {
