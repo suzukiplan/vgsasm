@@ -143,7 +143,11 @@ bool mnemonic_format_check(LineData* line, int size, ...)
     for (auto it = line->token.begin() + 1; it != line->token.end(); it++) {
         auto expect = va_arg(arg, TokenType);
         if (!error) {
-            error = it->first != expect;
+            if (expect == TokenType::PlusOrMinus) {
+                error = it->first != TokenType::Plus && it->first != TokenType::Minus;
+            } else {
+                error = it->first != expect;
+            }
             if (error) {
                 line->error = true;
                 line->errmsg = "Unexpected operand: " + it->second;
@@ -168,7 +172,11 @@ bool mnemonic_format_test(LineData* line, int size, ...)
     for (auto it = line->token.begin() + 1; it != line->token.end(); it++) {
         auto expect = va_arg(arg, TokenType);
         if (!error) {
-            error = it->first != expect;
+            if (expect == TokenType::PlusOrMinus) {
+                error = it->first != TokenType::Plus && it->first != TokenType::Minus;
+            } else {
+                error = it->first != expect;
+            }
         }
     }
     va_end(arg);
@@ -473,9 +481,9 @@ static void mnemonic_calc16(LineData* line, uint8_t code)
 
 static void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
 {
-    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+    if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         mnemonic_calc8(line, code8);
-    } else if (line->token.size() == 2 && line->token[1].first == TokenType::Numeric) {
+    } else if (mnemonic_format_test(line, 2, TokenType::Numeric)) {
         mnemonic_calc8(line, code8);
     } else if (3 <= line->token.size() && line->token[1].first == TokenType::AddressBegin) {
         mnemonic_calc8(line, code8);
@@ -500,164 +508,152 @@ static void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
 
 static void mnemonic_bit_op(LineData* line, Mnemonic mne)
 {
-    if (line->token.size() == 4) {
-        if (line->token[1].first == TokenType::Numeric &&
-            line->token[2].first == TokenType::Split &&
-            line->token[3].first == TokenType::Operand) {
-            int b = atoi(line->token[1].second.c_str());
-            if (!mnemonic_range(line, b, 0, 7)) {
-                return;
-            }
-            b <<= 3;
-            uint8_t r;
-            switch (operandTable[line->token[3].second]) {
-                case Operand::A: r = 0b111; break;
-                case Operand::B: r = 0b000; break;
-                case Operand::C: r = 0b001; break;
-                case Operand::D: r = 0b010; break;
-                case Operand::E: r = 0b011; break;
-                case Operand::H: r = 0b100; break;
-                case Operand::L: r = 0b101; break;
-                default:
-                    line->error = true;
-                    line->errmsg = "Illegal BIT/SET/RES instruction.";
-                    return;
-            }
-            uint8_t c;
-            switch (mne) {
-                case Mnemonic::BIT: c = 0b01000000; break;
-                case Mnemonic::SET: c = 0b11000000; break;
-                case Mnemonic::RES: c = 0b10000000; break;
-                default:
-                    line->error = true;
-                    line->errmsg = "Illegal BIT/SET/RES instruction.";
-                    return;
-            }
-            line->machine.push_back(0xCB);
-            line->machine.push_back(c | b | r);
+    if (mnemonic_format_test(line, 4, TokenType::Numeric, TokenType::Split, TokenType::Operand)) {
+        int b = atoi(line->token[1].second.c_str());
+        if (!mnemonic_range(line, b, 0, 7)) {
             return;
         }
-    } else if (line->token.size() == 6) {
-        if (line->token[1].first == TokenType::Numeric &&
-            line->token[2].first == TokenType::Split &&
-            line->token[3].first == TokenType::AddressBegin &&
-            line->token[4].first == TokenType::Operand &&
-            line->token[5].first == TokenType::AddressEnd) {
-            bool setZero = true;
-            switch (operandTable[line->token[4].second]) {
-                case Operand::HL: setZero = false; break;
-                case Operand::IX: line->machine.push_back(0xDD); break;
-                case Operand::IY: line->machine.push_back(0xFD); break;
-                default:
-                    line->error = true;
-                    line->errmsg = "Illegal BIT/SET/RES instruction.";
-                    return;
-            }
-            int b = atoi(line->token[1].second.c_str());
-            if (!mnemonic_range(line, b, 0, 7)) {
+        b <<= 3;
+        uint8_t r;
+        switch (operandTable[line->token[3].second]) {
+            case Operand::A: r = 0b111; break;
+            case Operand::B: r = 0b000; break;
+            case Operand::C: r = 0b001; break;
+            case Operand::D: r = 0b010; break;
+            case Operand::E: r = 0b011; break;
+            case Operand::H: r = 0b100; break;
+            case Operand::L: r = 0b101; break;
+            default:
+                line->error = true;
+                line->errmsg = "Illegal BIT/SET/RES instruction.";
                 return;
-            }
-            b <<= 3;
-            uint8_t c;
-            switch (mne) {
-                case Mnemonic::BIT: c = 0b01000110; break;
-                case Mnemonic::SET: c = 0b11000110; break;
-                case Mnemonic::RES: c = 0b10000110; break;
-                default:
-                    line->error = true;
-                    line->errmsg = "Illegal BIT/SET/RES instruction.";
-                    return;
-            }
-            line->machine.push_back(0xCB);
-            if (setZero) {
-                line->machine.push_back(0x00);
-            }
-            line->machine.push_back(c | b);
+        }
+        uint8_t c;
+        switch (mne) {
+            case Mnemonic::BIT: c = 0b01000000; break;
+            case Mnemonic::SET: c = 0b11000000; break;
+            case Mnemonic::RES: c = 0b10000000; break;
+            default:
+                line->error = true;
+                line->errmsg = "Illegal BIT/SET/RES instruction.";
+                return;
+        }
+        line->machine.push_back(0xCB);
+        line->machine.push_back(c | b | r);
+        return;
+    } else if (mnemonic_format_test(line, 6, TokenType::Numeric, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd)) {
+        bool setZero = true;
+        switch (operandTable[line->token[4].second]) {
+            case Operand::HL: setZero = false; break;
+            case Operand::IX: line->machine.push_back(0xDD); break;
+            case Operand::IY: line->machine.push_back(0xFD); break;
+            default:
+                line->error = true;
+                line->errmsg = "Illegal BIT/SET/RES instruction.";
+                return;
+        }
+        int b = atoi(line->token[1].second.c_str());
+        if (!mnemonic_range(line, b, 0, 7)) {
             return;
         }
-    } else if (line->token.size() == 8) {
-        if (line->token[1].first == TokenType::Numeric &&
-            line->token[2].first == TokenType::Split &&
-            line->token[3].first == TokenType::AddressBegin &&
-            line->token[4].first == TokenType::Operand &&
-            (line->token[5].first == TokenType::Plus || line->token[5].first == TokenType::Minus) &&
-            line->token[6].first == TokenType::Numeric &&
-            line->token[7].first == TokenType::AddressEnd) {
-            switch (operandTable[line->token[4].second]) {
-                case Operand::IX: line->machine.push_back(0xDD); break;
-                case Operand::IY: line->machine.push_back(0xFD); break;
-                default:
-                    line->error = true;
-                    line->errmsg = "Illegal BIT/SET/RES instruction.";
-                    return;
-            }
-            int b = atoi(line->token[1].second.c_str());
-            if (!mnemonic_range(line, b, 0, 7)) {
+        b <<= 3;
+        uint8_t c;
+        switch (mne) {
+            case Mnemonic::BIT: c = 0b01000110; break;
+            case Mnemonic::SET: c = 0b11000110; break;
+            case Mnemonic::RES: c = 0b10000110; break;
+            default:
+                line->error = true;
+                line->errmsg = "Illegal BIT/SET/RES instruction.";
                 return;
-            }
-            b <<= 3;
-            int n = atoi(line->token[6].second.c_str());
-            if (line->token[5].first == TokenType::Plus) {
-                if (!mnemonic_range(line, n, 0, 127)) {
-                    return;
-                }
-            } else {
-                if (!mnemonic_range(line, n, 0, 128)) {
-                    return;
-                }
-                n = 0 - n;
-            }
-            uint8_t c;
-            switch (mne) {
-                case Mnemonic::BIT: c = 0b01000110; break;
-                case Mnemonic::SET: c = 0b11000110; break;
-                case Mnemonic::RES: c = 0b10000110; break;
-                default:
-                    line->error = true;
-                    line->errmsg = "Illegal BIT/SET/RES instruction.";
-                    return;
-            }
-            line->machine.push_back(0xCB);
-            line->machine.push_back(n & 0xFF);
-            line->machine.push_back(c | b);
+        }
+        line->machine.push_back(0xCB);
+        if (setZero) {
+            line->machine.push_back(0x00);
+        }
+        line->machine.push_back(c | b);
+        return;
+    } else if (mnemonic_format_test(line, 8,
+                                    TokenType::Numeric,
+                                    TokenType::Split,
+                                    TokenType::AddressBegin,
+                                    TokenType::Operand,
+                                    TokenType::PlusOrMinus,
+                                    TokenType::Numeric,
+                                    TokenType::AddressEnd)) {
+        switch (operandTable[line->token[4].second]) {
+            case Operand::IX: line->machine.push_back(0xDD); break;
+            case Operand::IY: line->machine.push_back(0xFD); break;
+            default:
+                line->error = true;
+                line->errmsg = "Illegal BIT/SET/RES instruction.";
+                return;
+        }
+        int b = atoi(line->token[1].second.c_str());
+        if (!mnemonic_range(line, b, 0, 7)) {
             return;
         }
-    } else if (line->token.size() == 10) {
-        if ((mne == Mnemonic::SET || mne == Mnemonic::RES) &&
-            line->token[1].first == TokenType::Numeric &&
-            line->token[2].first == TokenType::Split &&
-            line->token[3].first == TokenType::AddressBegin &&
-            line->token[4].first == TokenType::Operand &&
-            operandTable[line->token[4].second] == Operand::IX &&
-            (line->token[5].first == TokenType::Plus || line->token[5].first == TokenType::Minus) &&
-            line->token[6].first == TokenType::Numeric &&
-            line->token[7].first == TokenType::AddressEnd &&
-            line->token[8].first == TokenType::And &&
-            line->token[9].first == TokenType::Operand &&
-            operandTable[line->token[9].second] == Operand::B) {
-            int b = atoi(line->token[1].second.c_str());
-            if (!mnemonic_range(line, b, 0, 7)) {
+        b <<= 3;
+        int n = atoi(line->token[6].second.c_str());
+        if (line->token[5].first == TokenType::Plus) {
+            if (!mnemonic_range(line, n, 0, 127)) {
                 return;
             }
-            b <<= 3;
-            int n = atoi(line->token[6].second.c_str());
-            if (line->token[5].first == TokenType::Plus) {
-                if (!mnemonic_range(line, n, 0, 127)) {
-                    return;
-                }
-            } else {
-                if (!mnemonic_range(line, n, 0, 128)) {
-                    return;
-                }
-                n = 0 - n;
+        } else {
+            if (!mnemonic_range(line, n, 0, 128)) {
+                return;
             }
-            uint8_t c = mne == Mnemonic::SET ? 0xC0 : 0x80;
-            line->machine.push_back(0xDD);
-            line->machine.push_back(0xCB);
-            line->machine.push_back(n & 0xFF);
-            line->machine.push_back(c | b);
+            n = 0 - n;
+        }
+        uint8_t c;
+        switch (mne) {
+            case Mnemonic::BIT: c = 0b01000110; break;
+            case Mnemonic::SET: c = 0b11000110; break;
+            case Mnemonic::RES: c = 0b10000110; break;
+            default:
+                line->error = true;
+                line->errmsg = "Illegal BIT/SET/RES instruction.";
+                return;
+        }
+        line->machine.push_back(0xCB);
+        line->machine.push_back(n & 0xFF);
+        line->machine.push_back(c | b);
+        return;
+    } else if ((mne == Mnemonic::SET || mne == Mnemonic::RES) &&
+               mnemonic_format_test(line, 10,
+                                    TokenType::Numeric,
+                                    TokenType::Split,
+                                    TokenType::AddressBegin,
+                                    TokenType::Operand,
+                                    TokenType::PlusOrMinus,
+                                    TokenType::Numeric,
+                                    TokenType::AddressEnd,
+                                    TokenType::And,
+                                    TokenType::Operand) &&
+               operandTable[line->token[4].second] == Operand::IX &&
+               operandTable[line->token[9].second] == Operand::B) {
+        int b = atoi(line->token[1].second.c_str());
+        if (!mnemonic_range(line, b, 0, 7)) {
             return;
         }
+        b <<= 3;
+        int n = atoi(line->token[6].second.c_str());
+        if (line->token[5].first == TokenType::Plus) {
+            if (!mnemonic_range(line, n, 0, 127)) {
+                return;
+            }
+        } else {
+            if (!mnemonic_range(line, n, 0, 128)) {
+                return;
+            }
+            n = 0 - n;
+        }
+        uint8_t c = mne == Mnemonic::SET ? 0xC0 : 0x80;
+        line->machine.push_back(0xDD);
+        line->machine.push_back(0xCB);
+        line->machine.push_back(n & 0xFF);
+        line->machine.push_back(c | b);
+        return;
     }
     line->error = true;
     line->errmsg = "Illegal BIT/SET/RES instruction.";

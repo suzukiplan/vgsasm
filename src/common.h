@@ -30,8 +30,9 @@ enum class TokenType {
     LabelJump,        // ジャンプ先ラベル
     Numeric,          // 数値
     Split,            // , カンマ
-    Plus,             // - プラス
-    Minus,            // * マイナス
+    Plus,             // + プラス
+    Minus,            // - マイナス
+    PlusOrMinus,      // + or - (比較用)
     Div,              // / 割り算
     Mul,              // * 掛け算
     ArrayBegin,       // [ 配列起点
