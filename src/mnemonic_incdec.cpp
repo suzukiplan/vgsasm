@@ -56,8 +56,10 @@ void mnemonic_INC(LineData* line)
             case Operand::IY: ML_INC_ADDR_IY(n); return;
         }
     }
-    line->error = true;
-    line->errmsg = "Illegal INC instruction.";
+    if (!line->error) {
+        line->error = true;
+        line->errmsg = "Illegal INC instruction.";
+    }
 }
 
 void mnemonic_DEC(LineData* line)
@@ -115,6 +117,8 @@ void mnemonic_DEC(LineData* line)
             case Operand::IY: ML_DEC_ADDR_IY(n); return;
         }
     }
-    line->error = true;
-    line->errmsg = "Illegal DEC instruction.";
+    if (!line->error) {
+        line->error = true;
+        line->errmsg = "Illegal DEC instruction.";
+    }
 }

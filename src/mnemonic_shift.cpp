@@ -102,6 +102,8 @@ void mnemonic_shift(LineData* line, uint8_t code)
             }
         }
     }
-    line->error = true;
-    line->errmsg = "Illegal shift/rotate instruction.";
+    if (!line->error) {
+        line->error = true;
+        line->errmsg = "Illegal shift/rotate instruction.";
+    }
 }

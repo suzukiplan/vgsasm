@@ -24,8 +24,10 @@ void mnemonic_IN(LineData* line)
             case Operand::A: line->machine.push_back(0x78); return;
         }
     }
-    line->error = true;
-    line->errmsg = "Illegal IN instruction.";
+    if (!line->error) {
+        line->error = true;
+        line->errmsg = "Illegal IN instruction.";
+    }
 }
 
 void mnemonic_OUT(LineData* line)
@@ -61,6 +63,8 @@ void mnemonic_OUT(LineData* line)
         line->machine.push_back(0x71);
         return;
     }
-    line->error = true;
-    line->errmsg = "Illegal OUT instruction.";
+    if (!line->error) {
+        line->error = true;
+        line->errmsg = "Illegal OUT instruction.";
+    }
 }

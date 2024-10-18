@@ -150,6 +150,8 @@ void mnemonic_bit_op(LineData* line, Mnemonic mne)
         line->machine.push_back(c | b);
         return;
     }
-    line->error = true;
-    line->errmsg = "Illegal BIT/SET/RES instruction.";
+    if (!line->error) {
+        line->error = true;
+        line->errmsg = "Illegal BIT/SET/RES instruction.";
+    }
 }

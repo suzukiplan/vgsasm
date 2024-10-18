@@ -243,6 +243,8 @@ void mnemonic_LD(LineData* line)
             }
         }
     }
-    line->error = true;
-    line->errmsg = "Illegal LD instruction.";
+    if (!line->error) {
+        line->error = true;
+        line->errmsg = "Illegal LD instruction.";
+    }
 }
