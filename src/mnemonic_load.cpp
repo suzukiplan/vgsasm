@@ -16,6 +16,20 @@ static bool isReg8(Operand op)
            op == Operand::IYL;
 }
 
+static bool isIX(Operand op)
+{
+    return op == Operand::IXH ||
+           op == Operand::IXL ||
+           op == Operand::IX;
+}
+
+static bool isIY(Operand op)
+{
+    return op == Operand::IYH ||
+           op == Operand::IYL ||
+           op == Operand::IY;
+}
+
 static uint8_t getBitReg8(Operand op)
 {
     switch (op) {
@@ -209,6 +223,24 @@ void mnemonic_LD(LineData* line)
             case Operand::IXL: ML_LD_HL_IXL; return;
             case Operand::IYH: ML_LD_HL_IYH; return;
             case Operand::IYL: ML_LD_HL_IYL; return;
+        }
+    } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Numeric)) {
+        // `LD r, n` or `LD rr, nn`
+        auto op = operandTable[line->token[1].second];
+        if (isReg8(op)) {
+            auto b = getBitReg8(op);
+            b <<= 3;
+            auto n = atoi(line->token[3].second.c_str());
+            if (mnemonic_range(line, n, -128, 255)) {
+                if (isIX(op)) {
+                    line->machine.push_back(0xDD);
+                } else if (isIY(op)) {
+                    line->machine.push_back(0xFD);
+                }
+                line->machine.push_back(0x06 | b);
+                line->machine.push_back(n & 0xFF);
+                return;
+            }
         }
     }
     line->error = true;

@@ -1003,3 +1003,16 @@ Transfer_Load_Store:
     LD (HL), IXL
     LD (HL), IYH
     LD (HL), IYL
+
+@Load_immediate
+    LD A, -128
+    LD B, -1
+    LD C, 0
+    LD D, 1
+    LD E, 127
+    LD H, 128
+    LD L, 255
+    LD IXH, $11
+    LD IXL, $22
+    LD IYH, $88
+    LD IYL, $99
