@@ -938,3 +938,7 @@
                     ld        ix,($06ce)                    ;[076e] dd 2a ce 06
                     ld        iy,($06ae)                    ;[0772] fd 2a ae 06
                     nop                                     ;[0776] 00
+                    ld        a,(bc)                        ;[0777] 0a
+                    ld        a,(de)                        ;[0778] 1a
+                    ld        (bc),a                        ;[0779] 02
+                    ld        (de),a                        ;[077a] 12

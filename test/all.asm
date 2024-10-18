@@ -1051,3 +1051,9 @@ Transfer_Load_Store:
     LD IY, (@LD_SP_rr)
 @Load_immediate_address_label_end
     NOP
+
+@Load_Store_BC_DE
+    LD A, (BC)
+    LD A, (DE)
+    LD (BC), A
+    LD (DE), A
