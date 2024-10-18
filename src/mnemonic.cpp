@@ -1219,6 +1219,27 @@ static void mnemonic_OUT(LineData* line)
     line->machine.push_back(0xFD); \
     line->machine.push_back(0x45)
 
+#define ML_LD_C_B line->machine.push_back(0x48)
+#define ML_LD_C_C line->machine.push_back(0x49)
+#define ML_LD_C_D line->machine.push_back(0x4A)
+#define ML_LD_C_E line->machine.push_back(0x4B)
+#define ML_LD_C_H line->machine.push_back(0x4C)
+#define ML_LD_C_L line->machine.push_back(0x4D)
+#define ML_LD_C_HL line->machine.push_back(0x4E)
+#define ML_LD_C_A line->machine.push_back(0x4F)
+#define ML_LD_C_IXH                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x4C)
+#define ML_LD_C_IXL                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x4D)
+#define ML_LD_C_IYH                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x4C)
+#define ML_LD_C_IYL                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x4D)
+
 static void mnemonic_LD(LineData* line)
 {
     if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand)) {
@@ -1253,6 +1274,21 @@ static void mnemonic_LD(LineData* line)
                     case Operand::IXL: ML_LD_B_IXL; return; // LD B,IXL
                     case Operand::IYH: ML_LD_B_IYH; return; // LD B,IYH
                     case Operand::IYL: ML_LD_B_IYL; return; // LD B,IYL
+                }
+                break;
+            case Operand::C:
+                switch (op2) {
+                    case Operand::A: ML_LD_C_A; return;     // LD C,A
+                    case Operand::B: ML_LD_C_B; return;     // LD C,B
+                    case Operand::C: ML_LD_C_C; return;     // LD C,C
+                    case Operand::D: ML_LD_C_D; return;     // LD C,D
+                    case Operand::E: ML_LD_C_E; return;     // LD C,E
+                    case Operand::H: ML_LD_C_H; return;     // LD C,H
+                    case Operand::L: ML_LD_C_L; return;     // LD C,L
+                    case Operand::IXH: ML_LD_C_IXH; return; // LD C,IXH
+                    case Operand::IXL: ML_LD_C_IXL; return; // LD C,IXL
+                    case Operand::IYH: ML_LD_C_IYH; return; // LD C,IYH
+                    case Operand::IYL: ML_LD_C_IYL; return; // LD C,IYL
                 }
                 break;
         }

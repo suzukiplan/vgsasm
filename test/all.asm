@@ -791,7 +791,7 @@ IO:
     OTDR
     OUTDR
 
-Load_and_Store:
+Transfer_Load_Store:
 
 @LD_A_r
     LD A, A
@@ -818,3 +818,16 @@ Load_and_Store:
     LD B, IXL
     LD B, IYH
     LD B, IYL
+
+@LD_C_r
+    LD C, A
+    LD C, B
+    LD C, C
+    LD C, D
+    LD C, E
+    LD C, H
+    LD C, L
+    LD C, IXH
+    LD C, IXL
+    LD C, IYH
+    LD C, IYL
