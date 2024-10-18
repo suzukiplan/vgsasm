@@ -1016,3 +1016,10 @@ Transfer_Load_Store:
     LD IXL, $22
     LD IYH, $88
     LD IYL, $99
+    LD BC, -32768
+    LD DE, -1
+    LD HL, 0x1234
+    LD IX, 32767
+    LD IY, 65535
+
+EndAll:

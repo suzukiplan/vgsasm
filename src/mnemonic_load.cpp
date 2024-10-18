@@ -227,10 +227,10 @@ void mnemonic_LD(LineData* line)
     } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Numeric)) {
         // `LD r, n` or `LD rr, nn`
         auto op = operandTable[line->token[1].second];
+        auto n = atoi(line->token[3].second.c_str());
         if (isReg8(op)) {
             auto b = getBitReg8(op);
             b <<= 3;
-            auto n = atoi(line->token[3].second.c_str());
             if (mnemonic_range(line, n, -128, 255)) {
                 if (isIX(op)) {
                     line->machine.push_back(0xDD);
@@ -240,6 +240,29 @@ void mnemonic_LD(LineData* line)
                 line->machine.push_back(0x06 | b);
                 line->machine.push_back(n & 0xFF);
                 return;
+            }
+        } else {
+            if (mnemonic_range(line, n, -32768, 65535)) {
+                uint8_t code = 0x00;
+                switch (op) {
+                    case Operand::BC: code = 0x01; break;
+                    case Operand::DE: code = 0x11; break;
+                    case Operand::HL: code = 0x21; break;
+                    case Operand::SP: code = 0x31; break;
+                    case Operand::IX: code = 0x21; break;
+                    case Operand::IY: code = 0x21; break;
+                }
+                if (code) {
+                    if (isIX(op)) {
+                        line->machine.push_back(0xDD);
+                    } else if (isIY(op)) {
+                        line->machine.push_back(0xFD);
+                    }
+                    line->machine.push_back(code);
+                    line->machine.push_back(n & 0x00FF);
+                    line->machine.push_back((n & 0xFF00) >> 8);
+                    return;
+                }
             }
         }
     }

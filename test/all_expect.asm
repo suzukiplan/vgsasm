@@ -912,3 +912,8 @@
                     ld        ixl,$22                       ;[0716] dd 2e 22
                     ld        iyh,$88                       ;[0719] fd 26 88
                     ld        iyl,$99                       ;[071c] fd 2e 99
+                    ld        bc,$8000                      ;[071f] 01 00 80
+                    ld        de,$ffff                      ;[0722] 11 ff ff
+                    ld        hl,$1234                      ;[0725] 21 34 12
+                    ld        ix,$7fff                      ;[0728] dd 21 ff 7f
+                    ld        iy,$ffff                      ;[072c] fd 21 ff ff
