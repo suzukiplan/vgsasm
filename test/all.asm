@@ -1023,11 +1023,21 @@ Transfer_Load_Store:
     LD IY, 65535
 
 @Load_immediate_label
-    LD BC, EndAll
+    LD BC, @Load_immediate_label_End
     LD DE, Transfer_Load_Store
     LD HL, Stack@Main
     LD IX, @Load_immediate
     LD IY, Main
 
-EndAll:
+@Load_immediate_label_End
     NOP
+
+@Load_immediate_address
+    LD A, ($1234)
+    LD BC, ($5678)
+    LD DE, ($9ABC)
+    LD HL, ($DEF0)
+    LD SP, ($2525)
+    LD IX, ($0831)
+    LD IY, ($8931)
+

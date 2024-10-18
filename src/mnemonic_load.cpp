@@ -288,6 +288,27 @@ void mnemonic_LD(LineData* line)
             line->machine.push_back(0x00);
             return;
         }
+    } else if (mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd)) {
+        // LD r, (nn)
+        auto op = operandTable[line->token[1].second];
+        uint16_t code = 0x00;
+        switch (op) {
+            case Operand::A: code = 0x3A; break;
+            case Operand::HL: code = 0x2A; break;
+            case Operand::BC: code = 0xED4B; break;
+            case Operand::DE: code = 0xED5B; break;
+            case Operand::SP: code = 0xED7B; break;
+            case Operand::IX: code = 0xDD2A; break;
+            case Operand::IY: code = 0xFD2A; break;
+        }
+        auto addr = atoi(line->token[4].second.c_str());
+        if (code && mnemonic_range(line, addr, 0x0000, 0xFFFF)) {
+            if (0x100 <= code) { line->machine.push_back((code & 0xFF00) >> 8); }
+            line->machine.push_back(code & 0xFF);
+            line->machine.push_back(addr & 0x00FF);
+            line->machine.push_back((addr & 0xFF00) >> 8);
+            return;
+        }
     }
     if (!line->error) {
         line->error = true;
