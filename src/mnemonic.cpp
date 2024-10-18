@@ -661,7 +661,7 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
 
 static void mnemonic_INC(LineData* line)
 {
-    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+    if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         switch (operandTable[line->token[1].second]) {
             case Operand::A: ML_INC_A; return;
             case Operand::B: ML_INC_B; return;
@@ -681,19 +681,13 @@ static void mnemonic_INC(LineData* line)
             case Operand::IX: ML_INC_IX; return;
             case Operand::IY: ML_INC_IY; return;
         }
-    } else if (line->token.size() == 4 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Operand &&
-               line->token[3].first == TokenType::AddressEnd) {
+    } else if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd)) {
         switch (operandTable[line->token[2].second]) {
             case Operand::HL: ML_INC_ADDR_HL; return;
             case Operand::IX: ML_INC_ADDR_IX(0); return;
             case Operand::IY: ML_INC_ADDR_IY(0); return;
         }
-    } else if (line->token.size() == 4 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Numeric &&
-               line->token[3].first == TokenType::AddressEnd) {
+    } else if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd)) {
         int addr = atoi(line->token[2].second.c_str());
         if (mnemonic_range(line, addr, 0x0000, 0xFFFF)) {
             ML_PUSH_HL;
@@ -703,12 +697,7 @@ static void mnemonic_INC(LineData* line)
             ML_POP_HL;
             return;
         }
-    } else if (line->token.size() == 6 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Operand &&
-               (line->token[3].first == TokenType::Plus || line->token[3].first == TokenType::Minus) &&
-               line->token[4].first == TokenType::Numeric &&
-               line->token[5].first == TokenType::AddressEnd) {
+    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Operand, TokenType::PlusOrMinus, TokenType::Numeric, TokenType::AddressEnd)) {
         int n = atoi(line->token[4].second.c_str());
         if (line->token[3].first == TokenType::Plus) {
             if (!mnemonic_range(line, n, 0, 127)) {
@@ -731,7 +720,7 @@ static void mnemonic_INC(LineData* line)
 
 static void mnemonic_DEC(LineData* line)
 {
-    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+    if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         switch (operandTable[line->token[1].second]) {
             case Operand::A: ML_DEC_A; return;
             case Operand::B: ML_DEC_B; return;
@@ -751,19 +740,13 @@ static void mnemonic_DEC(LineData* line)
             case Operand::IX: ML_DEC_IX; return;
             case Operand::IY: ML_DEC_IY; return;
         }
-    } else if (line->token.size() == 4 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Operand &&
-               line->token[3].first == TokenType::AddressEnd) {
+    } else if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd)) {
         switch (operandTable[line->token[2].second]) {
             case Operand::HL: ML_DEC_ADDR_HL; return;
             case Operand::IX: ML_DEC_ADDR_IX(0); return;
             case Operand::IY: ML_DEC_ADDR_IY(0); return;
         }
-    } else if (line->token.size() == 4 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Numeric &&
-               line->token[3].first == TokenType::AddressEnd) {
+    } else if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd)) {
         int addr = atoi(line->token[2].second.c_str());
         if (mnemonic_range(line, addr, 0x0000, 0xFFFF)) {
             ML_PUSH_HL;
@@ -773,12 +756,7 @@ static void mnemonic_DEC(LineData* line)
             ML_POP_HL;
             return;
         }
-    } else if (line->token.size() == 6 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Operand &&
-               (line->token[3].first == TokenType::Plus || line->token[3].first == TokenType::Minus) &&
-               line->token[4].first == TokenType::Numeric &&
-               line->token[5].first == TokenType::AddressEnd) {
+    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Operand, TokenType::PlusOrMinus, TokenType::Numeric, TokenType::AddressEnd)) {
         int n = atoi(line->token[4].second.c_str());
         if (line->token[3].first == TokenType::Plus) {
             if (!mnemonic_range(line, n, 0, 127)) {
@@ -801,7 +779,7 @@ static void mnemonic_DEC(LineData* line)
 
 static void mnemonic_shift(LineData* line, uint8_t code)
 {
-    if (line->token.size() == 2 && line->token[1].first == TokenType::Operand) {
+    if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         line->machine.push_back(0xCB);
         switch (operandTable[line->token[1].second]) {
             case Operand::A: line->machine.push_back(code | 0x07); return;
@@ -812,10 +790,7 @@ static void mnemonic_shift(LineData* line, uint8_t code)
             case Operand::H: line->machine.push_back(code | 0x04); return;
             case Operand::L: line->machine.push_back(code | 0x05); return;
         }
-    } else if (line->token.size() == 4 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Operand &&
-               line->token[3].first == TokenType::AddressEnd) {
+    } else if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd)) {
         switch (operandTable[line->token[2].second]) {
             case Operand::HL:;
                 line->machine.push_back(0xCB);
@@ -834,12 +809,7 @@ static void mnemonic_shift(LineData* line, uint8_t code)
                 line->machine.push_back(code | 0x06);
                 return;
         }
-    } else if (line->token.size() == 6 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Operand &&
-               (line->token[3].first == TokenType::Plus || line->token[3].first == TokenType::Minus) &&
-               line->token[4].first == TokenType::Numeric &&
-               line->token[5].first == TokenType::AddressEnd) {
+    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Operand, TokenType::PlusOrMinus, TokenType::Numeric, TokenType::AddressEnd)) {
         int n = atoi(line->token[4].second.c_str());
         if (line->token[3].first == TokenType::Plus) {
             if (!mnemonic_range(line, n, 0, 127)) {
@@ -865,14 +835,7 @@ static void mnemonic_shift(LineData* line, uint8_t code)
                 line->machine.push_back(code | 0x06);
                 return;
         }
-    } else if (line->token.size() == 8 &&
-               line->token[1].first == TokenType::AddressBegin &&
-               line->token[2].first == TokenType::Operand &&
-               (line->token[3].first == TokenType::Plus || line->token[3].first == TokenType::Minus) &&
-               line->token[4].first == TokenType::Numeric &&
-               line->token[5].first == TokenType::AddressEnd &&
-               line->token[6].first == TokenType::And &&
-               line->token[7].first == TokenType::Operand) {
+    } else if (mnemonic_format_test(line, 8, TokenType::AddressBegin, TokenType::Operand, TokenType::PlusOrMinus, TokenType::Numeric, TokenType::AddressEnd, TokenType::And, TokenType::Operand)) {
         int n = atoi(line->token[4].second.c_str());
         if (line->token[3].first == TokenType::Plus) {
             if (!mnemonic_range(line, n, 0, 127)) {
