@@ -403,7 +403,7 @@ void mnemonic_calc8(LineData* line, uint8_t code)
     }
 }
 
-static void mnemonic_calc16(LineData* line, uint8_t code)
+void mnemonic_calc16(LineData* line, uint8_t code)
 {
     bool supportImmediate = true;
     bool supportIXY = true;
@@ -479,7 +479,7 @@ static void mnemonic_calc16(LineData* line, uint8_t code)
     }
 }
 
-static void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
+void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
 {
     if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         mnemonic_calc8(line, code8);
@@ -506,7 +506,7 @@ static void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
     }
 }
 
-static void mnemonic_bit_op(LineData* line, Mnemonic mne)
+void mnemonic_bit_op(LineData* line, Mnemonic mne)
 {
     if (mnemonic_format_test(line, 4, TokenType::Numeric, TokenType::Split, TokenType::Operand)) {
         int b = atoi(line->token[1].second.c_str());
@@ -659,7 +659,7 @@ static void mnemonic_bit_op(LineData* line, Mnemonic mne)
     line->errmsg = "Illegal BIT/SET/RES instruction.";
 }
 
-static void mnemonic_INC(LineData* line)
+void mnemonic_INC(LineData* line)
 {
     if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         switch (operandTable[line->token[1].second]) {
@@ -718,7 +718,7 @@ static void mnemonic_INC(LineData* line)
     line->errmsg = "Illegal INC instruction.";
 }
 
-static void mnemonic_DEC(LineData* line)
+void mnemonic_DEC(LineData* line)
 {
     if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         switch (operandTable[line->token[1].second]) {
@@ -777,7 +777,7 @@ static void mnemonic_DEC(LineData* line)
     line->errmsg = "Illegal DEC instruction.";
 }
 
-static void mnemonic_shift(LineData* line, uint8_t code)
+void mnemonic_shift(LineData* line, uint8_t code)
 {
     if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         line->machine.push_back(0xCB);
@@ -882,7 +882,7 @@ static void mnemonic_shift(LineData* line, uint8_t code)
     line->errmsg = "Illegal shift/rotate instruction.";
 }
 
-static void mnemonic_IN(LineData* line)
+void mnemonic_IN(LineData* line)
 {
     if (mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd) &&
         operandTable[line->token[1].second] == Operand::A) {
@@ -909,7 +909,7 @@ static void mnemonic_IN(LineData* line)
     line->errmsg = "Illegal IN instruction.";
 }
 
-static void mnemonic_OUT(LineData* line)
+void mnemonic_OUT(LineData* line)
 {
     if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd, TokenType::Split, TokenType::Operand) &&
         operandTable[line->token[5].second] == Operand::A) {
@@ -946,7 +946,7 @@ static void mnemonic_OUT(LineData* line)
     line->errmsg = "Illegal OUT instruction.";
 }
 
-static bool check_ld_reg8(Operand op)
+bool check_ld_reg8(Operand op)
 {
     return op == Operand::A ||
            op == Operand::B ||
@@ -961,7 +961,7 @@ static bool check_ld_reg8(Operand op)
            op == Operand::IYL;
 }
 
-static uint8_t get_bit_reg8(Operand op)
+uint8_t get_bit_reg8(Operand op)
 {
     switch (op) {
         case Operand::B: return 0x00;
@@ -979,7 +979,7 @@ static uint8_t get_bit_reg8(Operand op)
     return 0xFF;
 }
 
-static void mnemonic_LD(LineData* line)
+void mnemonic_LD(LineData* line)
 {
     if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand)) {
         // LD r, r'
@@ -1160,7 +1160,7 @@ static void mnemonic_LD(LineData* line)
     line->errmsg = "Illegal LD instruction.";
 }
 
-static void setpc(LineData* prev, LineData* cur)
+void setpc(LineData* prev, LineData* cur)
 {
     if (cur->programCounterInit) {
         return;
