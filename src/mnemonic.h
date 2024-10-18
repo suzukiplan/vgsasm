@@ -81,3 +81,225 @@ enum class Mnemonic {
     DB,
     DW,
 };
+
+#define ML_PUSH_BC line->machine.push_back(0xC5)
+#define ML_PUSH_DE line->machine.push_back(0xD5)
+#define ML_PUSH_HL line->machine.push_back(0xE5)
+#define ML_PUSH_AF line->machine.push_back(0xF5)
+#define ML_PUSH_IX                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0xE5)
+#define ML_PUSH_IY                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0xE5)
+#define ML_POP_BC line->machine.push_back(0xC1)
+#define ML_POP_DE line->machine.push_back(0xD1)
+#define ML_POP_HL line->machine.push_back(0xE1)
+#define ML_POP_AF line->machine.push_back(0xF1)
+#define ML_POP_IX                  \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0xE1)
+#define ML_POP_IY                  \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0xE1)
+
+#define ML_LD_A_n(X)               \
+    line->machine.push_back(0x3E); \
+    line->machine.push_back(X)
+#define ML_LD_B_n(X)               \
+    line->machine.push_back(0x06); \
+    line->machine.push_back(X)
+#define ML_LD_C_n(X)               \
+    line->machine.push_back(0x0E); \
+    line->machine.push_back(X)
+#define ML_LD_D_n(X)               \
+    line->machine.push_back(0x16); \
+    line->machine.push_back(X)
+#define ML_LD_E_n(X)               \
+    line->machine.push_back(0x1E); \
+    line->machine.push_back(X)
+#define ML_LD_H_n(X)               \
+    line->machine.push_back(0x26); \
+    line->machine.push_back(X)
+#define ML_LD_L_n(X)               \
+    line->machine.push_back(0x2E); \
+    line->machine.push_back(X)
+
+#define ML_ADD_HL_BC line->machine.push_back(0x09)
+#define ML_ADD_HL_DE line->machine.push_back(0x19)
+#define ML_ADD_HL_HL line->machine.push_back(0x29)
+#define ML_ADD_HL_SP line->machine.push_back(0x39)
+
+#define ML_ADD_IX_BC               \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x09)
+#define ML_ADD_IX_DE               \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x19)
+#define ML_ADD_IX_IX               \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x29)
+#define ML_ADD_IX_SP               \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x39)
+
+#define ML_ADD_IY_BC               \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x09)
+#define ML_ADD_IY_DE               \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x19)
+#define ML_ADD_IY_IY               \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x29)
+#define ML_ADD_IY_SP               \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x39)
+
+#define ML_INC_A line->machine.push_back(0x3C)
+#define ML_INC_B line->machine.push_back(0x04)
+#define ML_INC_C line->machine.push_back(0x0C)
+#define ML_INC_D line->machine.push_back(0x14)
+#define ML_INC_E line->machine.push_back(0x1C)
+#define ML_INC_H line->machine.push_back(0x24)
+#define ML_INC_L line->machine.push_back(0x2C)
+#define ML_INC_BC line->machine.push_back(0x03)
+#define ML_INC_DE line->machine.push_back(0x13)
+#define ML_INC_HL line->machine.push_back(0x23)
+#define ML_INC_ADDR_HL line->machine.push_back(0x34)
+#define ML_INC_SP line->machine.push_back(0x33)
+#define ML_INC_IXH                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x24)
+#define ML_INC_IXL                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x2C)
+#define ML_INC_IYH                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x24)
+#define ML_INC_IYL                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x2C)
+#define ML_INC_IX                  \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x23)
+#define ML_INC_IY                  \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x23)
+#define ML_INC_ADDR_IX(D)          \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x34); \
+    line->machine.push_back(D)
+#define ML_INC_ADDR_IY(D)          \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x34); \
+    line->machine.push_back(D)
+
+#define ML_DEC_A line->machine.push_back(0x3D)
+#define ML_DEC_B line->machine.push_back(0x05)
+#define ML_DEC_C line->machine.push_back(0x0D)
+#define ML_DEC_D line->machine.push_back(0x15)
+#define ML_DEC_E line->machine.push_back(0x1D)
+#define ML_DEC_H line->machine.push_back(0x25)
+#define ML_DEC_L line->machine.push_back(0x2D)
+#define ML_DEC_BC line->machine.push_back(0x0B)
+#define ML_DEC_DE line->machine.push_back(0x1B)
+#define ML_DEC_HL line->machine.push_back(0x2B)
+#define ML_DEC_ADDR_HL line->machine.push_back(0x35)
+#define ML_DEC_SP line->machine.push_back(0x3B)
+#define ML_DEC_IXH                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x25)
+#define ML_DEC_IXL                 \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x2D)
+#define ML_DEC_IYH                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x25)
+#define ML_DEC_IYL                 \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x2D)
+#define ML_DEC_IX                  \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x2B)
+#define ML_DEC_IY                  \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x2B)
+#define ML_DEC_ADDR_IX(D)          \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x35); \
+    line->machine.push_back(D)
+#define ML_DEC_ADDR_IY(D)          \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x35); \
+    line->machine.push_back(D)
+
+#define ML_IN_A(N)                 \
+    line->machine.push_back(0xDB); \
+    line->machine.push_back(n)
+#define ML_OUT_A(N)                \
+    line->machine.push_back(0xD3); \
+    line->machine.push_back(n)
+
+#define ML_LD_A_B line->machine.push_back(0x78)
+#define ML_LD_A_C line->machine.push_back(0x79)
+#define ML_LD_A_D line->machine.push_back(0x7A)
+#define ML_LD_A_E line->machine.push_back(0x7B)
+#define ML_LD_A_H line->machine.push_back(0x7C)
+#define ML_LD_A_L line->machine.push_back(0x7D)
+#define ML_LD_A_HL line->machine.push_back(0x7E)
+#define ML_LD_A_A line->machine.push_back(0x7F)
+#define ML_LD_A_IXH                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x7C)
+#define ML_LD_A_IXL                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x7D)
+#define ML_LD_A_IYH                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x7C)
+#define ML_LD_A_IYL                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x7D)
+
+#define ML_LD_B_B line->machine.push_back(0x40)
+#define ML_LD_B_C line->machine.push_back(0x41)
+#define ML_LD_B_D line->machine.push_back(0x42)
+#define ML_LD_B_E line->machine.push_back(0x43)
+#define ML_LD_B_H line->machine.push_back(0x44)
+#define ML_LD_B_L line->machine.push_back(0x45)
+#define ML_LD_B_HL line->machine.push_back(0x46)
+#define ML_LD_B_A line->machine.push_back(0x47)
+#define ML_LD_B_IXH                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x44)
+#define ML_LD_B_IXL                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x45)
+#define ML_LD_B_IYH                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x44)
+#define ML_LD_B_IYL                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x45)
+
+#define ML_LD_C_B line->machine.push_back(0x48)
+#define ML_LD_C_C line->machine.push_back(0x49)
+#define ML_LD_C_D line->machine.push_back(0x4A)
+#define ML_LD_C_E line->machine.push_back(0x4B)
+#define ML_LD_C_H line->machine.push_back(0x4C)
+#define ML_LD_C_L line->machine.push_back(0x4D)
+#define ML_LD_C_HL line->machine.push_back(0x4E)
+#define ML_LD_C_A line->machine.push_back(0x4F)
+#define ML_LD_C_IXH                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x4C)
+#define ML_LD_C_IXL                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x4D)
+#define ML_LD_C_IYH                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x4C)
+#define ML_LD_C_IYL                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x4D)

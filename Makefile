@@ -50,7 +50,7 @@ label.o: src/label.cpp ${HEADERS}
 line.o: src/line.cpp ${HEADERS}
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-mnemonic.o: src/mnemonic.cpp ${HEADERS}
+mnemonic.o: src/mnemonic.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 numeric.o: src/numeric.cpp ${HEADERS}
