@@ -1099,6 +1099,38 @@ static void mnemonic_LD(LineData* line)
             case Operand::IXL: ML_LD_IXL_HL; return;
             case Operand::IYH: ML_LD_IYH_HL; return;
             case Operand::IYL: ML_LD_IYL_HL; return;
+            case Operand::BC:
+                ML_LD_C_HL;
+                ML_INC_HL;
+                ML_LD_B_HL;
+                ML_DEC_HL;
+                return;
+            case Operand::DE:
+                ML_LD_E_HL;
+                ML_INC_HL;
+                ML_LD_D_HL;
+                ML_DEC_HL;
+                return;
+            case Operand::IX:
+                ML_PUSH_AF;
+                ML_LD_A_HL;
+                ML_LD_IXL_A;
+                ML_INC_HL;
+                ML_LD_A_HL;
+                ML_LD_IXH_A;
+                ML_DEC_HL;
+                ML_POP_AF;
+                return;
+            case Operand::IY:
+                ML_PUSH_AF;
+                ML_LD_A_HL;
+                ML_LD_IYL_A;
+                ML_INC_HL;
+                ML_LD_A_HL;
+                ML_LD_IYH_A;
+                ML_DEC_HL;
+                ML_POP_AF;
+                return;
         }
     }
     line->error = true;

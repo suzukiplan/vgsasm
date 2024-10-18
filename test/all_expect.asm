@@ -851,3 +851,27 @@
                     pop       iy                            ;[06c3] fd e1
                     ld        iyh,iyh                       ;[06c5] fd 64
                     ld        iyl,iyl                       ;[06c7] fd 6d
+                    ld        c,(hl)                        ;[06c9] 4e
+                    inc       hl                            ;[06ca] 23
+                    ld        b,(hl)                        ;[06cb] 46
+                    dec       hl                            ;[06cc] 2b
+                    ld        e,(hl)                        ;[06cd] 5e
+                    inc       hl                            ;[06ce] 23
+                    ld        d,(hl)                        ;[06cf] 56
+                    dec       hl                            ;[06d0] 2b
+                    push      af                            ;[06d1] f5
+                    ld        a,(hl)                        ;[06d2] 7e
+                    ld        ixl,a                         ;[06d3] dd 6f
+                    inc       hl                            ;[06d5] 23
+                    ld        a,(hl)                        ;[06d6] 7e
+                    ld        ixh,a                         ;[06d7] dd 67
+                    dec       hl                            ;[06d9] 2b
+                    pop       af                            ;[06da] f1
+                    push      af                            ;[06db] f5
+                    ld        a,(hl)                        ;[06dc] 7e
+                    ld        iyl,a                         ;[06dd] fd 6f
+                    inc       hl                            ;[06df] 23
+                    ld        a,(hl)                        ;[06e0] 7e
+                    ld        iyh,a                         ;[06e1] fd 67
+                    dec       hl                            ;[06e3] 2b
+                    pop       af                            ;[06e4] f1

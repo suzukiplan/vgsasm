@@ -979,3 +979,9 @@ Transfer_Load_Store:
     LD IY,HL
     LD IY,IX
     LD IY,IY
+
+@LD_rr_(HL) ; auto expand all
+    LD BC, (HL)
+    LD DE, (HL)
+    LD IX, (HL)
+    LD IY, (HL)
