@@ -9,6 +9,14 @@ OBJECTS = \
 	label.o \
 	line.o \
 	mnemonic.o \
+	mnemonic_io.o \
+	mnemonic_shift.o \
+	mnemonic_load.o \
+	mnemonic_calc.o \
+	mnemonic_incdec.o \
+	mnemonic_ex.o \
+	mnemonic_stack.o \
+	mnemonic_bit.o \
 	numeric.o \
 	operand.o \
 	sizeof.o \
@@ -51,6 +59,30 @@ line.o: src/line.cpp ${HEADERS}
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 mnemonic.o: src/mnemonic.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_io.o: src/mnemonic_io.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_shift.o: src/mnemonic_shift.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_load.o: src/mnemonic_load.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_calc.o: src/mnemonic_calc.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_incdec.o: src/mnemonic_incdec.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_ex.o: src/mnemonic_ex.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_stack.o: src/mnemonic_stack.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_bit.o: src/mnemonic_bit.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 numeric.o: src/numeric.cpp ${HEADERS}

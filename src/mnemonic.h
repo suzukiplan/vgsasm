@@ -591,3 +591,10 @@ enum class Mnemonic {
     ML_LD_A_IYL;     \
     ML_LD_HL_A;      \
     ML_POP_AF
+
+bool mnemonic_format_check(LineData* line, int size, ...);
+bool mnemonic_format_test(LineData* line, int size, ...);
+bool mnemonic_range(LineData* line, int n, int min, int max);
+bool mnemonic_is_reg16(Operand op);
+void mnemonic_single(LineData* line, uint8_t code);
+void mnemonic_single_ED(LineData* line, uint8_t code);
