@@ -193,6 +193,7 @@ In vgsasm, instructions that __do not exist in the Z80__ are complemented by exi
 
 | Instruction | Auto-expand |
 |:------------|:------------|
+| `LD {BC｜DE｜HL｜IX｜IY}, {BC｜DE｜HL｜IX｜IY}` | `LD r<H>,r<H>`, `LD r<L>,r<L>`<br>or `PUSH RR2`, `POP RR1`|
 | `LD BC,nn` | `LD B,n(high)`, `LD C,n(low)` |
 | `LD DE,nn` | `LD D,n(high)`, `LD E,n(low)` |
 | `LD HL,nn` | `LD H,n(high)`, `LD L,n(low)` |

@@ -948,3 +948,34 @@ Transfer_Load_Store:
     LD IXL, (HL) ; auto expand
     LD IYH, (HL) ; auto expand
     LD IYL, (HL) ; auto expand
+
+@LD_rr_rr ; auto expand all
+    LD BC,BC
+    LD BC,DE
+    LD BC,HL
+    LD BC,IX
+    LD BC,IY
+
+    LD DE,BC
+    LD DE,DE
+    LD DE,HL
+    LD DE,IX
+    LD DE,IY
+
+    LD HL,BC
+    LD HL,DE
+    LD HL,HL
+    LD HL,IX
+    LD HL,IY
+
+    LD IX,BC
+    LD IX,DE
+    LD IX,HL
+    LD IX,IX
+    LD IX,IY
+
+    LD IY,BC
+    LD IY,DE
+    LD IY,HL
+    LD IY,IX
+    LD IY,IY

@@ -301,6 +301,62 @@ enum class Mnemonic {
     line->machine.push_back(0xFD); \
     line->machine.push_back(0x4D)
 
+#define ML_LD_D_B line->machine.push_back(0x50)
+#define ML_LD_D_C line->machine.push_back(0x51)
+#define ML_LD_D_D line->machine.push_back(0x52)
+#define ML_LD_D_E line->machine.push_back(0x53)
+#define ML_LD_D_H line->machine.push_back(0x54)
+#define ML_LD_D_L line->machine.push_back(0x55)
+#define ML_LD_D_A line->machine.push_back(0x57)
+#define ML_LD_D_IXH                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x54)
+#define ML_LD_D_IXL                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x55)
+#define ML_LD_D_IYH                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x54)
+#define ML_LD_D_IYL                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x55)
+
+#define ML_LD_E_B line->machine.push_back(0x58)
+#define ML_LD_E_C line->machine.push_back(0x59)
+#define ML_LD_E_D line->machine.push_back(0x5A)
+#define ML_LD_E_E line->machine.push_back(0x5B)
+#define ML_LD_E_H line->machine.push_back(0x5C)
+#define ML_LD_E_L line->machine.push_back(0x5D)
+#define ML_LD_E_A line->machine.push_back(0x5F)
+#define ML_LD_E_IXH                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x4C)
+#define ML_LD_E_IXL                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x4D)
+#define ML_LD_E_IYH                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x4C)
+#define ML_LD_E_IYL                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x4D)
+
+#define ML_LD_H_B line->machine.push_back(0x60)
+#define ML_LD_H_C line->machine.push_back(0x61)
+#define ML_LD_H_D line->machine.push_back(0x62)
+#define ML_LD_H_E line->machine.push_back(0x63)
+#define ML_LD_H_H line->machine.push_back(0x64)
+#define ML_LD_H_L line->machine.push_back(0x65)
+#define ML_LD_H_A line->machine.push_back(0x67)
+
+#define ML_LD_L_B line->machine.push_back(0x68)
+#define ML_LD_L_C line->machine.push_back(0x69)
+#define ML_LD_L_D line->machine.push_back(0x6A)
+#define ML_LD_L_E line->machine.push_back(0x6B)
+#define ML_LD_L_H line->machine.push_back(0x6C)
+#define ML_LD_L_L line->machine.push_back(0x6D)
+#define ML_LD_L_A line->machine.push_back(0x6F)
+
 #define ML_LD_IXH_A                \
     line->machine.push_back(0xDD); \
     line->machine.push_back(0x67);
@@ -313,6 +369,84 @@ enum class Mnemonic {
 #define ML_LD_IYL_A                \
     line->machine.push_back(0xFD); \
     line->machine.push_back(0x6F);
+
+#define ML_LD_IXH_B                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x60);
+#define ML_LD_IXL_B                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x68);
+#define ML_LD_IYH_B                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x60);
+#define ML_LD_IYL_B                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x68);
+
+#define ML_LD_IXH_C                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x61);
+#define ML_LD_IXL_C                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x69);
+#define ML_LD_IYH_C                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x61);
+#define ML_LD_IYL_C                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x69);
+
+#define ML_LD_IXH_D                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x62);
+#define ML_LD_IXL_D                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x6A);
+#define ML_LD_IYH_D                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x62);
+#define ML_LD_IYL_D                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x6A);
+
+#define ML_LD_IXH_E                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x63);
+#define ML_LD_IXL_E                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x6B);
+#define ML_LD_IYH_E                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x63);
+#define ML_LD_IYL_E                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x6B);
+
+#define ML_LD_IXH_IXH              \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x64);
+#define ML_LD_IXL_IXH              \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x6C);
+#define ML_LD_IYH_IYH              \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x64);
+#define ML_LD_IYL_IYH              \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x6C);
+
+#define ML_LD_IXH_IXL              \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x65);
+#define ML_LD_IXL_IXL              \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0x6D);
+#define ML_LD_IYH_IYL              \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x65);
+#define ML_LD_IYL_IYL              \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0x6D);
 
 #define ML_LD_A_HL line->machine.push_back(0x7E)
 #define ML_LD_B_HL line->machine.push_back(0x46)
@@ -341,3 +475,83 @@ enum class Mnemonic {
     ML_LD_A_HL;      \
     ML_LD_IYL_A;     \
     ML_POP_AF
+
+#define ML_LD_BC_BC \
+    ML_LD_B_B;      \
+    ML_LD_C_C
+#define ML_LD_BC_DE \
+    ML_LD_B_D;      \
+    ML_LD_C_E
+#define ML_LD_BC_HL \
+    ML_LD_B_H;      \
+    ML_LD_C_L
+#define ML_LD_BC_IX \
+    ML_LD_B_IXH;    \
+    ML_LD_C_IXL
+#define ML_LD_BC_IY \
+    ML_LD_B_IYH;    \
+    ML_LD_C_IYL
+
+#define ML_LD_DE_BC \
+    ML_LD_D_B;      \
+    ML_LD_E_C
+#define ML_LD_DE_DE \
+    ML_LD_D_D;      \
+    ML_LD_E_E
+#define ML_LD_DE_HL \
+    ML_LD_D_H;      \
+    ML_LD_E_L
+#define ML_LD_DE_IX \
+    ML_LD_D_IXH;    \
+    ML_LD_E_IXL
+#define ML_LD_DE_IY \
+    ML_LD_D_IYH;    \
+    ML_LD_E_IYL
+
+#define ML_LD_HL_BC \
+    ML_LD_H_B;      \
+    ML_LD_L_C
+#define ML_LD_HL_DE \
+    ML_LD_H_D;      \
+    ML_LD_L_E
+#define ML_LD_HL_HL \
+    ML_LD_H_H;      \
+    ML_LD_L_L
+#define ML_LD_HL_IX \
+    ML_PUSH_IX;     \
+    ML_POP_HL
+#define ML_LD_HL_IY \
+    ML_PUSH_IY;     \
+    ML_POP_HL
+
+#define ML_LD_IX_BC \
+    ML_LD_IXH_B;    \
+    ML_LD_IXL_C
+#define ML_LD_IX_DE \
+    ML_LD_IXH_D;    \
+    ML_LD_IXL_E
+#define ML_LD_IX_HL \
+    ML_PUSH_HL;     \
+    ML_POP_IX
+#define ML_LD_IX_IX \
+    ML_LD_IXH_IXH;  \
+    ML_LD_IXL_IXL
+#define ML_LD_IX_IY \
+    ML_PUSH_IY;     \
+    ML_POP_IX
+
+#define ML_LD_IY_BC \
+    ML_LD_IYH_B;    \
+    ML_LD_IYL_C
+#define ML_LD_IY_DE \
+    ML_LD_IYH_D;    \
+    ML_LD_IYL_E
+#define ML_LD_IY_HL \
+    ML_PUSH_HL;     \
+    ML_POP_IY
+#define ML_LD_IY_IX \
+    ML_PUSH_IX;     \
+    ML_POP_IY
+#define ML_LD_IY_IY \
+    ML_LD_IYH_IYH;  \
+    ML_LD_IYL_IYL

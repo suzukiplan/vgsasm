@@ -1034,6 +1034,54 @@ static void mnemonic_LD(LineData* line)
                 line->machine.push_back(code);
             }
             return;
+        } else {
+            switch (op1) {
+                case Operand::BC:
+                    switch (op2) {
+                        case Operand::BC: ML_LD_BC_BC; return;
+                        case Operand::DE: ML_LD_BC_DE; return;
+                        case Operand::HL: ML_LD_BC_HL; return;
+                        case Operand::IX: ML_LD_BC_IX; return;
+                        case Operand::IY: ML_LD_BC_IY; return;
+                    }
+                    break;
+                case Operand::DE:
+                    switch (op2) {
+                        case Operand::BC: ML_LD_DE_BC; return;
+                        case Operand::DE: ML_LD_DE_DE; return;
+                        case Operand::HL: ML_LD_DE_HL; return;
+                        case Operand::IX: ML_LD_DE_IX; return;
+                        case Operand::IY: ML_LD_DE_IY; return;
+                    }
+                    break;
+                case Operand::HL:
+                    switch (op2) {
+                        case Operand::BC: ML_LD_HL_BC; return;
+                        case Operand::DE: ML_LD_HL_DE; return;
+                        case Operand::HL: ML_LD_HL_HL; return;
+                        case Operand::IX: ML_LD_HL_IX; return;
+                        case Operand::IY: ML_LD_HL_IY; return;
+                    }
+                    break;
+                case Operand::IX:
+                    switch (op2) {
+                        case Operand::BC: ML_LD_IX_BC; return;
+                        case Operand::DE: ML_LD_IX_DE; return;
+                        case Operand::HL: ML_LD_IX_HL; return;
+                        case Operand::IX: ML_LD_IX_IX; return;
+                        case Operand::IY: ML_LD_IX_IY; return;
+                    }
+                    break;
+                case Operand::IY:
+                    switch (op2) {
+                        case Operand::BC: ML_LD_IY_BC; return;
+                        case Operand::DE: ML_LD_IY_DE; return;
+                        case Operand::HL: ML_LD_IY_HL; return;
+                        case Operand::IX: ML_LD_IY_IX; return;
+                        case Operand::IY: ML_LD_IY_IY; return;
+                    }
+                    break;
+            }
         }
     } else if (mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd) &&
                operandTable[line->token[4].second] == Operand::HL) {
