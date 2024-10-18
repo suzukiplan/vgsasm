@@ -936,19 +936,6 @@ Transfer_Load_Store:
     LD IYL, IYH
     LD IYL, IYL
 
-@LD_r_(HL)
-    LD A, (HL)
-    LD B, (HL)
-    LD C, (HL)
-    LD D, (HL)
-    LD E, (HL)
-    LD H, (HL)
-    LD L, (HL)
-    LD IXH, (HL) ; auto expand
-    LD IXL, (HL) ; auto expand
-    LD IYH, (HL) ; auto expand
-    LD IYL, (HL) ; auto expand
-
 @LD_rr_rr ; auto expand all
     LD BC,BC
     LD BC,DE
@@ -980,13 +967,26 @@ Transfer_Load_Store:
     LD IY,IX
     LD IY,IY
 
+@LD_SP_rr
+    LD SP,HL
+    LD SP,IX
+    LD SP,IY
+
+@LD_r_(HL)
+    LD A, (HL)
+    LD B, (HL)
+    LD C, (HL)
+    LD D, (HL)
+    LD E, (HL)
+    LD H, (HL)
+    LD L, (HL)
+    LD IXH, (HL) ; auto expand
+    LD IXL, (HL) ; auto expand
+    LD IYH, (HL) ; auto expand
+    LD IYL, (HL) ; auto expand
+
 @LD_rr_(HL) ; auto expand all
     LD BC, (HL)
     LD DE, (HL)
     LD IX, (HL)
     LD IY, (HL)
-
-@LD_SP_rr
-    LD SP,HL
-    LD SP,IX
-    LD SP,IY
