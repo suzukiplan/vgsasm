@@ -181,17 +181,24 @@ org $0000
     djnz @Loop                          ; loop
 ```
 
-## Auto-expand Instructions
+## Support Instruction
+
+- Supports all Z80 instructions, including undocumented.
+- Some undocumented instructions are in a slightly special format.
+- All instructions are described in [./test/all.asm](./test/all.asm).
+
+## Auto Expand Instruction
+
+In vgsasm, instructions that __do not exist in the Z80__ are complemented by existing instructions.
 
 | Instruction | Auto-expand |
 |:------------|:------------|
-| `LD (HL++),{r｜n}` | `LD (HL), {r｜n}`, `INC HL` |
-| `LD (++HL),{r｜n}` | `INC HL`, `LD (HL), {r｜n}` |
 | `LD BC,nn` | `LD B,n(high)`, `LD C,n(low)` |
 | `LD DE,nn` | `LD D,n(high)`, `LD E,n(low)` |
 | `LD HL,nn` | `LD H,n(high)`, `LD L,n(low)` |
 | `LD IX,nn` | `LD IXH,n(high)`, `LD IXL,n(low)` |
 | `LD IY,nn` | `LD IXH,n(high)`, `LD IXL,n(low)` |
+| `LD {IXH｜IXL｜IYH｜IYL},(HL)` | `PUSH AF`, `LD A,(HL)`, `LD {IXH｜IXL｜IYH｜IYL},A`, `POP AF` |
 | `ADD HL,nn` | `PUSH DE`, `LD DE,nn`, `ADD HL,DE`, `POP DE`|
 | `ADD IX,nn` | `PUSH DE`, `LD DE,nn`, `ADD IX,DE`, `POP DE`|
 | `ADD IY,nn` | `PUSH DE`, `LD DE,nn`, `ADD IY,DE`, `POP DE`|
