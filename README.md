@@ -1,18 +1,19 @@
 # WIP: Z80 Assembler for VGS-Zero
 
-- VGS-Zero のツールチェインに組み込み予定の Z80 アセンブラ
-- 完成したら [suzukiplan/vgszero](https://github.com/suzukiplan/vgszero) に組み込み予定
-- 基本的には z88dk の z80asm の構文をサポート予定（全部ではない）
-- IXH,IXL,IYH,IYL対応
-- 色々なエイリアスを追加予定
-- ラベル内ラベルサポート（これは最新のz80asmでは既にサポート済みかも）
-- 外部ライブラリ（boost等）を使わず素のgccやclangでコンパイルできるようにする
-- アセンブル性能はあんまり気にしない（アセンブル後バイナリの性能は気にする）
-- 対応OS: VGS-Zero 開発環境と同等 (Linux or macOS) なので Windows には対応しない
+Z80 Assembler for VGS-Zero is a Z80 assembler that supports the entire Z80 instruction set, including hidden instructions, and enables highly readable full assembly language programming using [“structures”](#struct).
+
+Although it was developed for use in game development on the VGS-Zero, it is versatile enough to be used for game development for a wide range of game consoles and PCs, including SMS, GameGear, MSX, and PC-88. _(However, the design guideline is to specialize in VGS-Zero, but not in other console or PC-specific enhancements.)_
 
 ## WIP Status
 
-[Issues](https://github.com/suzukiplan/vgsasm/issues?q=is%3Aopen+is%3Aissue+label%3AWIP) を参照
+- It is still under development.
+- We plan to add version `1.0.0` tags when all functions are completed.
+- See the [issues](https://github.com/suzukiplan/vgsasm/issues?q=is%3Aopen+is%3Aissue+label%3AWIP).
+
+## Support OS
+
+- **Linux** (confirmed Ubuntu Desktop)
+- macOS (not confirmed)
 
 ## Usage
 
