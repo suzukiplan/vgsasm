@@ -714,3 +714,67 @@
                     ld        c,ixl                         ;[05f6] dd 4d
                     ld        c,iyh                         ;[05f8] fd 4c
                     ld        c,iyl                         ;[05fa] fd 4d
+                    ld        d,a                           ;[05fc] 57
+                    ld        d,b                           ;[05fd] 50
+                    ld        d,c                           ;[05fe] 51
+                    ld        d,d                           ;[05ff] 52
+                    ld        d,e                           ;[0600] 53
+                    ld        d,h                           ;[0601] 54
+                    ld        d,l                           ;[0602] 55
+                    ld        d,ixh                         ;[0603] dd 54
+                    ld        d,ixl                         ;[0605] dd 55
+                    ld        d,iyh                         ;[0607] fd 54
+                    ld        d,iyl                         ;[0609] fd 55
+                    ld        e,a                           ;[060b] 5f
+                    ld        e,b                           ;[060c] 58
+                    ld        e,c                           ;[060d] 59
+                    ld        e,d                           ;[060e] 5a
+                    ld        e,e                           ;[060f] 5b
+                    ld        e,h                           ;[0610] 5c
+                    ld        e,l                           ;[0611] 5d
+                    ld        e,ixh                         ;[0612] dd 5c
+                    ld        e,ixl                         ;[0614] dd 5d
+                    ld        e,iyh                         ;[0616] fd 5c
+                    ld        e,iyl                         ;[0618] fd 5d
+                    ld        h,a                           ;[061a] 67
+                    ld        h,b                           ;[061b] 60
+                    ld        h,c                           ;[061c] 61
+                    ld        h,d                           ;[061d] 62
+                    ld        h,e                           ;[061e] 63
+                    ld        h,h                           ;[061f] 64
+                    ld        h,l                           ;[0620] 65
+                    ld        l,a                           ;[0621] 6f
+                    ld        l,b                           ;[0622] 68
+                    ld        l,c                           ;[0623] 69
+                    ld        l,d                           ;[0624] 6a
+                    ld        l,e                           ;[0625] 6b
+                    ld        l,h                           ;[0626] 6c
+                    ld        l,l                           ;[0627] 6d
+                    ld        ixh,a                         ;[0628] dd 67
+                    ld        ixh,b                         ;[062a] dd 60
+                    ld        ixh,c                         ;[062c] dd 61
+                    ld        ixh,d                         ;[062e] dd 62
+                    ld        ixh,e                         ;[0630] dd 63
+                    ld        ixh,ixh                       ;[0632] dd 64
+                    ld        ixh,ixl                       ;[0634] dd 65
+                    ld        ixl,a                         ;[0636] dd 6f
+                    ld        ixl,b                         ;[0638] dd 68
+                    ld        ixl,c                         ;[063a] dd 69
+                    ld        ixl,d                         ;[063c] dd 6a
+                    ld        ixl,e                         ;[063e] dd 6b
+                    ld        ixl,ixh                       ;[0640] dd 6c
+                    ld        ixl,ixl                       ;[0642] dd 6d
+                    ld        iyh,a                         ;[0644] fd 67
+                    ld        iyh,b                         ;[0646] fd 60
+                    ld        iyh,c                         ;[0648] fd 61
+                    ld        iyh,d                         ;[064a] fd 62
+                    ld        iyh,e                         ;[064c] fd 63
+                    ld        iyh,iyh                       ;[064e] fd 64
+                    ld        iyh,iyl                       ;[0650] fd 65
+                    ld        iyl,a                         ;[0652] fd 6f
+                    ld        iyl,b                         ;[0654] fd 68
+                    ld        iyl,c                         ;[0656] fd 69
+                    ld        iyl,d                         ;[0658] fd 6a
+                    ld        iyl,e                         ;[065a] fd 6b
+                    ld        iyl,iyh                       ;[065c] fd 6c
+                    ld        iyl,iyl                       ;[065e] fd 6d

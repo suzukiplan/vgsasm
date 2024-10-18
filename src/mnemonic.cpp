@@ -985,27 +985,53 @@ static void mnemonic_LD(LineData* line)
         auto op1 = operandTable[line->token[1].second];
         auto op2 = operandTable[line->token[3].second];
         if (check_ld_reg8(op1) && check_ld_reg8(op2)) {
-            if (op2 == Operand::IXH || op2 == Operand::IXL) {
-                if (op1 == Operand::H || op1 == Operand::L) {
-                    // LD {H|L}, {IXH,IXL}
+            if (op1 == Operand::IXH || op1 == Operand::IXL || op1 == Operand::IYH || op1 == Operand::IYL) {
+                if (op2 == Operand::H || op2 == Operand::L) {
                     line->error = true;
-                    line->errmsg = "LD {H|L},{IXH,IXL} is not supported.";
+                    line->errmsg = "LD {IXH|IXL},{H|L} is not supported.";
                     return;
                 }
-                line->machine.push_back(0xDD);
-            } else if (op2 == Operand::IYH || op2 == Operand::IYL) {
-                if (op1 == Operand::H || op1 == Operand::L) {
-                    // LD {H|L}, {IYH,IYL}
+                bool isOp1IX = op1 == Operand::IXH || op1 == Operand::IXL;
+                bool isOp1IY = op1 == Operand::IYH || op1 == Operand::IYL;
+                bool isOp2IX = op2 == Operand::IXH || op2 == Operand::IXL;
+                bool isOp2IY = op2 == Operand::IYH || op2 == Operand::IYL;
+                if (isOp1IX && isOp2IY) {
                     line->error = true;
-                    line->errmsg = "LD {H|L},{IYH,IYL} is not supported.";
+                    line->errmsg = "LD {IXH|IXL},{IYH|IYL} is not supported.";
                     return;
                 }
-                line->machine.push_back(0xFD);
+                if (isOp1IY && isOp2IX) {
+                    line->error = true;
+                    line->errmsg = "LD {IYH|IYL},{IXH|IXL} is not supported.";
+                    return;
+                }
+                line->machine.push_back(isOp1IX ? 0xDD : 0xFD);
+                uint8_t code = 0x60;
+                code |= get_bit_reg8(op1) << 3;
+                code |= get_bit_reg8(op2);
+                line->machine.push_back(code);
+            } else {
+                if (op2 == Operand::IXH || op2 == Operand::IXL) {
+                    if (op1 == Operand::H || op1 == Operand::L) {
+                        line->error = true;
+                        line->errmsg = "LD {H|L},{IXH|IXL} is not supported.";
+                        return;
+                    }
+                    line->machine.push_back(0xDD);
+                } else if (op2 == Operand::IYH || op2 == Operand::IYL) {
+                    if (op1 == Operand::H || op1 == Operand::L) {
+                        // LD {H|L}, {IYH,IYL}
+                        line->error = true;
+                        line->errmsg = "LD {H|L},{IYH|IYL} is not supported.";
+                        return;
+                    }
+                    line->machine.push_back(0xFD);
+                }
+                uint8_t code = 0x40;
+                code |= get_bit_reg8(op1) << 3;
+                code |= get_bit_reg8(op2);
+                line->machine.push_back(code);
             }
-            uint8_t code = 0x40;
-            code |= get_bit_reg8(op1) << 3;
-            code |= get_bit_reg8(op2);
-            line->machine.push_back(code);
             return;
         }
     }

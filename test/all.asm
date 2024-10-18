@@ -883,3 +883,55 @@ Transfer_Load_Store:
     ; LD L, IXL // does not exist
     ; LD L, IYH // does not exist
     ; LD L, IYL // does not exist
+
+@LD_IXH_r
+    LD IXH, A
+    LD IXH, B
+    LD IXH, C
+    LD IXH, D
+    LD IXH, E
+    ; LD IXH, H // does not exist
+    ; LD IXH, L // does not exist
+    LD IXH, IXH
+    LD IXH, IXL
+    ; LD IXH, IYH // does not exist
+    ; LD IXH, IYL // does not exist
+
+@LD_IXL_r
+    LD IXL, A
+    LD IXL, B
+    LD IXL, C
+    LD IXL, D
+    LD IXL, E
+    ; LD IXL, H // does not exist
+    ; LD IXL, L // does not exist
+    LD IXL, IXH
+    LD IXL, IXL
+    ; LD IXL, IYH // does not exist
+    ; LD IXL, IYL // does not exist
+
+@LD_IYH_r
+    LD IYH, A
+    LD IYH, B
+    LD IYH, C
+    LD IYH, D
+    LD IYH, E
+    ; LD IYH, H // does not exist
+    ; LD IYH, L // does not exist
+    ; LD IYH, IXH // does not exist
+    ; LD IYH, IXL // does not exist
+    LD IYH, IYH
+    LD IYH, IYL
+
+@LD_IYL_r
+    LD IYL, A
+    LD IYL, B
+    LD IYL, C
+    LD IYL, D
+    LD IYL, E
+    ; LD IYL, H // does not exist
+    ; LD IYL, L // does not exist
+    ; LD IYL, IXH // does not exist
+    ; LD IYL, IXL // does not exist
+    LD IYL, IYH
+    LD IYL, IYL
