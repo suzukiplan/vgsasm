@@ -982,6 +982,7 @@ static uint8_t get_bit_reg8(Operand op)
 static void mnemonic_LD(LineData* line)
 {
     if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand)) {
+        // LD r, r'
         auto op1 = operandTable[line->token[1].second];
         auto op2 = operandTable[line->token[3].second];
         if (check_ld_reg8(op1) && check_ld_reg8(op2)) {
@@ -1033,6 +1034,23 @@ static void mnemonic_LD(LineData* line)
                 line->machine.push_back(code);
             }
             return;
+        }
+    } else if (mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd) &&
+               operandTable[line->token[4].second] == Operand::HL) {
+        // LD r, (HL)
+        switch (operandTable[line->token[1].second]) {
+            case Operand::A: ML_LD_A_HL; return;
+            case Operand::B: ML_LD_B_HL; return;
+            case Operand::C: ML_LD_C_HL; return;
+            case Operand::D: ML_LD_D_HL; return;
+            case Operand::E: ML_LD_E_HL; return;
+            case Operand::F: break; // this opcode $76 is HALT
+            case Operand::H: ML_LD_H_HL; return;
+            case Operand::L: ML_LD_L_HL; return;
+            case Operand::IXH: ML_LD_IXH_HL; return;
+            case Operand::IXL: ML_LD_IXL_HL; return;
+            case Operand::IYH: ML_LD_IYH_HL; return;
+            case Operand::IYL: ML_LD_IYL_HL; return;
         }
     }
     line->error = true;

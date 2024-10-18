@@ -778,3 +778,26 @@
                     ld        iyl,e                         ;[065a] fd 6b
                     ld        iyl,iyh                       ;[065c] fd 6c
                     ld        iyl,iyl                       ;[065e] fd 6d
+                    ld        a,(hl)                        ;[0660] 7e
+                    ld        b,(hl)                        ;[0661] 46
+                    ld        c,(hl)                        ;[0662] 4e
+                    ld        d,(hl)                        ;[0663] 56
+                    ld        e,(hl)                        ;[0664] 5e
+                    ld        h,(hl)                        ;[0665] 66
+                    ld        l,(hl)                        ;[0666] 6e
+                    push      af                            ;[0667] f5
+                    ld        a,(hl)                        ;[0668] 7e
+                    ld        ixh,a                         ;[0669] dd 67
+                    pop       af                            ;[066b] f1
+                    push      af                            ;[066c] f5
+                    ld        a,(hl)                        ;[066d] 7e
+                    ld        ixl,a                         ;[066e] dd 6f
+                    pop       af                            ;[0670] f1
+                    push      af                            ;[0671] f5
+                    ld        a,(hl)                        ;[0672] 7e
+                    ld        iyh,a                         ;[0673] fd 67
+                    pop       af                            ;[0675] f1
+                    push      af                            ;[0676] f5
+                    ld        a,(hl)                        ;[0677] 7e
+                    ld        iyl,a                         ;[0678] fd 6f
+                    pop       af                            ;[067a] f1
