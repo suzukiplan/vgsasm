@@ -831,3 +831,55 @@ Transfer_Load_Store:
     LD C, IXL
     LD C, IYH
     LD C, IYL
+
+@LD_D_r
+    LD D, A
+    LD D, B
+    LD D, C
+    LD D, D
+    LD D, E
+    LD D, H
+    LD D, L
+    LD D, IXH
+    LD D, IXL
+    LD D, IYH
+    LD D, IYL
+
+@LD_E_r
+    LD E, A
+    LD E, B
+    LD E, C
+    LD E, D
+    LD E, E
+    LD E, H
+    LD E, L
+    LD E, IXH
+    LD E, IXL
+    LD E, IYH
+    LD E, IYL
+
+@LD_H_r
+    LD H, A
+    LD H, B
+    LD H, C
+    LD H, D
+    LD H, E
+    LD H, H
+    LD H, L
+    ; LD H, IXH // does not exist
+    ; LD H, IXL // does not exist
+    ; LD H, IYH // does not exist
+    ; LD H, IYL // does not exist
+
+@LD_L_r
+    LD L, A
+    LD L, B
+    LD L, C
+    LD L, D
+    LD L, E
+    LD L, H
+    LD L, L
+    ; LD L, IXH // does not exist
+    ; LD L, IXL // does not exist
+    ; LD L, IYH // does not exist
+    ; LD L, IYL // does not exist

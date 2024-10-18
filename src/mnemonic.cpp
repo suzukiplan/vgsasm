@@ -986,8 +986,20 @@ static void mnemonic_LD(LineData* line)
         auto op2 = operandTable[line->token[3].second];
         if (check_ld_reg8(op1) && check_ld_reg8(op2)) {
             if (op2 == Operand::IXH || op2 == Operand::IXL) {
+                if (op1 == Operand::H || op1 == Operand::L) {
+                    // LD {H|L}, {IXH,IXL}
+                    line->error = true;
+                    line->errmsg = "LD {H|L},{IXH,IXL} is not supported.";
+                    return;
+                }
                 line->machine.push_back(0xDD);
             } else if (op2 == Operand::IYH || op2 == Operand::IYL) {
+                if (op1 == Operand::H || op1 == Operand::L) {
+                    // LD {H|L}, {IYH,IYL}
+                    line->error = true;
+                    line->errmsg = "LD {H|L},{IYH,IYL} is not supported.";
+                    return;
+                }
                 line->machine.push_back(0xFD);
             }
             uint8_t code = 0x40;
