@@ -875,3 +875,6 @@
                     ld        iyh,a                         ;[06e1] fd 67
                     dec       hl                            ;[06e3] 2b
                     pop       af                            ;[06e4] f1
+                    ld        sp,hl                         ;[06e5] f9
+                    ld        sp,ix                         ;[06e6] dd f9
+                    ld        sp,iy                         ;[06e8] fd f9

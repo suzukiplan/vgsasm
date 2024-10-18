@@ -1081,6 +1081,12 @@ static void mnemonic_LD(LineData* line)
                         case Operand::IY: ML_LD_IY_IY; return;
                     }
                     break;
+                case Operand::SP:
+                    switch (op2) {
+                        case Operand::HL: ML_LD_SP_HL; return;
+                        case Operand::IX: ML_LD_SP_IX; return;
+                        case Operand::IY: ML_LD_SP_IY; return;
+                    }
             }
         }
     } else if (mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd) &&

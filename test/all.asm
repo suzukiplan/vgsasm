@@ -718,14 +718,14 @@ Shift:
     RRD
 
 @Undocumented
-    RLC (IX+10) & A
-    RLC (IX+10) & B
-    RLC (IX+10) & C
-    RLC (IX+10) & D
-    RLC (IX+10) & E
-    RLC (IX+10) & F
-    RLC (IX+10) & H
-    RLC (IX+10) & L
+    RLC (IX+10) & A     ; LD A, RLC (IX+10)
+    RLC (IX+10) & B     ; LD B, RLC (IX+10)
+    RLC (IX+10) & C     ; LD C, RLC (IX+10)
+    RLC (IX+10) & D     ; LD D, RLC (IX+10)
+    RLC (IX+10) & E     ; LD E, RLC (IX+10)
+    RLC (IX+10) & F     ; LD F, RLC (IX+10)
+    RLC (IX+10) & H     ; LD H, RLC (IX+10)
+    RLC (IX+10) & L     ; LD L, RLC (IX+10)
 
     RRC (IX+10) & B
     RL (IX+10) & B
@@ -985,3 +985,8 @@ Transfer_Load_Store:
     LD DE, (HL)
     LD IX, (HL)
     LD IY, (HL)
+
+@LD_SP_rr
+    LD SP,HL
+    LD SP,IX
+    LD SP,IY

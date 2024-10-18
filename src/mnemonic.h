@@ -555,3 +555,11 @@ enum class Mnemonic {
 #define ML_LD_IY_IY \
     ML_LD_IYH_IYH;  \
     ML_LD_IYL_IYL
+
+#define ML_LD_SP_HL line->machine.push_back(0xF9)
+#define ML_LD_SP_IX                \
+    line->machine.push_back(0xDD); \
+    line->machine.push_back(0xF9)
+#define ML_LD_SP_IY                \
+    line->machine.push_back(0xFD); \
+    line->machine.push_back(0xF9)
