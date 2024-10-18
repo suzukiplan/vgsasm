@@ -1,4 +1,23 @@
 #pragma once
+#include "common.h"
+
+class TempAddr
+{
+  public:
+    LineData* line;
+    std::string label;
+    int midx;
+    bool isRelative;
+    TempAddr(LineData* line, std::string label, int midx, bool isRelative)
+    {
+        this->line = line;
+        this->label = label;
+        this->midx = midx;
+        this->isRelative = isRelative;
+    }
+};
+
+extern std::vector<TempAddr*> tempAddrs;
 
 enum class Mnemonic {
     None = 0,
@@ -594,6 +613,7 @@ enum class Mnemonic {
 
 bool mnemonic_format_check(LineData* line, int size, ...);
 bool mnemonic_format_test(LineData* line, int size, ...);
+bool mnemonic_format_begin(LineData* line, int size, ...);
 bool mnemonic_range(LineData* line, int n, int min, int max);
 bool mnemonic_is_reg16(Operand op);
 void mnemonic_single(LineData* line, uint8_t code);

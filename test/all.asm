@@ -1022,4 +1022,12 @@ Transfer_Load_Store:
     LD IX, 32767
     LD IY, 65535
 
+@Load_immediate_label
+    LD BC, EndAll
+    LD DE, Transfer_Load_Store
+    LD HL, Stack@Main
+    LD IX, @Load_immediate
+    LD IY, Main
+
 EndAll:
+    NOP

@@ -15,6 +15,8 @@ void mnemonic_shift(LineData* line, uint8_t code);                   // mnemonic
 void mnemonic_PUSH(LineData* line);                                  // mnemonic_stack.cpp
 void mnemonic_POP(LineData* line);                                   // mnemonic_stack.cpp
 
+std::vector<TempAddr*> tempAddrs;
+
 std::map<std::string, Mnemonic> mnemonicTable = {
     {"LD", Mnemonic::LD},
     {"LDI", Mnemonic::LDI},
@@ -197,6 +199,32 @@ bool mnemonic_format_test(LineData* line, int size, ...)
     return !error;
 }
 
+bool mnemonic_format_begin(LineData* line, int size, ...)
+{
+    if (size < 1 || line->token.size() < size) {
+        return false;
+    }
+    if (1 == size) {
+        return true;
+    }
+    va_list arg;
+    va_start(arg, size);
+    bool error = false;
+    for (int n = 1; n < size; n++) {
+        auto it = line->token.begin() + n;
+        auto expect = va_arg(arg, TokenType);
+        if (!error) {
+            if (expect == TokenType::PlusOrMinus) {
+                error = it->first != TokenType::Plus && it->first != TokenType::Minus;
+            } else {
+                error = it->first != expect;
+            }
+        }
+    }
+    va_end(arg);
+    return !error;
+}
+
 bool mnemonic_range(LineData* line, int n, int min, int max)
 {
     if (n < min || max < n) {
@@ -264,7 +292,7 @@ static void setpc(LineData* prev, LineData* cur)
     }
 }
 
-void mnemonic_syntax_check(std::vector<LineData*>* lines)
+static void mnemonic_syntax_check_exec(std::vector<LineData*>* lines)
 {
     LineData* prev = nullptr;
     for (auto line : *lines) {
@@ -346,5 +374,23 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
         }
         setpc(prev, line);
         prev = line;
+    }
+}
+
+void mnemonic_syntax_check(std::vector<LineData*>* lines)
+{
+    mnemonic_syntax_check_exec(lines);
+    if (!tempAddrs.empty()) {
+        for (auto addr : tempAddrs) {
+            auto label = labelTable[addr->label];
+            auto pc = label->programCounter;
+            if (addr->isRelative) {
+                pc -= addr->line->programCounter;
+            }
+            addr->line->machine[addr->midx] = pc & 0x00FF;
+            addr->line->machine[addr->midx + 1] = (pc & 0xFF00) >> 8;
+            delete addr;
+        }
+        tempAddrs.clear();
     }
 }

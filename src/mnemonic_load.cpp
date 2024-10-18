@@ -265,6 +265,39 @@ void mnemonic_LD(LineData* line)
                 }
             }
         }
+    } else if (mnemonic_format_begin(line, 3, TokenType::Operand, TokenType::Split)) {
+        auto op = operandTable[line->token[1].second];
+        uint8_t code = 0x00;
+        switch (op) {
+            case Operand::BC: code = 0x01; break;
+            case Operand::DE: code = 0x11; break;
+            case Operand::HL: code = 0x21; break;
+            case Operand::SP: code = 0x31; break;
+            case Operand::IX: code = 0x21; break;
+            case Operand::IY: code = 0x21; break;
+        }
+        if (code) {
+            if (isIX(op)) {
+                line->machine.push_back(0xDD);
+            } else if (isIY(op)) {
+                line->machine.push_back(0xFD);
+            }
+            line->machine.push_back(code);
+
+            // LabelJump があれば仮アドレスをセット
+            bool detected = false;
+            for (auto it = line->token.begin() + 3; it != line->token.end(); it++) {
+                if (it->first == TokenType::LabelJump) {
+                    tempAddrs.push_back(new TempAddr(line, it->second, line->machine.size(), false));
+                    line->machine.push_back(0x00);
+                    line->machine.push_back(0x00);
+                    detected = true;
+                }
+            }
+            if (detected) {
+                return; // 仮アドレスをセットしたのでリターン
+            }
+        }
     }
     if (!line->error) {
         line->error = true;
