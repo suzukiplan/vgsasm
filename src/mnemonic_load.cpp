@@ -373,6 +373,33 @@ void mnemonic_LD(LineData* line)
                 return;
             }
         }
+    } else if (mnemonic_format_test(line, 8, TokenType::AddressBegin, TokenType::Operand, TokenType::PlusOrMinus, TokenType::Numeric, TokenType::AddressEnd, TokenType::Split, TokenType::Operand)) {
+        // LD ({IX|IY}{+|-}d), r
+        auto op1 = operandTable[line->token[7].second];
+        auto op2 = operandTable[line->token[2].second];
+        auto isPlus = line->token[3].first == TokenType::Plus;
+        auto d = atoi(line->token[4].second.c_str());
+        if (op2 == Operand::IX || op2 == Operand::IY) {
+            if (!isPlus) { d = 0 - d; }
+            if (isReg8(op1) && !isIX(op1) && !isIY(op1) && mnemonic_range(line, d, -128, 127)) {
+                line->machine.push_back(isIX(op2) ? 0xDD : 0xFD);
+                line->machine.push_back(0x70 | getBitReg8(op1));
+                line->machine.push_back(d);
+                return;
+            }
+        }
+    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd, TokenType::Split, TokenType::Operand)) {
+        // LD ({IX|IY}), r
+        auto op1 = operandTable[line->token[5].second];
+        auto op2 = operandTable[line->token[2].second];
+        if (op2 == Operand::IX || op2 == Operand::IY) {
+            if (isReg8(op1) && !isIX(op1) && !isIY(op1)) {
+                line->machine.push_back(isIX(op2) ? 0xDD : 0xFD);
+                line->machine.push_back(0x70 | getBitReg8(op1));
+                line->machine.push_back(0x00);
+                return;
+            }
+        }
     }
     if (!line->error) {
         line->error = true;

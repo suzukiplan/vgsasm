@@ -956,3 +956,17 @@
                     ld        e,(iy+$01)                    ;[079c] fd 5e 01
                     ld        h,(iy+$7f)                    ;[079f] fd 66 7f
                     ld        l,(iy+$40)                    ;[07a2] fd 6e 40
+                    ld        (ix-$80),a                    ;[07a5] dd 77 80
+                    ld        (ix-$01),b                    ;[07a8] dd 70 ff
+                    ld        (ix+$00),c                    ;[07ab] dd 71 00
+                    ld        (ix+$00),d                    ;[07ae] dd 72 00
+                    ld        (ix+$01),e                    ;[07b1] dd 73 01
+                    ld        (ix+$7f),h                    ;[07b4] dd 74 7f
+                    ld        (ix+$40),l                    ;[07b7] dd 75 40
+                    ld        (iy-$80),a                    ;[07ba] fd 77 80
+                    ld        (iy-$01),b                    ;[07bd] fd 70 ff
+                    ld        (iy+$00),c                    ;[07c0] fd 71 00
+                    ld        (iy+$00),d                    ;[07c3] fd 72 00
+                    ld        (iy+$01),e                    ;[07c6] fd 73 01
+                    ld        (iy+$7f),h                    ;[07c9] fd 74 7f
+                    ld        (iy+$40),l                    ;[07cc] fd 75 40

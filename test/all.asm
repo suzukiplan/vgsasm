@@ -1075,3 +1075,21 @@ Transfer_Load_Store:
     LD E, (IY + 1)
     LD H, (IY + 127)
     LD L, (IY + 64)
+
+@Store_to_IX
+    LD (IX - 128), A
+    LD (IX - 1), B
+    LD (IX), C
+    LD (IX + 0), D
+    LD (IX + 1), E
+    LD (IX + 127), H
+    LD (IX + 64), L
+
+@Store_to_IY
+    LD (IY - 128), A
+    LD (IY - 1), B
+    LD (IY), C
+    LD (IY + 0), D
+    LD (IY + 1), E
+    LD (IY + 127), H
+    LD (IY + 64), L
