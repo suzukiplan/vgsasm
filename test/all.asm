@@ -43,10 +43,10 @@ org $0000
     CPDR
     OUTI
     OTIR
-    OUTIR
+    OUTIR   ; OTIR alias
     OUTD
     OTDR
-    OUTDR
+    OUTDR   ; OTDR alias
 
 @Other
     NOP
@@ -78,7 +78,7 @@ Calculation:
     AND (IY-128)
     AND (IY+127*1)
 
-@And_with_A
+@And_with_A ; Strictly speaking, `A,` should be omitted, but it is allowed.
     AND A, A
     AND A, B
     AND A, C
@@ -120,7 +120,7 @@ Calculation:
     OR (IY-128)
     OR (IY+127*1)
 
-@Or_with_A
+@Or_with_A ; Strictly speaking, `A,` should be omitted, but it is allowed.
     OR A, A
     OR A, B
     OR A, C
@@ -162,7 +162,7 @@ Calculation:
     XOR (IY-128)
     XOR (IY+127*1)
 
-@Xor_with_A
+@Xor_with_A ; Strictly speaking, `A,` should be omitted, but it is allowed.
     XOR A, A
     XOR A, B
     XOR A, C
@@ -204,7 +204,7 @@ Calculation:
     CP (IY-128)
     CP (IY+127*1)
 
-@Compare_with_A
+@Compare_with_A ; Strictly speaking, `A,` should be omitted, but it is allowed.
     CP A, A
     CP A, B
     CP A, C
@@ -246,7 +246,7 @@ Calculation:
     ADD A, (IY-128)
     ADD A, (IY+127*1)
 
-@Add_omit_A
+@Add_omit_A ; In strict form, `A,` must not be omitted, but may be omitted
     ADD A
     ADD B
     ADD C
@@ -307,7 +307,7 @@ Calculation:
     ADC A, (IY-128)
     ADC A, (IY+127*1)
 
-@Adc_omit_A
+@Adc_omit_A ; In strict form, `A,` must not be omitted, but may be omitted
     ADC A
     ADC B
     ADC C
@@ -368,7 +368,7 @@ Calculation:
     SUB (IY-128)
     SUB (IY+127*1)
 
-@Sub_with_A
+@Sub_with_A ; Strictly speaking, `A,` should be omitted, but it is allowed.
     SUB A, A
     SUB A, B
     SUB A, C
@@ -410,7 +410,7 @@ Calculation:
     SBC A, (IY-128)
     SBC A, (IY+127*1)
 
-@Sbc_omit_A
+@Sbc_omit_A ; In strict form, `A,` must not be omitted, but may be omitted
     SBC A
     SBC B
     SBC C
@@ -519,8 +519,8 @@ Increment:
 
 @Address
     INC (HL)
-    INC (IX)
-    INC (IY)
+    INC (IX) ; same as (IX+0)
+    INC (IY) ; same as (IY+0)
     INC (IX-128)
     INC (IY-1)
     INC (IX+1)
@@ -549,8 +549,8 @@ Decrement:
 
 @Address
     DEC (HL)
-    DEC (IX)
-    DEC (IY)
+    DEC (IX) ; same as (IX+0)
+    DEC (IY) ; same as (IY+0)
     DEC (IX-128)
     DEC (IY-1)
     DEC (IX+1)
@@ -571,8 +571,8 @@ Rotate:
     RLC H
     RLC L
     RLC (HL)
-    RLC (IX)
-    RLC (IY)
+    RLC (IX) ; same as (IX+0)
+    RLC (IY) ; same as (IY+0)
     RLC (IX-128)
     RLC (IY-1)
     RLC (IX+1)
@@ -586,8 +586,8 @@ Rotate:
     RL H
     RL L
     RL (HL)
-    RL (IX)
-    RL (IY)
+    RL (IX) ; same as (IX+0)
+    RL (IY) ; same as (IY+0)
     RL (IX-128)
     RL (IY-1)
     RL (IX+1)
@@ -601,8 +601,8 @@ Rotate:
     RRC H
     RRC L
     RRC (HL)
-    RRC (IX)
-    RRC (IY)
+    RRC (IX) ; same as (IX+0)
+    RRC (IY) ; same as (IY+0)
     RRC (IX-128)
     RRC (IY-1)
     RRC (IX+1)
@@ -616,8 +616,8 @@ Rotate:
     RR H
     RR L
     RR (HL)
-    RR (IX)
-    RR (IY)
+    RR (IX) ; same as (IX+0)
+    RR (IY) ; same as (IY+0)
     RR (IX-128)
     RR (IY-1)
     RR (IX+1)
@@ -632,8 +632,8 @@ Shift:
     SLA H
     SLA L
     SLA (HL)
-    SLA (IX)
-    SLA (IY)
+    SLA (IX) ; same as (IX+0)
+    SLA (IY) ; same as (IY+0)
     SLA (IX-128)
     SLA (IY-1)
     SLA (IX+1)
@@ -662,8 +662,8 @@ Shift:
     SLL H
     SLL L
     SLL (HL)
-    SLL (IX)
-    SLL (IY)
+    SLL (IX) ; same as (IX+0)
+    SLL (IY) ; same as (IY+0)
     SLL (IX-128)
     SLL (IY-1)
     SLL (IX+1)
@@ -677,8 +677,8 @@ Shift:
     SRA H
     SRA L
     SRA (HL)
-    SRA (IX)
-    SRA (IY)
+    SRA (IX) ; same as (IX+0)
+    SRA (IY) ; same as (IY+0)
     SRA (IX-128)
     SRA (IY-1)
     SRA (IX+1)
@@ -692,8 +692,8 @@ Shift:
     SRL H
     SRL L
     SRL (HL)
-    SRL (IX)
-    SRL (IY)
+    SRL (IX) ; same as (IX+0)
+    SRL (IY) ; same as (IY+0)
     SRL (IX-128)
     SRL (IY-1)
     SRL (IX+1)
