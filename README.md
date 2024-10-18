@@ -182,13 +182,19 @@ org $0000
     djnz @Loop                          ; loop
 ```
 
-## Support Instruction
+## Support Instructions
 
 - Supports all Z80 instructions, including undocumented.
 - Some undocumented instructions are in a slightly special format.
 - All instructions are described in [./test/all.asm](./test/all.asm).
 
-## Auto Expand Instruction
+## WIP: Instructions Specialized for VSS-Zero
+
+_We plan to provide instructions that can perform VGS-Zero specific functions (multiplication, division, remainder, random numbers, voice operations, etc.)._
+
+_After the basic Z80 assembler functionality implementation is complete._
+
+## Auto Expand Instructions
 
 In vgsasm, instructions that __do not exist in the Z80__ are complemented by existing instructions.
 
