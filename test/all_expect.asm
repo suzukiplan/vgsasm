@@ -901,3 +901,14 @@
                     ld        a,iyl                         ;[0701] fd 7d
                     ld        (hl),a                        ;[0703] 77
                     pop       af                            ;[0704] f1
+                    ld        a,$80                         ;[0705] 3e 80
+                    ld        b,$ff                         ;[0707] 06 ff
+                    ld        c,$00                         ;[0709] 0e 00
+                    ld        d,$01                         ;[070b] 16 01
+                    ld        e,$7f                         ;[070d] 1e 7f
+                    ld        h,$80                         ;[070f] 26 80
+                    ld        l,$ff                         ;[0711] 2e ff
+                    ld        ixh,$11                       ;[0713] dd 26 11
+                    ld        ixl,$22                       ;[0716] dd 2e 22
+                    ld        iyh,$88                       ;[0719] fd 26 88
+                    ld        iyl,$99                       ;[071c] fd 2e 99
