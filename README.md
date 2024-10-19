@@ -289,6 +289,18 @@ Using `DIVS` makes it a signed operation.
 - Zero division results in 65535 (0xFFFF).
 - No flag bit set
 
+### ATN2 - atan2
+
+```z80
+    ATN2 A, BC  ; A = atan2(B,C) ... B=y2-y1, C=x2-x1
+    ATN2 A, DE  ; A = atan2(D,E) ... D=y2-y1, E=x2-x1
+    ATN2 A, HL  ; A = atan2(H,L) ... H=y2-y1, L=x2-x1 <faster than BC,DE>
+```
+
+`ATN2` is an instruction equivalent to the atan2 function in C and FORTRAN, which is specialized for 8-bit coordinate systems. By giving the difference of the Y coordinate (y2-y1) to High and the difference of the X coordinate (x2-x1) to Low in the pair register, the angle values between points 1 (x1,y1) and 2 (x2,y2) can be obtained.
+
+The obtained angle values can then be given to `SIN` and `COS` to obtain the 16-bit fixed-point minority part (8 bits).
+
 ## Auto Expand Instructions
 
 In vgsasm, instructions that __do not exist in the Z80__ are complemented by existing instructions.

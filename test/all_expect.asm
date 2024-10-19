@@ -1481,3 +1481,14 @@
                     out       ($c5),a                       ;[0aca] d3 c5
                     pop       bc                            ;[0acc] c1
                     pop       af                            ;[0acd] f1
+                    push      hl                            ;[0ace] e5
+                    ld        h,b                           ;[0acf] 60
+                    ld        l,c                           ;[0ad0] 69
+                    in        a,($c8)                       ;[0ad1] db c8
+                    pop       hl                            ;[0ad3] e1
+                    push      hl                            ;[0ad4] e5
+                    ld        h,d                           ;[0ad5] 62
+                    ld        l,e                           ;[0ad6] 6b
+                    in        a,($c8)                       ;[0ad7] db c8
+                    pop       hl                            ;[0ad9] e1
+                    in        a,($c8)                       ;[0ada] db c8

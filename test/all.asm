@@ -1348,3 +1348,8 @@ VGSZero:
     MOD HL, C   ; HL %= C <faster than A,B,D,E>
     MOD HL, D   ; HL %= D
     MOD HL, E   ; HL %= E
+
+@Atan2
+    ATN2 A, BC  ; A = atan2(B,C) ... B=y2-y1, C=x2-x1
+    ATN2 A, DE  ; A = atan2(D,E) ... D=y2-y1, E=x2-x1
+    ATN2 A, HL  ; A = atan2(H,L) ... H=y2-y1, L=x2-x1 <faster than BC,DE>

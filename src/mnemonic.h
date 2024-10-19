@@ -91,11 +91,14 @@ enum class Mnemonic {
     IM,
     DB,
     DW,
-    MUL,
-    MULS,
-    DIV,
-    DIVS,
-    MOD,
+    MUL,  // VGS-Zero
+    MULS, // VGS-Zero
+    DIV,  // VGS-Zero
+    DIVS, // VGS-Zero
+    MOD,  // VGS-Zero
+    ATN2, // VGS-Zero
+    SIN,  // VGS-Zero
+    COS,  // VGS-Zero
 };
 
 #define ML_PUSH_BC line->machine.push_back(0xC5)

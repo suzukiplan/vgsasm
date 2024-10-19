@@ -27,6 +27,9 @@ void mnemonic_MULS(LineData* line);                                  // mnemonic
 void mnemonic_DIV(LineData* line);                                   // mnemonic_vgs.cpp
 void mnemonic_DIVS(LineData* line);                                  // mnemonic_vgs.cpp
 void mnemonic_MOD(LineData* line);                                   // mnemonic_vgs.cpp
+void mnemonic_ATN2(LineData* line);                                  // mnemonic_vgs.cpp
+void mnemonic_SIN(LineData* line);                                   // mnemonic_vgs.cpp
+void mnemonic_COS(LineData* line);                                   // mnemonic_vgs.cpp
 
 std::vector<TempAddr*> tempAddrs;
 
@@ -115,6 +118,9 @@ std::map<std::string, Mnemonic> mnemonicTable = {
     {"DIV", Mnemonic::DIV},
     {"DIVS", Mnemonic::DIVS},
     {"MOD", Mnemonic::MOD},
+    {"ATN2", Mnemonic::ATN2},
+    {"SIN", Mnemonic::SIN},
+    {"COS", Mnemonic::COS},
 };
 
 static bool parseMneimonicSkipScope = false;
@@ -392,6 +398,9 @@ static void mnemonic_syntax_check_exec(std::vector<LineData*>* lines)
             case Mnemonic::DIV: mnemonic_DIV(line); break;
             case Mnemonic::DIVS: mnemonic_DIVS(line); break;
             case Mnemonic::MOD: mnemonic_MOD(line); break;
+            case Mnemonic::ATN2: mnemonic_ATN2(line); break;
+            case Mnemonic::SIN: mnemonic_SIN(line); break;
+            case Mnemonic::COS: mnemonic_COS(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
