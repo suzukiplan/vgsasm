@@ -182,6 +182,28 @@ org $0000
     djnz @Loop                          ; loop
 ```
 
+## Literal Data Definition
+
+```z80
+Data:
+@Text8  DB "Hello", ",", "World!", 0
+@Num8   DB -128, -1, 0, 1, 127, 255
+@Hex8   DEFB $00, $10, $20, $30, $40, $50, $60, $70, $80, $90, $A0, $B0, $C0, $D0, $E0, $F0
+
+@Text16 DW "Hello", ",", "World!", 0
+@Num16  DW -32768, -1, 0, 1, 32767, 65535
+@Hex16  DEFW $0123, $1234, $2345, $3456, $4567, $5678, $6789, $789A, $89AB, $9ABC, $ABCD
+@Labels DW Main, Data, Stack@Main, @Text8
+```
+
+- `DB` (Byte Data)
+  - A single byte number (`-128` ~ `127`, `0` ~ `255`, `0x00` ~ `0xFF`)
+  - Character string (`"String"`)
+- `DW` (Word Data)
+  - Two bytes number (`-32768` ~ `32767`, `0` ~ `65535`, `0x0000` ~ `0xFFFF`)
+  - Character string (`"String"`) *Upper 8 bits are always 0
+  - [Labels](#labels)
+
 ## Support Instructions
 
 - Supports all Z80 instructions, including undocumented.
