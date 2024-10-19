@@ -1318,3 +1318,23 @@ VGSZero:
     MULS HL, C  ; HL *= C <faster than A,B,D,E>
     MULS HL, D  ; HL *= D
     MULS HL, E  ; HL *= E
+
+@Division_unsigned
+    DIV BC      ; BC = B / C
+    DIV DE      ; DE = D / C
+    DIV HL      ; HL = H / L <faster than BC,DE>
+    DIV HL, A   ; HL /= A
+    DIV HL, B   ; HL /= B
+    DIV HL, C   ; HL /= C <faster than A,B,D,E>
+    DIV HL, D   ; HL /= D
+    DIV HL, E   ; HL /= E
+
+@Division_signed
+    DIVS BC     ; BC = B / C
+    DIVS DE     ; DE = D / C
+    DIVS HL     ; HL = H / L <faster than BC,DE>
+    DIVS HL, A  ; HL /= A
+    DIVS HL, B  ; HL /= B
+    DIVS HL, C  ; HL /= C <faster than A,B,D,E>
+    DIVS HL, D  ; HL /= D
+    DIVS HL, E  ; HL /= E

@@ -242,6 +242,36 @@ Using `MULS` makes it a signed operation.
 - The result of the operation leaves a remainder at 65536, and there is no way to detect its carry.
 - No flag bit set
 
+### DIV - Division
+
+```z80
+    DIV BC      ; BC = B / C
+    DIV DE      ; DE = D / C
+    DIV HL      ; HL = H / L <faster than BC,DE>
+    DIV HL, A   ; HL /= A
+    DIV HL, B   ; HL /= B
+    DIV HL, C   ; HL /= C <faster than A,B,D,E>
+    DIV HL, D   ; HL /= D
+    DIV HL, E   ; HL /= E
+```
+
+Using `DIVS` makes it a signed operation.
+
+```z80
+    DIVS BC     ; BC = B / C
+    DIVS DE     ; DE = D / C
+    DIVS HL     ; HL = H / L <faster than BC,DE>
+    DIVS HL, A  ; HL /= A
+    DIVS HL, B  ; HL /= B
+    DIVS HL, C  ; HL /= C <faster than A,B,D,E>
+    DIVS HL, D  ; HL /= D
+    DIVS HL, E  ; HL /= E
+```
+
+- The above instructions internally use the [Hardware Calculation](https://github.com/suzukiplan/vgszero/blob/master/README-en.md#hardware-calculation) of VGS-Zero.
+- Zero division results in 65535 (0xFFFF).
+- No flag bit set
+
 ## Auto Expand Instructions
 
 In vgsasm, instructions that __do not exist in the Z80__ are complemented by existing instructions.
