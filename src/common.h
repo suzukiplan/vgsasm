@@ -170,6 +170,8 @@ void parse_numeric(LineData* line);                                             
 void parse_numeric_minus(LineData* line);                                             // numeric.cpp
 void parse_numeric_plus(LineData* line);                                              // numeric.cpp
 void parse_operand(LineData* line);                                                   // operand.cpp
+bool operand_is_condition(Operand op);                                                // operand.cpp
+bool operand_is_condition(std::string str);                                           // operand.cpp
 void parse_sizeof(LineData* line);                                                    // sizeof.cpp
 void replace_sizeof(LineData* line);                                                  // sizeof.cpp
 void parse_offset(LineData* line);                                                    // offset.cpp

@@ -1129,3 +1129,13 @@ Branch:
     JR @JR_immediate
     JR Branch
     JR Store_to_IX@Transfer_Load_Store
+
+@JP_cond_immediate
+    JP Z, $1234
+    JP NZ, $1234
+    JP C, $1234
+    JP NC, $1234
+    JP PE, $1234
+    JP PO, $1234
+    JP P, $1234
+    JP M, $1234

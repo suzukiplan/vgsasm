@@ -21,9 +21,40 @@ std::map<std::string, Operand> operandTable = {
     {"IX", Operand::IX},
     {"IY", Operand::IY},
     {"SP", Operand::SP},
+    {"NZ", Operand::NZ},
+    {"Z", Operand::Z},
+    {"NC", Operand::NC},
+    {"PO", Operand::PO},
+    {"PE", Operand::PE},
+    {"P", Operand::P},
+    {"M", Operand::M},
 };
 
 static bool parseOperandSkipScope = false;
+
+bool operand_is_condition(Operand op)
+{
+    switch (op) {
+        case Operand::NZ: return true;
+        case Operand::Z: return true;
+        case Operand::NC: return true;
+        case Operand::C: return true;
+        case Operand::PO: return true;
+        case Operand::PE: return true;
+        case Operand::P: return true;
+        case Operand::M: return true;
+    }
+    return false;
+}
+
+bool operand_is_condition(std::string str)
+{
+    auto op = operandTable.find(str);
+    if (op != operandTable.end()) {
+        return operand_is_condition(op->second);
+    }
+    return false;
+}
 
 void parse_operand(LineData* line)
 {
