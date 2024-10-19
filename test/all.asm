@@ -1159,3 +1159,13 @@ Branch:
     ; JR PO, -64    // does not exit
     ; JR P, 64      // does not exit
     ; JR M, 127     // does not exit
+
+@JR_cond_label
+    JR Z, @JP_cond_immediate
+    JR NZ, @JP_immediate
+    JR C, JP_immediate@Branch
+    JR NC, @JR_cond_label
+    ; JR PE, Stack@Main     // does not exit
+    ; JR PO, Branch         // does not exit
+    ; JR P, @JR_label       // does not exit
+    ; JR M, @JR_immediate   // does not exit

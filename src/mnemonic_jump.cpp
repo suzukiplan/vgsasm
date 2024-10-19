@@ -97,6 +97,15 @@ void mnemonic_JR(LineData* line)
             line->machine.push_back(e);
             return;
         }
+    } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::LabelJump) &&
+               operand_is_condition(line->token[1].second)) {
+        uint8_t code = getJrCond(line, line->token[1].second);
+        if (code) {
+            line->machine.push_back(code);
+            tempAddrs.push_back(new TempAddr(line, line->token[3].second, line->machine.size(), true));
+            line->machine.push_back(0x00);
+            return;
+        }
     }
     if (!line->error) {
         line->error = true;
