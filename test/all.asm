@@ -1289,4 +1289,9 @@ Subroutine:
 Data:
 @Text8  DB "Hello", ",", "World!", 0
 @Num8   DB -128, -1, 0, 1, 127, 255
-@Hex8   DB $00, $10, $20, $30, $40, $50, $60, $70, $80, $90, $A0, $B0, $C0, $D0, $E0, $F0
+@Hex8   DEFB $00, $10, $20, $30, $40, $50, $60, $70, $80, $90, $A0, $B0, $C0, $D0, $E0, $F0
+
+@Text16 DW "Hello", ",", "World!", 0
+@Num16  DW -32768, -1, 0, 1, 32767, 65535
+@Hex16  DEFW $0123, $1234, $2345, $3456, $4567, $5678, $6789, $789A, $89AB, $9ABC, $ABCD
+@Labels DW Main, Data, Stack@Main, @Text8

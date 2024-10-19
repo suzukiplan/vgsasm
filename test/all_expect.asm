@@ -1141,3 +1141,63 @@
                     ret       nc                            ;[091f] d0
                     ret       po                            ;[0920] e0
                     ret       p                             ;[0921] f0
+                    ld        c,b                           ;[0922] 48
+                    nop                                     ;[0923] 00
+                    ld        h,l                           ;[0924] 65
+                    nop                                     ;[0925] 00
+                    ld        l,h                           ;[0926] 6c
+                    nop                                     ;[0927] 00
+                    ld        l,h                           ;[0928] 6c
+                    nop                                     ;[0929] 00
+                    ld        l,a                           ;[092a] 6f
+                    nop                                     ;[092b] 00
+                    inc       l                             ;[092c] 2c
+                    nop                                     ;[092d] 00
+                    ld        d,a                           ;[092e] 57
+                    nop                                     ;[092f] 00
+                    ld        l,a                           ;[0930] 6f
+                    nop                                     ;[0931] 00
+                    ld        (hl),d                        ;[0932] 72
+                    nop                                     ;[0933] 00
+                    ld        l,h                           ;[0934] 6c
+                    nop                                     ;[0935] 00
+                    ld        h,h                           ;[0936] 64
+                    nop                                     ;[0937] 00
+                    ld        hl,$0000                      ;[0938] 21 00 00
+                    nop                                     ;[093b] 00
+                    nop                                     ;[093c] 00
+                    add       b                             ;[093d] 80
+                    rst       $38                           ;[093e] ff
+                    rst       $38                           ;[093f] ff
+                    nop                                     ;[0940] 00
+                    nop                                     ;[0941] 00
+                    ld        bc,$ff00                      ;[0942] 01 00 ff
+                    ld        a,a                           ;[0945] 7f
+                    rst       $38                           ;[0946] ff
+                    rst       $38                           ;[0947] ff
+                    inc       hl                            ;[0948] 23
+                    ld        bc,$1234                      ;[0949] 01 34 12
+                    ld        b,l                           ;[094c] 45
+                    inc       hl                            ;[094d] 23
+                    ld        d,(hl)                        ;[094e] 56
+                    inc       (hl)                          ;[094f] 34
+                    ld        h,a                           ;[0950] 67
+                    ld        b,l                           ;[0951] 45
+                    ld        a,b                           ;[0952] 78
+                    ld        d,(hl)                        ;[0953] 56
+                    adc       c                             ;[0954] 89
+                    ld        h,a                           ;[0955] 67
+                    sbc       d                             ;[0956] 9a
+                    ld        a,b                           ;[0957] 78
+                    xor       e                             ;[0958] ab
+                    adc       c                             ;[0959] 89
+                    cp        h                             ;[095a] bc
+                    sbc       d                             ;[095b] 9a
+                    call      $00ab                         ;[095c] cd ab 00
+                    nop                                     ;[095f] 00
+                    rst       $38                           ;[0960] ff
+                    ex        af,af'                        ;[0961] 08
+                    add       hl,bc                         ;[0962] 09
+                    nop                                     ;[0963] 00
+                    rst       $38                           ;[0964] ff
+                    ex        af,af'                        ;[0965] 08
