@@ -1058,3 +1058,11 @@
                     call      $0898                         ;[08a1] cd 98 08
                     call      $0000                         ;[08a4] cd 00 00
                     call      $0009                         ;[08a7] cd 09 00
+                    call      nz,$1234                      ;[08aa] c4 34 12
+                    call      z,$1234                       ;[08ad] cc 34 12
+                    call      nc,$1234                      ;[08b0] d4 34 12
+                    call      c,$1234                       ;[08b3] dc 34 12
+                    call      po,$1234                      ;[08b6] e4 34 12
+                    call      pe,$1234                      ;[08b9] ec 34 12
+                    call      p,$1234                       ;[08bc] f4 34 12
+                    call      m,$1234                       ;[08bf] fc 34 12

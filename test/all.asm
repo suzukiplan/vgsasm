@@ -1217,3 +1217,13 @@ Subroutine:
     CALL @Call_Immediate
     CALL Main
     CALL Stack@Main
+
+@Call_condition_immediate
+    CALL NZ, $1234
+    CALL Z, $1234
+    CALL NC, $1234
+    CALL C, $1234
+    CALL PO, $1234
+    CALL PE, $1234
+    CALL P, $1234
+    CALL M, $1234
