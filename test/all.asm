@@ -1149,3 +1149,13 @@ Branch:
     JP PO, Branch
     JP P, @JR_label
     JP M, @JR_immediate
+
+@JR_cond_immediate
+    JR Z, -128
+    JR NZ, -1
+    JR C, 1
+    JR NC, 127
+    ; JR PE, +64    // does not exit
+    ; JR PO, -64    // does not exit
+    ; JR P, 64      // does not exit
+    ; JR M, 127     // does not exit

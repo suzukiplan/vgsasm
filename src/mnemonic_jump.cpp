@@ -18,6 +18,19 @@ static uint8_t getJpCond(LineData* line, std::string cond)
     return 0x00;
 }
 
+static uint8_t getJrCond(LineData* line, std::string cond)
+{
+    switch (operandTable[cond]) {
+        case Operand::NZ: return 0x20;
+        case Operand::Z: return 0x28;
+        case Operand::NC: return 0x30;
+        case Operand::C: return 0x38;
+    }
+    line->error = true;
+    line->errmsg = "Invalid condition: " + cond;
+    return 0x00;
+}
+
 void mnemonic_JP(LineData* line)
 {
     if (mnemonic_format_test(line, 2, TokenType::Numeric)) {
@@ -75,6 +88,15 @@ void mnemonic_JR(LineData* line)
         tempAddrs.push_back(new TempAddr(line, line->token[1].second, line->machine.size(), true));
         line->machine.push_back(0x00);
         return;
+    } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Numeric) &&
+               operand_is_condition(line->token[1].second)) {
+        uint8_t code = getJrCond(line, line->token[1].second);
+        auto e = atoi(line->token[3].second.c_str());
+        if (code && mnemonic_range(line, e, -128, 127)) {
+            line->machine.push_back(code);
+            line->machine.push_back(e);
+            return;
+        }
     }
     if (!line->error) {
         line->error = true;
