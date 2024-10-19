@@ -1308,3 +1308,13 @@ VGSZero:
     MUL HL, C   ; HL *= C <faster>
     MUL HL, D   ; HL *= D
     MUL HL, E   ; HL *= E
+
+@Multiplication_signed
+    MULS BC     ; BC = B * C
+    MULS DE     ; DE = D * C
+    MULS HL     ; HL = H * L <faster than BC,DE>
+    MULS HL, A  ; HL *= A
+    MULS HL, B  ; HL *= B
+    MULS HL, C  ; HL *= C <faster than A,B,D,E>
+    MULS HL, D  ; HL *= D
+    MULS HL, E  ; HL *= E

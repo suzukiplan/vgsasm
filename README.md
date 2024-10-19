@@ -210,7 +210,7 @@ Data:
 - Some undocumented instructions are in a slightly special format.
 - All instructions are described in [./test/all.asm](./test/all.asm).
 
-## WIP: Instructions Specialized for VSS-Zero
+## Instructions Specialized for VSS-Zero
 
 ### MUL - Multiplication
 
@@ -225,7 +225,21 @@ Data:
     MUL HL, E   ; HL *= E
 ```
 
+Using `MULS` makes it a signed operation.
+
+```z80
+    MULS BC     ; BC = B * C
+    MULS DE     ; DE = D * C
+    MULS HL     ; HL = H * L <faster than BC,DE>
+    MULS HL, A  ; HL *= A
+    MULS HL, B  ; HL *= B
+    MULS HL, C  ; HL *= C <faster than A,B,D,E>
+    MULS HL, D  ; HL *= D
+    MULS HL, E  ; HL *= E
+```
+
 - The above instructions internally use the [Hardware Calculation](https://github.com/suzukiplan/vgszero/blob/master/README-en.md#hardware-calculation) of VGS-Zero.
+- The result of the operation leaves a remainder at 65536, and there is no way to detect its carry.
 - No flag bit set
 
 ## Auto Expand Instructions
@@ -251,6 +265,8 @@ In vgsasm, instructions that __do not exist in the Z80__ are complemented by exi
 | `DEC (nn)` | `PUSH HL`, `LD HL,nn`, `DEC (HL)` `POP HL`|
 | `JP (BC)` | `PUSH BC`, `RET` |
 | `JP (DE)` | `PUSH DE`, `RET` |
+
+> All VGS-Zero specialized instructions are auto-expand.
 
 ## License
 
