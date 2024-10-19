@@ -1193,3 +1193,15 @@ Branch_DecB:
     DJNZ JR_immediate@Branch
     DJNZ @DJNZ_immediate
     DJNZ Branch_DecB
+
+Jump_with_Register:
+    JP (BC) ; auto expand (PUSH BC, RET)
+    JP (DE) ; auto expand (PUSH DE, RET)
+    JP (HL)
+    JP (IX)
+    JP (IY)
+    JP BC   ; Same as JP (BC)
+    JP DE   ; Same as JP (DE)
+    JP HL   ; Same as JP (HL)
+    JP IX   ; Same as JP (IX)
+    JP IY   ; Same as JP (IY)

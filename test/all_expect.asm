@@ -1034,3 +1034,21 @@
                     djnz      $0811                         ;[0880] 10 8f
                     djnz      $0878                         ;[0882] 10 f4
                     djnz      $0878                         ;[0884] 10 f2
+                    push      bc                            ;[0886] c5
+                    ret                                     ;[0887] c9
+
+                    push      de                            ;[0888] d5
+                    ret                                     ;[0889] c9
+
+                    jp        (hl)                          ;[088a] e9
+                    jp        (ix)                          ;[088b] dd e9
+                    jp        (iy)                          ;[088d] fd e9
+                    push      bc                            ;[088f] c5
+                    ret                                     ;[0890] c9
+
+                    push      de                            ;[0891] d5
+                    ret                                     ;[0892] c9
+
+                    jp        (hl)                          ;[0893] e9
+                    jp        (ix)                          ;[0894] dd e9
+                    jp        (iy)                          ;[0896] fd e9

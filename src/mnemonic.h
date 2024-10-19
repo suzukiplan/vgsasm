@@ -603,6 +603,22 @@ enum class Mnemonic {
     ML_LD_HL_A;      \
     ML_POP_AF
 
+#define ML_RET line->machine.push_back(0xC9)
+#define ML_RET_NZ line->machine.push_back(0xC0)
+#define ML_RET_Z line->machine.push_back(0xC8)
+#define ML_RET_NC line->machine.push_back(0xD0)
+#define ML_RET_C line->machine.push_back(0xD8)
+#define ML_RET_PO line->machine.push_back(0xE0)
+#define ML_RET_PE line->machine.push_back(0xE8)
+#define ML_RET_P line->machine.push_back(0xF0)
+#define ML_RET_M line->machine.push_back(0xF8)
+#define ML_RETI                    \
+    line->machine.push_back(0xED); \
+    line->machine.push_back(0x4D)
+#define ML_RETN                    \
+    line->machine.push_back(0xED); \
+    line->machine.push_back(0x45)
+
 bool mnemonic_format_check(LineData* line, int size, ...);
 bool mnemonic_format_test(LineData* line, int size, ...);
 bool mnemonic_format_begin(LineData* line, int size, ...);

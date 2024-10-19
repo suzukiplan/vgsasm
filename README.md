@@ -215,6 +215,8 @@ In vgsasm, instructions that __do not exist in the Z80__ are complemented by exi
 | `ADD IY,nn` | `PUSH DE`, `LD DE,nn`, `ADD IY,DE`, `POP DE`|
 | `INC (nn)` | `PUSH HL`, `LD HL,nn`, `INC (HL)` `POP HL`|
 | `DEC (nn)` | `PUSH HL`, `LD HL,nn`, `DEC (HL)` `POP HL`|
+| `JP (BC)` | `PUSH BC`, `RET` |
+| `JP (DE)` | `PUSH DE`, `RET` |
 
 ## License
 

@@ -67,6 +67,29 @@ void mnemonic_JP(LineData* line)
             line->machine.push_back(0x00);
             return;
         }
+    } else if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd) ||
+               mnemonic_format_test(line, 2, TokenType::Operand)) {
+        switch (operandTable[line->token[line->token.size() == 4 ? 2 : 1].second]) {
+            case Operand::BC:
+                ML_PUSH_BC;
+                ML_RET;
+                return;
+            case Operand::DE:
+                ML_PUSH_DE;
+                ML_RET;
+                return;
+            case Operand::HL:
+                line->machine.push_back(0xE9);
+                return;
+            case Operand::IX:
+                line->machine.push_back(0xDD);
+                line->machine.push_back(0xE9);
+                return;
+            case Operand::IY:
+                line->machine.push_back(0xFD);
+                line->machine.push_back(0xE9);
+                return;
+        }
     }
     if (!line->error) {
         line->error = true;
