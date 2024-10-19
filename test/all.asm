@@ -1093,3 +1093,17 @@ Transfer_Load_Store:
     LD (IY + 1), E
     LD (IY + 127), H
     LD (IY + 64), L
+
+@Store_to_IXY_immediate
+    LD (IX - 128), -128
+    LD (IX - 128), -1
+    LD (IX - 128), 0
+    LD (IY + 127), 1
+    LD (IY + 127), 127
+    LD (IY + 127), 255
+    LD (IX), -128
+    LD (IX), -1
+    LD (IX), 0
+    LD (IY), 1
+    LD (IY), 127
+    LD (IY), 255

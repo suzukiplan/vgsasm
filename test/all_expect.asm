@@ -970,3 +970,15 @@
                     ld        (iy+$01),e                    ;[07c6] fd 73 01
                     ld        (iy+$7f),h                    ;[07c9] fd 74 7f
                     ld        (iy+$40),l                    ;[07cc] fd 75 40
+                    ld        (ix-$80),$80                  ;[07cf] dd 36 80 80
+                    ld        (ix-$80),$ff                  ;[07d3] dd 36 80 ff
+                    ld        (ix-$80),$00                  ;[07d7] dd 36 80 00
+                    ld        (iy+$7f),$01                  ;[07db] fd 36 7f 01
+                    ld        (iy+$7f),$7f                  ;[07df] fd 36 7f 7f
+                    ld        (iy+$7f),$ff                  ;[07e3] fd 36 7f ff
+                    ld        (ix+$00),$80                  ;[07e7] dd 36 00 80
+                    ld        (ix+$00),$ff                  ;[07eb] dd 36 00 ff
+                    ld        (ix+$00),$00                  ;[07ef] dd 36 00 00
+                    ld        (iy+$00),$01                  ;[07f3] fd 36 00 01
+                    ld        (iy+$00),$7f                  ;[07f7] fd 36 00 7f
+                    ld        (iy+$00),$ff                  ;[07fb] fd 36 00 ff
