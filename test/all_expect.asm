@@ -1066,3 +1066,11 @@
                     call      pe,$1234                      ;[08b9] ec 34 12
                     call      p,$1234                       ;[08bc] f4 34 12
                     call      m,$1234                       ;[08bf] fc 34 12
+                    call      nz,$08c2                      ;[08c2] c4 c2 08
+                    call      z,$08aa                       ;[08c5] cc aa 08
+                    call      nc,$0898                      ;[08c8] d4 98 08
+                    call      c,$0898                       ;[08cb] dc 98 08
+                    call      po,$0009                      ;[08ce] e4 09 00
+                    call      pe,$0000                      ;[08d1] ec 00 00
+                    call      p,$0009                       ;[08d4] f4 09 00
+                    call      m,$0000                       ;[08d7] fc 00 00

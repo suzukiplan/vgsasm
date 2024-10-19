@@ -1227,3 +1227,13 @@ Subroutine:
     CALL PE, $1234
     CALL P, $1234
     CALL M, $1234
+
+@Call_condition_label
+    CALL NZ, @Call_condition_label
+    CALL Z, @Call_condition_immediate
+    CALL NC, Subroutine
+    CALL C, Call_Immediate@Subroutine
+    CALL PO, Stack@Main
+    CALL PE, Main
+    CALL P, Stack@Main
+    CALL M, Interrupt@Main
