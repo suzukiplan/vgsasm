@@ -1139,3 +1139,13 @@ Branch:
     JP PO, $1234
     JP P, $1234
     JP M, $1234
+
+@JP_cond_label
+    JP Z, @JP_cond_immediate
+    JP NZ, @JP_immediate
+    JP C, JP_immediate@Branch
+    JP NC, Main
+    JP PE, Stack@Main
+    JP PO, Branch
+    JP P, @JR_label
+    JP M, @JR_immediate
