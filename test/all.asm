@@ -1252,3 +1252,36 @@ Subroutine:
     RET PE
     RET P
     RET M
+
+@RST
+    RST 0
+    RST $00
+    RST $0000
+
+    RST 1
+    RST $08
+    RST $0008
+
+    RST 2
+    RST $10
+    RST $0010
+
+    RST 3
+    RST $18
+    RST $0018
+
+    RST 4
+    RST $20
+    RST $0020
+
+    RST 5
+    RST $28
+    RST $0028
+
+    RST 6
+    RST $30
+    RST $0030
+
+    RST 7
+    RST $38
+    RST $0038

@@ -1088,3 +1088,27 @@
                     ret       pe                            ;[08e4] e8
                     ret       p                             ;[08e5] f0
                     ret       m                             ;[08e6] f8
+                    rst       $00                           ;[08e7] c7
+                    rst       $00                           ;[08e8] c7
+                    rst       $00                           ;[08e9] c7
+                    rst       $08                           ;[08ea] cf
+                    rst       $08                           ;[08eb] cf
+                    rst       $08                           ;[08ec] cf
+                    rst       $10                           ;[08ed] d7
+                    rst       $10                           ;[08ee] d7
+                    rst       $10                           ;[08ef] d7
+                    rst       $18                           ;[08f0] df
+                    rst       $18                           ;[08f1] df
+                    rst       $18                           ;[08f2] df
+                    rst       $20                           ;[08f3] e7
+                    rst       $20                           ;[08f4] e7
+                    rst       $20                           ;[08f5] e7
+                    rst       $28                           ;[08f6] ef
+                    rst       $28                           ;[08f7] ef
+                    rst       $28                           ;[08f8] ef
+                    rst       $30                           ;[08f9] f7
+                    rst       $30                           ;[08fa] f7
+                    rst       $30                           ;[08fb] f7
+                    rst       $38                           ;[08fc] ff
+                    rst       $38                           ;[08fd] ff
+                    rst       $38                           ;[08fe] ff
