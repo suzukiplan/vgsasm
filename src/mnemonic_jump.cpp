@@ -112,3 +112,19 @@ void mnemonic_JR(LineData* line)
         line->errmsg = "Illegal JR instruction.";
     }
 }
+
+void mnemonic_DJNZ(LineData* line)
+{
+    if (mnemonic_format_test(line, 2, TokenType::Numeric)) {
+        auto e = atoi(line->token[1].second.c_str());
+        if (mnemonic_range(line, e, -128, 127)) {
+            line->machine.push_back(0x10);
+            line->machine.push_back(e);
+            return;
+        }
+    }
+    if (!line->error) {
+        line->error = true;
+        line->errmsg = "Illegal DJNZ instruction.";
+    }
+}

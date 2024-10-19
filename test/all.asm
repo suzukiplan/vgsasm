@@ -1180,3 +1180,9 @@ Branch:
     JPP $1234
     JPM $1234
     JM $1234
+
+@DJNZ_immediate
+    DJNZ -128
+    DJNZ -1
+    DJNZ 1
+    DJNZ 127
