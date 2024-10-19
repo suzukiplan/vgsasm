@@ -37,12 +37,51 @@ void mnemonic_MUL(LineData* line)
                 return;
         }
     } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand)) {
-        if (operandTable[line->token[1].second] == Operand::HL && operandTable[line->token[3].second] == Operand::C) {
-            ML_PUSH_AF;
-            ML_LD_A_n(0x80);
-            ML_OUT_A(0xC5);
-            ML_POP_AF;
-            return;
+        if (operandTable[line->token[1].second] == Operand::HL) {
+            switch (operandTable[line->token[3].second]) {
+                case Operand::A:
+                    ML_PUSH_AF;
+                    ML_PUSH_BC;
+                    ML_LD_C_A;
+                    ML_LD_A_n(0x80);
+                    ML_OUT_A(0xC5);
+                    ML_POP_BC;
+                    ML_POP_AF;
+                    return;
+                case Operand::B:
+                    ML_PUSH_AF;
+                    ML_PUSH_BC;
+                    ML_LD_C_B;
+                    ML_LD_A_n(0x80);
+                    ML_OUT_A(0xC5);
+                    ML_POP_BC;
+                    ML_POP_AF;
+                    return;
+                case Operand::C:
+                    ML_PUSH_AF;
+                    ML_LD_A_n(0x80);
+                    ML_OUT_A(0xC5);
+                    ML_POP_AF;
+                    return;
+                case Operand::D:
+                    ML_PUSH_AF;
+                    ML_PUSH_BC;
+                    ML_LD_C_D;
+                    ML_LD_A_n(0x80);
+                    ML_OUT_A(0xC5);
+                    ML_POP_BC;
+                    ML_POP_AF;
+                    return;
+                case Operand::E:
+                    ML_PUSH_AF;
+                    ML_PUSH_BC;
+                    ML_LD_C_E;
+                    ML_LD_A_n(0x80);
+                    ML_OUT_A(0xC5);
+                    ML_POP_BC;
+                    ML_POP_AF;
+                    return;
+            }
         }
     }
     if (!line->error) {

@@ -216,13 +216,16 @@ Data:
 
 ```z80
     MUL BC      ; BC = B * C
-    MUL DE      ; DE = D * E
-    MUL HL      ; HL = H * L
-    MUL HL, C   ; HL *= C
+    MUL DE      ; DE = D * C
+    MUL HL      ; HL = H * L <faster than BC,DE>
+    MUL HL, A   ; HL *= A
+    MUL HL, B   ; HL *= B
+    MUL HL, C   ; HL *= C <faster than A,B,D,E>
+    MUL HL, D   ; HL *= D
+    MUL HL, E   ; HL *= E
 ```
 
 - The above instructions internally use the [Hardware Calculation](https://github.com/suzukiplan/vgszero/blob/master/README-en.md#hardware-calculation) of VGS-Zero.
-- Operations using `HL` are faster _(`BC`,`DE` use stack area)_
 - No flag bit set
 
 ## Auto Expand Instructions

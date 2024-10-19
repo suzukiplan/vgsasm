@@ -1302,5 +1302,9 @@ VGSZero:
 @Multiplication_unsigned
     MUL BC      ; BC = B * C
     MUL DE      ; DE = D * C
-    MUL HL      ; HL = H * L
-    MUL HL, C   ; HL *= C
+    MUL HL      ; HL = H * L <faster>
+    MUL HL, A   ; HL *= A
+    MUL HL, B   ; HL *= B
+    MUL HL, C   ; HL *= C <faster>
+    MUL HL, D   ; HL *= D
+    MUL HL, E   ; HL *= E
