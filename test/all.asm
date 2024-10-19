@@ -1107,3 +1107,10 @@ Transfer_Load_Store:
     LD (IY), 1
     LD (IY), 127
     LD (IY), 255
+
+Branch:
+
+@JP_immediate
+    JP 0
+    JP $1234
+    JP 0xFFFF
