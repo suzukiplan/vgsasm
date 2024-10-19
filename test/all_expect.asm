@@ -1074,3 +1074,9 @@
                     call      pe,$0000                      ;[08d1] ec 00 00
                     call      p,$0009                       ;[08d4] f4 09 00
                     call      m,$0000                       ;[08d7] fc 00 00
+                    ret                                     ;[08da] c9
+
+                    reti                                    ;[08db] ed 4d
+
+                    retn                                    ;[08dd] ed 45
+

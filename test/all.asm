@@ -1237,3 +1237,8 @@ Subroutine:
     CALL PE, Main
     CALL P, Stack@Main
     CALL M, Interrupt@Main
+
+@Return
+    RET
+    RETI
+    RETN
