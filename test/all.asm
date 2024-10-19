@@ -1212,3 +1212,8 @@ Subroutine:
     CALL 0
     CALL $1234
     CALL $FFFF
+
+@Call_Label
+    CALL @Call_Immediate
+    CALL Main
+    CALL Stack@Main

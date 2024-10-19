@@ -1055,3 +1055,6 @@
                     call      $0000                         ;[0898] cd 00 00
                     call      $1234                         ;[089b] cd 34 12
                     call      $ffff                         ;[089e] cd ff ff
+                    call      $0898                         ;[08a1] cd 98 08
+                    call      $0000                         ;[08a4] cd 00 00
+                    call      $0009                         ;[08a7] cd 09 00
