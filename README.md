@@ -212,9 +212,18 @@ Data:
 
 ## WIP: Instructions Specialized for VSS-Zero
 
-_We plan to provide instructions that can perform VGS-Zero specific functions (multiplication, division, remainder, random numbers, voice operations, etc.)._
+### MUL - Multiplication
 
-_After the basic Z80 assembler functionality implementation is complete._
+```z80
+    MUL BC      ; BC = B * C
+    MUL DE      ; DE = D * E
+    MUL HL      ; HL = H * L
+    MUL HL, C   ; HL *= C
+```
+
+- The above instructions internally use the [Hardware Calculation](https://github.com/suzukiplan/vgszero/blob/master/README-en.md#hardware-calculation) of VGS-Zero.
+- Operations using `HL` are faster _(`BC`,`DE` use stack area)_
+- No flag bit set
 
 ## Auto Expand Instructions
 

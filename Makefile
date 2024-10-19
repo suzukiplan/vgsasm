@@ -20,6 +20,7 @@ OBJECTS = \
 	mnemonic_ex.o \
 	mnemonic_stack.o \
 	mnemonic_bit.o \
+	mnemonic_vgs.o \
 	numeric.o \
 	operand.o \
 	sizeof.o \
@@ -97,6 +98,9 @@ mnemonic_stack.o: src/mnemonic_stack.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 mnemonic_bit.o: src/mnemonic_bit.cpp ${HEADERS} src/mnemonic.h
+	${CPP} ${CPPFLAGS} -c $< -o $@
+
+mnemonic_vgs.o: src/mnemonic_vgs.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 numeric.o: src/numeric.cpp ${HEADERS}

@@ -22,6 +22,7 @@ void mnemonic_PUSH(LineData* line);                                  // mnemonic
 void mnemonic_POP(LineData* line);                                   // mnemonic_stack.cpp
 void mnemonic_DB(LineData* line);                                    // mnemonic_data.cpp
 void mnemonic_DW(LineData* line);                                    // mnemonic_data.cpp
+void mnemonic_MUL(LineData* line);                                   // mnemonic_vgs.cpp
 
 std::vector<TempAddr*> tempAddrs;
 
@@ -105,6 +106,7 @@ std::map<std::string, Mnemonic> mnemonicTable = {
     {"DEFW", Mnemonic::DW},
     {"BYTE", Mnemonic::DB},
     {"WORD", Mnemonic::DW},
+    {"MUL", Mnemonic::MUL},
 };
 
 static bool parseMneimonicSkipScope = false;
@@ -377,6 +379,7 @@ static void mnemonic_syntax_check_exec(std::vector<LineData*>* lines)
             case Mnemonic::RST: mnemonic_RST(line); break;
             case Mnemonic::DB: mnemonic_DB(line); break;
             case Mnemonic::DW: mnemonic_DW(line); break;
+            case Mnemonic::MUL: mnemonic_MUL(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

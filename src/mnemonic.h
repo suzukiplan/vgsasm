@@ -91,6 +91,7 @@ enum class Mnemonic {
     IM,
     DB,
     DW,
+    MUL,
 };
 
 #define ML_PUSH_BC line->machine.push_back(0xC5)
@@ -247,10 +248,10 @@ enum class Mnemonic {
 
 #define ML_IN_A(N)                 \
     line->machine.push_back(0xDB); \
-    line->machine.push_back(n)
+    line->machine.push_back(N)
 #define ML_OUT_A(N)                \
     line->machine.push_back(0xD3); \
-    line->machine.push_back(n)
+    line->machine.push_back(N)
 
 #define ML_LD_A_B line->machine.push_back(0x78)
 #define ML_LD_A_C line->machine.push_back(0x79)

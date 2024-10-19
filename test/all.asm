@@ -1295,3 +1295,12 @@ Data:
 @Num16  DW -32768, -1, 0, 1, 32767, 65535
 @Hex16  DEFW $0123, $1234, $2345, $3456, $4567, $5678, $6789, $789A, $89AB, $9ABC, $ABCD
 @Labels DW Main, Data, Stack@Main, @Text8
+
+; ===== Subsequent instructions are for VGS-Zero only =====
+VGSZero:
+
+@Multiplication_unsigned
+    MUL BC      ; BC = B * C
+    MUL DE      ; DE = D * C
+    MUL HL      ; HL = H * L
+    MUL HL, C   ; HL *= C
