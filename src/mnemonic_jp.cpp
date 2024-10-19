@@ -11,6 +11,12 @@ void mnemonic_JP(LineData* line)
             line->machine.push_back((addr & 0xFF00) >> 8);
             return;
         }
+    } else if (mnemonic_format_test(line, 2, TokenType::LabelJump)) {
+        line->machine.push_back(0xC3);
+        tempAddrs.push_back(new TempAddr(line, line->token[1].second, line->machine.size(), false));
+        line->machine.push_back(0x00);
+        line->machine.push_back(0x00);
+        return;
     }
     if (!line->error) {
         line->error = true;

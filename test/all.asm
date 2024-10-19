@@ -1114,3 +1114,8 @@ Branch:
     JP 0
     JP $1234
     JP 0xFFFF
+
+@JP_label
+    JP Branch
+    JP @JP_label
+    JP Stack@Main
