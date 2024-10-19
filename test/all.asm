@@ -1338,3 +1338,13 @@ VGSZero:
     DIVS HL, C  ; HL /= C <faster than A,B,D,E>
     DIVS HL, D  ; HL /= D
     DIVS HL, E  ; HL /= E
+
+@Modulo
+    MOD BC      ; BC = B % C
+    MOD DE      ; DE = D % C
+    MOD HL      ; HL = H % L <faster than BC,DE>
+    MOD HL, A   ; HL %= A
+    MOD HL, B   ; HL %= B
+    MOD HL, C   ; HL %= C <faster than A,B,D,E>
+    MOD HL, D   ; HL %= D
+    MOD HL, E   ; HL %= E

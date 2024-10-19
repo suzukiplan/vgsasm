@@ -272,6 +272,23 @@ Using `DIVS` makes it a signed operation.
 - Zero division results in 65535 (0xFFFF).
 - No flag bit set
 
+### MOD - Modulo
+
+```z80
+    MOD BC      ; BC = B % C
+    MOD DE      ; DE = D % C
+    MOD HL      ; HL = H % L <faster than BC,DE>
+    MOD HL, A   ; HL %= A
+    MOD HL, B   ; HL %= B
+    MOD HL, C   ; HL %= C <faster than A,B,D,E>
+    MOD HL, D   ; HL %= D
+    MOD HL, E   ; HL %= E
+```
+
+- The above instructions internally use the [Hardware Calculation](https://github.com/suzukiplan/vgszero/blob/master/README-en.md#hardware-calculation) of VGS-Zero.
+- Zero division results in 65535 (0xFFFF).
+- No flag bit set
+
 ## Auto Expand Instructions
 
 In vgsasm, instructions that __do not exist in the Z80__ are complemented by existing instructions.

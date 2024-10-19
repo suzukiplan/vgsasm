@@ -114,6 +114,7 @@ std::map<std::string, Mnemonic> mnemonicTable = {
     {"MULS", Mnemonic::MULS},
     {"DIV", Mnemonic::DIV},
     {"DIVS", Mnemonic::DIVS},
+    {"MOD", Mnemonic::MOD},
 };
 
 static bool parseMneimonicSkipScope = false;

@@ -1425,3 +1425,59 @@
                     out       ($c5),a                       ;[0a82] d3 c5
                     pop       bc                            ;[0a84] c1
                     pop       af                            ;[0a85] f1
+                    push      af                            ;[0a86] f5
+                    push      hl                            ;[0a87] e5
+                    ld        h,b                           ;[0a88] 60
+                    ld        l,c                           ;[0a89] 69
+                    ld        a,$02                         ;[0a8a] 3e 02
+                    out       ($c5),a                       ;[0a8c] d3 c5
+                    ld        b,h                           ;[0a8e] 44
+                    ld        c,l                           ;[0a8f] 4d
+                    pop       hl                            ;[0a90] e1
+                    pop       af                            ;[0a91] f1
+                    push      af                            ;[0a92] f5
+                    push      hl                            ;[0a93] e5
+                    ld        h,d                           ;[0a94] 62
+                    ld        l,e                           ;[0a95] 6b
+                    ld        a,$02                         ;[0a96] 3e 02
+                    out       ($c5),a                       ;[0a98] d3 c5
+                    ld        d,h                           ;[0a9a] 54
+                    ld        e,l                           ;[0a9b] 5d
+                    pop       hl                            ;[0a9c] e1
+                    pop       af                            ;[0a9d] f1
+                    push      af                            ;[0a9e] f5
+                    ld        a,$02                         ;[0a9f] 3e 02
+                    out       ($c5),a                       ;[0aa1] d3 c5
+                    pop       af                            ;[0aa3] f1
+                    push      af                            ;[0aa4] f5
+                    push      bc                            ;[0aa5] c5
+                    ld        c,a                           ;[0aa6] 4f
+                    ld        a,$82                         ;[0aa7] 3e 82
+                    out       ($c5),a                       ;[0aa9] d3 c5
+                    pop       bc                            ;[0aab] c1
+                    pop       af                            ;[0aac] f1
+                    push      af                            ;[0aad] f5
+                    push      bc                            ;[0aae] c5
+                    ld        c,b                           ;[0aaf] 48
+                    ld        a,$82                         ;[0ab0] 3e 82
+                    out       ($c5),a                       ;[0ab2] d3 c5
+                    pop       bc                            ;[0ab4] c1
+                    pop       af                            ;[0ab5] f1
+                    push      af                            ;[0ab6] f5
+                    ld        a,$82                         ;[0ab7] 3e 82
+                    out       ($c5),a                       ;[0ab9] d3 c5
+                    pop       af                            ;[0abb] f1
+                    push      af                            ;[0abc] f5
+                    push      bc                            ;[0abd] c5
+                    ld        c,d                           ;[0abe] 4a
+                    ld        a,$82                         ;[0abf] 3e 82
+                    out       ($c5),a                       ;[0ac1] d3 c5
+                    pop       bc                            ;[0ac3] c1
+                    pop       af                            ;[0ac4] f1
+                    push      af                            ;[0ac5] f5
+                    push      bc                            ;[0ac6] c5
+                    ld        c,e                           ;[0ac7] 4b
+                    ld        a,$82                         ;[0ac8] 3e 82
+                    out       ($c5),a                       ;[0aca] d3 c5
+                    pop       bc                            ;[0acc] c1
+                    pop       af                            ;[0acd] f1
