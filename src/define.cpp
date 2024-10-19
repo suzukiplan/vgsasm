@@ -1,5 +1,45 @@
 #include "common.h"
 
+void init_define()
+{
+    defineTable["JNZ"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "NZ"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+    defineTable["JZ"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "Z"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+    defineTable["JNC"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "NC"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+    defineTable["JC"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "C"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+    defineTable["JPE"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "PE"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+    defineTable["JPO"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "PO"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+    defineTable["JPP"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "P"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+    defineTable["JPM"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "M"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+    defineTable["JM"] = {
+        std::make_pair<TokenType, std::string>(TokenType::Mnemonic, "JP"),
+        std::make_pair<TokenType, std::string>(TokenType::Operand, "M"),
+        std::make_pair<TokenType, std::string>(TokenType::Split, ",")};
+}
+
 bool parse_define(LineData* line)
 {
     for (auto it = line->token.begin(); it != line->token.end(); it++) {

@@ -1169,3 +1169,14 @@ Branch:
     ; JR PO, Branch         // does not exit
     ; JR P, @JR_label       // does not exit
     ; JR M, @JR_immediate   // does not exit
+
+@JP_cond_immediate_alies
+    JZ $1234
+    JNZ $1234
+    JC $1234
+    JNC $1234
+    JPE $1234
+    JPO $1234
+    JPP $1234
+    JPM $1234
+    JM $1234

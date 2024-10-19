@@ -108,6 +108,9 @@ static int assemble(std::vector<LineData*> lines)
 {
     bool error = false;
 
+    // #define にプリセット定義を展開
+    init_define();
+
     // #define のテーブル作成
     bool searchDefine = true;
     while (searchDefine && !error) {

@@ -152,6 +152,7 @@ extern LineData* lastScopeBegin;
 void addNameTable(std::string name, LineData* line);                                  // main.cpp
 void trim_string(char* src);                                                          // main.cpp
 std::vector<std::string> split_token(std::string str, char del);                      // main.cpp
+void init_define();                                                                   // define.cpp
 bool parse_define(LineData* line);                                                    // define.cpp
 void replace_define(LineData* line);                                                  // define.cpp
 void bracket_to_address(LineData* line);                                              // bracket.cpp
