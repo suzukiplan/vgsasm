@@ -150,6 +150,7 @@ static int assemble(std::vector<LineData*> lines)
         bracket_to_address(*line);  // Braket -> Address
         parse_numeric(*line);       // Other -> Numeric
         parse_numeric_minus(*line); // Split, Minus, Numeric -> Split, -Numeric
+        parse_numeric_plus(*line);  // Split, Plus, Numeric -> Split, Numeric
         parse_sizeof(*line);        // Other -> Sizeof
         parse_offset(*line);        // Other -> Offset
         evaluate_formulas(*line);   // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric

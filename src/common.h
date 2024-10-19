@@ -168,6 +168,7 @@ std::string hex2dec(const char* hex);                                           
 std::string bin2dec(const char* bin);                                                 // numeric.cpp
 void parse_numeric(LineData* line);                                                   // numeric.cpp
 void parse_numeric_minus(LineData* line);                                             // numeric.cpp
+void parse_numeric_plus(LineData* line);                                              // numeric.cpp
 void parse_operand(LineData* line);                                                   // operand.cpp
 void parse_sizeof(LineData* line);                                                    // sizeof.cpp
 void replace_sizeof(LineData* line);                                                  // sizeof.cpp

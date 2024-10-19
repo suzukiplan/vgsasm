@@ -10,7 +10,8 @@ void mnemonic_INC(LineData* line);                                   // mnemonic
 void mnemonic_DEC(LineData* line);                                   // mnemonic_incdec.cpp
 void mnemonic_IN(LineData* line);                                    // mnemonic_io.cpp
 void mnemonic_OUT(LineData* line);                                   // mnemonic_io.cpp
-void mnemonic_JP(LineData* line);                                    // mnemonic_jp.cpp
+void mnemonic_JP(LineData* line);                                    // mnemonic_jump.cpp
+void mnemonic_JR(LineData* line);                                    // mnemonic_jump.cpp
 void mnemonic_LD(LineData* line);                                    // mnemonic_load.cpp
 void mnemonic_shift(LineData* line, uint8_t code);                   // mnemonic_shift.cpp
 void mnemonic_PUSH(LineData* line);                                  // mnemonic_stack.cpp
@@ -370,6 +371,7 @@ static void mnemonic_syntax_check_exec(std::vector<LineData*>* lines)
             case Mnemonic::IN: mnemonic_IN(line); break;
             case Mnemonic::OUT: mnemonic_OUT(line); break;
             case Mnemonic::JP: mnemonic_JP(line); break;
+            case Mnemonic::JR: mnemonic_JR(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

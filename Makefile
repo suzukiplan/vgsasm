@@ -9,7 +9,7 @@ OBJECTS = \
 	label.o \
 	line.o \
 	mnemonic.o \
-	mnemonic_jp.o \
+	mnemonic_jump.o \
 	mnemonic_io.o \
 	mnemonic_shift.o \
 	mnemonic_load.o \
@@ -64,7 +64,7 @@ line.o: src/line.cpp ${HEADERS}
 mnemonic.o: src/mnemonic.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-mnemonic_jp.o: src/mnemonic_jp.cpp ${HEADERS} src/mnemonic.h
+mnemonic_jump.o: src/mnemonic_jump.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 mnemonic_io.o: src/mnemonic_io.cpp ${HEADERS} src/mnemonic.h

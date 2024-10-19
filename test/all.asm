@@ -1119,3 +1119,8 @@ Branch:
     JP Branch
     JP @JP_label
     JP Stack@Main
+
+@JR_immediate
+    JR -128
+    JR +127
+    JR 64
