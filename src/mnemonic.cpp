@@ -5,6 +5,8 @@ void mnemonic_bit_op(LineData* line, Mnemonic mne);                  // mnemonic
 void mnemonic_calc8(LineData* line, uint8_t code);                   // mnemonic_calc.cpp
 void mnemonic_calc16(LineData* line, uint8_t code);                  // mnemonic_calc.cpp
 void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16); // mnemonic_calc.cpp
+void mnemonic_CALL(LineData* line);                                  // mnemonic_call.cpp
+void mnemonic_RET(LineData* line);                                   // mnemonic_call.cpp
 void mnemonic_EX(LineData* line);                                    // mnemonic_ex.cpp
 void mnemonic_INC(LineData* line);                                   // mnemonic_incdec.cpp
 void mnemonic_DEC(LineData* line);                                   // mnemonic_incdec.cpp
@@ -365,6 +367,10 @@ static void mnemonic_syntax_check_exec(std::vector<LineData*>* lines)
             case Mnemonic::JP: mnemonic_JP(line); break;
             case Mnemonic::JR: mnemonic_JR(line); break;
             case Mnemonic::DJNZ: mnemonic_DJNZ(line); break;
+            case Mnemonic::CALL: mnemonic_CALL(line); break;
+            case Mnemonic::RET: mnemonic_RET(line); break;
+            case Mnemonic::RETI: mnemonic_single_ED(line, 0x4D); break;
+            case Mnemonic::RETN: mnemonic_single_ED(line, 0x45); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

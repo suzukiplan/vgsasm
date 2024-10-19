@@ -1205,3 +1205,10 @@ Jump_with_Register:
     JP HL   ; Same as JP (HL)
     JP IX   ; Same as JP (IX)
     JP IY   ; Same as JP (IY)
+
+Subroutine:
+
+@Call_Immediate
+    CALL 0
+    CALL $1234
+    CALL $FFFF

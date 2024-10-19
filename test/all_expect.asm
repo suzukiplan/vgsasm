@@ -1052,3 +1052,6 @@
                     jp        (hl)                          ;[0893] e9
                     jp        (ix)                          ;[0894] dd e9
                     jp        (iy)                          ;[0896] fd e9
+                    call      $0000                         ;[0898] cd 00 00
+                    call      $1234                         ;[089b] cd 34 12
+                    call      $ffff                         ;[089e] cd ff ff
