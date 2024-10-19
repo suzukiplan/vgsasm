@@ -1181,8 +1181,15 @@ Branch:
     JPM $1234
     JM $1234
 
+Branch_DecB:
+
 @DJNZ_immediate
     DJNZ -128
     DJNZ -1
     DJNZ 1
     DJNZ 127
+
+@DJNZ_label
+    DJNZ JR_immediate@Branch
+    DJNZ @DJNZ_immediate
+    DJNZ Branch_DecB
