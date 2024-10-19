@@ -1124,3 +1124,8 @@ Branch:
     JR -128
     JR +127
     JR 64
+
+@JR_label
+    JR @JR_immediate
+    JR Branch
+    JR Store_to_IX@Transfer_Load_Store

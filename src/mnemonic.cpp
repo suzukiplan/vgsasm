@@ -388,11 +388,18 @@ void mnemonic_syntax_check(std::vector<LineData*>* lines)
         for (auto addr : tempAddrs) {
             auto label = labelTable[addr->label];
             auto pc = label->programCounter;
-            if (addr->isRelative) {
-                pc -= addr->line->programCounter;
+            if (!addr->isRelative) {
+                addr->line->machine[addr->midx] = pc & 0x00FF;
+                addr->line->machine[addr->midx + 1] = (pc & 0xFF00) >> 8;
+            } else {
+                auto e = pc - (addr->line->programCounter + 2);
+                addr->line->machine[addr->midx] = e & 0xFF;
+                if (e < -128 || 127 < e) {
+                    addr->line->error = true;
+                    addr->line->errmsg = "Relative jump destination address is too far away: ";
+                    addr->line->errmsg += std::to_string(e);
+                }
             }
-            addr->line->machine[addr->midx] = pc & 0x00FF;
-            addr->line->machine[addr->midx + 1] = (pc & 0xFF00) >> 8;
             delete addr;
         }
         tempAddrs.clear();

@@ -33,6 +33,11 @@ void mnemonic_JR(LineData* line)
             line->machine.push_back(e);
             return;
         }
+    } else if (mnemonic_format_test(line, 2, TokenType::LabelJump)) {
+        line->machine.push_back(0x18);
+        tempAddrs.push_back(new TempAddr(line, line->token[1].second, line->machine.size(), true));
+        line->machine.push_back(0x00);
+        return;
     }
     if (!line->error) {
         line->error = true;
