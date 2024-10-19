@@ -1112,3 +1112,32 @@
                     rst       $38                           ;[08fc] ff
                     rst       $38                           ;[08fd] ff
                     rst       $38                           ;[08fe] ff
+                    ld        c,b                           ;[08ff] 48
+                    ld        h,l                           ;[0900] 65
+                    ld        l,h                           ;[0901] 6c
+                    ld        l,h                           ;[0902] 6c
+                    ld        l,a                           ;[0903] 6f
+                    inc       l                             ;[0904] 2c
+                    ld        d,a                           ;[0905] 57
+                    ld        l,a                           ;[0906] 6f
+                    ld        (hl),d                        ;[0907] 72
+                    ld        l,h                           ;[0908] 6c
+                    ld        h,h                           ;[0909] 64
+                    ld        hl,$8000                      ;[090a] 21 00 80
+                    rst       $38                           ;[090d] ff
+                    nop                                     ;[090e] 00
+                    ld        bc,$ff7f                      ;[090f] 01 7f ff
+                    nop                                     ;[0912] 00
+                    djnz      $0935                         ;[0913] 10 20
+                    jr        nc,$0957                      ;[0915] 30 40
+                    ld        d,b                           ;[0917] 50
+                    ld        h,b                           ;[0918] 60
+                    ld        (hl),b                        ;[0919] 70
+                    add       b                             ;[091a] 80
+                    sub       b                             ;[091b] 90
+                    and       b                             ;[091c] a0
+                    or        b                             ;[091d] b0
+                    ret       nz                            ;[091e] c0
+                    ret       nc                            ;[091f] d0
+                    ret       po                            ;[0920] e0
+                    ret       p                             ;[0921] f0

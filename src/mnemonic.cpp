@@ -20,6 +20,8 @@ void mnemonic_LD(LineData* line);                                    // mnemonic
 void mnemonic_shift(LineData* line, uint8_t code);                   // mnemonic_shift.cpp
 void mnemonic_PUSH(LineData* line);                                  // mnemonic_stack.cpp
 void mnemonic_POP(LineData* line);                                   // mnemonic_stack.cpp
+void mnemonic_DB(LineData* line);                                    // mnemonic_data.cpp
+void mnemonic_DW(LineData* line);                                    // mnemonic_data.cpp
 
 std::vector<TempAddr*> tempAddrs;
 
@@ -373,6 +375,8 @@ static void mnemonic_syntax_check_exec(std::vector<LineData*>* lines)
             case Mnemonic::RETI: mnemonic_single_ED(line, 0x4D); break;
             case Mnemonic::RETN: mnemonic_single_ED(line, 0x45); break;
             case Mnemonic::RST: mnemonic_RST(line); break;
+            case Mnemonic::DB: mnemonic_DB(line); break;
+            case Mnemonic::DW: mnemonic_DW(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);
