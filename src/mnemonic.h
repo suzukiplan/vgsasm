@@ -92,6 +92,10 @@ enum class Mnemonic {
     DB,
     DW,
     MUL,
+    MULS,
+    DIV,
+    DIVS,
+    MOD,
 };
 
 #define ML_PUSH_BC line->machine.push_back(0xC5)

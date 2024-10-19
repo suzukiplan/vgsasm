@@ -23,6 +23,10 @@ void mnemonic_POP(LineData* line);                                   // mnemonic
 void mnemonic_DB(LineData* line);                                    // mnemonic_data.cpp
 void mnemonic_DW(LineData* line);                                    // mnemonic_data.cpp
 void mnemonic_MUL(LineData* line);                                   // mnemonic_vgs.cpp
+void mnemonic_MULS(LineData* line);                                  // mnemonic_vgs.cpp
+void mnemonic_DIV(LineData* line);                                   // mnemonic_vgs.cpp
+void mnemonic_DIVS(LineData* line);                                  // mnemonic_vgs.cpp
+void mnemonic_MOD(LineData* line);                                   // mnemonic_vgs.cpp
 
 std::vector<TempAddr*> tempAddrs;
 
@@ -107,6 +111,9 @@ std::map<std::string, Mnemonic> mnemonicTable = {
     {"BYTE", Mnemonic::DB},
     {"WORD", Mnemonic::DW},
     {"MUL", Mnemonic::MUL},
+    {"MULS", Mnemonic::MULS},
+    {"DIV", Mnemonic::DIV},
+    {"DIVS", Mnemonic::DIVS},
 };
 
 static bool parseMneimonicSkipScope = false;
@@ -380,6 +387,10 @@ static void mnemonic_syntax_check_exec(std::vector<LineData*>* lines)
             case Mnemonic::DB: mnemonic_DB(line); break;
             case Mnemonic::DW: mnemonic_DW(line); break;
             case Mnemonic::MUL: mnemonic_MUL(line); break;
+            case Mnemonic::MULS: mnemonic_MULS(line); break;
+            case Mnemonic::DIV: mnemonic_DIV(line); break;
+            case Mnemonic::DIVS: mnemonic_DIVS(line); break;
+            case Mnemonic::MOD: mnemonic_MOD(line); break;
             default:
                 printf("Not implemented: %s\n", line->token[0].second.c_str());
                 exit(-1);

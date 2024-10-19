@@ -1,7 +1,7 @@
 #include "common.h"
 #include "mnemonic.h"
 
-void mnemonic_MUL(LineData* line)
+static void HAGe_calc(LineData* line, uint8_t port, uint8_t out)
 {
     if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         switch (operandTable[line->token[1].second]) {
@@ -10,8 +10,8 @@ void mnemonic_MUL(LineData* line)
                 ML_PUSH_HL;
                 ML_LD_H_B;
                 ML_LD_L_C;
-                ML_LD_A_n(0x00);
-                ML_OUT_A(0xC5);
+                ML_LD_A_n(out);
+                ML_OUT_A(port);
                 ML_LD_B_H;
                 ML_LD_C_L;
                 ML_POP_HL;
@@ -22,8 +22,8 @@ void mnemonic_MUL(LineData* line)
                 ML_PUSH_HL;
                 ML_LD_H_D;
                 ML_LD_L_E;
-                ML_LD_A_n(0x00);
-                ML_OUT_A(0xC5);
+                ML_LD_A_n(out);
+                ML_OUT_A(port);
                 ML_LD_D_H;
                 ML_LD_E_L;
                 ML_POP_HL;
@@ -31,8 +31,8 @@ void mnemonic_MUL(LineData* line)
                 return;
             case Operand::HL:
                 ML_PUSH_AF;
-                ML_LD_A_n(0x00);
-                ML_OUT_A(0xC5);
+                ML_LD_A_n(out);
+                ML_OUT_A(port);
                 ML_POP_AF;
                 return;
         }
@@ -43,8 +43,8 @@ void mnemonic_MUL(LineData* line)
                     ML_PUSH_AF;
                     ML_PUSH_BC;
                     ML_LD_C_A;
-                    ML_LD_A_n(0x80);
-                    ML_OUT_A(0xC5);
+                    ML_LD_A_n(out | 0x80);
+                    ML_OUT_A(port);
                     ML_POP_BC;
                     ML_POP_AF;
                     return;
@@ -52,23 +52,23 @@ void mnemonic_MUL(LineData* line)
                     ML_PUSH_AF;
                     ML_PUSH_BC;
                     ML_LD_C_B;
-                    ML_LD_A_n(0x80);
-                    ML_OUT_A(0xC5);
+                    ML_LD_A_n(out | 0x80);
+                    ML_OUT_A(port);
                     ML_POP_BC;
                     ML_POP_AF;
                     return;
                 case Operand::C:
                     ML_PUSH_AF;
-                    ML_LD_A_n(0x80);
-                    ML_OUT_A(0xC5);
+                    ML_LD_A_n(out | 0x80);
+                    ML_OUT_A(port);
                     ML_POP_AF;
                     return;
                 case Operand::D:
                     ML_PUSH_AF;
                     ML_PUSH_BC;
                     ML_LD_C_D;
-                    ML_LD_A_n(0x80);
-                    ML_OUT_A(0xC5);
+                    ML_LD_A_n(out | 0x80);
+                    ML_OUT_A(port);
                     ML_POP_BC;
                     ML_POP_AF;
                     return;
@@ -76,8 +76,8 @@ void mnemonic_MUL(LineData* line)
                     ML_PUSH_AF;
                     ML_PUSH_BC;
                     ML_LD_C_E;
-                    ML_LD_A_n(0x80);
-                    ML_OUT_A(0xC5);
+                    ML_LD_A_n(out | 0x80);
+                    ML_OUT_A(port);
                     ML_POP_BC;
                     ML_POP_AF;
                     return;
@@ -86,6 +86,12 @@ void mnemonic_MUL(LineData* line)
     }
     if (!line->error) {
         line->error = true;
-        line->errmsg = "Illegal MUL instruction.";
+        line->errmsg = "Illegal " + line->token[0].second + " instruction.";
     }
 }
+
+void mnemonic_MUL(LineData* line) { HAGe_calc(line, 0xC5, 0x00); }
+void mnemonic_MULS(LineData* line) { HAGe_calc(line, 0xC5, 0x40); }
+void mnemonic_DIV(LineData* line) { HAGe_calc(line, 0xC5, 0x01); }
+void mnemonic_DIVS(LineData* line) { HAGe_calc(line, 0xC5, 0x41); }
+void mnemonic_MOD(LineData* line) { HAGe_calc(line, 0xC5, 0x02); }
