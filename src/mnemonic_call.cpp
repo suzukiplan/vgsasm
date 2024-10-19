@@ -64,6 +64,12 @@ void mnemonic_RET(LineData* line)
     if (line->token.size() == 1) {
         ML_RET;
         return;
+    } else if (mnemonic_format_test(line, 2, TokenType::Operand)) {
+        auto code = getCond(line, line->token[1].second);
+        if (code) {
+            line->machine.push_back(code & 0b11111011);
+            return;
+        }
     }
     if (!line->error) {
         line->error = true;

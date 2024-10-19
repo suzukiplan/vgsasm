@@ -1242,3 +1242,13 @@ Subroutine:
     RET
     RETI
     RETN
+
+@Return_with_condition
+    RET NZ
+    RET Z
+    RET NC
+    RET C
+    RET PO
+    RET PE
+    RET P
+    RET M

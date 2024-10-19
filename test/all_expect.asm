@@ -1080,3 +1080,11 @@
 
                     retn                                    ;[08dd] ed 45
 
+                    ret       nz                            ;[08df] c0
+                    ret       z                             ;[08e0] c8
+                    ret       nc                            ;[08e1] d0
+                    ret       c                             ;[08e2] d8
+                    ret       po                            ;[08e3] e0
+                    ret       pe                            ;[08e4] e8
+                    ret       p                             ;[08e5] f0
+                    ret       m                             ;[08e6] f8
