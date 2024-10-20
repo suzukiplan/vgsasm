@@ -40,9 +40,7 @@ vgsasm [-b size_of_binary] /path/to/source.asm
   - `LD A, (0x10 + 3 * 2 - %0101) / 3` is `LD A, 5`
 - Strings after `;` or `//` are ignored as comments.
 
-## Preprocessor
-
-### `#include`
+## `#include`
 
 ```z80
 #include "/path/to/file"
@@ -51,7 +49,15 @@ vgsasm [-b size_of_binary] /path/to/source.asm
 - Other source files can be combined.
 - Duplicate `#include` for the same source file are automatically ignored.
 
-### `#define`
+## `#binary`
+
+```z80
+#binary "/path/to/binary.bin"
+```
+
+Incorporates a binary file as code at the current program counter location.
+
+## `#define`
 
 ```
 #define DEFINITION_NAME Expanded expression

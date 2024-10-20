@@ -44,6 +44,7 @@ enum class TokenType {
     ScopeBegin,       // { スコープ起点
     ScopeEnd,         // } スコープ終点
     And,              // & アンパーサンド
+    Binary,           // #binary
     Other             // その他 (構文解析の仮定で最終的にはなくなる)
 };
 
@@ -152,6 +153,7 @@ extern LineData* lastScopeBegin;
 void addNameTable(std::string name, LineData* line);                                  // main.cpp
 void trim_string(char* src);                                                          // main.cpp
 std::vector<std::string> split_token(std::string str, char del);                      // main.cpp
+void parse_binary(LineData* line);                                                    // binary.cpp
 void init_define();                                                                   // define.cpp
 bool parse_define(LineData* line);                                                    // define.cpp
 void replace_define(LineData* line);                                                  // define.cpp

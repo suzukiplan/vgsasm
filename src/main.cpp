@@ -129,7 +129,7 @@ static int assemble(std::vector<LineData*> lines)
         return -1;
     }
 
-    // #define 定義名の展開
+    // #define の展開
     for (auto it = lines.begin(); it != lines.end(); it++) {
         replace_define(*it);
         error = check_error(*it) ? true : error;
@@ -147,6 +147,7 @@ static int assemble(std::vector<LineData*> lines)
             line = lines.begin();
         }
 
+        parse_binary(*line);        // Other -> Binary
         parse_mneoimonic(*line);    // Other -> Mnemonic
         parse_operand(*line);       // Other -> Operand
         parse_struct(*line);        // Other -> Struct

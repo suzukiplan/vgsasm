@@ -276,6 +276,8 @@ void LineData::printDebug()
             } else {
                 printf(" $\?\?\?\? %s:", token.second.c_str());
             }
+        } else if (token.first == TokenType::Binary) {
+            printf(" Binary: \"%s\"", token.second.c_str());
         } else {
             printf(" `%s`", token.second.c_str());
         }
