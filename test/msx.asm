@@ -1,9 +1,12 @@
 ; vgsasm msx.asm -o msx.rom
 org $4000
-
-CartridgeHeader:
-    DB "AB"
-    DW Start
+.Header
+@ID     DB "AB"
+@Init   DW Start
+@State  DW 0
+@Device DW 0
+@Text   DW 0
+@Rsrvd  DB 0, 0, 0, 0, 0, 0
 
 org $4010
 .Start
