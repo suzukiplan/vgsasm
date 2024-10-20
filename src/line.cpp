@@ -103,7 +103,7 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                         while (0 != *ep && '\'' != *ep) { ep++; }
                         if (*ep) {
                             *ep = 0;
-                            auto str = hex2dec(&cp[ptr + 2]);
+                            auto str = hex2dec(&cp[ptr + 3]);
                             if (!str.empty()) {
                                 schrs.push_back(atoi(str.c_str()) & 0xFF);
                                 while (cp + ptr != ep) {
