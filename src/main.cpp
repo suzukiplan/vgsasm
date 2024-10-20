@@ -157,9 +157,15 @@ static int assemble(std::vector<LineData*> lines)
         parse_numeric_plus(*line);  // Split, Plus, Numeric -> Split, Numeric
         parse_sizeof(*line);        // Other -> Sizeof
         parse_offset(*line);        // Other -> Offset
-        evaluate_formulas(*line);   // Numeric + Numeric - Numeric * Numeric / Numer -> Numeric
+        error = check_error(*line) ? true : error;
+    }
+    if (error) {
+        return -1;
+    }
 
-        // ( Numric ) -> Numeric and formulas again
+    // 演算を実行（1回目）
+    for (auto line = lines.begin(); line != lines.end(); line++) {
+        evaluate_formulas(*line);
         while (bracket_eliminate(*line)) {
             evaluate_formulas(*line);
         }
