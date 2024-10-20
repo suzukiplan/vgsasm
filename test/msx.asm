@@ -40,7 +40,12 @@ org $4010
     dec c
     ld hl, Hello
     ld b, 13
-    otir    ; ※実機だとこれでは動かないので注意
+@Loop
+    push af
+    pop af
+    ld a, (hl++)
+    out (c), a
+    djnz @Loop
 
     ; プログラム終了 (無限ループしておく)
 @End
@@ -48,11 +53,14 @@ org $4010
 
 .ClearScreen
     ; 画面を空白で埋める
-    dec c
+    ld a, ($0007)
+    ld c, a
     ld a, $20
     ld b, $00
     ld d, $03
 @Loop
+    push af
+    pop af
     out (c), a
     djnz @Loop
     dec d
