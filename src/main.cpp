@@ -146,7 +146,6 @@ static int assemble(std::vector<LineData*> lines)
             lines.insert(line + 1, newLine);
             line = lines.begin();
         }
-
         parse_binary(*line);        // Other -> Binary
         parse_mneoimonic(*line);    // Other -> Mnemonic
         parse_operand(*line);       // Other -> Operand
@@ -157,6 +156,15 @@ static int assemble(std::vector<LineData*> lines)
         parse_numeric_plus(*line);  // Split, Plus, Numeric -> Split, Numeric
         parse_sizeof(*line);        // Other -> Sizeof
         parse_offset(*line);        // Other -> Offset
+        error = check_error(*line) ? true : error;
+    }
+    if (error) {
+        return -1;
+    }
+
+    // インクリメント、デクリメント演算子を展開
+    split_increment(&lines);
+    for (auto line = lines.begin(); line != lines.end(); line++) {
         error = check_error(*line) ? true : error;
     }
     if (error) {

@@ -110,12 +110,22 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                     this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Split, ","));
                     break;
                 case '+':
-                    cp++;
-                    this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Plus, "+"));
+                    if ('+' == *(cp + 1)) {
+                        cp += 2;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Inc, "++"));
+                    } else {
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Plus, "+"));
+                    }
                     break;
                 case '-':
-                    cp++;
-                    this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Minus, "-"));
+                    if ('-' == *(cp + 1)) {
+                        cp += 2;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Dec, "--"));
+                    } else {
+                        cp++;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Minus, "-"));
+                    }
                     break;
                 case '/':
                     cp++;

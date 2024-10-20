@@ -2,6 +2,7 @@ CPP = g++
 CPPFLAGS = -std=c++17 -g
 HEADERS = src/common.h
 OBJECTS = \
+	increment.o \
 	binary.o \
 	bracket.o \
 	define.o \
@@ -46,6 +47,9 @@ clean:
 
 vgsasm: ${OBJECTS}
 	${CPP} ${CPPFLAGS} -o vgsasm ${OBJECTS}
+
+increment.o: src/increment.cpp ${HEADERS}
+	${CPP} ${CPPFLAGS} -c $< -o $@
 
 binary.o: src/binary.cpp ${HEADERS}
 	${CPP} ${CPPFLAGS} -c $< -o $@

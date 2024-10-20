@@ -44,6 +44,8 @@ enum class TokenType {
     ScopeBegin,       // { スコープ起点
     ScopeEnd,         // } スコープ終点
     And,              // & アンパーサンド
+    Inc,              // インクリメント
+    Dec,              // デクリメント
     Binary,           // #binary
     Other             // その他 (構文解析の仮定で最終的にはなくなる)
 };
@@ -187,3 +189,4 @@ void parse_struct_array(LineData* line);                                        
 void replace_struct(LineData* line);                                                  // struct.cpp
 void parse_org(LineData* line);                                                       // org.cpp
 void setpc_org(std::vector<LineData*>* lines);                                        // org.cpp
+void split_increment(std::vector<LineData*>* lines);                                  // increment.cpp
