@@ -118,6 +118,7 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                         }
                     } else if (0 != cp[ptr + 2] && '\'' == cp[ptr + 3]) {
                         cp[ptr++] = 0x02;
+                        cp[ptr++] = 0x02;
                         auto esc = cp[ptr];
                         cp[ptr++] = 0x02;
                         cp[ptr++] = 0x02;
