@@ -316,6 +316,20 @@ The obtained angle values can then be given to `SIN` and `COS` to obtain the 16-
 - `SIN` for trigonometric functions, but it specializes in finding the value of **X in the direction of travel** (8-bit fractional part of 16-bit fixed minority points) from the angle value obtained by `ATN2`.
 - `SIN A,` can be abbreviated to `SIN`.
 
+### COS
+
+```z80
+    COS A, A    ; A = cos(A × π ÷ 128.0)
+    COS A, B    ; A = cos(B × π ÷ 128.0)
+    COS A, C    ; A = cos(C × π ÷ 128.0)
+    COS A, D    ; A = cos(D × π ÷ 128.0)
+    COS A, E    ; A = cos(E × π ÷ 128.0)
+    COS A, H    ; A = cos(H × π ÷ 128.0)
+    COS A, L    ; A = cos(L × π ÷ 128.0)
+```
+
+- `COS` for trigonometric functions, but it specializes in finding the value of **Y in the direction of travel** (8-bit fractional part of 16-bit fixed minority points) from the angle value obtained by `ATN2`.
+- `COS A,` can be abbreviated to `COS`.
 
 ## Auto Expand Instructions
 

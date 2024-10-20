@@ -120,35 +120,35 @@ static void HAGe_atan2(LineData* line)
     }
 }
 
-static bool sin(LineData* line, Operand op)
+static bool sincos(LineData* line, Operand op, uint8_t port)
 {
     switch (op) {
         case Operand::A:
-            ML_OUT_A(0xC6);
+            ML_OUT_A(port);
             return true;
         case Operand::B:
             ML_LD_A_B;
-            ML_OUT_A(0xC6);
+            ML_OUT_A(port);
             return true;
         case Operand::C:
             ML_LD_A_C;
-            ML_OUT_A(0xC6);
+            ML_OUT_A(port);
             return true;
         case Operand::D:
             ML_LD_A_D;
-            ML_OUT_A(0xC6);
+            ML_OUT_A(port);
             return true;
         case Operand::E:
             ML_LD_A_E;
-            ML_OUT_A(0xC6);
+            ML_OUT_A(port);
             return true;
         case Operand::H:
             ML_LD_A_H;
-            ML_OUT_A(0xC6);
+            ML_OUT_A(port);
             return true;
         case Operand::L:
             ML_LD_A_L;
-            ML_OUT_A(0xC6);
+            ML_OUT_A(port);
             return true;
     }
     return false;
@@ -157,12 +157,12 @@ static bool sin(LineData* line, Operand op)
 static void HAGe_sin(LineData* line)
 {
     if (mnemonic_format_test(line, 2, TokenType::Operand)) {
-        if (sin(line, operandTable[line->token[1].second])) {
+        if (sincos(line, operandTable[line->token[1].second], 0xC6)) {
             return;
         }
     } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand) &&
                operandTable[line->token[1].second] == Operand::A) {
-        if (sin(line, operandTable[line->token[3].second])) {
+        if (sincos(line, operandTable[line->token[3].second], 0xC6)) {
             return;
         }
     }
@@ -174,6 +174,16 @@ static void HAGe_sin(LineData* line)
 
 static void HAGe_cos(LineData* line)
 {
+    if (mnemonic_format_test(line, 2, TokenType::Operand)) {
+        if (sincos(line, operandTable[line->token[1].second], 0xC7)) {
+            return;
+        }
+    } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand) &&
+               operandTable[line->token[1].second] == Operand::A) {
+        if (sincos(line, operandTable[line->token[3].second], 0xC7)) {
+            return;
+        }
+    }
     if (!line->error) {
         line->error = true;
         line->errmsg = "Illegal " + line->token[0].second + " instruction.";

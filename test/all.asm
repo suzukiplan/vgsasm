@@ -1353,3 +1353,39 @@ VGSZero:
     ATN2 A, BC  ; A = atan2(B,C) ... B=y2-y1, C=x2-x1
     ATN2 A, DE  ; A = atan2(D,E) ... D=y2-y1, E=x2-x1
     ATN2 A, HL  ; A = atan2(H,L) ... H=y2-y1, L=x2-x1 <faster than BC,DE>
+
+@Sin
+    SIN A, A    ; A = sin(A × π ÷ 128.0)
+    SIN A, B    ; A = sin(B × π ÷ 128.0)
+    SIN A, C    ; A = sin(C × π ÷ 128.0)
+    SIN A, D    ; A = sin(D × π ÷ 128.0)
+    SIN A, E    ; A = sin(E × π ÷ 128.0)
+    SIN A, H    ; A = sin(H × π ÷ 128.0)
+    SIN A, L    ; A = sin(L × π ÷ 128.0)
+
+@Sin_omit_A
+    SIN A       ; same as SIN A, A
+    SIN B       ; same as SIN A, B
+    SIN C       ; same as SIN A, C
+    SIN D       ; same as SIN A, D
+    SIN E       ; same as SIN A, E
+    SIN H       ; same as SIN A, H
+    SIN L       ; same as SIN A, L
+
+@Cos
+    COS A, A    ; A = cos(A × π ÷ 128.0)
+    COS A, B    ; A = cos(B × π ÷ 128.0)
+    COS A, C    ; A = cos(C × π ÷ 128.0)
+    COS A, D    ; A = cos(D × π ÷ 128.0)
+    COS A, E    ; A = cos(E × π ÷ 128.0)
+    COS A, H    ; A = cos(H × π ÷ 128.0)
+    COS A, L    ; A = cos(L × π ÷ 128.0)
+
+@Cos_omit_A
+    COS A       ; same as COS A, A
+    COS B       ; same as COS A, B
+    COS C       ; same as COS A, C
+    COS D       ; same as COS A, D
+    COS E       ; same as COS A, E
+    COS H       ; same as COS A, H
+    COS L       ; same as COS A, L

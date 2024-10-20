@@ -1492,3 +1492,55 @@
                     in        a,($c8)                       ;[0ad7] db c8
                     pop       hl                            ;[0ad9] e1
                     in        a,($c8)                       ;[0ada] db c8
+                    out       ($c6),a                       ;[0adc] d3 c6
+                    ld        a,b                           ;[0ade] 78
+                    out       ($c6),a                       ;[0adf] d3 c6
+                    ld        a,c                           ;[0ae1] 79
+                    out       ($c6),a                       ;[0ae2] d3 c6
+                    ld        a,d                           ;[0ae4] 7a
+                    out       ($c6),a                       ;[0ae5] d3 c6
+                    ld        a,e                           ;[0ae7] 7b
+                    out       ($c6),a                       ;[0ae8] d3 c6
+                    ld        a,h                           ;[0aea] 7c
+                    out       ($c6),a                       ;[0aeb] d3 c6
+                    ld        a,l                           ;[0aed] 7d
+                    out       ($c6),a                       ;[0aee] d3 c6
+                    out       ($c6),a                       ;[0af0] d3 c6
+                    ld        a,b                           ;[0af2] 78
+                    out       ($c6),a                       ;[0af3] d3 c6
+                    ld        a,c                           ;[0af5] 79
+                    out       ($c6),a                       ;[0af6] d3 c6
+                    ld        a,d                           ;[0af8] 7a
+                    out       ($c6),a                       ;[0af9] d3 c6
+                    ld        a,e                           ;[0afb] 7b
+                    out       ($c6),a                       ;[0afc] d3 c6
+                    ld        a,h                           ;[0afe] 7c
+                    out       ($c6),a                       ;[0aff] d3 c6
+                    ld        a,l                           ;[0b01] 7d
+                    out       ($c6),a                       ;[0b02] d3 c6
+                    out       ($c7),a                       ;[0b04] d3 c7
+                    ld        a,b                           ;[0b06] 78
+                    out       ($c7),a                       ;[0b07] d3 c7
+                    ld        a,c                           ;[0b09] 79
+                    out       ($c7),a                       ;[0b0a] d3 c7
+                    ld        a,d                           ;[0b0c] 7a
+                    out       ($c7),a                       ;[0b0d] d3 c7
+                    ld        a,e                           ;[0b0f] 7b
+                    out       ($c7),a                       ;[0b10] d3 c7
+                    ld        a,h                           ;[0b12] 7c
+                    out       ($c7),a                       ;[0b13] d3 c7
+                    ld        a,l                           ;[0b15] 7d
+                    out       ($c7),a                       ;[0b16] d3 c7
+                    out       ($c7),a                       ;[0b18] d3 c7
+                    ld        a,b                           ;[0b1a] 78
+                    out       ($c7),a                       ;[0b1b] d3 c7
+                    ld        a,c                           ;[0b1d] 79
+                    out       ($c7),a                       ;[0b1e] d3 c7
+                    ld        a,d                           ;[0b20] 7a
+                    out       ($c7),a                       ;[0b21] d3 c7
+                    ld        a,e                           ;[0b23] 7b
+                    out       ($c7),a                       ;[0b24] d3 c7
+                    ld        a,h                           ;[0b26] 7c
+                    out       ($c7),a                       ;[0b27] d3 c7
+                    ld        a,l                           ;[0b29] 7d
+                    out       ($c7),a                       ;[0b2a] d3 c7
