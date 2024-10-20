@@ -281,6 +281,11 @@ Calculation:
     ADD IY, IY
     ADD IY, SP
 
+@Add16_A
+    ADD BC, A   ; auto expand
+    ADD DE, A   ; auto expand
+    ADD HL, A   ; auto expand
+
 @Add16_nn
     ADD HL, $1234
     ADD IX, $5678

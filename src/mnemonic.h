@@ -627,6 +627,27 @@ enum class Mnemonic {
     line->machine.push_back(0xED); \
     line->machine.push_back(0x45)
 
+#define ML_ADD_A_A line->machine.push_back(0x87)
+#define ML_ADD_A_B line->machine.push_back(0x80)
+#define ML_ADD_A_C line->machine.push_back(0x81)
+#define ML_ADD_A_D line->machine.push_back(0x82)
+#define ML_ADD_A_E line->machine.push_back(0x83)
+#define ML_ADD_A_H line->machine.push_back(0x84)
+#define ML_ADD_A_L line->machine.push_back(0x85)
+
+#define ML_JR_NZ(E)                \
+    line->machine.push_back(0x20); \
+    line->machine.push_back(E)
+#define ML_JR_Z(E)                 \
+    line->machine.push_back(0x28); \
+    line->machine.push_back(E)
+#define ML_JR_NC(E)                \
+    line->machine.push_back(0x30); \
+    line->machine.push_back(E)
+#define ML_JR_C(E)                 \
+    line->machine.push_back(0x38); \
+    line->machine.push_back(E)
+
 bool mnemonic_format_check(LineData* line, int size, ...);
 bool mnemonic_format_test(LineData* line, int size, ...);
 bool mnemonic_format_begin(LineData* line, int size, ...);
