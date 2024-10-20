@@ -187,7 +187,47 @@ void mnemonic_calc16(LineData* line, uint8_t code)
 
 void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
 {
-    if (mnemonic_format_test(line, 2, TokenType::Operand)) {
+    if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd)) {
+        // 即値アドレス演算（auto-expand）
+        auto addr = atoi(line->token[2].second.c_str());
+        if (mnemonic_range(line, addr, 0, 0xFFFF)) {
+            switch (mnemonicTable[line->token[0].second]) {
+                case Mnemonic::ADD:
+                    ML_PUSH_HL;
+                    ML_LD_L_n(addr & 0x00FF);
+                    ML_LD_H_n((addr & 0xFF00) >> 8);
+                    ML_ADD_HL;
+                    ML_POP_HL;
+                    break;
+                case Mnemonic::ADC:
+                    ML_PUSH_HL;
+                    ML_LD_L_n(addr & 0x00FF);
+                    ML_LD_H_n((addr & 0xFF00) >> 8);
+                    ML_ADC_HL;
+                    ML_POP_HL;
+                    break;
+                case Mnemonic::SUB:
+                    ML_PUSH_HL;
+                    ML_LD_L_n(addr & 0x00FF);
+                    ML_LD_H_n((addr & 0xFF00) >> 8);
+                    ML_SUB_HL;
+                    ML_POP_HL;
+                    break;
+                case Mnemonic::SBC:
+                    ML_PUSH_HL;
+                    ML_LD_L_n(addr & 0x00FF);
+                    ML_LD_H_n((addr & 0xFF00) >> 8);
+                    ML_SBC_HL;
+                    ML_POP_HL;
+                    break;
+                default:
+                    line->error = true;
+                    line->errmsg = "Unsupported immediate address 8bit arithmetic instruction: " + line->token[0].second;
+            }
+        }
+    } else if (0 == code16) {
+        mnemonic_calc8(line, code8);
+    } else if (mnemonic_format_test(line, 2, TokenType::Operand)) {
         mnemonic_calc8(line, code8);
     } else if (mnemonic_format_test(line, 2, TokenType::Numeric)) {
         mnemonic_calc8(line, code8);

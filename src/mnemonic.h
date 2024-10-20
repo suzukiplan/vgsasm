@@ -682,6 +682,15 @@ enum class Mnemonic {
     line->machine.push_back(NN & 0xFF); \
     line->machine.push_back((NN & 0xFF00) >> 8)
 
+#define ML_ADD_HL line->machine.push_back(0x86)
+#define ML_ADC_HL line->machine.push_back(0x8E)
+#define ML_SUB_HL line->machine.push_back(0x96)
+#define ML_SBC_HL line->machine.push_back(0x9E)
+#define ML_AND_HL line->machine.push_back(0xA6)
+#define ML_OR_HL line->machine.push_back(0xB6)
+#define ML_XOR_HL line->machine.push_back(0xAE)
+#define ML_CP_HL line->machine.push_back(0xBE)
+
 bool mnemonic_format_check(LineData* line, int size, ...);
 bool mnemonic_format_test(LineData* line, int size, ...);
 bool mnemonic_format_begin(LineData* line, int size, ...);

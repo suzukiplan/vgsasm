@@ -266,6 +266,7 @@ Calculation:
     ADD (IY)
     ADD (IY-128)
     ADD (IY+127*1)
+    ADD ($1234) ; auto-expand
 
 @Add16
     ADD HL, BC
@@ -332,6 +333,7 @@ Calculation:
     ADC (IY)
     ADC (IY-128)
     ADC (IY+127*1)
+    ADC ($1234) ; auto-expand
 
 @Adc16
     ADC HL, BC
@@ -372,6 +374,7 @@ Calculation:
     SUB (IY)
     SUB (IY-128)
     SUB (IY+127*1)
+    SUB ($1234) ; auto-expand
 
 @Sub_with_A ; Strictly speaking, `A,` should be omitted, but it is allowed.
     SUB A, A
@@ -435,6 +438,7 @@ Calculation:
     SBC (IY)
     SBC (IY-128)
     SBC (IY+127*1)
+    SBC ($1234) ; auto-expand
 
 @Sbc16
     SBC HL, BC

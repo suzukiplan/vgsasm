@@ -360,7 +360,7 @@ static void mnemonic_syntax_check_exec(std::vector<LineData*>* lines)
             case Mnemonic::CP: mnemonic_calc8(line, 0xB8); break;
             case Mnemonic::ADD: mnemonic_calcOH(line, 0x80, 0x09); break;
             case Mnemonic::ADC: mnemonic_calcOH(line, 0x88, 0x4A); break;
-            case Mnemonic::SUB: mnemonic_calc8(line, 0x90); break;
+            case Mnemonic::SUB: mnemonic_calcOH(line, 0x90, 0x00); break;
             case Mnemonic::SBC: mnemonic_calcOH(line, 0x98, 0x42); break;
             case Mnemonic::BIT: mnemonic_bit_op(line, Mnemonic::BIT); break;
             case Mnemonic::SET: mnemonic_bit_op(line, Mnemonic::SET); break;

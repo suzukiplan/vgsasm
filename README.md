@@ -353,6 +353,10 @@ In vgsasm, instructions that __do not exist in the Z80__ are complemented by exi
 | `ADD BC,A` | `ADD C`, `LD C,A`, `JR NC, +1`, `INC B` |
 | `ADD DE,A` | `ADD E`, `LD E,A`, `JR NC, +1`, `INC D` |
 | `ADD HL,A` | `ADD L`, `LD L,A`, `JR NC, +1`, `INC H` |
+| `ADD (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `ADD (HL)`, `POP HL` |
+| `ADC (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `ADC (HL)`, `POP HL` |
+| `SUB (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `SUB (HL)`, `POP HL` |
+| `SBC (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `SBC (HL)`, `POP HL` |
 | `INC (nn)` | `PUSH HL`, `LD HL,nn`, `INC (HL)` `POP HL`|
 | `DEC (nn)` | `PUSH HL`, `LD HL,nn`, `DEC (HL)` `POP HL`|
 | `JP (BC)` | `PUSH BC`, `RET` |
