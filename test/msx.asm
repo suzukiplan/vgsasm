@@ -58,7 +58,7 @@ org $4010
     ; 画面を空白で埋める
     ld a, ($0007)
     ld c, a
-    ld a, $20
+    ld a, ' '
     ld b, $00
     ld d, $03
 @Loop
