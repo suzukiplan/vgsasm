@@ -301,6 +301,22 @@ Using `DIVS` makes it a signed operation.
 
 The obtained angle values can then be given to `SIN` and `COS` to obtain the 16-bit fixed-point minority part (8 bits).
 
+### SIN
+
+```z80
+    SIN A, A    ; A = sin(A × π ÷ 128.0)
+    SIN A, B    ; A = sin(B × π ÷ 128.0)
+    SIN A, C    ; A = sin(C × π ÷ 128.0)
+    SIN A, D    ; A = sin(D × π ÷ 128.0)
+    SIN A, E    ; A = sin(E × π ÷ 128.0)
+    SIN A, H    ; A = sin(H × π ÷ 128.0)
+    SIN A, L    ; A = sin(L × π ÷ 128.0)
+```
+
+- `SIN` for trigonometric functions, but it specializes in finding the value of **X in the direction of travel** (8-bit fractional part of 16-bit fixed minority points) from the angle value obtained by `ATN2`.
+- `SIN A,` can be abbreviated to `SIN`.
+
+
 ## Auto Expand Instructions
 
 In vgsasm, instructions that __do not exist in the Z80__ are complemented by existing instructions.

@@ -120,8 +120,52 @@ static void HAGe_atan2(LineData* line)
     }
 }
 
+static bool sin(LineData* line, Operand op)
+{
+    switch (op) {
+        case Operand::A:
+            ML_OUT_A(0xC6);
+            return true;
+        case Operand::B:
+            ML_LD_A_B;
+            ML_OUT_A(0xC6);
+            return true;
+        case Operand::C:
+            ML_LD_A_C;
+            ML_OUT_A(0xC6);
+            return true;
+        case Operand::D:
+            ML_LD_A_D;
+            ML_OUT_A(0xC6);
+            return true;
+        case Operand::E:
+            ML_LD_A_E;
+            ML_OUT_A(0xC6);
+            return true;
+        case Operand::H:
+            ML_LD_A_H;
+            ML_OUT_A(0xC6);
+            return true;
+        case Operand::L:
+            ML_LD_A_L;
+            ML_OUT_A(0xC6);
+            return true;
+    }
+    return false;
+}
+
 static void HAGe_sin(LineData* line)
 {
+    if (mnemonic_format_test(line, 2, TokenType::Operand)) {
+        if (sin(line, operandTable[line->token[1].second])) {
+            return;
+        }
+    } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand) &&
+               operandTable[line->token[1].second] == Operand::A) {
+        if (sin(line, operandTable[line->token[3].second])) {
+            return;
+        }
+    }
     if (!line->error) {
         line->error = true;
         line->errmsg = "Illegal " + line->token[0].second + " instruction.";
