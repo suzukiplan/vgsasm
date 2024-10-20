@@ -17,17 +17,13 @@ struct Enemy $C000 {
 
 @get_atan2
     ATN2 A, HL              ; A = atan2(H, L)
-    LD D, A                 ; D = A
+    LD B, A                 ; B = A
 
 @calc_x
-    LD HL, (Enemy[0].x)     ; HL = X0
-    SIN A, D                ; A = sin(D × π ÷ 128.0)
-    ADD HL, A               ; HL += A
-    LD (Enemy[0].x), HL      ; Update X of Enemy0
+    SIN A, B                ; A = sin(B × π ÷ 128.0)
+    ADD (Enemy[0].x)        ; Enemy[0].x += A
 
 @calc_y
-    LD HL, (Enemy[0].y)     ; HL = Y0
-    COS A, D                ; A = cos(D × π ÷ 128.0)
-    ADD HL, A               ; HL += A
-    LD (Enemy[0].y), HL     ; Update Y of Enemy0
+    COS A, B                ; A = cos(B × π ÷ 128.0)
+    ADD (Enemy[0].y)        ; Enemy[0].y += A
     RET
