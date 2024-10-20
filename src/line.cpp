@@ -71,7 +71,7 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
             }
         }
 
-        // 文字列リテラルを一時的に 0x02 に置換（※シングルクオートも含めて）
+        // 文字リテラルを一時的に 0x02 に置換（※シングルクオートも含めて）
         std::vector<uint8_t> schrs;
         cp = formed;
         ptr = 0;
