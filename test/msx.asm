@@ -38,7 +38,7 @@ org $4010
 
     ; NameTable に Hello, World! を書き込む
     dec c
-    ld hl, Hello
+    ld hl, Hello@Data
     ld b, 13
 @Loop
     push af
@@ -69,7 +69,7 @@ org $4010
 
 .Data
 
-Hello:
+@Hello
     DB "Hello, World!"
 
 org $7FF0
