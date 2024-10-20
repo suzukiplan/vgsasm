@@ -283,11 +283,28 @@ static int assemble(std::vector<LineData*> lines)
     if (!lines.empty()) {
         memset(bin, 0xFF, sizeof(bin));
         binStart = lines[0]->programCounter;
+        std::string prevSource = "";
+        int prevLine = 0;
+        bool setaddr[0x10000];
+        memset(setaddr, 0, sizeof(setaddr));
         for (auto line : lines) {
-            for (int n = 0; n < line->machine.size(); n++) {
-                bin[line->programCounter + n] = line->machine[n];
+            if (0x10000 < line->programCounter + line->machine.size()) {
+                printf("Error: %s (%d) Program size exceeds 64KB.\n", line->path.c_str(), line->lineNumber);
+                return -1;
             }
-            binSize = line->programCounter + line->machine.size() - binStart;
+            for (int n = 0; n < line->machine.size(); n++) {
+                if (setaddr[line->programCounter + n]) {
+                    printf("Error: %s (%d) Program size exceeds next org address.\n", prevSource.c_str(), prevLine);
+                    return -1;
+                }
+                bin[line->programCounter + n] = line->machine[n];
+                setaddr[line->programCounter + n] = true;
+            }
+            if (!line->machine.empty()) {
+                binSize = line->programCounter + line->machine.size() - binStart;
+                prevSource = line->path;
+                prevLine = line->lineNumber;
+            }
         }
     }
 
