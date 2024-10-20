@@ -21,9 +21,28 @@ struct Enemy $C000 {
 
 @calc_x
     SIN A, B                ; A = sin(B × π ÷ 128.0)
-    ADD (Enemy[0].x)        ; Enemy[0].x += A
+    LD HL, (Enemy[0].x)     ; HL = Enemy[0].x
+    CALL Calc_HL_A          ; HL += A (as signed value)
+    LD (Enemy[0].x), HL     ; Enemy[0].x = HL
 
 @calc_y
     COS A, B                ; A = cos(B × π ÷ 128.0)
-    ADD (Enemy[0].y)        ; Enemy[0].y += A
+    LD HL, (Enemy[0].y)     ; HL = Enemy[0].y
+    CALL Calc_HL_A          ; HL += A (as signed value)
+    LD (Enemy[0].y), HL     ; Enemy[0].y = HL
+    RET
+
+Calc_HL_A:
+    BIT 7, A
+    JR NZ, @Minus
+    ADD L
+    LD L, A
+    RET NC
+    INC H
+    RET
+@Minus
+    ADD L
+    LD L, A
+    RET NC
+    DEC H
     RET
