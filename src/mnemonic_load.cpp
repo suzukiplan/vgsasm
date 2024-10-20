@@ -346,6 +346,20 @@ void mnemonic_LD(LineData* line)
             line->machine.push_back(0x00);
             return;
         }
+    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd, TokenType::Split, TokenType::Operand)) {
+        // LD (nn),r
+        auto addr = atoi(line->token[2].second.c_str());
+        if (mnemonic_range(line, addr, 0x0000, 0xFFFF)) {
+            switch (operandTable[line->token[5].second]) {
+                case Operand::A: ML_LD_NN_A(addr); return;
+                case Operand::BC: ML_LD_NN_BC(addr); return;
+                case Operand::DE: ML_LD_NN_DE(addr); return;
+                case Operand::HL: ML_LD_NN_HL(addr); return;
+                case Operand::SP: ML_LD_NN_SP(addr); return;
+                case Operand::IX: ML_LD_NN_IX(addr); return;
+                case Operand::IY: ML_LD_NN_IY(addr); return;
+            }
+        }
     } else if (mnemonic_format_test(line, 8, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::PlusOrMinus, TokenType::Numeric, TokenType::AddressEnd)) {
         // LD r, ({IX|IY}{+|-}d)
         auto op1 = operandTable[line->token[1].second];

@@ -1009,6 +1009,15 @@ Transfer_Load_Store:
     LD (HL), IYH
     LD (HL), IYL
 
+@Store_register_to_addr
+    LD ($1234), A
+    LD ($1234), BC
+    LD ($1234), DE
+    LD ($1234), HL
+    LD ($1234), SP
+    LD ($1234), IX
+    LD ($1234), IY
+
 @Load_immediate
     LD A, -128
     LD B, -1

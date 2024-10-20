@@ -648,6 +648,40 @@ enum class Mnemonic {
     line->machine.push_back(0x38); \
     line->machine.push_back(E)
 
+#define ML_LD_NN_A(NN)                  \
+    line->machine.push_back(0x32);      \
+    line->machine.push_back(NN & 0xFF); \
+    line->machine.push_back((NN & 0xFF00) >> 8)
+#define ML_LD_NN_BC(NN)                 \
+    line->machine.push_back(0xED);      \
+    line->machine.push_back(0x43);      \
+    line->machine.push_back(NN & 0xFF); \
+    line->machine.push_back((NN & 0xFF00) >> 8)
+#define ML_LD_NN_DE(NN)                 \
+    line->machine.push_back(0xED);      \
+    line->machine.push_back(0x53);      \
+    line->machine.push_back(NN & 0xFF); \
+    line->machine.push_back((NN & 0xFF00) >> 8)
+#define ML_LD_NN_HL(NN)                 \
+    line->machine.push_back(0x22);      \
+    line->machine.push_back(NN & 0xFF); \
+    line->machine.push_back((NN & 0xFF00) >> 8)
+#define ML_LD_NN_SP(NN)                 \
+    line->machine.push_back(0xED);      \
+    line->machine.push_back(0x73);      \
+    line->machine.push_back(NN & 0xFF); \
+    line->machine.push_back((NN & 0xFF00) >> 8)
+#define ML_LD_NN_IX(NN)                 \
+    line->machine.push_back(0xDD);      \
+    line->machine.push_back(0x22);      \
+    line->machine.push_back(NN & 0xFF); \
+    line->machine.push_back((NN & 0xFF00) >> 8)
+#define ML_LD_NN_IY(NN)                 \
+    line->machine.push_back(0xFD);      \
+    line->machine.push_back(0x22);      \
+    line->machine.push_back(NN & 0xFF); \
+    line->machine.push_back((NN & 0xFF00) >> 8)
+
 bool mnemonic_format_check(LineData* line, int size, ...);
 bool mnemonic_format_test(LineData* line, int size, ...);
 bool mnemonic_format_begin(LineData* line, int size, ...);
