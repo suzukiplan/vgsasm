@@ -75,7 +75,6 @@ org $4010
 @Hello
     DB "Hello, World!"
 
-org $7FF0
-.Footer
-    DB 0, 0, 0, 0, 0, 0, 0, 0
-    DB 0, 0, 0, 0, 0, 0, 0, 0
+org $7FFF
+    RST $38
+
