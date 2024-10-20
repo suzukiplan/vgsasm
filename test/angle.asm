@@ -1,5 +1,3 @@
-#include "../lib/vgszero.inc"
-
 struct Enemy $C000 {
     x ds.w 1
     y ds.w 1
