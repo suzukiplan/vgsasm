@@ -299,11 +299,13 @@ static void setpc(LineData* prev, LineData* cur)
     if (cur->programCounterInit) {
         return;
     }
-    cur->programCounterInit = true;
-    if (prev) {
-        cur->programCounter = prev->programCounter + prev->machine.size();
-    } else {
-        cur->programCounter = 0;
+    if (!cur->programCounterInit) {
+        cur->programCounterInit = true;
+        if (prev) {
+            cur->programCounter = prev->programCounter + prev->machine.size();
+        } else {
+            cur->programCounter = 0;
+        }
     }
 }
 

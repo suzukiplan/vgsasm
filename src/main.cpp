@@ -287,7 +287,7 @@ static int assemble(std::vector<LineData*> lines)
             for (int n = 0; n < line->machine.size(); n++) {
                 bin[line->programCounter + n] = line->machine[n];
             }
-            binSize += line->machine.size();
+            binSize = line->programCounter + line->machine.size() - binStart;
         }
     }
 

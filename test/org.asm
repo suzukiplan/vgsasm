@@ -2,7 +2,7 @@ org $0000
 .Reset
     IM 1
     LD SP, 0
-    JR Main
+    JP Main
 
 org $0038
 .Interrupt
