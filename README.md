@@ -210,6 +210,17 @@ Data:
   - Character string (`"String"`) *Upper 8 bits are always 0
   - [Labels](#labels)
 
+## Increment and Decrement
+
+Increments and decrements can be automatically inserted before and after a register by adding `++` or `--` before or after the register.
+
+| Source Code | Extract As | Type |
+|:-------|:------------|:-----|
+|`LD (HL++), A` | `LD (HL), A` <br> `INC HL` | Post Increment |
+|`LD (++HL), A` |  `INC HL` <br> `LD (HL), A` | Pre Increment |
+|`LD (HL--), A` | `LD (HL), A` <br> `DEC HL` | Post Decrement |
+|`LD (--HL), A` |  `DEC HL` <br> `LD (HL), A` | Pre Decrement |
+
 ## Support Instructions
 
 - Supports all Z80 instructions, including undocumented.
