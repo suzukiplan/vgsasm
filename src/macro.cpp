@@ -1,6 +1,21 @@
 #include "common.h"
 
 std::map<std::string, Macro*> macroTable;
+static std::map<std::string, bool> dupTable;
+
+static bool check_caller_dup(Macro* macro)
+{
+    if (dupTable.end() != dupTable.find(macro->name)) {
+        return true;
+    }
+    dupTable[macro->name] = true;
+    for (auto caller : macro->caller) {
+        if (check_caller_dup(caller)) {
+            return true;
+        }
+    }
+    return false;
+}
 
 void parse_macro(LineData* line)
 {
@@ -178,6 +193,15 @@ void macro_syntax_check(std::vector<LineData*>* lines)
                     }
                 }
             }
+        }
+    }
+
+    // 循環チェック
+    for (auto m = macroTable.begin(); m != macroTable.end(); m++) {
+        dupTable.clear();
+        if (check_caller_dup(m->second)) {
+            m->second->refer->error = true;
+            m->second->refer->errmsg = "Macro calls are circulating: " + m->first;
         }
     }
 
