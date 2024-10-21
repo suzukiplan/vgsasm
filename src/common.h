@@ -118,6 +118,7 @@ class Macro
     std::vector<std::string> args;
     std::vector<LineData*> lines;
     LineData* refer;
+    std::vector<Macro*> caller;
 
     Macro(std::string name, LineData* refer)
     {

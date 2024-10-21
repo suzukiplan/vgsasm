@@ -166,7 +166,7 @@ void macro_syntax_check(std::vector<LineData*>* lines)
     }
 
     // Other -> MacroCaller in Macro
-    for (auto m = macroTable.begin(); macro != macroTable.end(); macro++) {
+    for (auto m = macroTable.begin(); m != macroTable.end(); m++) {
         for (auto it = m->second->lines.begin(); it != m->second->lines.end(); it++) {
             auto line = *it;
             for (auto token = line->token.begin(); token != line->token.end(); token++) {
