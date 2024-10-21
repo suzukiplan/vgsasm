@@ -18,7 +18,7 @@ void extract_string_literal(std::vector<LineData*>* lines)
                 if (mne == Mnemonic::DB || mne == Mnemonic::DW) {
                     break; // DB, DW なら変換しない
                 }
-            } else if (token->first == TokenType::String && mne != Mnemonic::None) {
+            } else if (token->first == TokenType::String) {
                 token->first = TokenType::LabelJump;
                 // 定義済みの無名ラベルに同じ文字列があればそれを参照しておく
                 bool found = false;

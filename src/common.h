@@ -47,6 +47,7 @@ enum class TokenType {
     Inc,              // インクリメント
     Dec,              // デクリメント
     Binary,           // #binary
+    Macro,            // #macro
     Other             // その他 (構文解析の仮定で最終的にはなくなる)
 };
 
@@ -109,6 +110,21 @@ class Struct
     }
 };
 
+class Macro
+{
+  public:
+    std::string name;
+    std::vector<std::string> args;
+    std::vector<LineData*> lines;
+
+    Macro(std::string name)
+    {
+        this->name = name;
+        this->args.clear();
+        this->lines.clear();
+    }
+};
+
 enum class Operand {
     A,
     B,
@@ -147,6 +163,7 @@ extern std::map<std::string, LineData*> labelTable;
 extern std::map<std::string, Mnemonic> mnemonicTable;
 extern std::map<std::string, Operand> operandTable;
 extern std::map<std::string, Struct*> structTable;
+extern std::map<std::string, Macro*> macroTable;
 
 extern int arrayCount;
 extern int bracketCount;
@@ -193,3 +210,6 @@ void parse_org(LineData* line);                                                 
 void setpc_org(std::vector<LineData*>* lines);                                        // org.cpp
 void split_increment(std::vector<LineData*>* lines);                                  // increment.cpp
 void extract_string_literal(std::vector<LineData*>* lines);                           // literal.cpp
+void parse_macro(LineData* line);                                                     // macro.cpp
+void macro_syntax_check(std::vector<LineData*>* lines);                               // macro.cpp
+void extract_macro_call(std::vector<LineData*>* lines);                               // macro.cpp

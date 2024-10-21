@@ -79,6 +79,36 @@ You can specify the size at which to start reading by `, number` after the offse
 
 The `DEFINITION_NAME` in the source code is expanded to an `Expanded expression`.
 
+## `#macro`
+
+```z80
+#macro foo(arg1, arg2, arg3) {
+    LD BC, arg1
+    LD DE, arg2
+    LD HL, arg3
+}
+
+org $0000
+    foo(1, 2 + 3, 3 * 4 + 3)
+    HALT
+```
+
+The above code is internally expanded as follows:
+
+```z80
+org $0000
+    LD BC, 1
+    LD DE, 2 + 3
+    LD HL, 3 * 4 + 3
+    HALT
+```
+
+- A multifunctional version of [`#define`](#define) that can have arguments and multi-line expansion.
+- The number of arguments must match the definition and the caller.
+- Only numbers can be specified as arguments in the macro caller (including labels, formulas, and [String Literal](#string-literal)).
+- Labels cannot be used within a macro definition.
+- If you want to perform complex processing involving branching, call a subroutine from within the macro. (This is also necessary to optimize code size.)
+
 ## `org`
 
 Specifies the starting address for binary output.

@@ -70,7 +70,7 @@ static int check_error(LineData* line)
 {
     if (line->error) {
         printf("Error: %s (%d) %s\n", line->path.c_str(), line->lineNumber, line->errmsg.c_str());
-        // line->printDebug();
+        line->printDebug();
         return -1;
     }
     return 0;
@@ -156,6 +156,7 @@ static int assemble(std::vector<LineData*> lines)
         parse_sizeof(*line);        // Other -> Sizeof
         parse_offset(*line);        // Other -> Offset
         parse_binary(*line);        // Other -> Binary
+        parse_macro(*line);         // Other -> Macro
         error = check_error(*line) ? true : error;
     }
     if (error) {
@@ -252,6 +253,19 @@ static int assemble(std::vector<LineData*> lines)
         return -1;
     }
     clear_delete_token(&lines);
+
+    // マクロの構文解析（マクロテーブルを作成）
+    macro_syntax_check(&lines);
+    if (check_error(lines)) {
+        return -1;
+    }
+    clear_delete_token(&lines);
+
+    // マクロ呼び出し箇所を展開
+    extract_macro_call(&lines);
+    if (check_error(lines)) {
+        return -1;
+    }
 
     // org があれば org の次の行のプログラムカウンタを初期化
     setpc_org(&lines);

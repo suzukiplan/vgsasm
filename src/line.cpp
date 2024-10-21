@@ -377,6 +377,8 @@ void LineData::printDebug()
             } else {
                 printf(" $\?\?\?\? <%s>", token.second.c_str());
             }
+        } else if (token.first == TokenType::Mnemonic) {
+            printf(" {%s}", token.second.c_str());
         } else if (token.first == TokenType::Operand) {
             printf(" <%s>", token.second.c_str());
         } else if (token.first == TokenType::AddressBegin) {
