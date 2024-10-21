@@ -48,6 +48,7 @@ enum class TokenType {
     Dec,              // デクリメント
     Binary,           // #binary
     Macro,            // #macro
+    MacroCaller,      // マクロ呼び出し
     Other             // その他 (構文解析の仮定で最終的にはなくなる)
 };
 

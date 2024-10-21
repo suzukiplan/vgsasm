@@ -153,6 +153,18 @@ void macro_syntax_check(std::vector<LineData*>* lines)
         }
     }
 
+    // Other -> MacroCaller
+    for (auto it = lines->begin(); it != lines->end(); it++) {
+        auto line = *it;
+        for (auto token = line->token.begin(); token != line->token.end(); token++) {
+            if (token->first == TokenType::Other) {
+                if (macroTable.find(token->second) != macroTable.end()) {
+                    token->first = TokenType::MacroCaller;
+                }
+            }
+        }
+    }
+
     // 取得したマクロを全表示
 #if 0
     for (auto m : macroTable) {
@@ -179,7 +191,7 @@ void extract_macro_call(std::vector<LineData*>* lines)
     for (auto it = lines->begin(); it != lines->end(); it++) {
         // マクロ呼び出し行かチェック
         auto line = *it;
-        if (line->token.empty() || line->token[0].first != TokenType::Other) {
+        if (line->token.empty() || line->token[0].first != TokenType::MacroCaller) {
             continue;
         }
         auto mit = macroTable.find(line->token[0].second);
