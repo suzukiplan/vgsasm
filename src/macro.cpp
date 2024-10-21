@@ -35,7 +35,7 @@ void parse_macro(LineData* line)
     }
 
     // テーブル登録
-    auto macro = new Macro(name);
+    auto macro = new Macro(name, line);
     macroTable[name] = macro;
 
     // マクロ名の次がカッコになっているかチェック
@@ -92,6 +92,15 @@ void parse_macro(LineData* line)
 
 void macro_syntax_check(std::vector<LineData*>* lines)
 {
+    for (auto it = macroTable.begin(); it != macroTable.end(); it++) {
+        for (auto arg : it->second->args) {
+            if (checkNameTable(arg)) {
+                it->second->refer->error = true;
+                it->second->refer->errmsg = "A macro argument name conflict with the name used for structs, defines, etc.: " + arg;
+            }
+        }
+    }
+
     bool searchScopeBegin = false;
     bool storeTokenToMacro = false;
     Macro* macro = nullptr;

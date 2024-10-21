@@ -116,10 +116,12 @@ class Macro
     std::string name;
     std::vector<std::string> args;
     std::vector<LineData*> lines;
+    LineData* refer;
 
-    Macro(std::string name)
+    Macro(std::string name, LineData* refer)
     {
         this->name = name;
+        this->refer = refer;
         this->args.clear();
         this->lines.clear();
     }
@@ -171,6 +173,7 @@ extern int scopeCount;
 extern LineData* lastScopeBegin;
 
 void addNameTable(std::string name, LineData* line);                                  // main.cpp
+bool checkNameTable(std::string name);                                                // main.cpp
 void trim_string(char* src);                                                          // main.cpp
 std::vector<std::string> split_token(std::string str, char del);                      // main.cpp
 void parse_binary(LineData* line);                                                    // binary.cpp
