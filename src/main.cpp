@@ -171,6 +171,15 @@ static int assemble(std::vector<LineData*> lines)
         return -1;
     }
 
+    // 文字列リテラルを無名ラベルの参照に変換し、末尾に無名ラベル+DBを展開
+    extract_string_literal(&lines);
+    for (auto line = lines.begin(); line != lines.end(); line++) {
+        error = check_error(*line) ? true : error;
+    }
+    if (error) {
+        return -1;
+    }
+
     // 演算を実行（1回目）
     for (auto line = lines.begin(); line != lines.end(); line++) {
         evaluate_formulas(*line);

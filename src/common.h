@@ -67,6 +67,7 @@ class LineData
     LineData(std::string text) { LineData(nullptr, 0, text); }
     LineData(const char* path, int lineNumber, std::string text);
     LineData(LineData* from);
+    LineData();
     void printDebug();
 };
 
@@ -191,3 +192,4 @@ void replace_struct(LineData* line);                                            
 void parse_org(LineData* line);                                                       // org.cpp
 void setpc_org(std::vector<LineData*>* lines);                                        // org.cpp
 void split_increment(std::vector<LineData*>* lines);                                  // increment.cpp
+void extract_string_literal(std::vector<LineData*>* lines);                           // literal.cpp
