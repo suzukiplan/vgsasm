@@ -171,8 +171,10 @@ void macro_syntax_check(std::vector<LineData*>* lines)
             auto line = *it;
             for (auto token = line->token.begin(); token != line->token.end(); token++) {
                 if (token->first == TokenType::Other) {
-                    if (macroTable.find(token->second) != macroTable.end()) {
+                    auto caller = macroTable.find(token->second);
+                    if (caller != macroTable.end()) {
                         token->first = TokenType::MacroCaller;
+                        m->second->caller.push_back(caller->second);
                     }
                 }
             }
