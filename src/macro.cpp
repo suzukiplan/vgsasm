@@ -165,6 +165,20 @@ void macro_syntax_check(std::vector<LineData*>* lines)
         }
     }
 
+    // Other -> MacroCaller in Macro
+    for (auto m = macroTable.begin(); macro != macroTable.end(); macro++) {
+        for (auto it = m->second->lines.begin(); it != m->second->lines.end(); it++) {
+            auto line = *it;
+            for (auto token = line->token.begin(); token != line->token.end(); token++) {
+                if (token->first == TokenType::Other) {
+                    if (macroTable.find(token->second) != macroTable.end()) {
+                        token->first = TokenType::MacroCaller;
+                    }
+                }
+            }
+        }
+    }
+
     // 取得したマクロを全表示
 #if 0
     for (auto m : macroTable) {
