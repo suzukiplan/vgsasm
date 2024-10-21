@@ -145,6 +145,31 @@ JP FOO@LABEL2   ; Jump to FOO@LABEL2
 - Inner labels are written in `@LABEL` format.
 - Labels and inner labels are not case sensitive.
 - The label and inner label are symbols that uniquely identify all source files with `#include`.
+- Labels beginning with `$` cannot be specified.
+
+## String Literal
+
+For example, when implemented as follows,
+
+```
+LD BE, "HELLO,WORLD!"
+LD DE, "HOGE"
+LD HL, "HELLO,WORLD!"
+  :
+```
+
+It should automatically expand as follows:
+
+```
+LD BE, $0
+LD DE, $1
+LD HL, $0
+  :
+$0: DB "HELLO,WORLD!", 0
+$1: DB "HOGE", 0
+```
+
+> Labels beginning with `$` cannot be specified by the user program.
 
 ## `struct`
 
