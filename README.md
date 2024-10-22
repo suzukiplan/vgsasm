@@ -293,6 +293,7 @@ The following points should be noted:
 ## Labels
 
 - [Named Labels](#named-labels)
+- [Anonymous Labels](#anonymous-labels)
 
 ### Named Labels
 
