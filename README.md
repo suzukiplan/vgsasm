@@ -4,23 +4,43 @@ Z80 Assembler for VGS-Zero is a Z80 assembler that supports the entire Z80 instr
 
 Although it was developed for use in game development on the VGS-Zero, it is versatile enough to be used for game development for a wide range of game consoles and PCs, including SMS, GameGear, MSX, and PC-88. _(However, the design guideline is to specialize in VGS-Zero, but not in other console or PC-specific enhancements.)_
 
-## WIP Status
+# WIP Status
 
 - It is still under development.
 - We plan to add version `1.0.0` tags when all functions are completed.
 - See the [issues](https://github.com/suzukiplan/vgsasm/issues?q=is%3Aopen+is%3Aissue+label%3AWIP).
+
+# Runtime Specification
+
+- [Support OS](#support-os)
+- [How to Install](#how-to-install)
+- [Usage](#usage)
 
 ## Support OS
 
 - **Linux** (confirmed Ubuntu Desktop)
 - macOS (not confirmed)
 
+## How to Install
+
+```
+sudo apt install build-essential
+git clone https://github.com/suzukiplan/vgsasm
+cd vgsasm
+make
+sudo ln -s `pwd`/vgsasm /usr/local/bin/vgsasm
+```
+
 ## Usage
 
 ```
-vgsasm [-b size_of_binary] /path/to/source.asm
+vgsasm [-o /path/to/output.bin]
+       [-b size_of_binary]
+       /path/to/source.asm
 ```
-
+- `-o /path/to/output.bin`
+  - Specify the path of the output binary.
+  - If omitted, the input source file name is output to the current directory with the file name extension `.bin`.
 - `-b size_of_binary`
   - Specify the size of the output binary.
   - The `size_of_binary` can be specified in decimal or hexadecimal (ex: `0xABCD`)
@@ -28,6 +48,24 @@ vgsasm [-b size_of_binary] /path/to/source.asm
   - The upper limit of `size_of_binary` is `65536` (`0x10000`)
   - Assembly will fail if the specified size is exceeded.
   - Boundary areas that do not meet the specified size are filled with `0xFF`.
+
+# Language Specification
+
+- [Basic Syntax](#basic-syntax)
+- [`#include`](#include)
+- [`#binary`](#binary)
+- [`#define`](#define)
+- [`#macro`](#macro)
+- [`struct`](#struct)
+- [`org`](#org)
+- [Labels](#labels)
+- [String Literal](#string-literal)
+- [Literal Data Definition](#literal-data-definition)
+- [Increment and Decrement](#increment-and-decrement)
+- [Assignment](#assignment)
+- [Support Instructions](#support-instructions)
+- [Instructions Specialized for VGS-Zero](#instructions-specialized-for-vgs-zero)
+- [Auto Expand Instructions](#auto-expand-instructions)
 
 ## Basic Syntax
 
@@ -163,6 +201,62 @@ Example:
     jr @Loop
 ```
 
+## `struct`
+
+```z80
+struct name $C000 {
+    var1 ds.b 1     ; name.var1 = $C000 ... offset(name.var1) = 0
+    var2 ds.w 1     ; name.var2 = $C001 ... offset(name.var2) = 1
+    var3 ds.b 4     ; name.var3 = $C003 ... offset(name.var3) = 3
+    var4 ds.w 4     ; name.var4 = $C007 ... offset(name.var4) = 7
+}                   ; sizeof(name) = 15
+
+// Array access
+// name[0].var1 = $C000
+// name[1].var1 = $C00F
+// name[2].var1 = $C01E
+```
+
+- You can define a structure with `struct name start_address`.
+- A struct is a grouping of single or multiple attributes in a common namespace.
+- Attributes are specified in the form `attribute_name {ds.b|ds.w|name} count`.
+  - `ds.b` ... 1 byte
+  - `ds.w` ... 2 bytes
+  - `name` ... `sizeof(name)`
+- The `start_address` is usually assumed to be an absolute address in RAM (0xC000 to 0xFFFF).
+- This structure has no boundary.
+- Can also be accessed as an array in the form `name[index]`.
+- `sizeof(structure_name)`: size of structure
+- `offset(structure_name.field)` : field address offset
+
+Utilizing `sizeof` and `offset` makes structure access with `LD (IX+d)` smarter.
+
+```z80
+struct OAM $9000 {
+    y           ds.b    1
+    x           ds.b    1
+    ptn         ds.b    1
+    attr        ds.b    1
+    h           ds.b    1
+    w           ds.b    1
+    bank        ds.b    1
+    reserved    ds.b    1
+}
+
+org $0000
+
+.Main
+    ld ix, OAM[16]                      ; ix = $9000 + 8 * 16
+    ld b, 4                             ; djnz loop times = 4
+@Loop
+    ld (ix + offset(OAM.x)), 0x10       ; ld (ix + 1), 0x10
+    ld (ix + offset(OAM.y)), 0x20       ; ld (ix + 0), 0x20
+    ld (ix + offset(OAM.ptn)), 0x30     ; ld (ix + 2), 0x30
+    ld (ix + offset(OAM.bank)), 0x40    ; ld (ix + 6), 0x40
+    add ix, sizeof(OAM)                 ; ix += 8
+    djnz @Loop                          ; loop
+```
+
 ## `org`
 
 Specifies the starting address for binary output.
@@ -255,62 +349,6 @@ $1: DB "HOGE", 0
 
 > Labels beginning with `$` cannot be specified by the user program.
 
-## `struct`
-
-```z80
-struct name $C000 {
-    var1 ds.b 1     ; name.var1 = $C000 ... offset(name.var1) = 0
-    var2 ds.w 1     ; name.var2 = $C001 ... offset(name.var2) = 1
-    var3 ds.b 4     ; name.var3 = $C003 ... offset(name.var3) = 3
-    var4 ds.w 4     ; name.var4 = $C007 ... offset(name.var4) = 7
-}                   ; sizeof(name) = 15
-
-// Array access
-// name[0].var1 = $C000
-// name[1].var1 = $C00F
-// name[2].var1 = $C01E
-```
-
-- You can define a structure with `struct name start_address`.
-- A struct is a grouping of single or multiple attributes in a common namespace.
-- Attributes are specified in the form `attribute_name {ds.b|ds.w|name} count`.
-  - `ds.b` ... 1 byte
-  - `ds.w` ... 2 bytes
-  - `name` ... `sizeof(name)`
-- The `start_address` is usually assumed to be an absolute address in RAM (0xC000 to 0xFFFF).
-- This structure has no boundary.
-- Can also be accessed as an array in the form `name[index]`.
-- `sizeof(structure_name)`: size of structure
-- `offset(structure_name.field)` : field address offset
-
-Utilizing `sizeof` and `offset` makes structure access with `LD (IX+d)` smarter.
-
-```z80
-struct OAM $9000 {
-    y           ds.b    1
-    x           ds.b    1
-    ptn         ds.b    1
-    attr        ds.b    1
-    h           ds.b    1
-    w           ds.b    1
-    bank        ds.b    1
-    reserved    ds.b    1
-}
-
-org $0000
-
-.Main
-    ld ix, OAM[16]                      ; ix = $9000 + 8 * 16
-    ld b, 4                             ; djnz loop times = 4
-@Loop
-    ld (ix + offset(OAM.x)), 0x10       ; ld (ix + 1), 0x10
-    ld (ix + offset(OAM.y)), 0x20       ; ld (ix + 0), 0x20
-    ld (ix + offset(OAM.ptn)), 0x30     ; ld (ix + 2), 0x30
-    ld (ix + offset(OAM.bank)), 0x40    ; ld (ix + 6), 0x40
-    add ix, sizeof(OAM)                 ; ix += 8
-    djnz @Loop                          ; loop
-```
-
 ## Literal Data Definition
 
 ```z80
@@ -379,7 +417,14 @@ VARS.posX = 123
 - Some undocumented instructions are in a slightly special format.
 - All instructions are described in [./test/all.asm](./test/all.asm).
 
-## Instructions Specialized for VSS-Zero
+## Instructions Specialized for VGS-Zero
+
+- [MUL - Multiplication](#mul---multiplication)
+- [DIV - Division](#div---division)
+- [MOD - Modulo](#mod---modulo)
+- [ATN2 - atan2](#atn2---atan2)
+- [SIN](#sin)
+- [COS](#cos)
 
 ### MUL - Multiplication
 
