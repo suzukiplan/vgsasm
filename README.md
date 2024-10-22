@@ -161,7 +161,6 @@ Example:
     pop de
     inc de
     jr @Loop
-    ret
 ```
 
 ## `org`
