@@ -377,6 +377,7 @@ int main(int argc, char* argv[])
     char out[1024];
     in[0] = 0;
     out[0] = 0;
+    int binarySize = 0;
     bool error = false;
     for (int i = 1; i < argc; i++) {
         if ('-' == argv[i][0]) {
@@ -388,6 +389,22 @@ int main(int argc, char* argv[])
                         break;
                     }
                     strcpy(out, argv[i]);
+                    break;
+                case 'b':
+                    i++;
+                    if (argc <= i) {
+                        error = true;
+                        break;
+                    }
+                    if (argv[i][0] == '0' && toupper(argv[i][1]) == 'X') {
+                        auto str = hex2dec(&argv[i][2]);
+                        binarySize = atoi(str.c_str());
+                    } else if (argv[i][0] == '$') {
+                        auto str = hex2dec(&argv[i][1]);
+                        binarySize = atoi(str.c_str());
+                    } else {
+                        binarySize = atoi(argv[i]);
+                    }
                     break;
                 default:
                     error = true;
@@ -405,6 +422,7 @@ int main(int argc, char* argv[])
 
     if (error || !in[0]) {
         puts("usage: vgsasm [-o /path/to/output.bin]");
+        puts("              [-b binary_size]");
         puts("               /path/to/input.asm");
         return 1;
     }
@@ -429,12 +447,17 @@ int main(int argc, char* argv[])
 
     if (binSize < 1) {
         puts("No binary data.");
+        return -1;
+    } else if (binarySize && (binarySize <= binSize || 0x10000 <= binStart + binarySize)) {
+        puts("Binary size overflow.");
+        return -1;
     } else {
         FILE* fp = fopen(out, "wb");
         if (!fp) {
             puts("File open error.");
             return -1;
         }
+        binSize = binarySize != 0 ? binarySize : binSize;
         if (binSize != fwrite(&bin[binStart], 1, binSize, fp)) {
             puts("File write error.");
             fclose(fp);
