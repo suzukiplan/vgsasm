@@ -109,6 +109,61 @@ org $0000
 - Labels cannot be used within a macro definition.
 - If you want to perform complex processing involving branching, call a subroutine from within the macro. (This is also necessary to optimize code size.)
 
+In the `#macro`, perform processing equivalent to C language function call conventions (stack frame construction), and major processing is implemented by subroutine calls, allowing highly code-readable function call processing to be implemented only in full assembly language.
+
+Example:
+
+```z80
+;------------------------------------------------------------------
+; Caller implementation (This is not BASIC!)
+;------------------------------------------------------------------
+.main
+    print_text(3, 5, $80, "HELLO,WORLD!")
+    print_text(3, 7, $80, "THIS IS TEST")
+    print_text(3, 9, $80, "HOGE")
+    HALT
+
+;------------------------------------------------------------------
+; Macro & Subroutine
+;------------------------------------------------------------------
+; Only call conventions are implemented in the macro.
+#macro print_text(posX, posY, attr, string)
+{
+    push_all()
+    ld h, posX
+    ld l, posY
+    ld b, attr
+    ld de, string
+    call print_text_sub ; main processing of the print_text function
+    pop_all()
+}
+
+; Subroutines describe complex processes including loops
+.print_text_sub
+    ; HL = L * 32 + H + VRAM.bg_name
+    ld a, h
+    ld h, 0
+    ld c, 32
+    mul hl, c
+    add hl, a
+    add hl, VRAM.bg_name
+@Loop
+    ld a, (de)
+    and a
+    ret z
+    ld (hl), a
+    push de
+    ld de, $0400
+    add hl, de
+    ld (hl), b
+    ld de, -$03FF
+    add hl, de
+    pop de
+    inc de
+    jr @Loop
+    ret
+```
+
 ## `org`
 
 Specifies the starting address for binary output.
