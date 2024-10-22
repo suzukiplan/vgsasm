@@ -344,6 +344,35 @@ Increments and decrements can be automatically inserted before and after a regis
 |`LD (HL--), A` | `LD (HL), A` <br> `DEC HL` | Post Decrement |
 |`LD (--HL), A` |  `DEC HL` <br> `LD (HL), A` | Pre Decrement |
 
+## Assignment
+
+`LD(=)`, `ADD(+=)`, `SUB(-=)`, `AND(&=)`, `OR(|=)`, `XOR(^=)` can also be written in the form of assignment expressions.
+
+```
+A = B         ; expand to -> LD A, B
+(HL) = A      ; expand to -> LD (HL), A
+$C000 = A     ; expand to -> LD ($C000), A    *Can omit addressing (bracketing) at load time
+($C000) = A   ; expand to -> LD ($C000), A    *same as `$C000 = A`
+A = (HL)      ; expand to -> LD A, (HL)
+A = $FF       ; expand to -> LD A, $FF
+A = $C000     ; expand to -> LD A, $C000      *Error (out of range)
+A = ($C000)   ; expand to -> LD A, ($C000)    *Addressing at store requires bracketing
+BC = $C000    ; expand to -> LD BC, $C000
+BC = ($C000)  ; expand to -> LD BC, ($C000)
+A += B        ; expand to -> ADD A, B
+HL += DE      ; expand to -> ADD HL, DE
+A -= B        ; expand to -> SUB A, B
+A &= B        ; expand to -> AND A, B
+A |= B        ; expand to -> OR A, B
+A ^= B        ; expand to -> XOR A, B
+```
+
+Only for LD assignment expressions, if the left side is numeric, it is automatically assumed to be an address. This makes the description of structure variable initialization in an intuitive and easy-to-understand format:
+
+```
+VARS.posX = 123
+```
+
 ## Support Instructions
 
 - Supports all Z80 instructions, including undocumented.
