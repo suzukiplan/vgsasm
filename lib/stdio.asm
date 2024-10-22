@@ -4,7 +4,7 @@
 ;------------------------------------------------------------
 ; インデクスを除くレジスタを退避
 ;------------------------------------------------------------
-#macro push_all_width_i()
+#macro push_all_widhout_i()
 {
     push af
     push bc
@@ -15,7 +15,7 @@
 ;------------------------------------------------------------
 ; インデクスを除くレジスタを復帰
 ;------------------------------------------------------------
-#macro pop_all_width_i()
+#macro pop_all_widhout_i()
 {
     pop hl
     pop de
@@ -28,13 +28,13 @@
 ;------------------------------------------------------------
 #macro print_text_fg(posX, posY, attr, string)
 {
-    push_all_width_i()
+    push_all_widhout_i()
     ld h, posX
     ld l, posY
     ld b, attr
     ld de, string
     call print_text_sub
-    pop_all_width_i()
+    pop_all_widhout_i()
 }
 
 .print_text_sub
