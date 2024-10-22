@@ -1,14 +1,8 @@
-# WIP: Z80 Assembler for VGS-Zero
+# Z80 Assembler for VGS-Zero
 
 Z80 Assembler for VGS-Zero is a Z80 assembler that supports the entire Z80 instruction set, including hidden instructions, and enables highly readable full assembly language programming using [“structures”](#struct).
 
 Although it was developed for use in game development on the VGS-Zero, it is versatile enough to be used for game development for a wide range of game consoles and PCs, including SMS, GameGear, MSX, and PC-88. _(However, the design guideline is to specialize in VGS-Zero, but not in other console or PC-specific enhancements.)_
-
-# WIP Status
-
-- It is still under development.
-- We plan to add version `1.0.0` tags when all functions are completed.
-- See the [issues](https://github.com/suzukiplan/vgsasm/issues?q=is%3Aopen+is%3Aissue+label%3AWIP).
 
 # Runtime Specification
 
