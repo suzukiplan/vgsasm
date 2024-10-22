@@ -292,6 +292,10 @@ The following points should be noted:
 
 ## Labels
 
+- [Named Labels](#named-labels)
+
+### Named Labels
+
 ```z80
 // Normal label
 FOO:
@@ -324,6 +328,24 @@ JP FOO@LABEL2   ; Jump to FOO@LABEL2
 - Labels and inner labels are not case sensitive.
 - The label and inner label are symbols that uniquely identify all source files with `#include`.
 - Labels beginning with `$` cannot be specified.
+
+### Anonymous Labels
+
+`vgsasm` provides an anonymous label function that allows you to jump to a position relative to the current line number by @+number or @-number.
+
+```z80
+AND A           ; @-3
+LD A, ($FFFF)   ; @-2
+XOR A           ; @-1
+JR @+4          ; @+0 <--- use anonymous label
+LD A, B         ; @+1
+LD A, ($1234)   ; @+2
+LD (IX+4), A    ; @+3
+MUL HL, C       ; @+4 <--- Jump here
+HALT            ; @+5
+```
+
+The insertion position of an anonymous label cannot cross another label (including another anonymous label), preprocessor, or scope.
 
 ## String Literal
 

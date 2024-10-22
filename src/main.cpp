@@ -142,7 +142,7 @@ static int assemble(std::vector<LineData*> lines)
         return -1;
     }
 
-    // 基本構文解析
+    // ラベルをパース
     for (auto line = lines.begin(); line != lines.end(); line++) {
         // Other -> Label or LabelAt
         auto newLine = parse_label(*line);
@@ -150,6 +150,20 @@ static int assemble(std::vector<LineData*> lines)
             lines.insert(line + 1, newLine);
             line = lines.begin();
         }
+    }
+    if (check_error(lines)) {
+        return -1;
+    }
+
+    // 匿名ラベルを展開
+    extract_anonymous_label(&lines);
+    if (check_error(lines)) {
+        return -1;
+    }
+    clear_delete_token(&lines);
+
+    // 基本構文解析
+    for (auto line = lines.begin(); line != lines.end(); line++) {
         replace_assignment(*line);  // X Equal* Y = {LD|ADD|SUB|AND|OR|XOR} X, Y
         parse_mneoimonic(*line);    // Other -> Mnemonic
         parse_operand(*line);       // Other -> Operand
@@ -170,19 +184,13 @@ static int assemble(std::vector<LineData*> lines)
 
     // インクリメント、デクリメント演算子を展開
     split_increment(&lines);
-    for (auto line = lines.begin(); line != lines.end(); line++) {
-        error = check_error(*line) ? true : error;
-    }
-    if (error) {
+    if (check_error(lines)) {
         return -1;
     }
 
     // 文字列リテラルを無名ラベルの参照に変換し、末尾に無名ラベル+DBを展開
     extract_string_literal(&lines);
-    for (auto line = lines.begin(); line != lines.end(); line++) {
-        error = check_error(*line) ? true : error;
-    }
-    if (error) {
+    if (check_error(lines)) {
         return -1;
     }
 
