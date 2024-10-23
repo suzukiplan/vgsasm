@@ -1,27 +1,27 @@
 #include "common.h"
 #include "mnemonic.h"
 
-void mnemonic_bit_op(LineData* line, Mnemonic mne);                  // mnemonic_bit.cpp
-void mnemonic_calc8(LineData* line, uint8_t code);                   // mnemonic_calc.cpp
-void mnemonic_calc16(LineData* line, uint8_t code);                  // mnemonic_calc.cpp
-void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16); // mnemonic_calc.cpp
-void mnemonic_shift(LineData* line, uint8_t code);                   // mnemonic_calc.cpp
-void mnemonic_INC(LineData* line);                                   // mnemonic_calc.cpp
-void mnemonic_DEC(LineData* line);                                   // mnemonic_calc.cpp
-void mnemonic_EX(LineData* line);                                    // mnemonic_ex.cpp
-void mnemonic_IN(LineData* line);                                    // mnemonic_io.cpp
-void mnemonic_OUT(LineData* line);                                   // mnemonic_io.cpp
 void mnemonic_JP(LineData* line);                                    // mnemonic_branch.cpp
 void mnemonic_JR(LineData* line);                                    // mnemonic_branch.cpp
 void mnemonic_DJNZ(LineData* line);                                  // mnemonic_branch.cpp
 void mnemonic_CALL(LineData* line);                                  // mnemonic_branch.cpp
 void mnemonic_RET(LineData* line);                                   // mnemonic_branch.cpp
 void mnemonic_RST(LineData* line);                                   // mnemonic_branch.cpp
+void mnemonic_calc8(LineData* line, uint8_t code);                   // mnemonic_calc.cpp
+void mnemonic_calc16(LineData* line, uint8_t code);                  // mnemonic_calc.cpp
+void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16); // mnemonic_calc.cpp
+void mnemonic_shift(LineData* line, uint8_t code);                   // mnemonic_calc.cpp
+void mnemonic_INC(LineData* line);                                   // mnemonic_calc.cpp
+void mnemonic_DEC(LineData* line);                                   // mnemonic_calc.cpp
+void mnemonic_bit_op(LineData* line, Mnemonic mne);                  // mnemonic_calc.cpp
 void mnemonic_LD(LineData* line);                                    // mnemonic_load.cpp
-void mnemonic_PUSH(LineData* line);                                  // mnemonic_stack.cpp
-void mnemonic_POP(LineData* line);                                   // mnemonic_stack.cpp
-void mnemonic_DB(LineData* line);                                    // mnemonic_data.cpp
-void mnemonic_DW(LineData* line);                                    // mnemonic_data.cpp
+void mnemonic_PUSH(LineData* line);                                  // mnemonic_other.cpp
+void mnemonic_POP(LineData* line);                                   // mnemonic_other.cpp
+void mnemonic_DB(LineData* line);                                    // mnemonic_other.cpp
+void mnemonic_DW(LineData* line);                                    // mnemonic_other.cpp
+void mnemonic_EX(LineData* line);                                    // mnemonic_other.cpp
+void mnemonic_IN(LineData* line);                                    // mnemonic_other.cpp
+void mnemonic_OUT(LineData* line);                                   // mnemonic_other.cpp
 void mnemonic_MUL(LineData* line);                                   // mnemonic_vgs.cpp
 void mnemonic_MULS(LineData* line);                                  // mnemonic_vgs.cpp
 void mnemonic_DIV(LineData* line);                                   // mnemonic_vgs.cpp
