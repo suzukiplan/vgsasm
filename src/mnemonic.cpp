@@ -4,10 +4,14 @@
 #include "mnemonic_branch.hpp"
 #include "mnemonic_calc.hpp"
 #include "mnemonic_dec.hpp"
+#include "mnemonic_defb.hpp"
+#include "mnemonic_defw.hpp"
+#include "mnemonic_ex.hpp"
 #include "mnemonic_inc.hpp"
+#include "mnemonic_io.hpp"
 #include "mnemonic_load.hpp"
-#include "mnemonic_other.hpp"
 #include "mnemonic_shift.hpp"
+#include "mnemonic_stack.hpp"
 #include "mnemonic_vgs.hpp"
 
 std::vector<TempAddr*> tempAddrs;
