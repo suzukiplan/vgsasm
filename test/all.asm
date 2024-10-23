@@ -1410,3 +1410,52 @@ VGSZero:
     COS E       ; same as COS A, E
     COS H       ; same as COS A, H
     COS L       ; same as COS A, L
+
+; ===== Subsequent instructions are bugfix =====
+
+; https://github.com/suzukiplan/vgsasm/issues/18
+.issue18
+    LD (HL), 1
+    LD (BC), 2
+    LD (DE), 3
+
+; 
+.issue20
+    LD BC, (HL)
+    LD DE, (HL)
+    LD IX, (HL)
+    LD IY, (HL)
+
+    LD (HL), BC
+    LD (HL), DE
+    LD (HL), IX
+    LD (HL), IY
+
+    LD BC, (IX)
+    LD DE, (IX)
+    LD HL, (IX)
+    LD BC, (IX+1)
+    LD DE, (IX+2)
+    LD HL, (IX+3)
+
+    LD (IX), BC
+    LD (IX), DE
+    LD (IX), HL
+    LD (IX+1), BC
+    LD (IX+2), DE
+    LD (IX+3), HL
+
+    LD BC, (IY)
+    LD DE, (IY)
+    LD HL, (IY)
+    LD BC, (IY+1)
+    LD DE, (IY+2)
+    LD HL, (IY+3)
+
+    LD (IY), BC
+    LD (IY), DE
+    LD (IY), HL
+    LD (IY+1), BC
+    LD (IY+2), DE
+    LD (IY+3), HL
+
