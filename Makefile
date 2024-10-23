@@ -19,7 +19,6 @@ OBJECTS = \
 	mnemonic_io.o \
 	mnemonic_load.o \
 	mnemonic_calc.o \
-	mnemonic_incdec.o \
 	mnemonic_ex.o \
 	mnemonic_stack.o \
 	mnemonic_bit.o \
@@ -98,9 +97,6 @@ mnemonic_load.o: src/mnemonic_load.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 mnemonic_calc.o: src/mnemonic_calc.cpp ${HEADERS} src/mnemonic.h
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-mnemonic_incdec.o: src/mnemonic_incdec.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 mnemonic_ex.o: src/mnemonic_ex.cpp ${HEADERS} src/mnemonic.h

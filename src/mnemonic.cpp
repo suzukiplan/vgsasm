@@ -6,9 +6,9 @@ void mnemonic_calc8(LineData* line, uint8_t code);                   // mnemonic
 void mnemonic_calc16(LineData* line, uint8_t code);                  // mnemonic_calc.cpp
 void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16); // mnemonic_calc.cpp
 void mnemonic_shift(LineData* line, uint8_t code);                   // mnemonic_calc.cpp
+void mnemonic_INC(LineData* line);                                   // mnemonic_calc.cpp
+void mnemonic_DEC(LineData* line);                                   // mnemonic_calc.cpp
 void mnemonic_EX(LineData* line);                                    // mnemonic_ex.cpp
-void mnemonic_INC(LineData* line);                                   // mnemonic_incdec.cpp
-void mnemonic_DEC(LineData* line);                                   // mnemonic_incdec.cpp
 void mnemonic_IN(LineData* line);                                    // mnemonic_io.cpp
 void mnemonic_OUT(LineData* line);                                   // mnemonic_io.cpp
 void mnemonic_JP(LineData* line);                                    // mnemonic_branch.cpp
