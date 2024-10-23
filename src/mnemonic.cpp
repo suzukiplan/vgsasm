@@ -6,17 +6,17 @@ void mnemonic_calc8(LineData* line, uint8_t code);                   // mnemonic
 void mnemonic_calc16(LineData* line, uint8_t code);                  // mnemonic_calc.cpp
 void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16); // mnemonic_calc.cpp
 void mnemonic_shift(LineData* line, uint8_t code);                   // mnemonic_calc.cpp
-void mnemonic_CALL(LineData* line);                                  // mnemonic_call.cpp
-void mnemonic_RET(LineData* line);                                   // mnemonic_call.cpp
-void mnemonic_RST(LineData* line);                                   // mnemonic_call.cpp
 void mnemonic_EX(LineData* line);                                    // mnemonic_ex.cpp
 void mnemonic_INC(LineData* line);                                   // mnemonic_incdec.cpp
 void mnemonic_DEC(LineData* line);                                   // mnemonic_incdec.cpp
 void mnemonic_IN(LineData* line);                                    // mnemonic_io.cpp
 void mnemonic_OUT(LineData* line);                                   // mnemonic_io.cpp
-void mnemonic_JP(LineData* line);                                    // mnemonic_jump.cpp
-void mnemonic_JR(LineData* line);                                    // mnemonic_jump.cpp
-void mnemonic_DJNZ(LineData* line);                                  // mnemonic_jump.cpp
+void mnemonic_JP(LineData* line);                                    // mnemonic_branch.cpp
+void mnemonic_JR(LineData* line);                                    // mnemonic_branch.cpp
+void mnemonic_DJNZ(LineData* line);                                  // mnemonic_branch.cpp
+void mnemonic_CALL(LineData* line);                                  // mnemonic_branch.cpp
+void mnemonic_RET(LineData* line);                                   // mnemonic_branch.cpp
+void mnemonic_RST(LineData* line);                                   // mnemonic_branch.cpp
 void mnemonic_LD(LineData* line);                                    // mnemonic_load.cpp
 void mnemonic_PUSH(LineData* line);                                  // mnemonic_stack.cpp
 void mnemonic_POP(LineData* line);                                   // mnemonic_stack.cpp
