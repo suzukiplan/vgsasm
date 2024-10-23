@@ -2,30 +2,19 @@ CPP = g++
 CPPFLAGS = -std=c++17 -g
 HEADERS = src/common.h
 OBJECTS = \
-	assign.o \
-	macro.o \
-	binary.o \
-	bracket.o \
-	define.o \
+	main.o \
 	file.o \
-	formulas.o \
-	increment.o \
+	prep.o \
 	label.o \
-	line.o \
-	literal.o \
+	formulas.o \
+	struct.o \
+	macro.o \
 	mnemonic.o \
 	mnemonic_branch.o \
 	mnemonic_calc.o \
 	mnemonic_load.o \
 	mnemonic_other.o \
-	mnemonic_vgs.o \
-	numeric.o \
-	operand.o \
-	sizeof.o \
-	offset.o \
-	struct.o \
-	org.o \
-	main.o
+	mnemonic_vgs.o
 
 all: vgsasm
 
@@ -44,37 +33,16 @@ clean:
 vgsasm: ${OBJECTS}
 	${CPP} ${CPPFLAGS} -o vgsasm ${OBJECTS}
 
-assign.o: src/assign.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
 macro.o: src/macro.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-literal.o: src/literal.cpp ${HEADERS} src/mnemonic.h
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-increment.o: src/increment.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-binary.o: src/binary.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-bracket.o: src/bracket.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-define.o: src/define.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-file.o: src/file.cpp ${HEADERS}
+file.o: src/file.cpp ${HEADERS} src/sha1.hpp src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 formulas.o: src/formulas.cpp ${HEADERS}
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-label.o: src/label.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-line.o: src/line.cpp ${HEADERS}
+label.o: src/label.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 mnemonic.o: src/mnemonic.cpp ${HEADERS} src/mnemonic.h
@@ -95,22 +63,10 @@ mnemonic_other.o: src/mnemonic_other.cpp ${HEADERS} src/mnemonic.h
 mnemonic_vgs.o: src/mnemonic_vgs.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-numeric.o: src/numeric.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-operand.o: src/operand.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-sizeof.o: src/sizeof.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-offset.o: src/offset.cpp ${HEADERS}
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
 struct.o: src/struct.cpp ${HEADERS}
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-org.o: src/org.cpp ${HEADERS}
+prep.o: src/prep.cpp ${HEADERS}
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 main.o: src/main.cpp ${HEADERS}
