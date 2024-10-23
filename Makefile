@@ -18,7 +18,6 @@ OBJECTS = \
 	mnemonic_call.o \
 	mnemonic_jump.o \
 	mnemonic_io.o \
-	mnemonic_shift.o \
 	mnemonic_load.o \
 	mnemonic_calc.o \
 	mnemonic_incdec.o \
@@ -97,9 +96,6 @@ mnemonic_call.o: src/mnemonic_call.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 mnemonic_io.o: src/mnemonic_io.cpp ${HEADERS} src/mnemonic.h
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-mnemonic_shift.o: src/mnemonic_shift.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 mnemonic_load.o: src/mnemonic_load.cpp ${HEADERS} src/mnemonic.h
