@@ -4,6 +4,7 @@
 #include "mnemonic_calc.hpp"
 #include "mnemonic_load.hpp"
 #include "mnemonic_other.hpp"
+#include "mnemonic_shift.hpp"
 #include "mnemonic_vgs.hpp"
 
 std::vector<TempAddr*> tempAddrs;
