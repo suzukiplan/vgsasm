@@ -9,12 +9,7 @@ OBJECTS = \
 	formulas.o \
 	struct.o \
 	macro.o \
-	mnemonic.o \
-	mnemonic_branch.o \
-	mnemonic_calc.o \
-	mnemonic_load.o \
-	mnemonic_other.o \
-	mnemonic_vgs.o
+	mnemonic.o 
 
 all: vgsasm
 
@@ -45,22 +40,7 @@ formulas.o: src/formulas.cpp ${HEADERS}
 label.o: src/label.cpp ${HEADERS} src/mnemonic.h
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
-mnemonic.o: src/mnemonic.cpp ${HEADERS} src/mnemonic.h
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-mnemonic_branch.o: src/mnemonic_branch.cpp ${HEADERS} src/mnemonic.h
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-mnemonic_load.o: src/mnemonic_load.cpp ${HEADERS} src/mnemonic.h
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-mnemonic_calc.o: src/mnemonic_calc.cpp ${HEADERS} src/mnemonic.h
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-mnemonic_other.o: src/mnemonic_other.cpp ${HEADERS} src/mnemonic.h
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-mnemonic_vgs.o: src/mnemonic_vgs.cpp ${HEADERS} src/mnemonic.h
+mnemonic.o: src/mnemonic.cpp ${HEADERS} src/mnemonic.h src/mnemonic_*.hpp
 	${CPP} ${CPPFLAGS} -c $< -o $@
 
 struct.o: src/struct.cpp ${HEADERS}
