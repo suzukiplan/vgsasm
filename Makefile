@@ -1,7 +1,6 @@
 CPP = g++
 CPPFLAGS = -std=c++17 -g
 HEADERS = src/common.h
-OBJECTS = vgsasm.o mnemonic.o 
 
 all: vgsasm
 
@@ -14,14 +13,7 @@ update:
 	cp test/all_disassemble.asm test/all_expect.asm
 
 clean:
-	rm -f ${OBJECTS}
 	rm -f vgsasm
 
-vgsasm: ${OBJECTS}
-	${CPP} ${CPPFLAGS} -o vgsasm ${OBJECTS}
-
-vgsasm.o: src/vgsasm.cpp ${HEADERS} src/*.h src/*.hpp
-	${CPP} ${CPPFLAGS} -c $< -o $@
-
-mnemonic.o: src/mnemonic.cpp ${HEADERS} src/mnemonic.h src/mnemonic_*.hpp
-	${CPP} ${CPPFLAGS} -c $< -o $@
+vgsasm: src/vgsasm.cpp ${HEADERS} src/*.h src/*.hpp
+	${CPP} ${CPPFLAGS} -o vgsasm $<

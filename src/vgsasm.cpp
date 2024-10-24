@@ -9,7 +9,7 @@
 #include "increment.hpp"
 #include "label.hpp"
 #include "macro.hpp"
-#include "mnemonic.h"
+#include "mnemonic.hpp"
 #include "numeric.hpp"
 #include "offset.hpp"
 #include "org.hpp"
