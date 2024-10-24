@@ -1,7 +1,3 @@
-CPP = g++
-CPPFLAGS = -std=c++17 -g
-HEADERS = src/common.h
-
 all: vgsasm
 
 check: vgsasm
@@ -15,5 +11,5 @@ update:
 clean:
 	rm -f vgsasm
 
-vgsasm: src/vgsasm.cpp ${HEADERS} src/*.h src/*.hpp
-	${CPP} ${CPPFLAGS} -o vgsasm $<
+vgsasm: src/vgsasm.cpp src/*.h src/*.hpp
+	g++ -std=c++17 -g -o vgsasm $<
