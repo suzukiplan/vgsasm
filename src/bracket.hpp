@@ -1,6 +1,18 @@
 #pragma once
 #include "common.h"
 
+static bool isOperator(TokenType type)
+{
+    switch (type) {
+        case TokenType::Plus:
+        case TokenType::Minus:
+        case TokenType::Mul:
+        case TokenType::Div:
+            return true;
+    }
+    return false;
+}
+
 // 特定箇所の BrakectBegin ~ BracketEnd を AddressBegin ~ AddressEnd に置き換える
 void bracket_to_address(LineData* line)
 {
@@ -10,6 +22,7 @@ void bracket_to_address(LineData* line)
     prev = line->token.end();
     int nest = 0;
     bool isAddress = false;
+    auto begin = line->token.begin();
     for (auto it = line->token.begin(); it != line->token.end(); it++) {
         if (it->first == TokenType::BracketBegin) {
             nest++;
@@ -18,14 +31,20 @@ void bracket_to_address(LineData* line)
                 if (prev != line->token.end() && (TokenType::Mnemonic == prev->first || TokenType::Split == prev->first)) {
                     it->first = TokenType::AddressBegin;
                     isAddress = true;
+                    begin = it;
                 }
             }
         } else if (it->first == TokenType::BracketEnd) {
             nest--;
             if (0 == nest && isAddress) {
-                // AddressBegin に対応する AddressEnd を設定
-                it->first = TokenType::AddressEnd;
-                isAddress = false;
+                if (it + 1 == line->token.end() || !isOperator((it + 1)->first)) {
+                    // AddressBegin に対応する AddressEnd を設定
+                    it->first = TokenType::AddressEnd;
+                    isAddress = false;
+                } else {
+                    // 次にトークンが演算子なので AddressBegin を BracketBegin に戻す
+                    begin->first = TokenType::BracketBegin;
+                }
             }
         }
         prev = it;
