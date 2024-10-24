@@ -1,5 +1,7 @@
 # Change log
 
+## Version 0.4 (beta-4)
+
 ## Version 0.3 (beta-3)
 
 - Allow the number of shifts to be specified for `SLA` and `SRL` #23

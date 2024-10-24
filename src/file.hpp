@@ -1,3 +1,8 @@
+/**
+ * Z80 Assembler for VGS-Zero
+ * Copyright (c) 2024, Yoji Suzuki.
+ * License under GPLv3: https://github.com/suzukiplan/vgsasm/blob/master/LICENSE.txt
+ */
 #pragma once
 #include "common.h"
 #include "sha1.hpp"
@@ -218,6 +223,9 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                     if ('<' == *(cp + 1) && '=' == *(cp + 2)) {
                         cp += 3;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::EqualShiftLeft, "<<="));
+                    } else if ('-' == *(cp + 1)) {
+                        cp += 2;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrowLeft, "<-"));
                     }
                     break;
                 case '>':
@@ -233,6 +241,9 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                     } else if ('=' == *(cp + 1)) {
                         cp += 2;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::EqualMinus, "-="));
+                    } else if ('>' == *(cp + 1)) {
+                        cp += 2;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrowRight, "->"));
                     } else {
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Minus, "-"));

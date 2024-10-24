@@ -206,13 +206,29 @@ struct name $C000 {
     var4 ds.w 4     ; name.var4 = $C007 ... offset(name.var4) = 7
 }                   ; sizeof(name) = 15
 
+struct name2 <- name {
+    var1 ds.b 1     ; name2.var1 = $C00F
+}
+
+struct name3 <- name[3] {
+    var1 ds.b 1     ; name3.var1 = $C02D ($C000 + 15 * 3)
+}
+
 // Array access
 // name[0].var1 = $C000
 // name[1].var1 = $C00F
 // name[2].var1 = $C01E
 ```
 
-- You can define a structure with `struct name start_address`.
+- You can define a structure with:
+  - `struct name start_address`
+    - Define structure to address.
+  - `struct name <- previous`
+    - After a specific structure.
+    - `previous` must be defined on the line before this declaration.
+  - `struct name <- previous[count]`
+    - After a specific structure array
+    - `count` must be greater than or equal to 1
 - A struct is a grouping of single or multiple attributes in a common namespace.
 - Attributes are specified in the form `attribute_name {ds.b|ds.w|name} count`.
   - `ds.b` ... 1 byte
