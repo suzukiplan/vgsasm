@@ -1,3 +1,4 @@
+#pragma once
 #include "common.h"
 
 std::string evaluate_formulas(std::vector<std::pair<TokenType, std::string>>* token)

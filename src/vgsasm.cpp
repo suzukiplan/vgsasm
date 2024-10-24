@@ -1,4 +1,11 @@
 #include "common.h"
+#include "file.hpp"
+#include "formulas.hpp"
+#include "label.hpp"
+#include "macro.hpp"
+#include "mnemonic.h"
+#include "prep.hpp"
+#include "struct.hpp"
 
 std::map<std::string, LineData*> nameTable;
 std::vector<std::string> includeFiles;
