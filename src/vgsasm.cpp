@@ -1,3 +1,8 @@
+/**
+ * Z80 Assembler for VGS-Zero
+ * Copyright (c) 2024, Yoji Suzuki.
+ * License under GPLv3: https://github.com/suzukiplan/vgsasm/blob/master/LICENSE.txt
+ */
 #include "common.h"
 
 #include "binary.hpp"
