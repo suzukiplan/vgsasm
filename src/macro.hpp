@@ -1,3 +1,4 @@
+#pragma once
 #include "common.h"
 
 std::map<std::string, Macro*> macroTable;

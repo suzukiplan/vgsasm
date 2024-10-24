@@ -1,5 +1,21 @@
 #include "common.h"
 
+#include "binary.hpp"
+#include "bracket.hpp"
+#include "define.hpp"
+#include "enum.hpp"
+#include "file.hpp"
+#include "formulas.hpp"
+#include "increment.hpp"
+#include "label.hpp"
+#include "macro.hpp"
+#include "mnemonic.hpp"
+#include "numeric.hpp"
+#include "offset.hpp"
+#include "org.hpp"
+#include "sizeof.hpp"
+#include "struct.hpp"
+
 std::map<std::string, LineData*> nameTable;
 std::vector<std::string> includeFiles;
 std::map<std::string, std::vector<std::pair<TokenType, std::string>>> defineTable;
@@ -130,6 +146,12 @@ static int assemble(std::vector<LineData*> lines)
         }
     }
     if (error) {
+        return -1;
+    }
+
+    // enum の展開
+    extract_enum(&lines);
+    if (check_error(lines)) {
         return -1;
     }
 

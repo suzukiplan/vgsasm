@@ -1419,7 +1419,7 @@ VGSZero:
     LD (BC), 2
     LD (DE), 3
 
-; 
+; https://github.com/suzukiplan/vgsasm/issues/20
 .issue20
     LD BC, (HL)
     LD DE, (HL)
@@ -1459,3 +1459,14 @@ VGSZero:
     LD (IY+2), DE
     LD (IY+3), HL
 
+; https://github.com/suzukiplan/vgsasm/issues/23
+.issue23
+    SLA A, 3
+    SRL (HL), 3
+    SRA (IX+3), 3
+
+
+    ADD HL, (IX)
+    ADD HL, (IX+8)
+    ADD HL, (IY)
+    ADD HL, (IY+126)

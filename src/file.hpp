@@ -1,3 +1,4 @@
+#pragma once
 #include "common.h"
 #include "sha1.hpp"
 #include "mnemonic.h"
@@ -213,6 +214,18 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Plus, "+"));
                     }
                     break;
+                case '<':
+                    if ('<' == *(cp + 1) && '=' == *(cp + 2)) {
+                        cp += 3;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::EqualShiftLeft, "<<="));
+                    }
+                    break;
+                case '>':
+                    if ('>' == *(cp + 1) && '=' == *(cp + 2)) {
+                        cp += 3;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::EqualShiftRight, ">>="));
+                    }
+                    break;
                 case '-':
                     if ('-' == *(cp + 1)) {
                         cp += 2;
@@ -340,6 +353,8 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                             '=' == *ed ||
                             '|' == *ed ||
                             '^' == *ed ||
+                            '<' == *ed ||
+                            '>' == *ed ||
                             ',' == *ed) {
                             break;
                         }

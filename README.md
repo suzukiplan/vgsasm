@@ -51,6 +51,7 @@ vgsasm [-o /path/to/output.bin]
 - [`#define`](#define)
 - [`#macro`](#macro)
 - [`struct`](#struct)
+- [`enum`](#enum)
 - [`org`](#org)
 - [Labels](#labels)
 - [String Literal](#string-literal)
@@ -251,6 +252,39 @@ org $0000
     djnz @Loop                          ; loop
 ```
 
+## `enum`
+
+```
+enum Color {
+    Black           ; 0
+    Blue            ; 1
+    Red             ; 2
+    Purple          ; 3
+    Green           ; 4
+    Cyan            ; 5
+    Yellow          ; 6
+    White           ; 7
+}
+
+LD A, Color.Cyan ; A = 5
+```
+
+You can use `enum` to define items that you want to manage with sequential numbers, such as bank numbers.
+
+You can set the initial value by writing `name = number`.
+
+```
+enum Color {
+    Black = 0x10    ; 0x10
+    Blue            ; 0x11
+    Red             ; 0x12
+    Purple          ; 0x13
+    Green = 0x20    ; 0x20
+    Cyan            ; 0x21
+    Yellow          ; 0x22
+    White           ; 0x23
+}
+
 ## `org`
 
 Specifies the starting address for binary output.
@@ -401,7 +435,7 @@ Increments and decrements can be automatically inserted before and after a regis
 
 ## Assignment
 
-`LD(=)`, `ADD(+=)`, `SUB(-=)`, `AND(&=)`, `OR(|=)`, `XOR(^=)` can also be written in the form of assignment expressions.
+`LD(=)`, `ADD(+=)`, `SUB(-=)`, `AND(&=)`, `OR(|=)`, `XOR(^=)`, `SLA(<<=)`, `SRL(>>=)` can also be written in the form of assignment expressions.
 
 ```
 A = B         ; expand to -> LD A, B
@@ -420,6 +454,8 @@ A -= B        ; expand to -> SUB A, B
 A &= B        ; expand to -> AND A, B
 A |= B        ; expand to -> OR A, B
 A ^= B        ; expand to -> XOR A, B
+A <<= 3       ; expand to -> SLA A, 3
+A >>= 3       ; expand to -> SRL A, 3
 ```
 
 Only for LD assignment expressions, if the left side is numeric, it is automatically assumed to be an address. This makes the description of structure variable initialization in an intuitive and easy-to-understand format:
@@ -593,12 +629,18 @@ In vgsasm, instructions that __do not exist in the Z80__ are complemented by exi
 | `ADD BC,A` | `ADD C`, `LD C,A`, `JR NC, +1`, `INC B` |
 | `ADD DE,A` | `ADD E`, `LD E,A`, `JR NC, +1`, `INC D` |
 | `ADD HL,A` | `ADD L`, `LD L,A`, `JR NC, +1`, `INC H` |
+| `ADD HL,(IX+d)` |`PUSH DE`, `LD E,(IX+d)`, `LD D,(IX+d+1)`, `ADD HL,DE`, `POP DE` |
+| `ADD HL,(IY+d)` |`PUSH DE`, `LD E,(IY+d)`, `LD D,(IY+d+1)`, `ADD HL,DE`, `POP DE` |
 | `ADD (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `ADD (HL)`, `POP HL` |
 | `ADC (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `ADC (HL)`, `POP HL` |
 | `SUB (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `SUB (HL)`, `POP HL` |
 | `SBC (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `SBC (HL)`, `POP HL` |
 | `INC (nn)` | `PUSH HL`, `LD HL,nn`, `INC (HL)` `POP HL`|
 | `DEC (nn)` | `PUSH HL`, `LD HL,nn`, `DEC (HL)` `POP HL`|
+| `SHIFT r, n` | `SHIFT r` x n times (n bits) |
+| `SHIFT (HL), n` | `SHIFT (HL)` x n times (n bits) |
+| `SHIFT (IX+d), n` | `SHIFT (IX+d)` x n times (n bits) |
+| `SHIFT (IY+d), n` | `SHIFT (IY+d)` x n times (n bits) |
 | `JP (BC)` | `PUSH BC`, `RET` |
 | `JP (DE)` | `PUSH DE`, `RET` |
 
