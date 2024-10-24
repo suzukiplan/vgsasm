@@ -1,10 +1,19 @@
 #include "common.h"
+
+#include "binary.hpp"
+#include "bracket.hpp"
+#include "define.hpp"
+#include "enum.hpp"
 #include "file.hpp"
 #include "formulas.hpp"
+#include "increment.hpp"
 #include "label.hpp"
 #include "macro.hpp"
 #include "mnemonic.h"
-#include "prep.hpp"
+#include "numeric.hpp"
+#include "offset.hpp"
+#include "org.hpp"
+#include "sizeof.hpp"
 #include "struct.hpp"
 
 std::map<std::string, LineData*> nameTable;
