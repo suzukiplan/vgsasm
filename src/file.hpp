@@ -223,6 +223,9 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                     if ('<' == *(cp + 1) && '=' == *(cp + 2)) {
                         cp += 3;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::EqualShiftLeft, "<<="));
+                    } else if ('-' == *(cp + 1)) {
+                        cp += 2;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrowLeft, "<-"));
                     }
                     break;
                 case '>':
@@ -238,6 +241,9 @@ LineData::LineData(const char* path, int lineNumber, std::string text)
                     } else if ('=' == *(cp + 1)) {
                         cp += 2;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::EqualMinus, "-="));
+                    } else if ('>' == *(cp + 1)) {
+                        cp += 2;
+                        this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::ArrowRight, "->"));
                     } else {
                         cp++;
                         this->token.push_back(std::make_pair<TokenType, std::string>(TokenType::Minus, "-"));

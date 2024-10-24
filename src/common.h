@@ -62,8 +62,10 @@ enum class TokenType {
     EqualAnd,         // &= 論理積代入
     EqualOr,          // |= 論理和代入
     EqualXor,         // ^= 排他的論理和代入
-    EqualShiftLeft,   // <<= 左論理シフト回数
-    EqualShiftRight,  // >>= 右論理シフト回数
+    EqualShiftLeft,   // <<= 左論理シフト代入
+    EqualShiftRight,  // >>= 右論理シフト代入
+    ArrowLeft,        // <-
+    ArrowRight,       // ->
     Other             // その他 (構文解析の仮定で最終的にはなくなる)
 };
 
@@ -114,16 +116,20 @@ class Struct
   public:
     LineData* line;
     std::string name;
+    std::string after;
     int start;
     int size;
+    int afterArray = 0;
     std::vector<StructField*> fields;
 
     Struct(LineData* line, std::string name)
     {
         this->line = line;
         this->name = name;
+        this->after = "";
         this->start = 0;
         this->size = 0;
+        this->afterArray = 0;
     }
 };
 
