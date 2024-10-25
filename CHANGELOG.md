@@ -1,5 +1,15 @@
 # Change log
 
+## Version 0.4 (beta-4)
+
+- Simplified notation of subroutine calls #27
+- unexpected Illegal expression error #28
+- Address struct after a specific struct #30
+- Support `LD (nn), r` and `LD r,(nn)` #31
+- change `mul`, `div`, `mod` expression #32
+- support increment/decrement only expression #33
+- support `-v` option
+
 ## Version 0.3 (beta-3)
 
 - Allow the number of shifts to be specified for `SLA` and `SRL` #23
