@@ -107,7 +107,7 @@ static void HAGe_calc(LineData* line, uint8_t port, uint8_t out)
             out |= n < 0 ? 0x40 : 0x00;
             if (out != 0x42) {
                 line->error = true;
-                line->errmsg = "MOD cannot operate on negative numbers."
+                line->errmsg = "MOD cannot operate on negative numbers.";
             } else {
                 switch (op) {
                     case Operand::A: ML_HAG_A_N(port, out, n); break;

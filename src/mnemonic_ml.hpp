@@ -1287,7 +1287,7 @@
 #define ML_HAG_A_N(port, out, n) \
     ML_PUSH_HL;                  \
     ML_LD_H_A;                   \
-    ML_LD_L_N(n);                \
+    ML_LD_L_n(n);                \
     ML_LD_A_n(out);              \
     ML_OUT_A(port);              \
     ML_LD_A_L;                   \
@@ -1297,7 +1297,7 @@
     ML_PUSH_AF;                  \
     ML_PUSH_HL;                  \
     ML_LD_H_B;                   \
-    ML_LD_L_N(n);                \
+    ML_LD_L_n(n);                \
     ML_LD_A_n(out);              \
     ML_OUT_A(port);              \
     ML_LD_B_L;                   \
@@ -1308,7 +1308,7 @@
     ML_PUSH_AF;                  \
     ML_PUSH_HL;                  \
     ML_LD_H_C;                   \
-    ML_LD_L_N(n);                \
+    ML_LD_L_n(n);                \
     ML_LD_A_n(out);              \
     ML_OUT_A(port);              \
     ML_LD_C_L;                   \
@@ -1319,7 +1319,7 @@
     ML_PUSH_AF;                  \
     ML_PUSH_HL;                  \
     ML_LD_H_D;                   \
-    ML_LD_L_N(n);                \
+    ML_LD_L_n(n);                \
     ML_LD_A_n(out);              \
     ML_OUT_A(port);              \
     ML_LD_D_L;                   \
@@ -1330,7 +1330,7 @@
     ML_PUSH_AF;                  \
     ML_PUSH_HL;                  \
     ML_LD_H_E;                   \
-    ML_LD_L_N(n);                \
+    ML_LD_L_n(n);                \
     ML_LD_A_n(out);              \
     ML_OUT_A(port);              \
     ML_LD_E_L;                   \
@@ -1340,7 +1340,7 @@
 #define ML_HAG_H_N(port, out, n) \
     ML_PUSH_AF;                  \
     ML_PUSH_HL;                  \
-    ML_LD_L_N(n);                \
+    ML_LD_L_n(n);                \
     ML_LD_A_n(out);              \
     ML_OUT_A(port);              \
     ML_LD_A_L;                   \
@@ -1352,7 +1352,7 @@
     ML_PUSH_AF;                  \
     ML_PUSH_HL;                  \
     ML_LD_H_L;                   \
-    ML_LD_L_N(n);                \
+    ML_LD_L_n(n);                \
     ML_LD_A_n(out);              \
     ML_OUT_A(port);              \
     ML_LD_A_L;                   \
@@ -1363,7 +1363,7 @@
 #define ML_HAG_HL_N(port, out, n) \
     ML_PUSH_AF;                   \
     ML_PUSH_BC;                   \
-    ML_LD_C_N(n);                 \
+    ML_LD_C_n(n);                 \
     ML_LD_A_n(out);               \
     ML_OUT_A(port);               \
     ML_POP_BC;                    \
