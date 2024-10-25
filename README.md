@@ -139,6 +139,7 @@ org $0000
 - A multifunctional version of [`#define`](#define) that can have arguments and multi-line expansion.
 - The number of arguments must match the definition and the caller.
 - Only numbers can be specified as arguments in the macro caller (including labels, formulas, and [String Literal](#string-literal)).
+- A macro caller with no arguments will automatically be read as `CALL NAME` if the macro name is not defined.
 - Labels cannot be used within a macro definition.
 - If you want to perform complex processing involving branching, call a subroutine from within the macro. (This is also necessary to optimize code size.)
 

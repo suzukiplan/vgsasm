@@ -72,6 +72,23 @@ void parse_mneoimonic(LineData* line)
                     line->errmsg = "A mnemonic specified position was incorrect.";
                     return;
                 }
+            } else if (it == line->token.begin() &&
+                       (it + 1) != line->token.end() &&
+                       (it + 2) != line->token.end() &&
+                       (it + 3) == line->token.end() &&
+                       (it + 1)->first == TokenType::BracketBegin &&
+                       (it + 2)->first == TokenType::BracketEnd) {
+                auto label = labelTable.find(it->second);
+                if (label == labelTable.end()) {
+                    return;
+                } else {
+                    (it + 1)->first = TokenType::LabelJump;
+                    (it + 1)->second = it->second;
+                    it->first = TokenType::Mnemonic;
+                    it->second = "CALL";
+                    (it + 2)->first = TokenType::Delete;
+                    return;
+                }
             }
         }
     }
