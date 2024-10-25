@@ -1,5 +1,5 @@
-all: assignments
-	./assignments
+all: assignment
+	./assignment
 
-assignments: assignments.cpp common.hpp ../src/*
+assignment: assignment.cpp common.hpp ../src/*
 	g++ -std=c++17 -g $< -o $@
