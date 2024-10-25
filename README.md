@@ -30,6 +30,7 @@ sudo ln -s `pwd`/vgsasm /usr/local/bin/vgsasm
 ```
 vgsasm [-o /path/to/output.bin]
        [-b size_of_binary]
+       [-v]
        /path/to/source.asm
 ```
 - `-o /path/to/output.bin`
@@ -42,6 +43,9 @@ vgsasm [-o /path/to/output.bin]
   - The upper limit of `size_of_binary` is `65536` (`0x10000`)
   - Assembly will fail if the specified size is exceeded.
   - Boundary areas that do not meet the specified size are filled with `0xFF`.
+- `-v`
+  - Show line debug information.
+  - When encounters an inappropriate error, it may be possible to resolve it by cutting the issue pasting the output with this option.
 
 # Language Specification
 
