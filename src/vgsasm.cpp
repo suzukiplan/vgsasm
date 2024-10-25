@@ -24,12 +24,8 @@
 #include "sizeof.hpp"
 #include "string.hpp"
 #include "struct.hpp"
+#include "tables.hpp"
 
-std::map<std::string, LineData*> nameTable;
-std::vector<std::string> includeFiles;
-std::map<std::string, std::vector<std::pair<TokenType, std::string>>> defineTable;
-std::map<std::string, LineData*> labelTable;
-std::map<std::string, Struct*> structTable;
 int errorCount = 0;
 bool showLineDebug = false;
 
