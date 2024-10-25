@@ -1321,52 +1321,52 @@ Data:
 VGSZero:
 
 @Multiplication_unsigned
-    MUL BC      ; BC = B * C
-    MUL DE      ; DE = D * C
-    MUL HL      ; HL = H * L <faster>
+    MUL B, C    ; B = B * C
+    MUL D, E    ; D = D * C
+    MUL H, L    ; H = H * L
     MUL HL, A   ; HL *= A
     MUL HL, B   ; HL *= B
-    MUL HL, C   ; HL *= C <faster>
+    MUL HL, C   ; HL *= C <fastest>
     MUL HL, D   ; HL *= D
     MUL HL, E   ; HL *= E
 
 @Multiplication_signed
-    MULS BC     ; BC = B * C
-    MULS DE     ; DE = D * C
-    MULS HL     ; HL = H * L <faster than BC,DE>
+    MULS B, C   ; B = B * C
+    MULS D, E   ; D = D * C
+    MULS H, L   ; H = H * L
     MULS HL, A  ; HL *= A
     MULS HL, B  ; HL *= B
-    MULS HL, C  ; HL *= C <faster than A,B,D,E>
+    MULS HL, C  ; HL *= C <fastest>
     MULS HL, D  ; HL *= D
     MULS HL, E  ; HL *= E
 
 @Division_unsigned
-    DIV BC      ; BC = B / C
-    DIV DE      ; DE = D / C
-    DIV HL      ; HL = H / L <faster than BC,DE>
+    DIV B, C    ; B = B / C
+    DIV D, E    ; D = D / C
+    DIV H, L    ; H = H / L
     DIV HL, A   ; HL /= A
     DIV HL, B   ; HL /= B
-    DIV HL, C   ; HL /= C <faster than A,B,D,E>
+    DIV HL, C   ; HL /= C <fastest>
     DIV HL, D   ; HL /= D
     DIV HL, E   ; HL /= E
 
 @Division_signed
-    DIVS BC     ; BC = B / C
-    DIVS DE     ; DE = D / C
-    DIVS HL     ; HL = H / L <faster than BC,DE>
+    DIVS B, C   ; B = B / C
+    DIVS D, E   ; D = D / C
+    DIVS H, L   ; H = H / L
     DIVS HL, A  ; HL /= A
     DIVS HL, B  ; HL /= B
-    DIVS HL, C  ; HL /= C <faster than A,B,D,E>
+    DIVS HL, C  ; HL /= C <fastest>
     DIVS HL, D  ; HL /= D
     DIVS HL, E  ; HL /= E
 
 @Modulo
-    MOD BC      ; BC = B % C
-    MOD DE      ; DE = D % C
-    MOD HL      ; HL = H % L <faster than BC,DE>
+    MOD B, C    ; B = B % C
+    MOD D, E    ; D = D % C
+    MOD H, L    ; H = H % L
     MOD HL, A   ; HL %= A
     MOD HL, B   ; HL %= B
-    MOD HL, C   ; HL %= C <faster than A,B,D,E>
+    MOD HL, C   ; HL %= C <fastest>
     MOD HL, D   ; HL %= D
     MOD HL, E   ; HL %= E
 

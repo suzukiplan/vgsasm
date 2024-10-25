@@ -5,6 +5,7 @@
  */
 #include "common.h"
 #include "mnemonic.h"
+#include "mnemonic_ml.hpp"
 #include "mnemonic_bit.hpp"
 #include "mnemonic_branch.hpp"
 #include "mnemonic_calc.hpp"

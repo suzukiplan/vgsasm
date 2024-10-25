@@ -504,12 +504,10 @@ VARS.posX = 123
 ### MUL - Multiplication
 
 ```z80
-    MUL BC      ; BC = B * C
-    MUL DE      ; DE = D * C
-    MUL HL      ; HL = H * L <faster than BC,DE>
+    MUL r1, r2  ; r1 *= r2 (r: A|B|C|D|E|H|L)
     MUL HL, A   ; HL *= A
     MUL HL, B   ; HL *= B
-    MUL HL, C   ; HL *= C <faster than A,B,D,E>
+    MUL HL, C   ; HL *= C <fastest>
     MUL HL, D   ; HL *= D
     MUL HL, E   ; HL *= E
 ```
@@ -517,12 +515,10 @@ VARS.posX = 123
 Using `MULS` makes it a signed operation.
 
 ```z80
-    MULS BC     ; BC = B * C
-    MULS DE     ; DE = D * C
-    MULS HL     ; HL = H * L <faster than BC,DE>
+    MULS r1, r2 ; r1 *= r2 (r: A|B|C|D|E|H|L)
     MULS HL, A  ; HL *= A
     MULS HL, B  ; HL *= B
-    MULS HL, C  ; HL *= C <faster than A,B,D,E>
+    MULS HL, C  ; HL *= C <fastest>
     MULS HL, D  ; HL *= D
     MULS HL, E  ; HL *= E
 ```
@@ -534,12 +530,10 @@ Using `MULS` makes it a signed operation.
 ### DIV - Division
 
 ```z80
-    DIV BC      ; BC = B / C
-    DIV DE      ; DE = D / C
-    DIV HL      ; HL = H / L <faster than BC,DE>
+    DIV r1, r2  ; r1 *= r2 (r: A|B|C|D|E|H|L)
     DIV HL, A   ; HL /= A
     DIV HL, B   ; HL /= B
-    DIV HL, C   ; HL /= C <faster than A,B,D,E>
+    DIV HL, C   ; HL /= C <fastest>
     DIV HL, D   ; HL /= D
     DIV HL, E   ; HL /= E
 ```
@@ -547,6 +541,7 @@ Using `MULS` makes it a signed operation.
 Using `DIVS` makes it a signed operation.
 
 ```z80
+    DIVS r1, r2 ; r1 *= r2 (r: A|B|C|D|E|H|L)
     DIVS BC     ; BC = B / C
     DIVS DE     ; DE = D / C
     DIVS HL     ; HL = H / L <faster than BC,DE>
@@ -564,9 +559,7 @@ Using `DIVS` makes it a signed operation.
 ### MOD - Modulo
 
 ```z80
-    MOD BC      ; BC = B % C
-    MOD DE      ; DE = D % C
-    MOD HL      ; HL = H % L <faster than BC,DE>
+    MOD r1, r2  ; r1 %= r2 (r: A|B|C|D|E|H|L)
     MOD HL, A   ; HL %= A
     MOD HL, B   ; HL %= B
     MOD HL, C   ; HL %= C <faster than A,B,D,E>
