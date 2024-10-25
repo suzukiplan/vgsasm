@@ -10,7 +10,7 @@ void test_normal(const char* text, int n, ...)
 {
     auto line = new LineData("", -1, text);
     replace_assignment(line);
-    printf("N: %-8s ---> ", text);
+    printf("N: %-12s ---> ", text);
     line->printDebug();
     if (line->error) {
         puts(("Unexpected error: " + line->errmsg).c_str());
@@ -40,7 +40,7 @@ void test_error(const char* text, const char* errmsg)
 {
     auto line = new LineData("", -1, text);
     replace_assignment(line);
-    printf("E: %-8s ---> ", text);
+    printf("E: %-12s ---> ", text);
     if (!line->error) {
         puts("Error expect bad not...");
         throw -1;
@@ -69,6 +69,7 @@ int main()
         test_error("A =", "Illegal assignment expression without left or right side.");
         test_error("= B", "Illegal assignment expression without left or right side.");
         test_error("=", "Illegal assignment expression without left or right side.");
+        test_error("A = B += C", "Multiple assignments are described.");
         test_normal("AB", 1, TokenType::Other, "AB");
     } catch (...) {
         return -1;
