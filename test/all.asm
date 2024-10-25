@@ -1470,3 +1470,28 @@ VGSZero:
     ADD HL, (IX+8)
     ADD HL, (IY)
     ADD HL, (IY+126)
+
+; https://github.com/suzukiplan/vgsasm/issues/31
+.issue31
+    LD ($C000), A
+    LD ($C000), B
+    LD ($C000), C
+    LD ($C000), D
+    LD ($C000), E
+    LD ($C000), H
+    LD ($C000), L
+    LD ($C000), IXH
+    LD ($C000), IXL
+    LD ($C000), IYH
+    LD ($C000), IYL
+    LD A,($C000)
+    LD B,($C000)
+    LD C,($C000)
+    LD D,($C000)
+    LD E,($C000)
+    LD H,($C000)
+    LD L,($C000)
+    LD IXH,($C000)
+    LD IXL,($C000)
+    LD IYH,($C000)
+    LD IYL,($C000)

@@ -1723,3 +1723,85 @@
                     ld        d,(iy+$7f)                    ;[0c85] fd 56 7f
                     add       hl,de                         ;[0c88] 19
                     pop       de                            ;[0c89] d1
+                    ld        ($c000),a                     ;[0c8a] 32 00 c0
+                    push      af                            ;[0c8d] f5
+                    ld        a,b                           ;[0c8e] 78
+                    ld        ($c000),a                     ;[0c8f] 32 00 c0
+                    pop       af                            ;[0c92] f1
+                    push      af                            ;[0c93] f5
+                    ld        a,c                           ;[0c94] 79
+                    ld        ($c000),a                     ;[0c95] 32 00 c0
+                    pop       af                            ;[0c98] f1
+                    push      af                            ;[0c99] f5
+                    ld        a,d                           ;[0c9a] 7a
+                    ld        ($c000),a                     ;[0c9b] 32 00 c0
+                    pop       af                            ;[0c9e] f1
+                    push      af                            ;[0c9f] f5
+                    ld        a,e                           ;[0ca0] 7b
+                    ld        ($c000),a                     ;[0ca1] 32 00 c0
+                    pop       af                            ;[0ca4] f1
+                    push      af                            ;[0ca5] f5
+                    ld        a,h                           ;[0ca6] 7c
+                    ld        ($c000),a                     ;[0ca7] 32 00 c0
+                    pop       af                            ;[0caa] f1
+                    push      af                            ;[0cab] f5
+                    ld        a,l                           ;[0cac] 7d
+                    ld        ($c000),a                     ;[0cad] 32 00 c0
+                    pop       af                            ;[0cb0] f1
+                    push      af                            ;[0cb1] f5
+                    ld        a,ixh                         ;[0cb2] dd 7c
+                    ld        ($c000),a                     ;[0cb4] 32 00 c0
+                    pop       af                            ;[0cb7] f1
+                    push      af                            ;[0cb8] f5
+                    ld        a,ixl                         ;[0cb9] dd 7d
+                    ld        ($c000),a                     ;[0cbb] 32 00 c0
+                    pop       af                            ;[0cbe] f1
+                    push      af                            ;[0cbf] f5
+                    ld        a,iyh                         ;[0cc0] fd 7c
+                    ld        ($c000),a                     ;[0cc2] 32 00 c0
+                    pop       af                            ;[0cc5] f1
+                    push      af                            ;[0cc6] f5
+                    ld        a,iyl                         ;[0cc7] fd 7d
+                    ld        ($c000),a                     ;[0cc9] 32 00 c0
+                    pop       af                            ;[0ccc] f1
+                    ld        a,($c000)                     ;[0ccd] 3a 00 c0
+                    push      af                            ;[0cd0] f5
+                    ld        a,($c000)                     ;[0cd1] 3a 00 c0
+                    ld        b,a                           ;[0cd4] 47
+                    pop       af                            ;[0cd5] f1
+                    push      af                            ;[0cd6] f5
+                    ld        a,($c000)                     ;[0cd7] 3a 00 c0
+                    ld        c,a                           ;[0cda] 4f
+                    pop       af                            ;[0cdb] f1
+                    push      af                            ;[0cdc] f5
+                    ld        a,($c000)                     ;[0cdd] 3a 00 c0
+                    ld        d,a                           ;[0ce0] 57
+                    pop       af                            ;[0ce1] f1
+                    push      af                            ;[0ce2] f5
+                    ld        a,($c000)                     ;[0ce3] 3a 00 c0
+                    ld        e,a                           ;[0ce6] 5f
+                    pop       af                            ;[0ce7] f1
+                    push      af                            ;[0ce8] f5
+                    ld        a,($c000)                     ;[0ce9] 3a 00 c0
+                    ld        h,a                           ;[0cec] 67
+                    pop       af                            ;[0ced] f1
+                    push      af                            ;[0cee] f5
+                    ld        a,($c000)                     ;[0cef] 3a 00 c0
+                    ld        l,a                           ;[0cf2] 6f
+                    pop       af                            ;[0cf3] f1
+                    push      af                            ;[0cf4] f5
+                    ld        a,($c000)                     ;[0cf5] 3a 00 c0
+                    ld        ixh,a                         ;[0cf8] dd 67
+                    pop       af                            ;[0cfa] f1
+                    push      af                            ;[0cfb] f5
+                    ld        a,($c000)                     ;[0cfc] 3a 00 c0
+                    ld        ixl,a                         ;[0cff] dd 6f
+                    pop       af                            ;[0d01] f1
+                    push      af                            ;[0d02] f5
+                    ld        a,($c000)                     ;[0d03] 3a 00 c0
+                    ld        iyh,a                         ;[0d06] fd 67
+                    pop       af                            ;[0d08] f1
+                    push      af                            ;[0d09] f5
+                    ld        a,($c000)                     ;[0d0a] 3a 00 c0
+                    ld        iyl,a                         ;[0d0d] fd 6f
+                    pop       af                            ;[0d0f] f1

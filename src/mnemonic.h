@@ -769,6 +769,11 @@ enum class Mnemonic {
     line->machine.push_back(0x38); \
     line->machine.push_back(E)
 
+#define ML_LD_A_NN(NN)                  \
+    line->machine.push_back(0x3A);      \
+    line->machine.push_back(NN & 0xFF); \
+    line->machine.push_back((NN & 0xFF00) >> 8)
+
 #define ML_LD_NN_A(NN)                  \
     line->machine.push_back(0x32);      \
     line->machine.push_back(NN & 0xFF); \
