@@ -5,8 +5,10 @@
  */
 #include "common.h"
 
+#include "assignment.hpp"
 #include "binary.hpp"
 #include "bracket.hpp"
+#include "decimal.hpp"
 #include "define.hpp"
 #include "enum.hpp"
 #include "file.hpp"

@@ -40,6 +40,7 @@ enum class TokenType {
     PlusOrMinus,      // + or - (比較用)
     Div,              // / 割り算
     Mul,              // * 掛け算
+    Modulo,           // % 剰余残
     ArrayBegin,       // [ 配列起点
     ArrayEnd,         // ] 配列終点
     BracketBegin,     // ( カッコ
@@ -64,6 +65,9 @@ enum class TokenType {
     EqualXor,         // ^= 排他的論理和代入
     EqualShiftLeft,   // <<= 左論理シフト代入
     EqualShiftRight,  // >>= 右論理シフト代入
+    EqualMul,         // *= 乗算代入
+    EqualDiv,         // /= 除算代入
+    EqualMod,         // %= 剰余残代入
     ArrowLeft,        // <-
     ArrowRight,       // ->
     Other             // その他 (構文解析の仮定で最終的にはなくなる)
