@@ -70,6 +70,18 @@ void split_increment(std::vector<LineData*>* lines)
                 } else {
                     lines->insert(it, newLine);
                 }
+                // Deleteを差し引いた残トークンが 1 (レジスタのみ) かチェック
+                int tn = 0;
+                auto o = line->token.end();
+                for (auto w = line->token.begin(); w != line->token.end(); w++) {
+                    tn += w->first != TokenType::Delete ? 1 : 0;
+                    if (w->first == TokenType::Operand) {
+                        o = w;
+                    }
+                }
+                if (1 == tn && o != line->token.end()) {
+                    o->first = TokenType::Delete;
+                }
                 // 最初から探索し直す
                 it = lines->begin();
                 break;
