@@ -8,7 +8,7 @@
 #include "numeric.hpp"
 
 // enum を解析して defineTable へ展開する
-void extract_enum(std::vector<LineData*>* lines)
+void enum_extract(std::vector<LineData*>* lines)
 {
     for (auto it = lines->begin(); it != lines->end(); it++) {
         auto line = *it;

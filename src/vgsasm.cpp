@@ -97,7 +97,7 @@ static int assemble(std::vector<LineData*> lines)
     }
 
     // enum の展開
-    extract_enum(&lines);
+    enum_extract(&lines);
     if (check_error(lines)) {
         return -1;
     }
