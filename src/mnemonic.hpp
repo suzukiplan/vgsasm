@@ -17,7 +17,6 @@
 #include "mnemonic_load.hpp"
 #include "mnemonic_shift.hpp"
 #include "mnemonic_stack.hpp"
-#include "mnemonic_table.hpp"
 #include "mnemonic_vgs.hpp"
 
 std::vector<TempAddr*> tempAddrs;
