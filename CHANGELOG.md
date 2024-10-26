@@ -1,5 +1,9 @@
 # Change log
 
+## Version 0.7 (beta-7)
+
+- Improved error message output when a name with no definition on the right side of the dot is specified in `#define`.
+
 ## Version 0.6 (beta-6)
 
 - Unexpected struct error: "It must be defined on the line after the definition of struct specified by the arrow operator." #38
