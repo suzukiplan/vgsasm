@@ -133,6 +133,17 @@ void define_replace(LineData* line)
                     if (defineTable.find(left + ".") != defineTable.end()) {
                         line->error = true;
                         line->errmsg = "`" + right + "` was not defined at `" + left + "`";
+                    } else {
+                        for (auto d : defineTable) {
+                            dot = d.first.find(".");
+                            if (-1 != dot) {
+                                if (d.first.substr(0, dot) == left) {
+                                    line->error = true;
+                                    line->errmsg = "`" + right + "` was not defined at `" + left + "`";
+                                    break;
+                                }
+                            }
+                        }
                     }
                 }
             }

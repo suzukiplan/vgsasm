@@ -1,10 +1,13 @@
+CPP = g++ -std=c++17 -g
+DEPS = common.hpp ../src/*
 TEST_MODULES =\
 	assignment \
 	binary \
 	bracket_to_address \
 	bracket_eliminate \
 	decimal \
-	define_parse
+	define_parse \
+	define_replace
 
 all: ${TEST_MODULES}
 	./assignment
@@ -13,27 +16,31 @@ all: ${TEST_MODULES}
 	./bracket_eliminate
 	./decimal
 	./define_parse
+	./define_replace
 
-single: define_parse
-	./define_parse
+single: define_replace
+	./define_replace
 
 clean:
 	rm -f ${TEST_MODULES}
 
-assignment: assignment.cpp common.hpp ../src/*
-	g++ -std=c++17 -g $< -o $@
+assignment: assignment.cpp ${DEPS}
+	${CPP} $< -o $@
 
-binary: binary.cpp common.hpp ../src/*
-	g++ -std=c++17 -g $< -o $@
+binary: binary.cpp ${DEPS}
+	${CPP} $< -o $@
 
-bracket_to_address: bracket_to_address.cpp common.hpp ../src/*
-	g++ -std=c++17 -g $< -o $@
+bracket_to_address: bracket_to_address.cpp ${DEPS}
+	${CPP} $< -o $@
 
-bracket_eliminate: bracket_eliminate.cpp common.hpp ../src/*
-	g++ -std=c++17 -g $< -o $@
+bracket_eliminate: bracket_eliminate.cpp ${DEPS}
+	${CPP} $< -o $@
 
-decimal: decimal.cpp common.hpp ../src/*
-	g++ -std=c++17 -g $< -o $@
+decimal: decimal.cpp ${DEPS}
+	${CPP} $< -o $@
 
-define_parse: define_parse.cpp common.hpp ../src/*
-	g++ -std=c++17 -g $< -o $@
+define_parse: define_parse.cpp ${DEPS}
+	${CPP} $< -o $@
+
+define_replace: define_replace.cpp ${DEPS}
+	${CPP} $< -o $@
