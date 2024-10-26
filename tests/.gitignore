@@ -1,3 +1,8 @@
 *.o
 assignment
 binary
+bracket_to_address
+bracket_eliminate
+decimal
+define_parse
+

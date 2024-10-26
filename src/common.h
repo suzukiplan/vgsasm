@@ -47,6 +47,8 @@ enum class TokenType {
     BracketEnd,       // ) カッコ
     AddressBegin,     // ( カッコ（※特定箇所のみ）
     AddressEnd,       // ) カッコ (※特定箇所のみ)
+    ArgumentBegin,    // ( カッコ（※特定箇所のみ）
+    ArgumentEnd,      // ) カッコ (※特定箇所のみ)
     ScopeBegin,       // { スコープ起点
     ScopeEnd,         // } スコープ終点
     And,              // & アンパーサンド
@@ -193,6 +195,7 @@ extern std::map<std::string, LineData*> labelTable;
 extern std::map<std::string, Mnemonic> mnemonicTable;
 extern std::map<std::string, Operand> operandTable;
 extern std::map<std::string, Struct*> structTable;
+extern std::vector<std::string> structNameList;
 extern std::map<std::string, Macro*> macroTable;
 
 extern int arrayCount;
