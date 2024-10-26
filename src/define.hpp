@@ -107,7 +107,6 @@ bool define_parse(LineData* line)
 
 void define_replace(LineData* line)
 {
-    bool result = false;
     bool replace = true;
     int tryCount = 0;
     int maxTryCount = (int)line->token.size() + 1;
@@ -125,7 +124,6 @@ void define_replace(LineData* line)
                 line->token.erase(it);
                 line->token.insert(it, d->second.begin(), d->second.end());
                 replace = true;
-                result = true;
                 break;
             } else {
                 auto dot = it->second.find(".");
