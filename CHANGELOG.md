@@ -1,5 +1,11 @@
 # Change log
 
+## Version 0.6 (beta-6)
+
+- Unexpected struct error: "It must be defined on the line after the definition of struct specified by the arrow operator." #38
+- Crash when address is specified as argument in #macro call #39
+- Several minor bugfix (unit test)
+
 ## Version 0.5 (beta-5)
 
 - Support mul, div, mod with immediate #34
