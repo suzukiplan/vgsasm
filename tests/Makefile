@@ -3,7 +3,8 @@ TEST_MODULES =\
 	binary \
 	bracket_to_address \
 	bracket_eliminate \
-	decimal
+	decimal \
+	define_parse
 
 all: ${TEST_MODULES}
 	./assignment
@@ -11,6 +12,10 @@ all: ${TEST_MODULES}
 	./bracket_to_address
 	./bracket_eliminate
 	./decimal
+	./define_parse
+
+single: define_parse
+	./define_parse
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -28,4 +33,7 @@ bracket_eliminate: bracket_eliminate.cpp common.hpp ../src/*
 	g++ -std=c++17 -g $< -o $@
 
 decimal: decimal.cpp common.hpp ../src/*
+	g++ -std=c++17 -g $< -o $@
+
+define_parse: define_parse.cpp common.hpp ../src/*
 	g++ -std=c++17 -g $< -o $@
