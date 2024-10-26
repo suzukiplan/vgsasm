@@ -51,6 +51,8 @@ int main()
         test_normal("LD X, Z+(Y)", 8, TokenType::Mnemonic, "LD", TokenType::Other, "X", TokenType::Split, ",", TokenType::Other, "Z", TokenType::Plus, "+", TokenType::BracketBegin, "(", TokenType::Other, "Y", TokenType::BracketEnd, ")");
         test_normal("()", 2, TokenType::BracketBegin, "(", TokenType::BracketEnd, ")");
         test_normal("()()", 4, TokenType::BracketBegin, "(", TokenType::BracketEnd, ")", TokenType::BracketBegin, "(", TokenType::BracketEnd, ")");
+        test_normal("(())", 4, TokenType::BracketBegin, "(", TokenType::BracketBegin, "(", TokenType::BracketEnd, ")", TokenType::BracketEnd, ")");
+        test_normal("LD ((X)), Y", 8, TokenType::Mnemonic, "LD", TokenType::AddressBegin, "(", TokenType::BracketBegin, "(", TokenType::Other, "X", TokenType::BracketEnd, ")", TokenType::AddressEnd, ")", TokenType::Split, ",", TokenType::Other, "Y");
     } catch (...) {
         return -1;
     }
