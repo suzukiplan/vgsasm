@@ -5,6 +5,7 @@
  */
 #include "common.hpp"
 #include "../src/define.hpp"
+#include "../src/nametable.hpp"
 
 void add_line(const char* text)
 {

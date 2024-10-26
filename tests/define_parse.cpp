@@ -5,6 +5,7 @@
  */
 #include "common.hpp"
 #include "../src/define.hpp"
+#include "../src/nametable.hpp"
 
 void test_normal(const char* text, std::string name, int n, ...)
 {
@@ -66,10 +67,10 @@ void test_error(const char* text, const char* errmsg)
 int main()
 {
     try {
-        test_normal("#define A", "A", 1, TokenType::Delete, "");
-        test_normal("#define B C", "B", 1, TokenType::Other, "C");
-        test_error("#define A B", "Duplicate definition name A in #define.");
-        test_error("#define C C", "C is included in #define C.");
+        test_normal("#define AA", "AA", 1, TokenType::Delete, "");
+        test_normal("#define BB C", "BB", 1, TokenType::Other, "C");
+        test_error("#define AA B", "Duplicate definition name AA in #define.");
+        test_error("#define CC CC", "CC is included in #define CC.");
         test_error("#define", "No definition name specified in #define.");
         test_error("A #define", "#define must appear at the beginning of the line.");
         test_error("#define #DEFINE", "Multiple #defines cannot be defined on a single line.");
