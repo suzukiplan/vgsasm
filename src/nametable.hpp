@@ -39,4 +39,7 @@ void nametable_init()
     addNameTable("OFFSET", nullptr);
     addNameTable("STRUCT", nullptr);
     addNameTable("ENUM", nullptr);
+    addNameTable("DS.B", nullptr);
+    addNameTable("DS.W", nullptr);
+    addNameTable("ORG", nullptr);
 }
