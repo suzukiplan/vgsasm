@@ -2,6 +2,7 @@
 
 ## Version 0.7 (beta-7)
 
+- Unit test on the Circle CI
 - Improved error message output when a name with no definition on the right side of the dot is specified in `#define`.
 - Fixed a case where `enum` did not produce the expected error.
 
