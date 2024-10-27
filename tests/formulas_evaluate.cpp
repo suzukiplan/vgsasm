@@ -66,6 +66,17 @@ int main()
         test_normal("(1+2+3)*4/2", 1, TokenType::Numeric, "12");
         test_normal("(1+2+3)*(4/2+1)", 1, TokenType::Numeric, "18");
         test_normal("(1+(2+3))+4", 1, TokenType::Numeric, "10");
+        test_normal("A+1", 3, TokenType::Operand, "A", TokenType::Plus, "+", TokenType::Numeric, "1");
+        test_normal("AA+1", 3, TokenType::Other, "AA", TokenType::Plus, "+", TokenType::Numeric, "1");
+        test_normal("A-1", 3, TokenType::Operand, "A", TokenType::Minus, "-", TokenType::Numeric, "1");
+        test_normal("AA-1", 3, TokenType::Other, "AA", TokenType::Minus, "-", TokenType::Numeric, "1");
+        test_error("A*1", "Illegal expression with no specification of the number of operations to be performed.");
+        test_error("A/1", "Illegal expression with no specification of the number of operations to be performed.");
+        test_error("1+A", "Illegal expression with no specification of the number of operations to be performed.");
+        test_error("1*A", "Illegal expression with no specification of the number of operations to be performed.");
+        test_error("1/0", "Division by zero.");
+        test_error("1/(5-5)", "Division by zero.");
+        test_error("3/(1*2/3)", "Division by zero.");
     } catch (...) {
         return -1;
     }
