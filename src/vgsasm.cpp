@@ -115,7 +115,7 @@ static int assemble(std::vector<LineData*> lines)
     // ラベルをパース
     for (auto line = lines.begin(); line != lines.end(); line++) {
         // Other -> Label or LabelAt
-        auto newLine = parse_label(*line);
+        auto newLine = label_parse(*line);
         if (newLine) {
             lines.insert(line + 1, newLine);
             line = lines.begin();
@@ -126,7 +126,7 @@ static int assemble(std::vector<LineData*> lines)
     }
 
     // 匿名ラベルを展開
-    extract_anonymous_label(&lines);
+    label_extract_anonymous(&lines);
     if (check_error(lines)) {
         return -1;
     }
@@ -226,7 +226,7 @@ static int assemble(std::vector<LineData*> lines)
         struct_replace(line);   // 構造体 -> 数値
         sizeof_replace(line);   // sizeof -> 数値
         offset_replace(line);   // offset -> 数値
-        parse_label_jump(line); // Other -> LabelJump
+        label_parse_jump(line); // Other -> LabelJump
         parse_org(line);        // Other -> org
     }
     if (check_error(lines)) {
