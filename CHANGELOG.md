@@ -1,5 +1,12 @@
 # Change log
 
+## Version 0.8 (beta-8)
+
+- unit test and refactor
+- Defining an enum results in a `Unexpected symbol:` error with no symbol
+- Crash during operations involving nested brackets #42
+- Structure expansion result address is different from expected #43
+
 ## Version 0.7 (beta-7)
 
 - Unit test on the Circle CI

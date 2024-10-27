@@ -10,3 +10,4 @@
 #include "../src/string.hpp"
 #include "../src/tables.hpp"
 #include "../src/nametable.hpp"
+#include "../src/operand.hpp"
