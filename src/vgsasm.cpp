@@ -144,7 +144,7 @@ static int assemble(std::vector<LineData*> lines)
         numeric_parse_plus(*line);  // Split, Plus, Numeric -> Split, Numeric
         sizeof_parse(*line);        // Other -> Sizeof
         parse_offset(*line);        // Other -> Offset
-        parse_binary(*line);        // Other -> Binary
+        binary_parse(*line);        // Other -> Binary
         parse_macro(*line);         // Other -> Macro
         error = check_error(*line) ? true : error;
     }
