@@ -30,7 +30,7 @@ bool operand_is_condition(std::string str)
     return false;
 }
 
-void parse_operand(LineData* line)
+void operand_parse(LineData* line)
 {
     for (auto it = line->token.begin(); it != line->token.end(); it++) {
         // Other ならチェック

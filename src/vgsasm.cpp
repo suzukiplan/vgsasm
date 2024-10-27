@@ -136,7 +136,7 @@ static int assemble(std::vector<LineData*> lines)
     for (auto line = lines.begin(); line != lines.end(); line++) {
         replace_assignment(*line);  // X Equal* Y = {LD|ADD|SUB|AND|OR|XOR} X, Y
         parse_mneoimonic(*line);    // Other -> Mnemonic
-        parse_operand(*line);       // Other -> Operand
+        operand_parse(*line);       // Other -> Operand
         parse_struct(*line);        // Other -> Struct
         bracket_to_address(*line);  // Braket -> Address
         parse_numeric(*line);       // Other -> Numeric
@@ -172,9 +172,9 @@ static int assemble(std::vector<LineData*> lines)
 
     // 演算を実行（1回目）
     for (auto line = lines.begin(); line != lines.end(); line++) {
-        evaluate_formulas(*line);
+        formulas_evaluate(*line);
         while (bracket_eliminate(*line)) {
-            evaluate_formulas(*line);
+            formulas_evaluate(*line);
         }
         error = check_error(*line) ? true : error;
     }
@@ -213,7 +213,7 @@ static int assemble(std::vector<LineData*> lines)
     // 構造体トークンをパース
     for (auto line : lines) {
         parse_struct_name(line);
-        evaluate_formulas_array(line);
+        formulas_evaluate_array(line);
         parse_struct_array(line);
     }
     if (check_error(lines)) {
@@ -236,7 +236,7 @@ static int assemble(std::vector<LineData*> lines)
 
     // 展開された全ての数値計算を実行
     for (auto line : lines) {
-        evaluate_formulas(line);
+        formulas_evaluate(line);
     }
     if (check_error(lines)) {
         return -1;

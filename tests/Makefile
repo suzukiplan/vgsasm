@@ -8,7 +8,8 @@ TEST_MODULES =\
 	decimal \
 	define_parse \
 	define_replace \
-	enum
+	enum \
+	formulas_evaluate
 
 all: ${TEST_MODULES}
 	./assignment
@@ -19,9 +20,10 @@ all: ${TEST_MODULES}
 	./define_parse
 	./define_replace
 	./enum
+	./formulas_evaluate
 
-single: enum
-	./enum
+single: formulas_evaluate
+	./formulas_evaluate
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -48,4 +50,7 @@ define_replace: define_replace.cpp ${DEPS}
 	${CPP} $< -o $@
 
 enum: enum.cpp ${DEPS}
+	${CPP} $< -o $@
+
+formulas_evaluate: formulas_evaluate.cpp ${DEPS}
 	${CPP} $< -o $@
