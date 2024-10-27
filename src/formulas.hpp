@@ -8,6 +8,13 @@
 
 std::string formulas_evaluate(std::vector<std::pair<TokenType, std::string>>* token)
 {
+#if 0
+    for (auto t : *token) {
+        printf(" %s", t.second.c_str());
+    }
+    puts("");
+#endif
+
     std::vector<std::pair<TokenType, std::string>>::iterator prev;
     std::vector<std::pair<TokenType, std::string>>::iterator next;
     bool calc;
@@ -20,7 +27,15 @@ std::string formulas_evaluate(std::vector<std::pair<TokenType, std::string>>* to
         for (auto it = token->begin(); it != token->end() && it->first != TokenType::BracketEnd; it++) {
             if (it->first == TokenType::BracketBegin) {
                 std::vector<std::pair<TokenType, std::string>> work;
-                for (auto itW = it + 1; itW->first != TokenType::BracketEnd; token->erase(itW)) {
+                int nest = 1;
+                for (auto itW = it + 1; nest; token->erase(itW)) {
+                    if (itW->first == TokenType::BracketEnd) {
+                        if (0 == --nest) {
+                            break;
+                        }
+                    } else if (itW->first == TokenType::BracketBegin) {
+                        nest++;
+                    }
                     work.push_back(std::make_pair(itW->first, itW->second));
                 }
                 formulas_evaluate(&work);

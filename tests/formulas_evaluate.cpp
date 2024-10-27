@@ -5,10 +5,12 @@
  */
 #include "common.hpp"
 #include "../src/formulas.hpp"
+#include "../src/numeric.hpp"
 
 void test_normal(const char* text, int n, ...)
 {
     auto line = new LineData("", -1, text);
+    numeric_parse(line);
     operand_parse(line);
     formulas_evaluate(line);
     printf("N: %-12s ---> ", text);
@@ -40,6 +42,7 @@ void test_normal(const char* text, int n, ...)
 void test_error(const char* text, const char* errmsg)
 {
     auto line = new LineData("", -1, text);
+    numeric_parse(line);
     operand_parse(line);
     formulas_evaluate(line);
     printf("E: %-12s ---> ", text);
@@ -57,6 +60,12 @@ void test_error(const char* text, const char* errmsg)
 int main()
 {
     try {
+        test_normal("1+2+3", 1, TokenType::Numeric, "6");
+        test_normal("1+2+3*4", 1, TokenType::Numeric, "15");
+        test_normal("1+2+3*4/2", 1, TokenType::Numeric, "9");
+        test_normal("(1+2+3)*4/2", 1, TokenType::Numeric, "12");
+        test_normal("(1+2+3)*(4/2+1)", 1, TokenType::Numeric, "18");
+        test_normal("(1+(2+3))+4", 1, TokenType::Numeric, "10");
     } catch (...) {
         return -1;
     }
