@@ -174,7 +174,7 @@ void macro_syntax_check(std::vector<LineData*>* lines)
 {
     for (auto it = macroTable.begin(); it != macroTable.end(); it++) {
         for (auto arg : it->second->args) {
-            if (checkNameTable(arg)) {
+            if (!checkNameTable(arg).empty()) {
                 it->second->refer->error = true;
                 it->second->refer->errmsg = "A macro argument name conflict with the name used for structs, defines, etc.: " + arg;
             }

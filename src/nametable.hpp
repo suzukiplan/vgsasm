@@ -6,22 +6,23 @@
 #pragma once
 #include "common.h"
 
-bool checkNameTable(std::string name)
+std::string checkNameTable(std::string name)
 {
     if (!isalpha(name.c_str()[0])) {
-        return false;
+        return "The first letter is not an alphabetic letter: " + name;
     } else if (nameTable.find(name) != nameTable.end()) {
-        return true;
+        return "Reserved symbol name " + name + " was specified.";
     } else {
-        return false;
+        return "";
     }
 }
 
 void addNameTable(std::string name, LineData* line)
 {
-    if (checkNameTable(name)) {
+    auto errmsg = checkNameTable(name);
+    if (!errmsg.empty()) {
         line->error = true;
-        line->errmsg = "Reserved symbol name " + name + " was specified.";
+        line->errmsg = errmsg;
     } else {
         nameTable[name] = line;
     }
