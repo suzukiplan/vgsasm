@@ -137,7 +137,7 @@ static int assemble(std::vector<LineData*> lines)
         assignment_replace(*line);  // X Equal* Y = {LD|ADD|SUB|AND|OR|XOR} X, Y
         mnemonic_parse(*line);      // Other -> Mnemonic
         operand_parse(*line);       // Other -> Operand
-        parse_struct(*line);        // Other -> Struct
+        struct_parse(*line);        // Other -> Struct
         bracket_to_address(*line);  // Braket -> Address
         parse_numeric(*line);       // Other -> Numeric
         parse_numeric_minus(*line); // Split, Minus, Numeric -> Split, -Numeric
@@ -212,9 +212,9 @@ static int assemble(std::vector<LineData*> lines)
 
     // 構造体トークンをパース
     for (auto line : lines) {
-        parse_struct_name(line);
+        struct_parse_name(line);
         formulas_evaluate_array(line);
-        parse_struct_array(line);
+        struct_parse_array(line);
     }
     if (check_error(lines)) {
         return -1;
@@ -223,7 +223,7 @@ static int assemble(std::vector<LineData*> lines)
 
     // 残存パース処理
     for (auto line : lines) {
-        replace_struct(line);   // 構造体 -> 数値
+        struct_replace(line);   // 構造体 -> 数値
         replace_sizeof(line);   // sizeof -> 数値
         replace_offset(line);   // offset -> 数値
         parse_label_jump(line); // Other -> LabelJump
