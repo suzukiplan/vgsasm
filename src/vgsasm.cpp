@@ -145,7 +145,7 @@ static int assemble(std::vector<LineData*> lines)
         sizeof_parse(*line);        // Other -> Sizeof
         offset_parse(*line);        // Other -> Offset
         binary_parse(*line);        // Other -> Binary
-        parse_macro(*line);         // Other -> Macro
+        macro_parse(*line);         // Other -> Macro
         error = check_error(*line) ? true : error;
     }
     if (error) {
@@ -153,7 +153,7 @@ static int assemble(std::vector<LineData*> lines)
     }
 
     // マクロ呼び出し箇所をパース
-    parse_macro_caller(&lines);
+    macro_parse_caller(&lines);
     if (check_error(lines)) {
         return -1;
     }
