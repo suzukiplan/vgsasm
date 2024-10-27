@@ -20,6 +20,7 @@
 #include "nametable.hpp"
 #include "numeric.hpp"
 #include "offset.hpp"
+#include "operand.hpp"
 #include "org.hpp"
 #include "sizeof.hpp"
 #include "string.hpp"
