@@ -11,7 +11,8 @@ TEST_MODULES =\
 	enum \
 	formulas_evaluate \
 	formulas_evaluate_array \
-	increment
+	increment \
+	label_parse
 
 all: ${TEST_MODULES}
 	./assignment
@@ -25,9 +26,10 @@ all: ${TEST_MODULES}
 	./formulas_evaluate
 	./formulas_evaluate_array
 	./increment
+	./label_parse
 
-single: increment
-	./increment
+single: label_parse
+	./label_parse
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -63,4 +65,7 @@ formulas_evaluate_array: formulas_evaluate_array.cpp ${DEPS}
 	${CPP} $< -o $@
 
 increment: increment.cpp ${DEPS}
+	${CPP} $< -o $@
+
+label_parse: label_parse.cpp ${DEPS}
 	${CPP} $< -o $@
