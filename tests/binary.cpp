@@ -10,7 +10,7 @@
 void test_normal(const char* text, int size, uint8_t firstByte, int n, ...)
 {
     auto line = new LineData("", -1, text);
-    parse_numeric(line);
+    numeric_parse(line);
     parse_binary(line);
     printf("N: %-12s ---> ", text);
     line->printDebug();
@@ -49,7 +49,7 @@ void test_normal(const char* text, int size, uint8_t firstByte, int n, ...)
 void test_error(const char* text, const char* errmsg)
 {
     auto line = new LineData("", -1, text);
-    parse_numeric(line);
+    numeric_parse(line);
     parse_binary(line);
     printf("E: %-12s ---> ", text);
     if (!line->error) {

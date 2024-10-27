@@ -139,9 +139,9 @@ static int assemble(std::vector<LineData*> lines)
         operand_parse(*line);       // Other -> Operand
         struct_parse(*line);        // Other -> Struct
         bracket_to_address(*line);  // Braket -> Address
-        parse_numeric(*line);       // Other -> Numeric
-        parse_numeric_minus(*line); // Split, Minus, Numeric -> Split, -Numeric
-        parse_numeric_plus(*line);  // Split, Plus, Numeric -> Split, Numeric
+        numeric_parse(*line);       // Other -> Numeric
+        numeric_parse_minus(*line); // Split, Minus, Numeric -> Split, -Numeric
+        numeric_parse_plus(*line);  // Split, Plus, Numeric -> Split, Numeric
         sizeof_parse(*line);        // Other -> Sizeof
         parse_offset(*line);        // Other -> Offset
         parse_binary(*line);        // Other -> Binary

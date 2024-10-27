@@ -121,7 +121,7 @@ void enum_extract(std::vector<LineData*>* lines)
                     line->errmsg = "Unexpected symbol: " + line->token[1].second;
                     continue;
                 }
-                parse_numeric(line);
+                numeric_parse(line);
                 if (line->error) {
                     continue;
                 }
