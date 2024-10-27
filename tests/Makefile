@@ -7,7 +7,8 @@ TEST_MODULES =\
 	bracket_eliminate \
 	decimal \
 	define_parse \
-	define_replace
+	define_replace \
+	enum
 
 all: ${TEST_MODULES}
 	./assignment
@@ -17,9 +18,10 @@ all: ${TEST_MODULES}
 	./decimal
 	./define_parse
 	./define_replace
+	./enum
 
-single: define_replace
-	./define_replace
+single: enum
+	./enum
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -43,4 +45,7 @@ define_parse: define_parse.cpp ${DEPS}
 	${CPP} $< -o $@
 
 define_replace: define_replace.cpp ${DEPS}
+	${CPP} $< -o $@
+
+enum: enum.cpp ${DEPS}
 	${CPP} $< -o $@
