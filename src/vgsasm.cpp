@@ -227,7 +227,7 @@ static int assemble(std::vector<LineData*> lines)
         sizeof_replace(line);   // sizeof -> 数値
         offset_replace(line);   // offset -> 数値
         label_parse_jump(line); // Other -> LabelJump
-        parse_org(line);        // Other -> org
+        org_parse(line);        // Other -> org
     }
     if (check_error(lines)) {
         return -1;
@@ -257,7 +257,7 @@ static int assemble(std::vector<LineData*> lines)
     }
 
     // org があれば org の次の行のプログラムカウンタを初期化
-    setpc_org(&lines);
+    org_setpc(&lines);
     if (check_error(lines)) {
         return -1;
     }
