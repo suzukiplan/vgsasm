@@ -5,6 +5,7 @@
  */
 #pragma once
 #include "common.h"
+#include "operand.hpp"
 
 class TempAddr
 {
@@ -31,8 +32,5 @@ bool mnemonic_range(LineData* line, int n, int min, int max);
 bool mnemonic_is_reg16(Operand op);
 void mnemonic_single(LineData* line, uint8_t code);
 void mnemonic_single_ED(LineData* line, uint8_t code);
-bool operand_is_condition(Operand op);
-bool operand_is_condition(std::string str);
-void parse_operand(LineData* line);
-void parse_mneoimonic(LineData* line);
+void mnemonic_parse(LineData* line);
 void mnemonic_syntax_check(std::vector<LineData*>* lines);

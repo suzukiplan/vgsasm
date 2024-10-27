@@ -21,7 +21,7 @@
 
 std::vector<TempAddr*> tempAddrs;
 
-void parse_mneoimonic(LineData* line)
+void mnemonic_parse(LineData* line)
 {
     for (auto it = line->token.begin(); it != line->token.end(); it++) {
         // Other ならチェック
