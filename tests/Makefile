@@ -10,7 +10,8 @@ TEST_MODULES =\
 	define_replace \
 	enum \
 	formulas_evaluate \
-	formulas_evaluate_array
+	formulas_evaluate_array \
+	increment
 
 all: ${TEST_MODULES}
 	./assignment
@@ -23,9 +24,10 @@ all: ${TEST_MODULES}
 	./enum
 	./formulas_evaluate
 	./formulas_evaluate_array
+	./increment
 
-single: formulas_evaluate_array
-	./formulas_evaluate_array
+single: increment
+	./increment
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -58,4 +60,7 @@ formulas_evaluate: formulas_evaluate.cpp ${DEPS}
 	${CPP} $< -o $@
 
 formulas_evaluate_array: formulas_evaluate_array.cpp ${DEPS}
+	${CPP} $< -o $@
+
+increment: increment.cpp ${DEPS}
 	${CPP} $< -o $@
