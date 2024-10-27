@@ -134,7 +134,7 @@ static int assemble(std::vector<LineData*> lines)
 
     // 基本構文解析
     for (auto line = lines.begin(); line != lines.end(); line++) {
-        replace_assignment(*line);  // X Equal* Y = {LD|ADD|SUB|AND|OR|XOR} X, Y
+        assignment_replace(*line);  // X Equal* Y = {LD|ADD|SUB|AND|OR|XOR} X, Y
         parse_mneoimonic(*line);    // Other -> Mnemonic
         operand_parse(*line);       // Other -> Operand
         parse_struct(*line);        // Other -> Struct
