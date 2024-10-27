@@ -1,5 +1,7 @@
 # Change log
 
+## Version 0.8 (beta-8)
+
 ## Version 0.7 (beta-7)
 
 - Unit test on the Circle CI
