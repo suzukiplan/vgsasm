@@ -333,6 +333,7 @@ static int assemble(const char* path)
 
 int main(int argc, char* argv[])
 {
+    nametable_init();
     char in[1024];
     char out[1024];
     in[0] = 0;

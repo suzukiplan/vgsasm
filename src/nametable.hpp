@@ -8,11 +8,9 @@
 
 bool checkNameTable(std::string name)
 {
-    if (mnemonicTable.find(name) != mnemonicTable.end() ||
-        operandTable.find(name) != operandTable.end() ||
-        name == "SIZEOF" ||
-        name == "OFFSET" ||
-        nameTable.find(name) != nameTable.end()) {
+    if (!isalpha(name.c_str()[0])) {
+        return false;
+    } else if (nameTable.find(name) != nameTable.end()) {
         return true;
     } else {
         return false;
@@ -27,4 +25,18 @@ void addNameTable(std::string name, LineData* line)
     } else {
         nameTable[name] = line;
     }
+}
+
+void nametable_init()
+{
+    for (auto mnemonic : mnemonicTable) {
+        addNameTable(mnemonic.first, nullptr);
+    }
+    for (auto operand : operandTable) {
+        addNameTable(operand.first, nullptr);
+    }
+    addNameTable("SIZEOF", nullptr);
+    addNameTable("OFFSET", nullptr);
+    addNameTable("STRUCT", nullptr);
+    addNameTable("ENUM", nullptr);
 }
