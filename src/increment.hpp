@@ -24,6 +24,8 @@ static bool isIncrementableRegister(LineData* line, std::vector<std::pair<TokenT
         case Operand::L: return true;
         case Operand::IXH: return true;
         case Operand::IXL: return true;
+        case Operand::IYH: return false; // does not exist
+        case Operand::IYL: return false; // does not exist
         case Operand::BC: return true;
         case Operand::DE: return true;
         case Operand::HL: return true;
