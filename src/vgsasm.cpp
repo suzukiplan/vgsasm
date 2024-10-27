@@ -142,7 +142,7 @@ static int assemble(std::vector<LineData*> lines)
         parse_numeric(*line);       // Other -> Numeric
         parse_numeric_minus(*line); // Split, Minus, Numeric -> Split, -Numeric
         parse_numeric_plus(*line);  // Split, Plus, Numeric -> Split, Numeric
-        parse_sizeof(*line);        // Other -> Sizeof
+        sizeof_parse(*line);        // Other -> Sizeof
         parse_offset(*line);        // Other -> Offset
         parse_binary(*line);        // Other -> Binary
         parse_macro(*line);         // Other -> Macro
@@ -224,7 +224,7 @@ static int assemble(std::vector<LineData*> lines)
     // 残存パース処理
     for (auto line : lines) {
         struct_replace(line);   // 構造体 -> 数値
-        replace_sizeof(line);   // sizeof -> 数値
+        sizeof_replace(line);   // sizeof -> 数値
         replace_offset(line);   // offset -> 数値
         parse_label_jump(line); // Other -> LabelJump
         parse_org(line);        // Other -> org
