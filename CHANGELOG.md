@@ -1,5 +1,9 @@
 # Change log
 
+## Version 0.9 (beta-9)
+
+- Stricter naming of prohibited items
+
 ## Version 0.8 (beta-8)
 
 - unit test and refactor
