@@ -159,7 +159,7 @@ static int assemble(std::vector<LineData*> lines)
     }
 
     // インクリメント、デクリメント演算子を展開
-    split_increment(&lines);
+    increment_split(&lines);
     if (check_error(lines)) {
         return -1;
     }
