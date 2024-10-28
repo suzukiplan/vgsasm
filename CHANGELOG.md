@@ -1,5 +1,10 @@
 # Change log
 
+## Version 0.10 (beta-10)
+
+- numeric error message detailed
+- `offset`: make error if not contained `.` at the name
+
 ## Version 0.9 (beta-9)
 
 - Stricter naming of prohibited items
