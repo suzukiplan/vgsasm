@@ -361,4 +361,6 @@ N: offset(dummy.var2) --->  0x1
 N: offset(dummy.var3) --->  0x2
 E: offset(dummyy.var3) --->  Undefined structure DUMMYY is specified in offset.
 E: offset(dummy.var4) --->  Field name `VAR4` is not defined in structure `DUMMY`.
+./operand
+N: LD (IX+10), A --->  `LD` `(` <IX> `+` `10` `)` `,` <A>
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
