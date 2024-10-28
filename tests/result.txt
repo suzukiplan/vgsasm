@@ -355,4 +355,10 @@ E: offset hoge.foo) --->  No `(` in offset syntax.
 E: offset (+)   --->  No structure name specified in offset syntax.
 E: offset (hoge) --->  No structure field name specified in offset syntax.
 E: offset (hoge.foo --->  No `)` in offset syntax.
+./offset_replace
+N: offset(dummy.var1) --->  0x0
+N: offset(dummy.var2) --->  0x1
+N: offset(dummy.var3) --->  0x2
+E: offset(dummyy.var3) --->  Undefined structure DUMMYY is specified in offset.
+E: offset(dummy.var4) --->  Field name `VAR4` is not defined in structure `DUMMY`.
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'

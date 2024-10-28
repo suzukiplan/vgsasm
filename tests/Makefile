@@ -18,7 +18,8 @@ TEST_MODULES =\
 	literal \
 	nametable \
 	numeric \
-	offset_parse
+	offset_parse \
+	offset_replace
 
 all:
 	make execute
@@ -46,9 +47,10 @@ execute: ${TEST_MODULES}
 	./nametable
 	./numeric
 	./offset_parse
+	./offset_replace
 
-single: offset_parse
-	./offset_parse
+single: offset_replace
+	./offset_replace
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -105,4 +107,7 @@ numeric: numeric.cpp ${DEPS}
 	${CPP} $< -o $@
 
 offset_parse: offset_parse.cpp ${DEPS}
+	${CPP} $< -o $@
+
+offset_replace: offset_replace.cpp ${DEPS}
 	${CPP} $< -o $@
