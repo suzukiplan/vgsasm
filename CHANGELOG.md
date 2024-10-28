@@ -4,6 +4,7 @@
 
 - Stricter naming of prohibited items
 - Detail the error when a label name containing `@` is undefined
+- Several minor bugfix
 
 ## Version 0.8 (beta-8)
 
