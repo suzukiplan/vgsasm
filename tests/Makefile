@@ -9,7 +9,14 @@ TEST_MODULES =\
 	define_parse \
 	define_replace \
 	enum \
-	formulas_evaluate
+	formulas_evaluate \
+	formulas_evaluate_array \
+	increment \
+	label_parse \
+	label_parse_jump \
+	label_extract_anonymous \
+	literal \
+	nametable
 
 all: ${TEST_MODULES}
 	./assignment
@@ -21,9 +28,16 @@ all: ${TEST_MODULES}
 	./define_replace
 	./enum
 	./formulas_evaluate
+	./formulas_evaluate_array
+	./increment
+	./label_parse
+	./label_parse_jump
+	./label_extract_anonymous
+	./literal
+	./nametable
 
-single: formulas_evaluate
-	./formulas_evaluate
+single: nametable
+	./nametable
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -53,4 +67,25 @@ enum: enum.cpp ${DEPS}
 	${CPP} $< -o $@
 
 formulas_evaluate: formulas_evaluate.cpp ${DEPS}
+	${CPP} $< -o $@
+
+formulas_evaluate_array: formulas_evaluate_array.cpp ${DEPS}
+	${CPP} $< -o $@
+
+increment: increment.cpp ${DEPS}
+	${CPP} $< -o $@
+
+label_parse: label_parse.cpp ${DEPS}
+	${CPP} $< -o $@
+
+label_parse_jump: label_parse_jump.cpp ${DEPS}
+	${CPP} $< -o $@
+
+label_extract_anonymous: label_extract_anonymous.cpp ${DEPS}
+	${CPP} $< -o $@
+
+literal: literal.cpp ${DEPS}
+	${CPP} $< -o $@
+
+nametable: nametable.cpp ${DEPS}
 	${CPP} $< -o $@

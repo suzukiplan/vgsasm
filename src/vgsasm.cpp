@@ -8,6 +8,7 @@
 #include "assignment.hpp"
 #include "binary.hpp"
 #include "bracket.hpp"
+#include "clear.hpp"
 #include "decimal.hpp"
 #include "define.hpp"
 #include "enum.hpp"
@@ -15,6 +16,7 @@
 #include "formulas.hpp"
 #include "increment.hpp"
 #include "label.hpp"
+#include "literal.hpp"
 #include "macro.hpp"
 #include "mnemonic.hpp"
 #include "nametable.hpp"
@@ -51,25 +53,6 @@ static int check_error(std::vector<LineData*> lines)
         ret |= check_error(line);
     }
     return ret;
-}
-
-void clear_delete_token(std::vector<LineData*>* lines)
-{
-    for (auto it1 = lines->begin(); it1 != lines->end();) {
-        auto token = &(*it1)->token;
-        for (auto it2 = token->begin(); it2 != token->end();) {
-            if (it2->first == TokenType::Delete) {
-                token->erase(it2);
-            } else {
-                it2++;
-            }
-        }
-        if (token->empty()) {
-            lines->erase(it1);
-        } else {
-            it1++;
-        }
-    }
 }
 
 static int assemble(std::vector<LineData*> lines)
@@ -166,7 +149,7 @@ static int assemble(std::vector<LineData*> lines)
     }
 
     // 文字列リテラルを無名ラベルの参照に変換し、末尾に無名ラベル+DBを展開
-    extract_string_literal(&lines);
+    string_literal_extract(&lines);
     if (check_error(lines)) {
         return -1;
     }
@@ -350,6 +333,7 @@ static int assemble(const char* path)
 
 int main(int argc, char* argv[])
 {
+    nametable_init();
     char in[1024];
     char out[1024];
     in[0] = 0;
