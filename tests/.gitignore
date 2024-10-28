@@ -15,4 +15,5 @@ label_parse_jump
 label_extract_anonymous
 literal
 nametable
+numeric
 
