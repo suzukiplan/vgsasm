@@ -4,6 +4,7 @@
 
 - numeric error message detailed
 - `offset`: make error if not contained `.` at the name
+- `offset`: Just in case a field name contains a dot
 
 ## Version 0.9 (beta-9)
 
