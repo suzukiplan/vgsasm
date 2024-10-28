@@ -19,7 +19,14 @@ TEST_MODULES =\
 	nametable \
 	numeric
 
-all: ${TEST_MODULES}
+all:
+	make execute
+	@make execute >result.txt
+	@echo Normal case: `cat result.txt | grep -o -c "^N:"`
+	@echo Error case: `cat result.txt | grep -o -c "^E:"`
+	@echo Total: `cat result.txt | grep -o -c "^[NE]:"`
+
+execute: ${TEST_MODULES}
 	./assignment
 	./binary
 	./bracket_to_address
