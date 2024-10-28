@@ -6,7 +6,7 @@
 #pragma once
 #include "common.h"
 
-std::string checkNameTable(std::string name)
+std::string nametable_check(std::string name)
 {
     if (!isalpha(name.c_str()[0])) {
         return "The first letter is not an alphabetic letter: " + name;
@@ -17,9 +17,9 @@ std::string checkNameTable(std::string name)
     }
 }
 
-void addNameTable(std::string name, LineData* line)
+void nametable_add(std::string name, LineData* line)
 {
-    auto errmsg = checkNameTable(name);
+    auto errmsg = nametable_check(name);
     if (!errmsg.empty()) {
         line->error = true;
         line->errmsg = errmsg;
@@ -31,16 +31,16 @@ void addNameTable(std::string name, LineData* line)
 void nametable_init()
 {
     for (auto mnemonic : mnemonicTable) {
-        addNameTable(mnemonic.first, nullptr);
+        nametable_add(mnemonic.first, nullptr);
     }
     for (auto operand : operandTable) {
-        addNameTable(operand.first, nullptr);
+        nametable_add(operand.first, nullptr);
     }
-    addNameTable("SIZEOF", nullptr);
-    addNameTable("OFFSET", nullptr);
-    addNameTable("STRUCT", nullptr);
-    addNameTable("ENUM", nullptr);
-    addNameTable("DS.B", nullptr);
-    addNameTable("DS.W", nullptr);
-    addNameTable("ORG", nullptr);
+    nametable_add("SIZEOF", nullptr);
+    nametable_add("OFFSET", nullptr);
+    nametable_add("STRUCT", nullptr);
+    nametable_add("ENUM", nullptr);
+    nametable_add("DS.B", nullptr);
+    nametable_add("DS.W", nullptr);
+    nametable_add("ORG", nullptr);
 }

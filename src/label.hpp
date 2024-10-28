@@ -48,7 +48,7 @@ LineData* label_parse(LineData* line)
     }
 
     // ラベルの禁則チェック
-    addNameTable(label, line);
+    nametable_add(label, line);
     if (line->error) {
         return nullptr;
     }
