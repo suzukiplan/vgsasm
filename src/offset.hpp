@@ -22,6 +22,11 @@ void offset_parse(LineData* line)
                 it++;
                 if (it == line->token.end() || it->first != TokenType::Other) {
                     line->error = true;
+                    line->errmsg = "No structure name specified in offset syntax.";
+                    return;
+                }
+                if (-1 == it->second.find('.')) {
+                    line->error = true;
                     line->errmsg = "No structure field name specified in offset syntax.";
                     return;
                 }
