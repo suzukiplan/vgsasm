@@ -97,6 +97,22 @@ void label_parse_jump(LineData* line)
                 line->error = true;
                 line->errmsg = "Unknown label specified: " + it->second;
                 return;
+            } else {
+                // @ が含まれる場合はチェック
+                auto at = labelName.find("@");
+                if (-1 != at) {
+                    auto atLeft = labelName.substr(0, at);
+                    auto atRight = labelName.substr(at + 1);
+                    if (labelTable.end() == labelTable.find(atRight)) {
+                        line->error = true;
+                        line->errmsg = "Label `" + atRight + "` is undefined.";
+                        return;
+                    } else {
+                        line->error = true;
+                        line->errmsg = "Label `@" + atLeft + "` is undefined in `" + atRight + "`.";
+                        return;
+                    }
+                }
             }
         }
     }
