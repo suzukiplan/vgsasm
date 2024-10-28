@@ -18,4 +18,5 @@ nametable
 numeric
 offset_parse
 offset_replace
+operand
 
