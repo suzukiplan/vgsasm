@@ -363,4 +363,14 @@ E: offset(dummyy.var3) --->  Undefined structure DUMMYY is specified in offset.
 E: offset(dummy.var4) --->  Field name `VAR4` is not defined in structure `DUMMY`.
 ./operand
 N: LD (IX+10), A --->  `LD` `(` <IX> `+` `10` `)` `,` <A>
+./org
+N: org $100     --->  `256`
+E: a org        --->  `org` must appear at the beginning of the line.
+E: org          --->  `org` address is not specified.
+E: org hoge     --->  Unexpected symbol: HOGE
+N: org 0xFFFF   --->  `65535`
+E: org 65536    --->  `org` address is incorrect: 65536
+E: org 65535 org --->  Unexpected symbol: ORG
+E: org 65534    --->  Multiple orgs must be written in ascending order from the beginning of the line.
+E: org 65535    --->  Multiple orgs must be written in ascending order from the beginning of the line.
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
