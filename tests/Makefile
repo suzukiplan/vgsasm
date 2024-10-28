@@ -15,7 +15,8 @@ TEST_MODULES =\
 	label_parse \
 	label_parse_jump \
 	label_extract_anonymous \
-	literal
+	literal \
+	nametable
 
 all: ${TEST_MODULES}
 	./assignment
@@ -33,9 +34,10 @@ all: ${TEST_MODULES}
 	./label_parse_jump
 	./label_extract_anonymous
 	./literal
+	./nametable
 
-single: literal
-	./literal
+single: nametable
+	./nametable
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -83,4 +85,7 @@ label_extract_anonymous: label_extract_anonymous.cpp ${DEPS}
 	${CPP} $< -o $@
 
 literal: literal.cpp ${DEPS}
+	${CPP} $< -o $@
+
+nametable: nametable.cpp ${DEPS}
 	${CPP} $< -o $@
