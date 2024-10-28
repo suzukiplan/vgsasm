@@ -82,9 +82,13 @@ void label_parse_jump(LineData* line)
                     line->errmsg = "Unknown label specified: " + it->second;
                     return;
                 }
-                labelName = &str[1];
-                labelName += "@" + lastLabel->second;
-                errorIfNotFound = true;
+                if (str[1]) {
+                    labelName = &str[1];
+                    labelName += "@" + lastLabel->second;
+                    errorIfNotFound = true;
+                } else {
+                    continue; // Skip @ only (anonymous)
+                }
             } else {
                 labelName = it->second;
                 errorIfNotFound = false;

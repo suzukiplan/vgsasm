@@ -73,6 +73,7 @@ int main()
         test_error("JR @Unknown", "Unknown label specified: @UNKNOWN");
         test_error("JR LABEL@Unknown", "Label `UNKNOWN` is undefined.");
         test_error("JR UNKNOWN@LABEL1", "Label `@UNKNOWN` is undefined in `LABEL1`.");
+        test_normal("JR @", 2, TokenType::Other, "JR", TokenType::Other, "@");
     } catch (...) {
         return -1;
     }
