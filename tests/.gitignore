@@ -16,4 +16,5 @@ label_extract_anonymous
 literal
 nametable
 numeric
+offset_parse
 

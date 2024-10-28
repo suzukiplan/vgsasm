@@ -17,7 +17,8 @@ TEST_MODULES =\
 	label_extract_anonymous \
 	literal \
 	nametable \
-	numeric
+	numeric \
+	offset_parse
 
 all:
 	make execute
@@ -44,9 +45,10 @@ execute: ${TEST_MODULES}
 	./literal
 	./nametable
 	./numeric
+	./offset_parse
 
-single: numeric
-	./numeric
+single: offset_parse
+	./offset_parse
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -100,4 +102,7 @@ nametable: nametable.cpp ${DEPS}
 	${CPP} $< -o $@
 
 numeric: numeric.cpp ${DEPS}
+	${CPP} $< -o $@
+
+offset_parse: offset_parse.cpp ${DEPS}
 	${CPP} $< -o $@

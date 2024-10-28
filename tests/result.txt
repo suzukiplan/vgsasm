@@ -349,4 +349,10 @@ E: $00fg        --->  Invalid hexadecimal number: $00FG
 N: %10101       --->  0x15
 N: 0b01010      --->  0xA
 E: %0102        --->  Invalid binary number: %0102
+./offset_parse
+N: offset(hoge.foo) --->  `HOGE.FOO`
+E: offset hoge.foo) --->  No `(` in offset syntax.
+E: offset (+)   --->  No structure name specified in offset syntax.
+E: offset (hoge) --->  No structure field name specified in offset syntax.
+E: offset (hoge.foo --->  No `)` in offset syntax.
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
