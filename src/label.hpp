@@ -148,11 +148,27 @@ void label_extract_anonymous(std::vector<LineData*>* lines)
                     break;
                 }
                 token->first = TokenType::LabelJump;
-                auto jump = atoi(token->second.c_str());
+                auto jumpNum = token->second.c_str();
+                for (int i = 0; jumpNum[i]; i++) {
+                    if (!isdigit(jumpNum[i])) {
+                        line->error = true;
+                        line->errmsg = "Unexpected symbol specified: " + token->second;
+                        break;
+                    }
+                }
+                if (line->error) {
+                    break;
+                }
+                if (token + 1 != line->token.end()) {
+                    line->error = true;
+                    line->errmsg = "Unexpected symbol specified: " + (token + 1)->second;
+                    break;
+                }
+                auto jump = atoi(jumpNum);
                 auto label = (isPlus ? "$@+" : "$@-") + std::to_string(jump) + "#" + std::to_string(count++);
                 token->second = label;
                 for (int i = 0; i < jump; i++) {
-                    if (it == lines->begin() || it == lines->end()) {
+                    if ((it == lines->begin() && !isPlus) || (it == lines->end() && isPlus)) {
                         line->error = true;
                         line->errmsg = "Anonymous label position ";
                         line->errmsg += isPlus ? "overflow." : "underflow";
