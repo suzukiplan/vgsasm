@@ -49,6 +49,7 @@ void offset_replace(LineData* line)
         if (it->first == TokenType::Offset) {
             auto dot = it->second.find(".");
             if (-1 == dot) {
+                // NOTE: this error case will not pass
                 line->error = true;
                 line->errmsg = "No structure field name specified in `offset`: " + it->second;
                 return;
