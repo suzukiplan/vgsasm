@@ -76,19 +76,15 @@ void label_parse_jump(LineData* line)
             std::string labelName;
             bool errorIfNotFound;
             auto str = it->second.c_str();
-            if ('@' == str[0]) {
+            if ('@' == str[0] && 0 != str[1]) {
                 if (lastLabel == line->token.end()) {
                     line->error = true;
                     line->errmsg = "Unknown label specified: " + it->second;
                     return;
                 }
-                if (str[1]) {
-                    labelName = &str[1];
-                    labelName += "@" + lastLabel->second;
-                    errorIfNotFound = true;
-                } else {
-                    continue; // Skip @ only (anonymous)
-                }
+                labelName = &str[1];
+                labelName += "@" + lastLabel->second;
+                errorIfNotFound = true;
             } else {
                 labelName = it->second;
                 errorIfNotFound = false;
@@ -104,7 +100,7 @@ void label_parse_jump(LineData* line)
             } else {
                 // @ が含まれる場合はチェック
                 auto at = labelName.find("@");
-                if (-1 != at) {
+                if (-1 != at && labelName != "@") {
                     auto atLeft = labelName.substr(0, at);
                     auto atRight = labelName.substr(at + 1);
                     if (labelTable.end() == labelTable.find(atRight)) {
