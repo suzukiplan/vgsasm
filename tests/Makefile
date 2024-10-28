@@ -14,7 +14,8 @@ TEST_MODULES =\
 	increment \
 	label_parse \
 	label_parse_jump \
-	label_extract_anonymous
+	label_extract_anonymous \
+	literal
 
 all: ${TEST_MODULES}
 	./assignment
@@ -31,9 +32,10 @@ all: ${TEST_MODULES}
 	./label_parse
 	./label_parse_jump
 	./label_extract_anonymous
+	./literal
 
-single: label_extract_anonymous
-	./label_extract_anonymous
+single: literal
+	./literal
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -78,4 +80,7 @@ label_parse_jump: label_parse_jump.cpp ${DEPS}
 	${CPP} $< -o $@
 
 label_extract_anonymous: label_extract_anonymous.cpp ${DEPS}
+	${CPP} $< -o $@
+
+literal: literal.cpp ${DEPS}
 	${CPP} $< -o $@
