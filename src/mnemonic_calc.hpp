@@ -69,7 +69,7 @@ void mnemonic_calc8(LineData* line, uint8_t code)
                        line->token[4].first == TokenType::Numeric &&
                        line->token[5].first == TokenType::AddressEnd) {
                 auto n = atoi(line->token[4].second.c_str());
-                if (mnemonic_range(line, n, 0, 128)) {
+                if (mnemonic_range(line, -n, -128, 0)) {
                     line->machine.push_back((0 - n) & 0xFF);
                 }
             } else {

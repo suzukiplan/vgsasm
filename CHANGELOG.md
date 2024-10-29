@@ -4,6 +4,7 @@
 
 - `#macro` must appear at the beginning of the line.
 - Fixed an error message when the start scope of a `#macro` was not defined at the expected position.
+- Fixed message when `d` in `IX-d` is out of range error.
 
 ## Version 0.10 (beta-10)
 
