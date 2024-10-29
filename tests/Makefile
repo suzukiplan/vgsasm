@@ -148,6 +148,11 @@ check: check.cpp
 
 mnemonic:
 	${MAK} mnemonic_bit_tests
+	${MAK} mnemonic_calc_tests
+
+mnemonic_calc_tests: check ../vgsasm
+	@echo Testing: mnemonic calc
+	${MAK} normal_case src=m_calc8_o
 
 mnemonic_bit_tests: check ../vgsasm
 	@echo Testing: mnemonic bits
