@@ -27,8 +27,12 @@ TEST_MODULES =\
 	sizeof_replace
 
 all:
-	make execute
-	@make execute >result.txt
+	${MAK} execute
+	${MAK} execute >result.txt
+	${MAK} show_result_count
+	${MAK} show_result_count >>result.txt
+
+show_result_count:
 	@echo Normal case: `cat result.txt | grep -o -c "^N:"`
 	@echo Error case: `cat result.txt | grep -o -c -e "^E:" -e "^Error:"`
 	@echo Total: `cat result.txt | grep -o -c "^[NE]:"`
@@ -58,6 +62,8 @@ execute: ${TEST_MODULES}
 	./sizeof_parse
 	./sizeof_replace
 	${MAK} struct_tests
+	${MAK} macro_tests
+	${MAK} mnemonic
 
 single: sizeof_replace
 	./sizeof_replace
@@ -139,6 +145,88 @@ check: check.cpp
 
 ../vgsasm: ../src/*
 	cd .. && make
+
+mnemonic:
+	${MAK} mnemonic_bit_tests
+	${MAK} mnemonic_calc_tests
+
+mnemonic_calc_tests: check ../vgsasm
+	@echo Testing: mnemonic calc8
+	${MAK} normal_case src=m_calc8_o
+	@./check "`../vgsasm m_calc8_o_ill.asm`" "Illegal 8-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc8_n
+	@./check "`../vgsasm m_calc8_n_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_calc8_n_range2.asm`" "Numerical range incorrect: 256"
+	${MAK} normal_case src=m_calc8_n_range3
+	${MAK} normal_case src=m_calc8_ao
+	@./check "`../vgsasm m_calc8_ao_ill1.asm`" "Illegal 8-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc8_ao_ill2.asm`" "Illegal 8-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc8_ao_ill3.asm`" "Illegal 8-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc8_os
+	@./check "`../vgsasm m_calc8_os_ill.asm`" "Illegal 8-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc8_ill.asm`" "Illegal 8-bit arithmetic instruction."
+	@echo Testing: mnemonic calc16
+	${MAK} normal_case src=m_calc16_add_bc_a
+	${MAK} normal_case src=m_calc16_add_de_a
+	${MAK} normal_case src=m_calc16_add_hl_a
+	${MAK} normal_case src=m_calc16_hl_rr
+	@./check "`../vgsasm m_calc16_hl_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_ix_rr
+	@./check "`../vgsasm m_calc16_ix_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_iy_rr
+	@./check "`../vgsasm m_calc16_iy_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc16_oso_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_osn
+	@./check "`../vgsasm m_calc16_osn_range1.asm`" "Numerical range incorrect: -32769"
+	@./check "`../vgsasm m_calc16_osn_range2.asm`" "Numerical range incorrect: 65536"
+	@./check "`../vgsasm m_calc16_osn_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_osaoa
+	@./check "`../vgsasm m_calc16_osaoa_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_osaopna
+	@./check "`../vgsasm m_calc16_osaopna_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_calc16_osaopna_range2.asm`" "Numerical range incorrect: 127"
+	@./check "`../vgsasm m_calc16_osaopna_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc16_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc_ill1.asm`" "Illegal arithmetic instruction."
+	@./check "`../vgsasm m_calc_ill2.asm`" "Illegal arithmetic instruction."
+	${MAK} normal_case src=m_calc_ana
+	@./check "`../vgsasm m_calc_ana_range.asm`" "Numerical range incorrect: 65536"
+
+mnemonic_bit_tests: check ../vgsasm
+	@echo Testing: mnemonic bits
+	${MAK} normal_case src=m_bit_nso
+	@./check "`../vgsasm m_bit_nso_range.asm`" "Numerical range incorrect: 8"
+	@./check "`../vgsasm m_bit_nso_ill.asm`" "Illegal BIT/SET/RES instruction."
+	${MAK} normal_case src=m_bit_nsaoa
+	@./check "`../vgsasm m_bit_nsaoa_range.asm`" "Numerical range incorrect: 8"
+	@./check "`../vgsasm m_bit_nsaoa_ill.asm`" "Illegal BIT/SET/RES instruction."
+	${MAK} normal_case src=m_bit_nsaopna
+	@./check "`../vgsasm m_bit_nsaopna_range1.asm`" "Numerical range incorrect: 8"
+	@./check "`../vgsasm m_bit_nsaopna_range2.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_bit_nsaopna_range3.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_bit_ill.asm`" "Illegal BIT/SET/RES instruction."
+
+macro_tests: check ../vgsasm
+	@echo Testing: macro
+	@./check "`../vgsasm macro_notop.asm`" "\`#macro\` must appear at the beginning of the line."
+	@./check "`../vgsasm macro_only.asm`" "Invalid #macro syntax."
+	@./check "`../vgsasm macro_dup.asm`" "Duplicate #macro names are defined: FOO"
+	@./check "`../vgsasm macro_nobrk.asm`" "Invalid #macro syntax. (Parentheses)"
+	@./check "`../vgsasm macro_nocma.asm`" "Invalid #macro syntax. (Arguments not separated by commas)"
+	@./check "`../vgsasm macro_argop.asm`" "Invalid #macro syntax. (Invalid argument name: HL)"
+	@./check "`../vgsasm macro_argdup.asm`" "Invalid #macro syntax. (Duplicate argument names: ARG1)"
+	@./check "`../vgsasm macro_nobrk2.asm`" "\`(\` is not closed with \`)\`."
+	@./check "`../vgsasm macro_nobrk3.asm`" "Unspecified bracket for macro call."
+	@./check "`../vgsasm macro_nobrk4.asm`" "Unexpected symbol: A"
+	@./check "`../vgsasm macro_unexpect.asm`" "Unexpected symbol: B"
+	@./check "`../vgsasm macro_conflict.asm`" "A macro argument name conflict with the name used for structs, defines, etc.: ARG1"
+	@./check "`../vgsasm macro_noscp.asm`" "Detect symbols that are not in the start scope of the macro: LD"
+	@./check "`../vgsasm macro_circulating.asm`" "Macro calls are circulating: HOGE"
+	@./check "`../vgsasm macro_nosplit.asm`" "Unexpected macro argument symbol: 2"
+	@./check "`../vgsasm macro_nospa.asm`" "Invalid macro argument type: )"
+	@./check "`../vgsasm macro_itype.asm`" "Invalid macro argument type: HL"
+	@./check "`../vgsasm macro_noarg.asm`" "Macro argument mismatch: FOO"
+	${MAK} normal_case src=macro_normal
 
 struct_tests: check ../vgsasm
 	@echo Testing: struct

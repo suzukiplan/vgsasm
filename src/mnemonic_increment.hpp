@@ -52,7 +52,7 @@ void mnemonic_INC(LineData* line)
                 return;
             }
         } else {
-            if (!mnemonic_range(line, n, 0, 128)) {
+            if (!mnemonic_range(line, -n, -128, 0)) {
                 return;
             }
             n = 0 - n;
@@ -113,7 +113,7 @@ void mnemonic_DEC(LineData* line)
                 return;
             }
         } else {
-            if (!mnemonic_range(line, n, 0, 128)) {
+            if (!mnemonic_range(line, -n, -128, 0)) {
                 return;
             }
             n = 0 - n;
