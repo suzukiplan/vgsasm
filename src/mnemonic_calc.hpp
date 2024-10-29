@@ -45,7 +45,7 @@ void mnemonic_calc8(LineData* line, uint8_t code)
                line->token[2].first == TokenType::Operand) {
         auto op = operandTable[line->token[2].second];
         if (op == Operand::HL) {
-            if (4 != line->token.size() && line->token[3].first == TokenType::AddressEnd) {
+            if (4 != line->token.size() || line->token[3].first != TokenType::AddressEnd) {
                 line->error = true;
                 line->errmsg = "Illegal 8-bit arithmetic instruction.";
             } else {
