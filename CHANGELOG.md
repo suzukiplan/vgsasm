@@ -6,6 +6,7 @@
 - Fixed an error message when the start scope of a `#macro` was not defined at the expected position.
 - Fixed message when `d` in `IX-d` is out of range error.
 - Fixed a bug that `ADD (HL+3)` etc. were assembled as `ADD (HL)` without error.
+- Fixed a bug that caused `SUB {BC|DE|HL}, A` to incorrectly become `ADD {BC|DE|HL},A`.
 
 ## Version 0.10 (beta-10)
 

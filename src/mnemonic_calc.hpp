@@ -113,19 +113,19 @@ void mnemonic_calc16(LineData* line, uint8_t code)
     if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Operand)) {
         auto op1 = operandTable[line->token[1].second];
         auto op2 = operandTable[line->token[3].second];
-        if (op1 == Operand::BC && op2 == Operand::A) {
+        if (mne == Mnemonic::ADD && op1 == Operand::BC && op2 == Operand::A) {
             ML_ADD_A_C;
             ML_LD_C_A;
             ML_JR_NC(1);
             ML_INC_B;
             return;
-        } else if (op1 == Operand::DE && op2 == Operand::A) {
+        } else if (mne == Mnemonic::ADD && op1 == Operand::DE && op2 == Operand::A) {
             ML_ADD_A_E;
             ML_LD_E_A;
             ML_JR_NC(1);
             ML_INC_D;
             return;
-        } else if (op1 == Operand::HL && op2 == Operand::A) {
+        } else if (mne == Mnemonic::ADD && op1 == Operand::HL && op2 == Operand::A) {
             ML_ADD_A_L;
             ML_LD_L_A;
             ML_JR_NC(1);
