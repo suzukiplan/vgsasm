@@ -632,6 +632,65 @@ m_calc8_n_range3.asm:0005 $0008 <ADD> 0x7F
 m_calc8_n_range3.asm:0006 $000A <ADD> 0x80
 m_calc8_n_range3.asm:0007 $000C <ADD> 0xFF
 diff m_calc8_n_range3.bin m_calc8_n_range3.exp
-Normal case: 125
+N: m_calc8_ao
+../vgsasm m_calc8_ao.asm -v
+  m_calc8_ao.asm:0001 $0000 <ADD> _( <HL> )_
+  m_calc8_ao.asm:0002 $0001 <ADD> _( <IX> )_
+  m_calc8_ao.asm:0003 $0004 <ADD> _( <IY> )_
+  m_calc8_ao.asm:0004 $0007 <ADD> _( <IX> `-` 0x80 )_
+  m_calc8_ao.asm:0005 $000A <ADD> _( <IY> `-` 0x80 )_
+  m_calc8_ao.asm:0006 $000D <ADD> _( <IX> `+` 0x7F )_
+  m_calc8_ao.asm:0007 $0010 <ADD> _( <IY> `+` 0x7F )_
+  m_calc8_ao.asm:0009 $0013 <ADC> _( <HL> )_
+  m_calc8_ao.asm:0010 $0014 <ADC> _( <IX> )_
+  m_calc8_ao.asm:0011 $0017 <ADC> _( <IY> )_
+  m_calc8_ao.asm:0012 $001A <ADC> _( <IX> `-` 0x80 )_
+  m_calc8_ao.asm:0013 $001D <ADC> _( <IY> `-` 0x80 )_
+  m_calc8_ao.asm:0014 $0020 <ADC> _( <IX> `+` 0x7F )_
+  m_calc8_ao.asm:0015 $0023 <ADC> _( <IY> `+` 0x7F )_
+  m_calc8_ao.asm:0017 $0026 <SUB> _( <HL> )_
+  m_calc8_ao.asm:0018 $0027 <SUB> _( <IX> )_
+  m_calc8_ao.asm:0019 $002A <SUB> _( <IY> )_
+  m_calc8_ao.asm:0020 $002D <SUB> _( <IX> `-` 0x80 )_
+  m_calc8_ao.asm:0021 $0030 <SUB> _( <IY> `-` 0x80 )_
+  m_calc8_ao.asm:0022 $0033 <SUB> _( <IX> `+` 0x7F )_
+  m_calc8_ao.asm:0023 $0036 <SUB> _( <IY> `+` 0x7F )_
+  m_calc8_ao.asm:0025 $0039 <SBC> _( <HL> )_
+  m_calc8_ao.asm:0026 $003A <SBC> _( <IX> )_
+  m_calc8_ao.asm:0027 $003D <SBC> _( <IY> )_
+  m_calc8_ao.asm:0028 $0040 <SBC> _( <IX> `-` 0x80 )_
+  m_calc8_ao.asm:0029 $0043 <SBC> _( <IY> `-` 0x80 )_
+  m_calc8_ao.asm:0030 $0046 <SBC> _( <IX> `+` 0x7F )_
+  m_calc8_ao.asm:0031 $0049 <SBC> _( <IY> `+` 0x7F )_
+  m_calc8_ao.asm:0033 $004C <CP> _( <HL> )_
+  m_calc8_ao.asm:0034 $004D <CP> _( <IX> )_
+  m_calc8_ao.asm:0035 $0050 <CP> _( <IY> )_
+  m_calc8_ao.asm:0036 $0053 <CP> _( <IX> `-` 0x80 )_
+  m_calc8_ao.asm:0037 $0056 <CP> _( <IY> `-` 0x80 )_
+  m_calc8_ao.asm:0038 $0059 <CP> _( <IX> `+` 0x7F )_
+  m_calc8_ao.asm:0039 $005C <CP> _( <IY> `+` 0x7F )_
+  m_calc8_ao.asm:0041 $005F <AND> _( <HL> )_
+  m_calc8_ao.asm:0042 $0060 <AND> _( <IX> )_
+  m_calc8_ao.asm:0043 $0063 <AND> _( <IY> )_
+  m_calc8_ao.asm:0044 $0066 <AND> _( <IX> `-` 0x80 )_
+  m_calc8_ao.asm:0045 $0069 <AND> _( <IY> `-` 0x80 )_
+  m_calc8_ao.asm:0046 $006C <AND> _( <IX> `+` 0x7F )_
+  m_calc8_ao.asm:0047 $006F <AND> _( <IY> `+` 0x7F )_
+  m_calc8_ao.asm:0049 $0072 <OR> _( <HL> )_
+  m_calc8_ao.asm:0050 $0073 <OR> _( <IX> )_
+  m_calc8_ao.asm:0051 $0076 <OR> _( <IY> )_
+  m_calc8_ao.asm:0052 $0079 <OR> _( <IX> `-` 0x80 )_
+  m_calc8_ao.asm:0053 $007C <OR> _( <IY> `-` 0x80 )_
+  m_calc8_ao.asm:0054 $007F <OR> _( <IX> `+` 0x7F )_
+  m_calc8_ao.asm:0055 $0082 <OR> _( <IY> `+` 0x7F )_
+  m_calc8_ao.asm:0057 $0085 <XOR> _( <HL> )_
+  m_calc8_ao.asm:0058 $0086 <XOR> _( <IX> )_
+  m_calc8_ao.asm:0059 $0089 <XOR> _( <IY> )_
+  m_calc8_ao.asm:0060 $008C <XOR> _( <IX> `-` 0x80 )_
+  m_calc8_ao.asm:0061 $008F <XOR> _( <IY> `-` 0x80 )_
+  m_calc8_ao.asm:0062 $0092 <XOR> _( <IX> `+` 0x7F )_
+  m_calc8_ao.asm:0063 $0095 <XOR> _( <IY> `+` 0x7F )_
+diff m_calc8_ao.bin m_calc8_ao.exp
+Normal case: 126
 Error case: 138
-Total: 263
+Total: 264
