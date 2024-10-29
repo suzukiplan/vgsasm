@@ -386,5 +386,6 @@ E: Error: struct_dup_field.asm (3) Duplicate field name `VAR1` in struct `HOGE` 
 E: Error: struct_arrow_no.asm (1) Incorrect syntax for struct arrow. ... OK
 E: Error: struct_arrow_same.asm (1) Incorrect syntax for struct arrow. ... OK
 E: Error: struct_arrow_inval.asm (1) Incorrect syntax for struct arrow. ... OK
+E: Error: struct_arrow_array_empty.asm (1) Unexpected token: ] ... OK
 make[2]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'

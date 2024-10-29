@@ -144,3 +144,4 @@ struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_arrow_no.asm`" "Error: struct_arrow_no.asm (1) Incorrect syntax for struct arrow."
 	@./check "`../vgsasm struct_arrow_same.asm`" "Error: struct_arrow_same.asm (1) Incorrect syntax for struct arrow."
 	@./check "`../vgsasm struct_arrow_inval.asm`" "Error: struct_arrow_inval.asm (1) Incorrect syntax for struct arrow."
+	@./check "`../vgsasm struct_arrow_array_empty.asm`" "Error: struct_arrow_array_empty.asm (1) Unexpected token: ]"
