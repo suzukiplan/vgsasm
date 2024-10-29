@@ -9,10 +9,10 @@ int main(int argc, char* argv[])
         exit(-1);
     }
     if (0 == strcmp(argv[1], argv[2])) {
-        printf("E: %s ... OK\n", argv[1]);
+        printf("%s ... OK\n", argv[1]);
         return 0;
     } else {
-        printf("E: %s ... NG! <%s>\n", argv[1], argv[2]);
+        printf("%s ... NG! <%s>\n", argv[1], argv[2]);
         return -1;
     }
 }
