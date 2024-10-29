@@ -145,5 +145,6 @@ struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_arrow_no.asm`" "Incorrect syntax for struct arrow."
 	@./check "`../vgsasm struct_arrow_same.asm`" "Incorrect syntax for struct arrow."
 	@./check "`../vgsasm struct_arrow_inval.asm`" "Incorrect syntax for struct arrow."
-	@./check "`../vgsasm struct_arrow_array_empty.asm`" "Unexpected token: ]"
-	@./check "`../vgsasm struct_arrow_array_inval.asm`" "Unexpected token: HIGE"
+	@./check "`../vgsasm struct_arrow_array_empty.asm`" "Unexpected symbol: ]"
+	@./check "`../vgsasm struct_arrow_array_inval.asm`" "Unexpected symbol: HIGE"
+	@./check "`../vgsasm struct_arrow_array_uex.asm`" "Unexpected symbol: 2"

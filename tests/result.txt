@@ -387,7 +387,8 @@ E: Duplicate field name `VAR1` in struct `HOGE` ... OK
 E: Incorrect syntax for struct arrow. ... OK
 E: Incorrect syntax for struct arrow. ... OK
 E: Incorrect syntax for struct arrow. ... OK
-E: Unexpected token: ] ... OK
-E: Unexpected token: HIGE ... OK
+E: Unexpected symbol: ] ... OK
+E: Unexpected symbol: HIGE ... OK
+E: Unexpected symbol: 2 ... OK
 make[2]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
