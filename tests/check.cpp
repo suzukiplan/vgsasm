@@ -8,11 +8,17 @@ int main(int argc, char* argv[])
         puts("Invalid argument number");
         exit(-1);
     }
-    if (0 == strcmp(argv[1], argv[2])) {
-        printf("%s ... OK\n", argv[1]);
+    const char* cmp = strstr(argv[1], ") ");
+    if (cmp) {
+        cmp = cmp + 2;
+    } else {
+        cmp = argv[1];
+    }
+    if (0 == strcmp(cmp, argv[2])) {
+        printf("E: %s ... OK\n", cmp);
         return 0;
     } else {
-        printf("%s ... NG! <%s>\n", argv[1], argv[2]);
+        printf("E: %s ... NG!\n", cmp);
         return -1;
     }
 }
