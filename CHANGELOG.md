@@ -1,5 +1,9 @@
 # Change log
 
+## Version 0.11 (beta-11)
+
+- `#macro` must appear at the beginning of the line.
+
 ## Version 0.10 (beta-10)
 
 - Support unspecified address structure
