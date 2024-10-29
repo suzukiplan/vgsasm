@@ -883,6 +883,20 @@ E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 127 ... OK
 E: Illegal 16-bit arithmetic instruction. ... OK
 E: Illegal 16-bit arithmetic instruction. ... OK
-Normal case: 136
-Error case: 155
-Total: 291
+E: Illegal arithmetic instruction. ... OK
+E: Illegal arithmetic instruction. ... OK
+N: m_calc_ana
+../vgsasm m_calc_ana.asm -v
+  m_calc_ana.asm:0001 $0000 <ADD> _( 0x0 )_
+  m_calc_ana.asm:0002 $0007 <ADD> _( 0xFFFF )_
+  m_calc_ana.asm:0003 $000E <ADC> _( 0x0 )_
+  m_calc_ana.asm:0004 $0015 <ADC> _( 0xFFFF )_
+  m_calc_ana.asm:0005 $001C <SUB> _( 0x0 )_
+  m_calc_ana.asm:0006 $0023 <SUB> _( 0xFFFF )_
+  m_calc_ana.asm:0007 $002A <SBC> _( 0x0 )_
+  m_calc_ana.asm:0008 $0031 <SBC> _( 0xFFFF )_
+diff m_calc_ana.bin m_calc_ana.exp
+E: Numerical range incorrect: 65536 ... OK
+Normal case: 137
+Error case: 158
+Total: 295
