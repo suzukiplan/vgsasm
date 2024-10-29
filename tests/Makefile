@@ -152,6 +152,8 @@ struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_arrow_array_zero.asm`" "struct array must have a value of 1 or more: 0"
 	@./check "`../vgsasm struct_noaddr.asm`" "Incorrect syntax for struct: ADDR"
 	${MAK} normal_case src=struct_noaddr2
+	@./check "`../vgsasm struct_noscope1.asm`" "Invalid \`}\` without corresponding \`{\`."
+	@./check "`../vgsasm struct_noscope2.asm`" "The scope \`{\` specified in this line is not closed with \`}\`."
 
 normal_case:
 	@echo N: ${src}

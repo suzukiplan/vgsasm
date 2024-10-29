@@ -395,4 +395,6 @@ N: struct_noaddr2
 ../vgsasm struct_noaddr2.asm -v
 struct_noaddr2.asm:0005 $0000 <LD> <HL> `,` 0x0
 diff struct_noaddr2.bin struct_noaddr2.exp
+E: Invalid `}` without corresponding `{`. ... OK
+E: The scope `{` specified in this line is not closed with `}`. ... OK
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
