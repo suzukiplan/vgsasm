@@ -157,6 +157,11 @@ mnemonic_bit_tests: check ../vgsasm
 	${MAK} normal_case src=m_bit_nsaoa
 	@./check "`../vgsasm m_bit_nsaoa_range.asm`" "Numerical range incorrect: 8"
 	@./check "`../vgsasm m_bit_nsaoa_ill.asm`" "Illegal BIT/SET/RES instruction."
+	${MAK} normal_case src=m_bit_nsaopna
+	@./check "`../vgsasm m_bit_nsaopna_range1.asm`" "Numerical range incorrect: 8"
+	@./check "`../vgsasm m_bit_nsaopna_range2.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_bit_nsaopna_range3.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_bit_ill.asm`" "Illegal BIT/SET/RES instruction."
 
 macro_tests: check ../vgsasm
 	@echo Testing: macro

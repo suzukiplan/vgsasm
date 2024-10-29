@@ -505,6 +505,17 @@ N: m_bit_nsaoa
 diff m_bit_nsaoa.bin m_bit_nsaoa.exp
 E: Numerical range incorrect: 8 ... OK
 E: Illegal BIT/SET/RES instruction. ... OK
-Normal case: 121
-Error case: 131
-Total: 252
+N: m_bit_nsaopna
+../vgsasm m_bit_nsaopna.asm -v
+m_bit_nsaopna.asm:0001 $0000 <BIT> 0x0 `,` _( <IX> `-` 0x80 )_
+m_bit_nsaopna.asm:0002 $0004 <BIT> 0x7 `,` _( <IX> `+` 0x7F )_
+m_bit_nsaopna.asm:0003 $0008 <BIT> 0x4 `,` _( <IY> `+` 0x0 )_
+m_bit_nsaopna.asm:0004 $000C <BIT> 0x5 `,` _( <IY> `-` 0x1 )_
+diff m_bit_nsaopna.bin m_bit_nsaopna.exp
+E: Numerical range incorrect: 8 ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Illegal BIT/SET/RES instruction. ... OK
+Normal case: 122
+Error case: 135
+Total: 257
