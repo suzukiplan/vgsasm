@@ -141,3 +141,6 @@ check: check.cpp
 
 struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_dup_field.asm`" "Error: struct_dup_field.asm (3) Duplicate field name \`VAR1\` in struct \`HOGE\`"
+	@./check "`../vgsasm struct_arrow_no.asm`" "Error: struct_arrow_no.asm (1) Incorrect syntax for struct arrow."
+	@./check "`../vgsasm struct_arrow_same.asm`" "Error: struct_arrow_same.asm (1) Incorrect syntax for struct arrow."
+	@./check "`../vgsasm struct_arrow_inval.asm`" "Error: struct_arrow_inval.asm (1) Incorrect syntax for struct arrow."

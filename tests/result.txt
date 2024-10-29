@@ -383,5 +383,8 @@ N: sizeof(dummy) --->  0x3
 E: sizeof(dummyy) --->  Undefined structure DUMMYY is specified in sizeof.
 make[2]: Entering directory '/home/suzukiplan/dev/vgsasm/tests'
 E: Error: struct_dup_field.asm (3) Duplicate field name `VAR1` in struct `HOGE` ... OK
+E: Error: struct_arrow_no.asm (1) Incorrect syntax for struct arrow. ... OK
+E: Error: struct_arrow_same.asm (1) Incorrect syntax for struct arrow. ... OK
+E: Error: struct_arrow_inval.asm (1) Incorrect syntax for struct arrow. ... OK
 make[2]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
