@@ -404,4 +404,28 @@ E: It must be defined on the line after the definition of struct specified by th
 E: Invalid structure field name: VAR.FOO ... OK
 E: Invalid field VAR1 in structure HOGE ... OK
 E: Invalid field VAR1 in structure HOGE ... OK
+E: Specify non-numeric number of field VAR1 in structure HOGE: AAA ... OK
+E: Unknown structure name FOO specified in field VAR1 of structure HOGE ... OK
+E: Detects circular references between structures ... OK
+E: Unknown field name in structure HOGE: VAR2 ... OK
+E: Illegal array structure element: ] ... OK
+E: Illegal array structure element: FOO ... OK
+E: Illegal array structure element: 2 ... OK
+E: Invalid array field designation: VAR1 ... OK
+E: Unknown field name in structure HOGE: VAR2 ... OK
+N: struct_normal
+../vgsasm struct_normal.asm -v
+struct_normal.asm:0019 $0000 <LD> <HL> `,` 0xC000
+struct_normal.asm:0020 $0003 <LD> <HL> `,` 0xC001
+struct_normal.asm:0021 $0006 <LD> <HL> `,` 0xC003
+struct_normal.asm:0023 $0009 <LD> <DE> `,` 0xC005
+struct_normal.asm:0024 $000C <LD> <DE> `,` 0xC006
+struct_normal.asm:0025 $000F <LD> <DE> `,` 0xC008
+struct_normal.asm:0027 $0012 <LD> <BC> `,` 0xC00F
+struct_normal.asm:0028 $0015 <LD> <BC> `,` 0xC010
+struct_normal.asm:0029 $0018 <LD> <BC> `,` 0xC012
+struct_normal.asm:0031 $001B <LD> <BC> `,` 0xC01E
+struct_normal.asm:0032 $001E <LD> <BC> `,` 0xC01F
+struct_normal.asm:0033 $0021 <LD> <BC> `,` 0xC021
+diff struct_normal.bin struct_normal.exp
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'

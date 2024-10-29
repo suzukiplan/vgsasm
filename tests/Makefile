@@ -161,6 +161,16 @@ struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_field_dot.asm`" "Invalid structure field name: VAR.FOO"
 	@./check "`../vgsasm struct_field_inv1.asm`" "Invalid field VAR1 in structure HOGE"
 	@./check "`../vgsasm struct_field_inv2.asm`" "Invalid field VAR1 in structure HOGE"
+	@./check "`../vgsasm struct_field_nnum.asm`" "Specify non-numeric number of field VAR1 in structure HOGE: AAA"
+	@./check "`../vgsasm struct_field_nstr.asm`" "Unknown structure name FOO specified in field VAR1 of structure HOGE"
+	@./check "`../vgsasm struct_field_cir.asm`" "Detects circular references between structures"
+	@./check "`../vgsasm struct_field_uk.asm`" "Unknown field name in structure HOGE: VAR2"
+	@./check "`../vgsasm struct_array_empty.asm`" "Illegal array structure element: ]"
+	@./check "`../vgsasm struct_array_ill.asm`" "Illegal array structure element: FOO"
+	@./check "`../vgsasm struct_array_mul.asm`" "Illegal array structure element: 2"
+	@./check "`../vgsasm struct_array_nd.asm`" "Invalid array field designation: VAR1"
+	@./check "`../vgsasm struct_field_nf.asm`" "Unknown field name in structure HOGE: VAR2"
+	${MAK} normal_case src=struct_normal
 
 normal_case:
 	@echo N: ${src}
