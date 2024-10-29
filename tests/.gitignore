@@ -20,4 +20,6 @@ offset_parse
 offset_replace
 operand
 org
+sizeof_parse
+sizeof_replace
 

@@ -21,7 +21,9 @@ TEST_MODULES =\
 	offset_parse \
 	offset_replace \
 	operand \
-	org
+	org \
+	sizeof_parse \
+	sizeof_replace
 
 all:
 	make execute
@@ -52,9 +54,11 @@ execute: ${TEST_MODULES}
 	./offset_replace
 	./operand
 	./org
+	./sizeof_parse
+	./sizeof_replace
 
-single: org
-	./org
+single: sizeof_replace
+	./sizeof_replace
 
 clean:
 	rm -f ${TEST_MODULES}
@@ -120,4 +124,10 @@ operand: operand.cpp ${DEPS}
 	${CPP} $< -o $@
 
 org: org.cpp ${DEPS}
+	${CPP} $< -o $@
+
+sizeof_parse: sizeof_parse.cpp ${DEPS}
+	${CPP} $< -o $@
+
+sizeof_replace: sizeof_replace.cpp ${DEPS}
 	${CPP} $< -o $@
