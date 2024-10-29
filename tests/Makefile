@@ -158,6 +158,9 @@ struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_noscope2.asm`" "The scope \`{\` specified in this line is not closed with \`}\`."
 	@./check "`../vgsasm struct_arrow_seq1.asm`" "It must be defined on the line after the definition of struct specified by the arrow operator."
 	@./check "`../vgsasm struct_arrow_seq2.asm`" "It must be defined on the line after the definition of struct specified by the arrow operator."
+	@./check "`../vgsasm struct_field_dot.asm`" "Invalid structure field name: VAR.FOO"
+	@./check "`../vgsasm struct_field_inv1.asm`" "Invalid field VAR1 in structure HOGE"
+	@./check "`../vgsasm struct_field_inv2.asm`" "Invalid field VAR1 in structure HOGE"
 
 normal_case:
 	@echo N: ${src}

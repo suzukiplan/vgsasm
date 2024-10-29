@@ -41,6 +41,11 @@ bool struct_syntax_check(std::vector<LineData*>* lines)
                         newField->token.push_back(std::make_pair(it2->first, it2->second));
                         it2->first = TokenType::Delete;
                     } else {
+                        if (-1 != it2->second.find(".")) {
+                            line->error = true;
+                            line->errmsg = "Invalid structure field name: " + it2->second;
+                            return false;
+                        }
                         for (auto field : newStruct->fields) {
                             if (field->name == it2->second) {
                                 line->error = true;

@@ -401,4 +401,7 @@ E: Invalid `}` without corresponding `{`. ... OK
 E: The scope `{` specified in this line is not closed with `}`. ... OK
 E: It must be defined on the line after the definition of struct specified by the arrow operator. ... OK
 E: It must be defined on the line after the definition of struct specified by the arrow operator. ... OK
+E: Invalid structure field name: VAR.FOO ... OK
+E: Invalid field VAR1 in structure HOGE ... OK
+E: Invalid field VAR1 in structure HOGE ... OK
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
