@@ -151,10 +151,10 @@ mnemonic:
 
 mnemonic_bit_tests: check ../vgsasm
 	@echo Testing: mnemonic bits
-	${MAK} normal_case src=m_bit_nso_normal
+	${MAK} normal_case src=m_bit_nso
 	@./check "`../vgsasm m_bit_nso_range.asm`" "Numerical range incorrect: 8"
 	@./check "`../vgsasm m_bit_nso_ill.asm`" "Illegal BIT/SET/RES instruction."
-	${MAK} normal_case src=m_bit_nsaoa_normal
+	${MAK} normal_case src=m_bit_nsaoa
 	@./check "`../vgsasm m_bit_nsaoa_range.asm`" "Numerical range incorrect: 8"
 	@./check "`../vgsasm m_bit_nsaoa_ill.asm`" "Illegal BIT/SET/RES instruction."
 
