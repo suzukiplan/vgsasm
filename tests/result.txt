@@ -800,6 +800,38 @@ N: m_calc16_add_hl_a
 ../vgsasm m_calc16_add_hl_a.asm -v
 m_calc16_add_hl_a.asm:0001 $0000 <ADD> <HL> `,` <A>
 diff m_calc16_add_hl_a.bin m_calc16_add_hl_a.exp
-Normal case: 130
-Error case: 143
-Total: 273
+N: m_calc16_hl_rr
+../vgsasm m_calc16_hl_rr.asm -v
+m_calc16_hl_rr.asm:0001 $0000 <ADD> <HL> `,` <BC>
+m_calc16_hl_rr.asm:0002 $0001 <ADD> <HL> `,` <DE>
+m_calc16_hl_rr.asm:0003 $0002 <ADD> <HL> `,` <HL>
+m_calc16_hl_rr.asm:0004 $0003 <ADD> <HL> `,` <SP>
+m_calc16_hl_rr.asm:0006 $0004 <ADC> <HL> `,` <BC>
+m_calc16_hl_rr.asm:0007 $0006 <ADC> <HL> `,` <DE>
+m_calc16_hl_rr.asm:0008 $0008 <ADC> <HL> `,` <HL>
+m_calc16_hl_rr.asm:0009 $000A <ADC> <HL> `,` <SP>
+m_calc16_hl_rr.asm:0011 $000C <SBC> <HL> `,` <BC>
+m_calc16_hl_rr.asm:0012 $000E <SBC> <HL> `,` <DE>
+m_calc16_hl_rr.asm:0013 $0010 <SBC> <HL> `,` <HL>
+m_calc16_hl_rr.asm:0014 $0012 <SBC> <HL> `,` <SP>
+diff m_calc16_hl_rr.bin m_calc16_hl_rr.exp
+E: Illegal 16-bit arithmetic instruction. ... OK
+N: m_calc16_ix_rr
+../vgsasm m_calc16_ix_rr.asm -v
+m_calc16_ix_rr.asm:0001 $0000 <ADD> <IX> `,` <BC>
+m_calc16_ix_rr.asm:0002 $0002 <ADD> <IX> `,` <DE>
+m_calc16_ix_rr.asm:0003 $0004 <ADD> <IX> `,` <IX>
+m_calc16_ix_rr.asm:0004 $0006 <ADD> <IX> `,` <SP>
+diff m_calc16_ix_rr.bin m_calc16_ix_rr.exp
+E: Illegal 16-bit arithmetic instruction. ... OK
+N: m_calc16_iy_rr
+../vgsasm m_calc16_iy_rr.asm -v
+m_calc16_iy_rr.asm:0001 $0000 <ADD> <IY> `,` <BC>
+m_calc16_iy_rr.asm:0002 $0002 <ADD> <IY> `,` <DE>
+m_calc16_iy_rr.asm:0003 $0004 <ADD> <IY> `,` <IY>
+m_calc16_iy_rr.asm:0004 $0006 <ADD> <IY> `,` <SP>
+diff m_calc16_iy_rr.bin m_calc16_iy_rr.exp
+E: Illegal 16-bit arithmetic instruction. ... OK
+Normal case: 133
+Error case: 146
+Total: 279

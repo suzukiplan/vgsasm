@@ -169,6 +169,12 @@ mnemonic_calc_tests: check ../vgsasm
 	${MAK} normal_case src=m_calc16_add_bc_a
 	${MAK} normal_case src=m_calc16_add_de_a
 	${MAK} normal_case src=m_calc16_add_hl_a
+	${MAK} normal_case src=m_calc16_hl_rr
+	@./check "`../vgsasm m_calc16_hl_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_ix_rr
+	@./check "`../vgsasm m_calc16_ix_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_iy_rr
+	@./check "`../vgsasm m_calc16_iy_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
 
 mnemonic_bit_tests: check ../vgsasm
 	@echo Testing: mnemonic bits
