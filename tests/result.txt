@@ -609,6 +609,29 @@ N: m_calc8_o
    m_calc8_o.asm:0095 $0076 <XOR> <IYL>
 diff m_calc8_o.bin m_calc8_o.exp
 E: Illegal 8-bit arithmetic instruction. ... OK
-Normal case: 123
-Error case: 136
-Total: 259
+N: m_calc8_n
+../vgsasm m_calc8_n.asm -v
+   m_calc8_n.asm:0001 $0000 <ADD> 0x0
+   m_calc8_n.asm:0002 $0002 <ADC> 0x0
+   m_calc8_n.asm:0003 $0004 <SUB> 0x0
+   m_calc8_n.asm:0004 $0006 <SBC> 0x0
+   m_calc8_n.asm:0005 $0008 <CP> 0x0
+   m_calc8_n.asm:0006 $000A <AND> 0x0
+   m_calc8_n.asm:0007 $000C <OR> 0x0
+   m_calc8_n.asm:0008 $000E <XOR> 0x0
+diff m_calc8_n.bin m_calc8_n.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
+N: m_calc8_n_range3
+../vgsasm m_calc8_n_range3.asm -v
+m_calc8_n_range3.asm:0001 $0000 <ADD> 0xFFFFFF80
+m_calc8_n_range3.asm:0002 $0002 <ADD> 0xFFFFFFFF
+m_calc8_n_range3.asm:0003 $0004 <ADD> 0x0
+m_calc8_n_range3.asm:0004 $0006 <ADD> 0x1
+m_calc8_n_range3.asm:0005 $0008 <ADD> 0x7F
+m_calc8_n_range3.asm:0006 $000A <ADD> 0x80
+m_calc8_n_range3.asm:0007 $000C <ADD> 0xFF
+diff m_calc8_n_range3.bin m_calc8_n_range3.exp
+Normal case: 125
+Error case: 138
+Total: 263
