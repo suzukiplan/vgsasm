@@ -1,5 +1,7 @@
 # Change log
 
+## Version 0.12 (beta-12)
+
 ## Version 0.11 (beta-11)
 
 - `#macro` must appear at the beginning of the line.
