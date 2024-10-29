@@ -859,6 +859,7 @@ m_calc16_osn.asm:0023 $0099 <ADD> <IX> `,` 0xFFFF
 diff m_calc16_osn.bin m_calc16_osn.exp
 E: Numerical range incorrect: -32769 ... OK
 E: Numerical range incorrect: 65536 ... OK
+E: Illegal 16-bit arithmetic instruction. ... OK
 Normal case: 134
-Error case: 149
-Total: 283
+Error case: 150
+Total: 284
