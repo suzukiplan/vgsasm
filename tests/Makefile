@@ -162,6 +162,9 @@ mnemonic_calc_tests: check ../vgsasm
 	@./check "`../vgsasm m_calc8_ao_ill1.asm`" "Illegal 8-bit arithmetic instruction."
 	@./check "`../vgsasm m_calc8_ao_ill2.asm`" "Illegal 8-bit arithmetic instruction."
 	@./check "`../vgsasm m_calc8_ao_ill3.asm`" "Illegal 8-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc8_os
+	@./check "`../vgsasm m_calc8_os_ill.asm`" "Illegal 8-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc8_ill.asm`" "Illegal 8-bit arithmetic instruction."
 
 mnemonic_bit_tests: check ../vgsasm
 	@echo Testing: mnemonic bits

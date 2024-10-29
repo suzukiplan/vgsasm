@@ -694,6 +694,99 @@ diff m_calc8_ao.bin m_calc8_ao.exp
 E: Illegal 8-bit arithmetic instruction. ... OK
 E: Illegal 8-bit arithmetic instruction. ... OK
 E: Illegal 8-bit arithmetic instruction. ... OK
-Normal case: 126
-Error case: 141
-Total: 267
+N: m_calc8_os
+../vgsasm m_calc8_os.asm -v
+  m_calc8_os.asm:0001 $0000 <ADD> <A>
+  m_calc8_os.asm:0002 $0001 <ADD> <B>
+  m_calc8_os.asm:0003 $0002 <ADD> <C>
+  m_calc8_os.asm:0004 $0003 <ADD> <D>
+  m_calc8_os.asm:0005 $0004 <ADD> <E>
+  m_calc8_os.asm:0006 $0005 <ADD> <H>
+  m_calc8_os.asm:0007 $0006 <ADD> <L>
+  m_calc8_os.asm:0008 $0007 <ADD> <IXH>
+  m_calc8_os.asm:0009 $0009 <ADD> <IXL>
+  m_calc8_os.asm:0010 $000B <ADD> <IYH>
+  m_calc8_os.asm:0011 $000D <ADD> <IYL>
+  m_calc8_os.asm:0013 $000F <ADC> <A>
+  m_calc8_os.asm:0014 $0010 <ADC> <B>
+  m_calc8_os.asm:0015 $0011 <ADC> <C>
+  m_calc8_os.asm:0016 $0012 <ADC> <D>
+  m_calc8_os.asm:0017 $0013 <ADC> <E>
+  m_calc8_os.asm:0018 $0014 <ADC> <H>
+  m_calc8_os.asm:0019 $0015 <ADC> <L>
+  m_calc8_os.asm:0020 $0016 <ADC> <IXH>
+  m_calc8_os.asm:0021 $0018 <ADC> <IXL>
+  m_calc8_os.asm:0022 $001A <ADC> <IYH>
+  m_calc8_os.asm:0023 $001C <ADC> <IYL>
+  m_calc8_os.asm:0025 $001E <SUB> <A>
+  m_calc8_os.asm:0026 $001F <SUB> <B>
+  m_calc8_os.asm:0027 $0020 <SUB> <C>
+  m_calc8_os.asm:0028 $0021 <SUB> <D>
+  m_calc8_os.asm:0029 $0022 <SUB> <E>
+  m_calc8_os.asm:0030 $0023 <SUB> <H>
+  m_calc8_os.asm:0031 $0024 <SUB> <L>
+  m_calc8_os.asm:0032 $0025 <SUB> <IXH>
+  m_calc8_os.asm:0033 $0027 <SUB> <IXL>
+  m_calc8_os.asm:0034 $0029 <SUB> <IYH>
+  m_calc8_os.asm:0035 $002B <SUB> <IYL>
+  m_calc8_os.asm:0037 $002D <SBC> <A>
+  m_calc8_os.asm:0038 $002E <SBC> <B>
+  m_calc8_os.asm:0039 $002F <SBC> <C>
+  m_calc8_os.asm:0040 $0030 <SBC> <D>
+  m_calc8_os.asm:0041 $0031 <SBC> <E>
+  m_calc8_os.asm:0042 $0032 <SBC> <H>
+  m_calc8_os.asm:0043 $0033 <SBC> <L>
+  m_calc8_os.asm:0044 $0034 <SBC> <IXH>
+  m_calc8_os.asm:0045 $0036 <SBC> <IXL>
+  m_calc8_os.asm:0046 $0038 <SBC> <IYH>
+  m_calc8_os.asm:0047 $003A <SBC> <IYL>
+  m_calc8_os.asm:0049 $003C <CP> <A>
+  m_calc8_os.asm:0050 $003D <CP> <B>
+  m_calc8_os.asm:0051 $003E <CP> <C>
+  m_calc8_os.asm:0052 $003F <CP> <D>
+  m_calc8_os.asm:0053 $0040 <CP> <E>
+  m_calc8_os.asm:0054 $0041 <CP> <H>
+  m_calc8_os.asm:0055 $0042 <CP> <L>
+  m_calc8_os.asm:0056 $0043 <CP> <IXH>
+  m_calc8_os.asm:0057 $0045 <CP> <IXL>
+  m_calc8_os.asm:0058 $0047 <CP> <IYH>
+  m_calc8_os.asm:0059 $0049 <CP> <IYL>
+  m_calc8_os.asm:0061 $004B <AND> <A>
+  m_calc8_os.asm:0062 $004C <AND> <B>
+  m_calc8_os.asm:0063 $004D <AND> <C>
+  m_calc8_os.asm:0064 $004E <AND> <D>
+  m_calc8_os.asm:0065 $004F <AND> <E>
+  m_calc8_os.asm:0066 $0050 <AND> <H>
+  m_calc8_os.asm:0067 $0051 <AND> <L>
+  m_calc8_os.asm:0068 $0052 <AND> <IXH>
+  m_calc8_os.asm:0069 $0054 <AND> <IXL>
+  m_calc8_os.asm:0070 $0056 <AND> <IYH>
+  m_calc8_os.asm:0071 $0058 <AND> <IYL>
+  m_calc8_os.asm:0073 $005A <OR> <A>
+  m_calc8_os.asm:0074 $005B <OR> <B>
+  m_calc8_os.asm:0075 $005C <OR> <C>
+  m_calc8_os.asm:0076 $005D <OR> <D>
+  m_calc8_os.asm:0077 $005E <OR> <E>
+  m_calc8_os.asm:0078 $005F <OR> <H>
+  m_calc8_os.asm:0079 $0060 <OR> <L>
+  m_calc8_os.asm:0080 $0061 <OR> <IXH>
+  m_calc8_os.asm:0081 $0063 <OR> <IXL>
+  m_calc8_os.asm:0082 $0065 <OR> <IYH>
+  m_calc8_os.asm:0083 $0067 <OR> <IYL>
+  m_calc8_os.asm:0085 $0069 <XOR> <A>
+  m_calc8_os.asm:0086 $006A <XOR> <B>
+  m_calc8_os.asm:0087 $006B <XOR> <C>
+  m_calc8_os.asm:0088 $006C <XOR> <D>
+  m_calc8_os.asm:0089 $006D <XOR> <E>
+  m_calc8_os.asm:0090 $006E <XOR> <H>
+  m_calc8_os.asm:0091 $006F <XOR> <L>
+  m_calc8_os.asm:0092 $0070 <XOR> <IXH>
+  m_calc8_os.asm:0093 $0072 <XOR> <IXL>
+  m_calc8_os.asm:0094 $0074 <XOR> <IYH>
+  m_calc8_os.asm:0095 $0076 <XOR> <IYL>
+diff m_calc8_os.bin m_calc8_os.exp
+E: Illegal 8-bit arithmetic instruction. ... OK
+E: Illegal 8-bit arithmetic instruction. ... OK
+Normal case: 127
+Error case: 143
+Total: 270
