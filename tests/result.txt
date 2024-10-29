@@ -691,6 +691,9 @@ N: m_calc8_ao
   m_calc8_ao.asm:0062 $0092 <XOR> _( <IX> `+` 0x7F )_
   m_calc8_ao.asm:0063 $0095 <XOR> _( <IY> `+` 0x7F )_
 diff m_calc8_ao.bin m_calc8_ao.exp
+E: Illegal 8-bit arithmetic instruction. ... OK
+E: Illegal 8-bit arithmetic instruction. ... OK
+E: Illegal 8-bit arithmetic instruction. ... OK
 Normal case: 126
-Error case: 138
-Total: 264
+Error case: 141
+Total: 267

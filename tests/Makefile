@@ -159,6 +159,9 @@ mnemonic_calc_tests: check ../vgsasm
 	@./check "`../vgsasm m_calc8_n_range2.asm`" "Numerical range incorrect: 256"
 	${MAK} normal_case src=m_calc8_n_range3
 	${MAK} normal_case src=m_calc8_ao
+	@./check "`../vgsasm m_calc8_ao_ill1.asm`" "Illegal 8-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc8_ao_ill2.asm`" "Illegal 8-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc8_ao_ill3.asm`" "Illegal 8-bit arithmetic instruction."
 
 mnemonic_bit_tests: check ../vgsasm
 	@echo Testing: mnemonic bits
