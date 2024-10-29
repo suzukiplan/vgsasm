@@ -397,4 +397,6 @@ struct_noaddr2.asm:0005 $0000 <LD> <HL> `,` 0x0
 diff struct_noaddr2.bin struct_noaddr2.exp
 E: Invalid `}` without corresponding `{`. ... OK
 E: The scope `{` specified in this line is not closed with `}`. ... OK
+E: It must be defined on the line after the definition of struct specified by the arrow operator. ... OK
+E: It must be defined on the line after the definition of struct specified by the arrow operator. ... OK
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'

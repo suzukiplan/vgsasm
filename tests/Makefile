@@ -154,6 +154,8 @@ struct_tests: check ../vgsasm
 	${MAK} normal_case src=struct_noaddr2
 	@./check "`../vgsasm struct_noscope1.asm`" "Invalid \`}\` without corresponding \`{\`."
 	@./check "`../vgsasm struct_noscope2.asm`" "The scope \`{\` specified in this line is not closed with \`}\`."
+	@./check "`../vgsasm struct_arrow_seq1.asm`" "It must be defined on the line after the definition of struct specified by the arrow operator."
+	@./check "`../vgsasm struct_arrow_seq2.asm`" "It must be defined on the line after the definition of struct specified by the arrow operator."
 
 normal_case:
 	@echo N: ${src}
