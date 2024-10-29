@@ -516,7 +516,7 @@ E: Numerical range incorrect: 8 ... OK
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
 E: Illegal BIT/SET/RES instruction. ... OK
-Testing: mnemonic calc
+Testing: mnemonic calc8
 N: m_calc8_o
 ../vgsasm m_calc8_o.asm -v
    m_calc8_o.asm:0001 $0000 <ADD> <A>
@@ -787,6 +787,19 @@ N: m_calc8_os
 diff m_calc8_os.bin m_calc8_os.exp
 E: Illegal 8-bit arithmetic instruction. ... OK
 E: Illegal 8-bit arithmetic instruction. ... OK
-Normal case: 127
+Testing: mnemonic calc16
+N: m_calc16_add_bc_a
+../vgsasm m_calc16_add_bc_a.asm -v
+m_calc16_add_bc_a.asm:0001 $0000 <ADD> <BC> `,` <A>
+diff m_calc16_add_bc_a.bin m_calc16_add_bc_a.exp
+N: m_calc16_add_de_a
+../vgsasm m_calc16_add_de_a.asm -v
+m_calc16_add_de_a.asm:0001 $0000 <ADD> <DE> `,` <A>
+diff m_calc16_add_de_a.bin m_calc16_add_de_a.exp
+N: m_calc16_add_hl_a
+../vgsasm m_calc16_add_hl_a.asm -v
+m_calc16_add_hl_a.asm:0001 $0000 <ADD> <HL> `,` <A>
+diff m_calc16_add_hl_a.bin m_calc16_add_hl_a.exp
+Normal case: 130
 Error case: 143
-Total: 270
+Total: 273
