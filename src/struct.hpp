@@ -78,7 +78,7 @@ bool struct_syntax_check(std::vector<LineData*>* lines)
                             it2++;
                             if (it2->first != TokenType::Numeric) {
                                 line->error = true;
-                                line->errmsg = "Unexpected token: " + it2->second;
+                                line->errmsg = "Unexpected symbol: " + it2->second;
                                 return false;
                             }
                             it2->first = TokenType::Delete;

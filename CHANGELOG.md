@@ -7,6 +7,7 @@
 - `offset`: Just in case a field name contains a dot
 - `org`: make error judgment strict
 - `sizeof`: correct error message
+- `struct`: correct error message
 - bugfix: Crash sometimes occurs when defining a malformed `struct`
 
 ## Version 0.9 (beta-9)
