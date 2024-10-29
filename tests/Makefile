@@ -176,6 +176,9 @@ mnemonic_calc_tests: check ../vgsasm
 	${MAK} normal_case src=m_calc16_iy_rr
 	@./check "`../vgsasm m_calc16_iy_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
 	@./check "`../vgsasm m_calc16_oso_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_osn
+	@./check "`../vgsasm m_calc16_osn_range1.asm`" "Numerical range incorrect: -32769"
+	@./check "`../vgsasm m_calc16_osn_range2.asm`" "Numerical range incorrect: 65536"
 
 mnemonic_bit_tests: check ../vgsasm
 	@echo Testing: mnemonic bits

@@ -833,6 +833,32 @@ m_calc16_iy_rr.asm:0004 $0006 <ADD> <IY> `,` <SP>
 diff m_calc16_iy_rr.bin m_calc16_iy_rr.exp
 E: Illegal 16-bit arithmetic instruction. ... OK
 E: Illegal 16-bit arithmetic instruction. ... OK
-Normal case: 133
-Error case: 147
-Total: 280
+N: m_calc16_osn
+../vgsasm m_calc16_osn.asm -v
+m_calc16_osn.asm:0001 $0000 <ADD> <HL> `,` 0xFFFF8000
+m_calc16_osn.asm:0002 $0007 <ADD> <HL> `,` 0xFFFFFFFF
+m_calc16_osn.asm:0003 $000E <ADD> <HL> `,` 0x0
+m_calc16_osn.asm:0004 $0015 <ADD> <HL> `,` 0x1
+m_calc16_osn.asm:0005 $001C <ADD> <HL> `,` 0x7FFF
+m_calc16_osn.asm:0006 $0023 <ADD> <HL> `,` 0x8000
+m_calc16_osn.asm:0007 $002A <ADD> <HL> `,` 0xFFFF
+m_calc16_osn.asm:0009 $0031 <ADD> <IX> `,` 0xFFFF8000
+m_calc16_osn.asm:0010 $0039 <ADD> <IX> `,` 0xFFFFFFFF
+m_calc16_osn.asm:0011 $0041 <ADD> <IX> `,` 0x0
+m_calc16_osn.asm:0012 $0049 <ADD> <IX> `,` 0x1
+m_calc16_osn.asm:0013 $0051 <ADD> <IX> `,` 0x7FFF
+m_calc16_osn.asm:0014 $0059 <ADD> <IX> `,` 0x8000
+m_calc16_osn.asm:0015 $0061 <ADD> <IX> `,` 0xFFFF
+m_calc16_osn.asm:0017 $0069 <ADD> <IX> `,` 0xFFFF8000
+m_calc16_osn.asm:0018 $0071 <ADD> <IX> `,` 0xFFFFFFFF
+m_calc16_osn.asm:0019 $0079 <ADD> <IX> `,` 0x0
+m_calc16_osn.asm:0020 $0081 <ADD> <IX> `,` 0x1
+m_calc16_osn.asm:0021 $0089 <ADD> <IX> `,` 0x7FFF
+m_calc16_osn.asm:0022 $0091 <ADD> <IX> `,` 0x8000
+m_calc16_osn.asm:0023 $0099 <ADD> <IX> `,` 0xFFFF
+diff m_calc16_osn.bin m_calc16_osn.exp
+E: Numerical range incorrect: -32769 ... OK
+E: Numerical range incorrect: 65536 ... OK
+Normal case: 134
+Error case: 149
+Total: 283
