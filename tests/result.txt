@@ -443,4 +443,42 @@ E: Unexpected symbol: B ... OK
 E: A macro argument name conflict with the name used for structs, defines, etc.: ARG1 ... OK
 E: Detect symbols that are not in the start scope of the macro: LD ... OK
 E: Macro calls are circulating: HOGE ... OK
+E: Unexpected macro argument symbol: 2 ... OK
+E: Invalid macro argument type: ) ... OK
+E: Invalid macro argument type: HL ... OK
+E: Macro argument mismatch: FOO ... OK
+N: macro_normal
+../vgsasm macro_normal.asm -v
+macro_normal.asm:0004 $0000 <LD> <BC> `,` 0x1
+macro_normal.asm:0005 $0003 <LD> <DE> `,` 0x5
+macro_normal.asm:0006 $0006 <LD> <HL> `,` 0xF
+../lib/vgszero.inc:0091 $0009 <PUSH> <BC>
+../lib/vgszero.inc:0092 $000A <PUSH> <DE>
+../lib/vgszero.inc:0093 $000B <PUSH> <HL>
+../lib/vgszero.inc:0094 $000C <LD> <BC> `,` 0xC000
+../lib/vgszero.inc:0095 $000F <LD> <DE> `,` `$0`
+../lib/vgszero.inc:0096 $0012 <LD> <HL> `,` 0x7
+../lib/vgszero.inc:0097 $0015 <OUT> _( 0xC3 )_ `,` <A>
+../lib/vgszero.inc:0098 $0017 <POP> <HL>
+../lib/vgszero.inc:0099 $0018 <POP> <DE>
+../lib/vgszero.inc:0100 $0019 <POP> <BC>
+../lib/vgszero.inc:0105 $001A <PUSH> <AF>
+../lib/vgszero.inc:0106 $001B <PUSH> <BC>
+../lib/vgszero.inc:0107 $001C <PUSH> <HL>
+../lib/vgszero.inc:0108 $001D <LD> <BC> `,` 0xC020
+../lib/vgszero.inc:0109 $0020 <LD> <A> `,` 0x20
+../lib/vgszero.inc:0110 $0022 <LD> <HL> `,` 0x400
+../lib/vgszero.inc:0111 $0025 <OUT> _( 0xC3 )_ `,` <A>
+../lib/vgszero.inc:0112 $0027 <POP> <HL>
+../lib/vgszero.inc:0113 $0028 <POP> <BC>
+../lib/vgszero.inc:0114 $0029 <POP> <AF>
+macro_normal.asm:0017 $002A <CALL> `HIGE`
+macro_normal.asm:0004 $002D <LD> <BC> `,` 0x1
+macro_normal.asm:0005 $0030 <LD> <DE> `,` 0x2
+macro_normal.asm:0006 $0033 <LD> <HL> `,` 0xC000
+macro_normal.asm:0020 $0036 HIGE:
+macro_normal.asm:0021 $0036 <RET>
+                :0000 $0037 $0:
+                :0000 $0037 <DB> 0x53 `,` 0x74 `,` 0x72 `,` 0x69 `,` 0x6E `,` 0x67 `,` 0x0
+diff macro_normal.bin macro_normal.exp
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'

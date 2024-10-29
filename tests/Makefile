@@ -157,6 +157,11 @@ macro_tests: check ../vgsasm
 	@./check "`../vgsasm macro_conflict.asm`" "A macro argument name conflict with the name used for structs, defines, etc.: ARG1"
 	@./check "`../vgsasm macro_noscp.asm`" "Detect symbols that are not in the start scope of the macro: LD"
 	@./check "`../vgsasm macro_circulating.asm`" "Macro calls are circulating: HOGE"
+	@./check "`../vgsasm macro_nosplit.asm`" "Unexpected macro argument symbol: 2"
+	@./check "`../vgsasm macro_nospa.asm`" "Invalid macro argument type: )"
+	@./check "`../vgsasm macro_itype.asm`" "Invalid macro argument type: HL"
+	@./check "`../vgsasm macro_noarg.asm`" "Macro argument mismatch: FOO"
+	${MAK} normal_case src=macro_normal
 
 struct_tests: check ../vgsasm
 	@echo Testing: struct
