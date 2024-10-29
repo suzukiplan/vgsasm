@@ -1,4 +1,5 @@
 CPP = g++ -std=c++17 -g
+MAK = @make --no-print-directory
 DEPS = common.hpp ../src/*
 TEST_MODULES =\
 	assignment \
@@ -56,7 +57,7 @@ execute: ${TEST_MODULES}
 	./org
 	./sizeof_parse
 	./sizeof_replace
-	@make --no-print-directory struct_tests
+	${MAK} struct_tests
 
 single: sizeof_replace
 	./sizeof_replace
@@ -150,7 +151,7 @@ struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_arrow_array_uex.asm`" "Unexpected symbol: 2"
 	@./check "`../vgsasm struct_arrow_array_zero.asm`" "struct array must have a value of 1 or more: 0"
 	@./check "`../vgsasm struct_noaddr.asm`" "Incorrect syntax for struct: ADDR"
-	@make --no-print-directory normal_case src=struct_noaddr2
+	${MAK} normal_case src=struct_noaddr2
 
 normal_case:
 	@echo N: ${src}
