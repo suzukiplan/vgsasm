@@ -428,4 +428,6 @@ struct_normal.asm:0031 $001B <LD> <BC> `,` 0xC01E
 struct_normal.asm:0032 $001E <LD> <BC> `,` 0xC01F
 struct_normal.asm:0033 $0021 <LD> <BC> `,` 0xC021
 diff struct_normal.bin struct_normal.exp
+Testing: macro
+E: `#macro` must appear at the beginning of the line. ... OK
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'

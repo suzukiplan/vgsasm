@@ -142,6 +142,7 @@ check: check.cpp
 	cd .. && make
 
 macro_tests: check ../vgsasm
+	@echo Testing: macro
 	@./check "`../vgsasm macro_notop.asm`" "\`#macro\` must appear at the beginning of the line."
 
 struct_tests: check ../vgsasm
