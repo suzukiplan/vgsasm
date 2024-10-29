@@ -4,6 +4,7 @@
 
 - support unspecified address structure
 - bugfix: Crash sometimes occurs when defining a malformed `struct`
+- bugfix: Crash if `}` is specified as the last line without a corresponding `{`.
 - numeric error message detailed
 - `offset`: make error if not contained `.` at the name
 - `offset`: Just in case a field name contains a dot
