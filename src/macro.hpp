@@ -32,7 +32,7 @@ void macro_parse(LineData* line)
         if (it->second == "#MACRO") {
             if (it != line->token.begin()) {
                 line->error = true;
-                line->errmsg = "#macro must appear at the beginning of the line.";
+                line->errmsg = "`#macro` must appear at the beginning of the line.";
                 return;
             }
         }
