@@ -481,4 +481,19 @@ macro_normal.asm:0021 $0036 <RET>
                 :0000 $0037 $0:
                 :0000 $0037 <DB> 0x53 `,` 0x74 `,` 0x72 `,` 0x69 `,` 0x6E `,` 0x67 `,` 0x0
 diff macro_normal.bin macro_normal.exp
+Testing: mnemonic bits
+N: m_bit_nso_normal
+../vgsasm m_bit_nso_normal.asm -v
+m_bit_nso_normal.asm:0001 $0000 <BIT> 0x0 `,` <A>
+m_bit_nso_normal.asm:0002 $0002 <BIT> 0x1 `,` <B>
+m_bit_nso_normal.asm:0003 $0004 <BIT> 0x2 `,` <C>
+m_bit_nso_normal.asm:0004 $0006 <BIT> 0x3 `,` <D>
+m_bit_nso_normal.asm:0005 $0008 <BIT> 0x4 `,` <E>
+m_bit_nso_normal.asm:0006 $000A <BIT> 0x5 `,` <H>
+m_bit_nso_normal.asm:0007 $000C <BIT> 0x6 `,` <L>
+m_bit_nso_normal.asm:0008 $000E <SET> 0x7 `,` <A>
+m_bit_nso_normal.asm:0009 $0010 <RES> 0x0 `,` <B>
+diff m_bit_nso_normal.bin m_bit_nso_normal.exp
+E: Numerical range incorrect: 8 ... OK
+E: Illegal BIT/SET/RES instruction. ... OK
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'

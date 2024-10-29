@@ -59,6 +59,7 @@ execute: ${TEST_MODULES}
 	./sizeof_replace
 	${MAK} struct_tests
 	${MAK} macro_tests
+	${MAK} mnemonic
 
 single: sizeof_replace
 	./sizeof_replace
@@ -140,6 +141,15 @@ check: check.cpp
 
 ../vgsasm: ../src/*
 	cd .. && make
+
+mnemonic:
+	${MAK} mnemonic_bit_tests
+
+mnemonic_bit_tests: check ../vgsasm
+	@echo Testing: mnemonic bits
+	${MAK} normal_case src=m_bit_nso_normal
+	@./check "`../vgsasm m_bit_nso_range.asm`" "Numerical range incorrect: 8"
+	@./check "`../vgsasm m_bit_nso_ill.asm`" "Illegal BIT/SET/RES instruction."
 
 macro_tests: check ../vgsasm
 	@echo Testing: macro
