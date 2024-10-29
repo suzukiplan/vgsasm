@@ -89,7 +89,7 @@ void mnemonic_calc8(LineData* line, uint8_t code)
             mnemonic_calc8(line, code);
         } else {
             line->error = true;
-            line->errmsg = "Illegal arithmetic instruction.";
+            line->errmsg = "Illegal 8-bit arithmetic instruction.";
         }
     } else {
         line->error = true;
