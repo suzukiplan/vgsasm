@@ -2,13 +2,14 @@
 
 ## Version 0.10 (beta-10)
 
+- support unspecified address structure
+- bugfix: Crash sometimes occurs when defining a malformed `struct`
 - numeric error message detailed
 - `offset`: make error if not contained `.` at the name
 - `offset`: Just in case a field name contains a dot
 - `org`: make error judgment strict
 - `sizeof`: correct error message
 - `struct`: correct error message
-- bugfix: Crash sometimes occurs when defining a malformed `struct`
 
 ## Version 0.9 (beta-9)
 

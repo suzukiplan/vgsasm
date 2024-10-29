@@ -119,7 +119,12 @@ bool struct_syntax_check(std::vector<LineData*>* lines)
                         newStruct = new Struct(line, it2->second);
                         structTable[it2->second] = newStruct;
                         structNameList.push_back(newStruct->name);
-                        expect = TokenType::Numeric;
+                        if (it2 + 1 == line->token.end() || (it2 + 1)->first == TokenType::ScopeBegin) {
+                            newStruct->start = 0;
+                            expect = TokenType::ScopeBegin;
+                        } else {
+                            expect = TokenType::Numeric;
+                        }
                         break;
                     case TokenType::Numeric:
                         newStruct->start = atoi(it2->second.c_str());
