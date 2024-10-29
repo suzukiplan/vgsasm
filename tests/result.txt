@@ -882,6 +882,7 @@ diff m_calc16_osaopna.bin m_calc16_osaopna.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 127 ... OK
 E: Illegal 16-bit arithmetic instruction. ... OK
+E: Illegal 16-bit arithmetic instruction. ... OK
 Normal case: 136
-Error case: 154
-Total: 290
+Error case: 155
+Total: 291
