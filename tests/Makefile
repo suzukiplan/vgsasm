@@ -143,6 +143,7 @@ check: check.cpp
 struct_tests: check ../vgsasm
 	@echo Testing: struct
 	@./check "`../vgsasm struct_dup_field.asm`" "Duplicate field name \`VAR1\` in struct \`HOGE\`"
+	@./check "`../vgsasm struct_name_dot.asm`" "Invalid structure name: HOGE.COM"
 	@./check "`../vgsasm struct_arrow_no.asm`" "Incorrect syntax for struct arrow."
 	@./check "`../vgsasm struct_arrow_same.asm`" "Incorrect syntax for struct arrow."
 	@./check "`../vgsasm struct_arrow_inval.asm`" "Incorrect syntax for struct arrow."

@@ -2,7 +2,8 @@
 
 ## Version 0.10 (beta-10)
 
-- support unspecified address structure
+- Support unspecified address structure
+- It is forbidden to include `. ` in the structure name is prohibited.
 - bugfix: Crash sometimes occurs when defining a malformed `struct`
 - bugfix: Crash if `}` is specified as the last line without a corresponding `{`.
 - numeric error message detailed

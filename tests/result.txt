@@ -383,6 +383,7 @@ N: sizeof(dummy) --->  0x3
 E: sizeof(dummyy) --->  Undefined structure DUMMYY is specified in sizeof.
 Testing: struct
 E: Duplicate field name `VAR1` in struct `HOGE` ... OK
+E: Invalid structure name: HOGE.COM ... OK
 E: Incorrect syntax for struct arrow. ... OK
 E: Incorrect syntax for struct arrow. ... OK
 E: Incorrect syntax for struct arrow. ... OK

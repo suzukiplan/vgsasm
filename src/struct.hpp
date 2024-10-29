@@ -115,6 +115,11 @@ bool struct_syntax_check(std::vector<LineData*>* lines)
                             line->errmsg = "Duplicate structure name: " + it2->second;
                             return false;
                         }
+                        if (-1 != it2->second.find(".")) {
+                            line->error = true;
+                            line->errmsg = "Invalid structure name: " + it2->second;
+                            return false;
+                        }
                         nametable_add(it2->second, line);
                         newStruct = new Struct(line, it2->second);
                         structTable[it2->second] = newStruct;
