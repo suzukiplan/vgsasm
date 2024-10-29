@@ -27,9 +27,9 @@ TEST_MODULES =\
 	sizeof_replace
 
 all:
-	make execute
+	${MAK} execute
 	${MAK} execute >result.txt
-	make show_result_count
+	${MAK} show_result_count
 	${MAK} show_result_count >>result.txt
 
 show_result_count:
