@@ -373,4 +373,12 @@ E: org 65536    --->  `org` address is incorrect: 65536
 E: org 65535 org --->  Unexpected symbol: ORG
 E: org 65534    --->  Multiple orgs must be written in ascending order from the beginning of the line.
 E: org 65535    --->  Multiple orgs must be written in ascending order from the beginning of the line.
+./sizeof_parse
+N: sizeof(hoge) --->  sizeof(HOGE)
+E: sizeof hoge) --->  No `(` in sizeof syntax.
+E: sizeof (+)   --->  No structure name specified in sizeof syntax.
+E: sizeof (hoge --->  No `)` in sizeof syntax.
+./sizeof_replace
+N: sizeof(dummy) --->  0x3
+E: sizeof(dummyy) --->  Undefined structure DUMMYY is specified in sizeof.
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
