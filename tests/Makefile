@@ -56,6 +56,7 @@ execute: ${TEST_MODULES}
 	./org
 	./sizeof_parse
 	./sizeof_replace
+	@make struct_tests
 
 single: sizeof_replace
 	./sizeof_replace
@@ -131,3 +132,12 @@ sizeof_parse: sizeof_parse.cpp ${DEPS}
 
 sizeof_replace: sizeof_replace.cpp ${DEPS}
 	${CPP} $< -o $@
+
+check: check.cpp
+	${CPP} $< -o $@
+
+../vgsasm: ../src/*
+	cd .. && make
+
+struct_tests: check ../vgsasm
+	@./check "`../vgsasm struct_dup_field.asm`" "Error: struct_dup_field.asm (3) Duplicate field name \`VAR1\` in struct \`HOGE\`"

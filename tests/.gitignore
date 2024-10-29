@@ -22,4 +22,5 @@ operand
 org
 sizeof_parse
 sizeof_replace
+check
 
