@@ -1,9 +1,23 @@
 # Change log
 
+## Version 0.10 (beta-10)
+
+- Support unspecified address structure
+- Forbidden to include `. ` in the structure and the field name are prohibited.
+- bugfix: Crash sometimes occurs when defining a malformed `struct`
+- bugfix: Crash if `}` is specified as the last line without a corresponding `{`.
+- numeric error message detailed
+- `offset`: make error if not contained `.` at the name
+- `offset`: Just in case a field name contains a dot
+- `org`: make error judgment strict
+- `sizeof`: correct error message
+- `struct`: correct error message
+
 ## Version 0.9 (beta-9)
 
 - Stricter naming of prohibited items
 - Detail the error when a label name containing `@` is undefined
+- Several minor bugfix
 
 ## Version 0.8 (beta-8)
 

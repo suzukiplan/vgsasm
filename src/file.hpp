@@ -572,9 +572,13 @@ std::vector<LineData*> readFile(const char* filePath)
         }
 
         // スコープが閉じられているかチェック
-        if (0 != scopeCount) {
+        if (0 < scopeCount) {
             lastScopeBegin->error = true;
             lastScopeBegin->errmsg = "The scope `{` specified in this line is not closed with `}`.";
+        } else if (scopeCount < 0 && !result.empty()) {
+            auto last = result[result.size() - 1];
+            last->error = true;
+            last->errmsg = "Invalid `}` without corresponding `{`.";
         }
 
         return result;
