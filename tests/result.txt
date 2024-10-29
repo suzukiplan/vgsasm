@@ -1,4 +1,3 @@
-make[1]: Entering directory '/home/suzukiplan/dev/vgsasm/tests'
 ./assignment
 N: A = B        --->  `LD` `A` `,` `B`
 N: A += B       --->  `ADD` `A` `,` `B`
@@ -496,4 +495,16 @@ m_bit_nso_normal.asm:0009 $0010 <RES> 0x0 `,` <B>
 diff m_bit_nso_normal.bin m_bit_nso_normal.exp
 E: Numerical range incorrect: 8 ... OK
 E: Illegal BIT/SET/RES instruction. ... OK
-make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
+N: m_bit_nsaoa_normal
+../vgsasm m_bit_nsaoa_normal.asm -v
+m_bit_nsaoa_normal.asm:0001 $0000 <BIT> 0x0 `,` _( <HL> )_
+m_bit_nsaoa_normal.asm:0002 $0002 <BIT> 0x7 `,` _( <IX> )_
+m_bit_nsaoa_normal.asm:0003 $0006 <BIT> 0x1 `,` _( <IY> )_
+m_bit_nsaoa_normal.asm:0004 $000A <SET> 0x6 `,` _( <IX> )_
+m_bit_nsaoa_normal.asm:0005 $000E <RES> 0x4 `,` _( <IY> )_
+diff m_bit_nsaoa_normal.bin m_bit_nsaoa_normal.exp
+E: Numerical range incorrect: 8 ... OK
+E: Illegal BIT/SET/RES instruction. ... OK
+Normal case: 121
+Error case: 131
+Total: 252

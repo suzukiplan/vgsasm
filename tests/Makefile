@@ -28,7 +28,11 @@ TEST_MODULES =\
 
 all:
 	make execute
-	@make execute >result.txt
+	${MAK} execute >result.txt
+	make show_result_count
+	${MAK} show_result_count >>result.txt
+
+show_result_count:
 	@echo Normal case: `cat result.txt | grep -o -c "^N:"`
 	@echo Error case: `cat result.txt | grep -o -c -e "^E:" -e "^Error:"`
 	@echo Total: `cat result.txt | grep -o -c "^[NE]:"`
@@ -150,6 +154,9 @@ mnemonic_bit_tests: check ../vgsasm
 	${MAK} normal_case src=m_bit_nso_normal
 	@./check "`../vgsasm m_bit_nso_range.asm`" "Numerical range incorrect: 8"
 	@./check "`../vgsasm m_bit_nso_ill.asm`" "Illegal BIT/SET/RES instruction."
+	${MAK} normal_case src=m_bit_nsaoa_normal
+	@./check "`../vgsasm m_bit_nsaoa_range.asm`" "Numerical range incorrect: 8"
+	@./check "`../vgsasm m_bit_nsaoa_ill.asm`" "Illegal BIT/SET/RES instruction."
 
 macro_tests: check ../vgsasm
 	@echo Testing: macro
