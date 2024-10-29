@@ -10,7 +10,12 @@ void struct_parse(LineData* line)
 {
     for (auto it = line->token.begin(); it != line->token.end(); it++) {
         if (it->second == "STRUCT") {
-            it->first = TokenType::Struct;
+            if (it != line->token.begin()) {
+                line->error = true;
+                line->errmsg = "`struct` must appear at the beginning of the line.";
+            } else {
+                it->first = TokenType::Struct;
+            }
         }
     }
 }
