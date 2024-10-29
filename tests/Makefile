@@ -144,6 +144,16 @@ check: check.cpp
 macro_tests: check ../vgsasm
 	@echo Testing: macro
 	@./check "`../vgsasm macro_notop.asm`" "\`#macro\` must appear at the beginning of the line."
+	@./check "`../vgsasm macro_only.asm`" "Invalid #macro syntax."
+	@./check "`../vgsasm macro_dup.asm`" "Duplicate #macro names are defined: FOO"
+	@./check "`../vgsasm macro_nobrk.asm`" "Invalid #macro syntax. (Parentheses)"
+	@./check "`../vgsasm macro_nocma.asm`" "Invalid #macro syntax. (Arguments not separated by commas)"
+	@./check "`../vgsasm macro_argop.asm`" "Invalid #macro syntax. (Invalid argument name: HL)"
+	@./check "`../vgsasm macro_argdup.asm`" "Invalid #macro syntax. (Duplicate argument names: ARG1)"
+	@./check "`../vgsasm macro_nobrk2.asm`" "\`(\` is not closed with \`)\`."
+	@./check "`../vgsasm macro_nobrk3.asm`" "Unspecified bracket for macro call."
+	@./check "`../vgsasm macro_nobrk4.asm`" "Unexpected symbol: A"
+	@./check "`../vgsasm macro_unexpect.asm`" "Unexpected symbol: B"
 
 struct_tests: check ../vgsasm
 	@echo Testing: struct

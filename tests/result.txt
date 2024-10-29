@@ -430,4 +430,14 @@ struct_normal.asm:0033 $0021 <LD> <BC> `,` 0xC021
 diff struct_normal.bin struct_normal.exp
 Testing: macro
 E: `#macro` must appear at the beginning of the line. ... OK
+E: Invalid #macro syntax. ... OK
+E: Duplicate #macro names are defined: FOO ... OK
+E: Invalid #macro syntax. (Parentheses) ... OK
+E: Invalid #macro syntax. (Arguments not separated by commas) ... OK
+E: Invalid #macro syntax. (Invalid argument name: HL) ... OK
+E: Invalid #macro syntax. (Duplicate argument names: ARG1) ... OK
+E: `(` is not closed with `)`. ... OK
+E: Unspecified bracket for macro call. ... OK
+E: Unexpected symbol: A ... OK
+E: Unexpected symbol: B ... OK
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
