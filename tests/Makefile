@@ -58,6 +58,7 @@ execute: ${TEST_MODULES}
 	./sizeof_parse
 	./sizeof_replace
 	${MAK} struct_tests
+	${MAK} macro_tests
 
 single: sizeof_replace
 	./sizeof_replace
@@ -139,6 +140,9 @@ check: check.cpp
 
 ../vgsasm: ../src/*
 	cd .. && make
+
+macro_tests: check ../vgsasm
+	@./check "`../vgsasm macro_notop.asm`" "\`#macro\` must appear at the beginning of the line."
 
 struct_tests: check ../vgsasm
 	@echo Testing: struct
