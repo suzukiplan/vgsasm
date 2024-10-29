@@ -6,6 +6,7 @@
 - `offset`: make error if not contained `.` at the name
 - `offset`: Just in case a field name contains a dot
 - `org`: make error judgment strict
+- `sizeof`: correct error message
 
 ## Version 0.9 (beta-9)
 
