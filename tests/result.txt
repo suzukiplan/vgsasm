@@ -832,6 +832,7 @@ m_calc16_iy_rr.asm:0003 $0004 <ADD> <IY> `,` <IY>
 m_calc16_iy_rr.asm:0004 $0006 <ADD> <IY> `,` <SP>
 diff m_calc16_iy_rr.bin m_calc16_iy_rr.exp
 E: Illegal 16-bit arithmetic instruction. ... OK
+E: Illegal 16-bit arithmetic instruction. ... OK
 Normal case: 133
-Error case: 146
-Total: 279
+Error case: 147
+Total: 280

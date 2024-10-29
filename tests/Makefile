@@ -175,6 +175,7 @@ mnemonic_calc_tests: check ../vgsasm
 	@./check "`../vgsasm m_calc16_ix_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
 	${MAK} normal_case src=m_calc16_iy_rr
 	@./check "`../vgsasm m_calc16_iy_rr_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc16_oso_ill.asm`" "Illegal 16-bit arithmetic instruction."
 
 mnemonic_bit_tests: check ../vgsasm
 	@echo Testing: mnemonic bits
