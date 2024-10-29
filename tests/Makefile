@@ -154,6 +154,8 @@ macro_tests: check ../vgsasm
 	@./check "`../vgsasm macro_nobrk3.asm`" "Unspecified bracket for macro call."
 	@./check "`../vgsasm macro_nobrk4.asm`" "Unexpected symbol: A"
 	@./check "`../vgsasm macro_unexpect.asm`" "Unexpected symbol: B"
+	@./check "`../vgsasm macro_conflict.asm`" "A macro argument name conflict with the name used for structs, defines, etc.: ARG1"
+	@./check "`../vgsasm macro_noscp.asm`" "Detect symbols that are not in the start scope of the macro: LD"
 
 struct_tests: check ../vgsasm
 	@echo Testing: struct

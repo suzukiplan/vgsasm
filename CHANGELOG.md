@@ -3,6 +3,7 @@
 ## Version 0.11 (beta-11)
 
 - `#macro` must appear at the beginning of the line.
+- Fixed an error message when the start scope of a `#macro` was not defined at the expected position.
 
 ## Version 0.10 (beta-10)
 

@@ -224,7 +224,8 @@ void macro_syntax_check(std::vector<LineData*>* lines)
                     storeTokenToMacro = true;
                 } else {
                     line->error = true;
-                    line->errmsg = "Invalid #macro syntax. (Unexpected token: " + token->second + ")";
+                    line->errmsg = "Detect symbols that are not in the start scope of the macro: " + token->second;
+                    searchScopeBegin = false;
                 }
             } else if (token->first == TokenType::Macro) {
                 token->first = TokenType::Delete;

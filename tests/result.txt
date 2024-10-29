@@ -440,4 +440,6 @@ E: `(` is not closed with `)`. ... OK
 E: Unspecified bracket for macro call. ... OK
 E: Unexpected symbol: A ... OK
 E: Unexpected symbol: B ... OK
+E: A macro argument name conflict with the name used for structs, defines, etc.: ARG1 ... OK
+E: Detect symbols that are not in the start scope of the macro: LD ... OK
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
