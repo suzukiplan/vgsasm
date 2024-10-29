@@ -381,7 +381,6 @@ E: sizeof (hoge --->  No `)` in sizeof syntax.
 ./sizeof_replace
 N: sizeof(dummy) --->  0x3
 E: sizeof(dummyy) --->  Undefined structure DUMMYY is specified in sizeof.
-make[2]: Entering directory '/home/suzukiplan/dev/vgsasm/tests'
 Testing: struct
 E: Duplicate field name `VAR1` in struct `HOGE` ... OK
 E: Incorrect syntax for struct arrow. ... OK
@@ -390,5 +389,10 @@ E: Incorrect syntax for struct arrow. ... OK
 E: Unexpected symbol: ] ... OK
 E: Unexpected symbol: HIGE ... OK
 E: Unexpected symbol: 2 ... OK
-make[2]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
+E: struct array must have a value of 1 or more: 0 ... OK
+E: Incorrect syntax for struct: ADDR ... OK
+N: struct_noaddr2
+../vgsasm struct_noaddr2.asm -v
+struct_noaddr2.asm:0005 $0000 <LD> <HL> `,` 0x0
+diff struct_noaddr2.bin struct_noaddr2.exp
 make[1]: Leaving directory '/home/suzukiplan/dev/vgsasm/tests'
