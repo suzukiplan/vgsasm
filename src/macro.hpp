@@ -28,6 +28,15 @@ void macro_parse(LineData* line)
     if (line->token.empty()) {
         return;
     }
+    for (auto it = line->token.begin(); it != line->token.end(); it++) {
+        if (it->second == "#MACRO") {
+            if (it != line->token.begin()) {
+                line->error = true;
+                line->errmsg = "#macro must appear at the beginning of the line.";
+                return;
+            }
+        }
+    }
     auto it = line->token.begin();
     if (it->second != "#MACRO") {
         return;
