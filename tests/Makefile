@@ -180,6 +180,8 @@ mnemonic_calc_tests: check ../vgsasm
 	@./check "`../vgsasm m_calc16_osn_range1.asm`" "Numerical range incorrect: -32769"
 	@./check "`../vgsasm m_calc16_osn_range2.asm`" "Numerical range incorrect: 65536"
 	@./check "`../vgsasm m_calc16_osn_ill.asm`" "Illegal 16-bit arithmetic instruction."
+	${MAK} normal_case src=m_calc16_osaoa
+	@./check "`../vgsasm m_calc16_osaoa_ill.asm`" "Illegal 16-bit arithmetic instruction."
 
 mnemonic_bit_tests: check ../vgsasm
 	@echo Testing: mnemonic bits

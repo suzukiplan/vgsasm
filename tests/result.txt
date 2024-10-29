@@ -860,6 +860,12 @@ diff m_calc16_osn.bin m_calc16_osn.exp
 E: Numerical range incorrect: -32769 ... OK
 E: Numerical range incorrect: 65536 ... OK
 E: Illegal 16-bit arithmetic instruction. ... OK
-Normal case: 134
-Error case: 150
-Total: 284
+N: m_calc16_osaoa
+../vgsasm m_calc16_osaoa.asm -v
+m_calc16_osaoa.asm:0001 $0000 <ADD> <HL> `,` _( <IX> )_
+m_calc16_osaoa.asm:0002 $0009 <ADD> <HL> `,` _( <IY> )_
+diff m_calc16_osaoa.bin m_calc16_osaoa.exp
+E: Illegal 16-bit arithmetic instruction. ... OK
+Normal case: 135
+Error case: 151
+Total: 286
