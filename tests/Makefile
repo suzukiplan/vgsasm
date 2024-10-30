@@ -149,6 +149,18 @@ check: check.cpp
 mnemonic:
 	${MAK} mnemonic_bit_tests
 	${MAK} mnemonic_calc_tests
+	${MAK} mnemonic_data_tests
+
+mnemonic_data_tests: check ../vgsasm
+	@echo Testing: mnemonic data
+	${MAK} normal_case src=m_db
+	@./check "`../vgsasm m_db_nodata.asm`" "No binary data."
+	@./check "`../vgsasm m_db_range1.asm`" "An invalid range of number specified: -129"
+	@./check "`../vgsasm m_db_range2.asm`" "An invalid range of number specified: 256"
+	@./check "`../vgsasm m_db_unex.asm`" "Unexpected symbols detected in DB: HL"
+	@./check "`../vgsasm m_db_nosp.asm`" "Symbols are not specified as comma-separated: 2"
+	@./check "`../vgsasm m_db_nosym.asm`" "No symbol is specified after the comma."
+	@./check "`../vgsasm m_db_nodq.asm`" "String literals are not closed with double quotes."
 
 mnemonic_calc_tests: check ../vgsasm
 	@echo Testing: mnemonic calc8

@@ -897,6 +897,19 @@ N: m_calc_ana
   m_calc_ana.asm:0008 $0031 <SBC> _( 0xFFFF )_
 diff m_calc_ana.bin m_calc_ana.exp
 E: Numerical range incorrect: 65536 ... OK
-Normal case: 137
-Error case: 158
-Total: 295
+Testing: mnemonic data
+N: m_db
+../vgsasm m_db.asm -v
+        m_db.asm:0001 $0000 <DB> 0xFFFFFF80 `,` 0xFFFFFFFF `,` 0x0 `,` 0x1 `,` 0xFF
+        m_db.asm:0002 $0005 <DB> `Hello, World!`
+diff m_db.bin m_db.exp
+E: No binary data. ... OK
+E: An invalid range of number specified: -129 ... OK
+E: An invalid range of number specified: 256 ... OK
+E: Unexpected symbols detected in DB: HL ... OK
+E: Symbols are not specified as comma-separated: 2 ... OK
+E: No symbol is specified after the comma. ... OK
+E: String literals are not closed with double quotes. ... OK
+Normal case: 138
+Error case: 165
+Total: 303
