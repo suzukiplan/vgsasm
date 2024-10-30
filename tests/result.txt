@@ -1168,6 +1168,11 @@ N: m_jp_o
       m_jp_o.asm:0005 $0007 <JP> <DE>
 diff m_jp_o.bin m_jp_o.exp
 E: Illegal JP instruction. ... OK
-Normal case: 163
+N: m_jr_n
+../vgsasm m_jr_n.asm -v
+      m_jr_n.asm:0001 $0000 <JR> 0xFFFFFF80
+      m_jr_n.asm:0002 $0002 <JR> 0x7F
+diff m_jr_n.bin m_jr_n.exp
+Normal case: 164
 Error case: 205
-Total: 368
+Total: 369
