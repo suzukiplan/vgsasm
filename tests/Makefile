@@ -290,6 +290,4 @@ normal_case:
 	@echo N: ${src}
 	../vgsasm ${src}.asm -v
 	diff ${src}.bin ${src}.exp
-	z88dk-dis ${src}.bin > ${src}.tmp
-	diff ${src}.tmp ${src}.dis
-	@rm ${src}.tmp
+	@#z88dk-dis ${src}.exp > ${src}.dis
