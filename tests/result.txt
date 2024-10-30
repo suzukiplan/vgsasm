@@ -1368,6 +1368,24 @@ diff m_shift_aopna.bin m_shift_aopna.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
 E: Illegal shift/rotate instruction. ... OK
-Normal case: 173
+N: m_shift_aopna_o
+../vgsasm m_shift_aopna_o.asm -v
+m_shift_aopna_o.asm:0001 $0000 <RLC> _( <IX> `+` 0x0 )_ `&` <A>
+m_shift_aopna_o.asm:0002 $0004 <RLC> _( <IX> `+` 0x0 )_ `&` <B>
+m_shift_aopna_o.asm:0003 $0008 <RLC> _( <IX> `+` 0x0 )_ `&` <C>
+m_shift_aopna_o.asm:0004 $000C <RLC> _( <IX> `+` 0x0 )_ `&` <D>
+m_shift_aopna_o.asm:0005 $0010 <RLC> _( <IX> `+` 0x0 )_ `&` <E>
+m_shift_aopna_o.asm:0006 $0014 <RLC> _( <IX> `+` 0x0 )_ `&` <F>
+m_shift_aopna_o.asm:0007 $0018 <RLC> _( <IX> `+` 0x0 )_ `&` <H>
+m_shift_aopna_o.asm:0008 $001C <RLC> _( <IX> `+` 0x0 )_ `&` <L>
+m_shift_aopna_o.asm:0010 $0020 <RRC> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0011 $0024 <RL> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0012 $0028 <RR> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0013 $002C <SLA> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0014 $0030 <SRA> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0015 $0034 <SLL> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0016 $0038 <SRL> _( <IX> `+` 0x1 )_ `&` <B>
+diff m_shift_aopna_o.bin m_shift_aopna_o.exp
+Normal case: 174
 Error case: 216
-Total: 389
+Total: 390
