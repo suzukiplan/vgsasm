@@ -166,6 +166,8 @@ mnemonic_jr_tests: check ../vgsasm
 	@./check "`../vgsasm m_jr_n_range2.asm`" "Numerical range incorrect: 128"
 	${MAK} normal_case src=m_jr_l
 	${MAK} normal_case src=m_jr_osn
+	@./check "`../vgsasm m_jr_osn_ill.asm`" "Invalid condition: PE"
+	${MAK} normal_case src=m_jr_osl
 
 mnemonic_jp_tests: check ../vgsasm
 	${MAK} normal_case src=m_jp_n

@@ -1195,6 +1195,15 @@ N: m_jr_osn
     m_jr_osn.asm:0003 $0004 <JR> <NC> `,` 0x1
     m_jr_osn.asm:0004 $0006 <JR> <C> `,` 0x7F
 diff m_jr_osn.bin m_jr_osn.exp
-Normal case: 166
-Error case: 207
-Total: 373
+E: Invalid condition: PE ... OK
+N: m_jr_osl
+../vgsasm m_jr_osl.asm -v
+    m_jr_osl.asm:0001 $0000 LABEL:
+    m_jr_osl.asm:0003 $0000 <JR> <NZ> `,` `LABEL`
+    m_jr_osl.asm:0004 $0002 <JR> <Z> `,` `LABEL`
+    m_jr_osl.asm:0005 $0004 <JR> <NC> `,` `LABEL`
+    m_jr_osl.asm:0006 $0006 <JR> <C> `,` `LABEL`
+diff m_jr_osl.bin m_jr_osl.exp
+Normal case: 167
+Error case: 208
+Total: 375
