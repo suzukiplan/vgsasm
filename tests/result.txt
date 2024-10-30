@@ -1304,6 +1304,39 @@ N: m_shift_osn
 ../vgsasm m_shift_osn.asm -v
  m_shift_osn.asm:0001 $0000 <SL> <A> `,` 0x5
 diff m_shift_osn.bin m_shift_osn.exp
-Normal case: 170
+N: m_shift_aoa
+../vgsasm m_shift_aoa.asm -v
+ m_shift_aoa.asm:0001 $0000 <SLA> _( <HL> )_
+ m_shift_aoa.asm:0002 $0002 <SLA> _( <IX> )_
+ m_shift_aoa.asm:0003 $0006 <SLA> _( <IY> )_
+ m_shift_aoa.asm:0005 $000A <SLL> _( <HL> )_
+ m_shift_aoa.asm:0006 $000C <SLL> _( <IX> )_
+ m_shift_aoa.asm:0007 $0010 <SLL> _( <IY> )_
+ m_shift_aoa.asm:0009 $0014 <SRA> _( <HL> )_
+ m_shift_aoa.asm:0010 $0016 <SRA> _( <IX> )_
+ m_shift_aoa.asm:0011 $001A <SRA> _( <IY> )_
+ m_shift_aoa.asm:0013 $001E <SRL> _( <HL> )_
+ m_shift_aoa.asm:0014 $0020 <SRL> _( <IX> )_
+ m_shift_aoa.asm:0015 $0024 <SRL> _( <IY> )_
+ m_shift_aoa.asm:0017 $0028 <RLC> _( <HL> )_
+ m_shift_aoa.asm:0018 $002A <RLC> _( <IX> )_
+ m_shift_aoa.asm:0019 $002E <RLC> _( <IY> )_
+ m_shift_aoa.asm:0021 $0032 <RL> _( <HL> )_
+ m_shift_aoa.asm:0022 $0034 <RL> _( <IX> )_
+ m_shift_aoa.asm:0023 $0038 <RL> _( <IY> )_
+ m_shift_aoa.asm:0025 $003C <RRC> _( <HL> )_
+ m_shift_aoa.asm:0026 $003E <RRC> _( <IX> )_
+ m_shift_aoa.asm:0027 $0042 <RRC> _( <IY> )_
+ m_shift_aoa.asm:0029 $0046 <RR> _( <HL> )_
+ m_shift_aoa.asm:0030 $0048 <RR> _( <IX> )_
+ m_shift_aoa.asm:0031 $004C <RR> _( <IY> )_
+ m_shift_aoa.asm:0033 $0050 <SL> _( <HL> )_
+ m_shift_aoa.asm:0034 $0052 <SL> _( <IX> )_
+ m_shift_aoa.asm:0035 $0056 <SL> _( <IY> )_
+ m_shift_aoa.asm:0037 $005A <SR> _( <HL> )_
+ m_shift_aoa.asm:0038 $005C <SR> _( <IX> )_
+ m_shift_aoa.asm:0039 $0060 <SR> _( <IY> )_
+diff m_shift_aoa.bin m_shift_aoa.exp
+Normal case: 171
 Error case: 212
-Total: 382
+Total: 383
