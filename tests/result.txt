@@ -1398,6 +1398,15 @@ N: m_push_o
 diff m_push_o.bin m_push_o.exp
 E: Unsupported PUSH operand: A ... OK
 E: Excessive or insufficient number of operands. ... OK
-Normal case: 175
+N: m_pop_o
+../vgsasm m_pop_o.asm -v
+     m_pop_o.asm:0001 $0000 <POP> <AF>
+     m_pop_o.asm:0002 $0001 <POP> <BC>
+     m_pop_o.asm:0003 $0002 <POP> <DE>
+     m_pop_o.asm:0004 $0003 <POP> <HL>
+     m_pop_o.asm:0005 $0004 <POP> <IX>
+     m_pop_o.asm:0006 $0006 <POP> <IY>
+diff m_pop_o.bin m_pop_o.exp
+Normal case: 176
 Error case: 219
-Total: 394
+Total: 395
