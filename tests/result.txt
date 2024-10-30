@@ -1065,6 +1065,25 @@ diff m_dec_aopna.bin m_dec_aopna.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
 E: Illegal DEC instruction. ... OK
-Normal case: 151
-Error case: 197
-Total: 348
+N: m_in_osana
+../vgsasm m_in_osana.asm -v
+  m_in_osana.asm:0001 $0000 <IN> <A> `,` _( 0x0 )_
+  m_in_osana.asm:0002 $0002 <IN> <A> `,` _( 0xFF )_
+diff m_in_osana.bin m_in_osana.exp
+E: Numerical range incorrect: 256 ... OK
+N: m_in_osaoa
+../vgsasm m_in_osaoa.asm -v
+  m_in_osaoa.asm:0001 $0000 <IN> <A> `,` _( <C> )_
+  m_in_osaoa.asm:0002 $0002 <IN> <B> `,` _( <C> )_
+  m_in_osaoa.asm:0003 $0004 <IN> <C> `,` _( <C> )_
+  m_in_osaoa.asm:0004 $0006 <IN> <D> `,` _( <C> )_
+  m_in_osaoa.asm:0005 $0008 <IN> <E> `,` _( <C> )_
+  m_in_osaoa.asm:0006 $000A <IN> <F> `,` _( <C> )_
+  m_in_osaoa.asm:0007 $000C <IN> <H> `,` _( <C> )_
+  m_in_osaoa.asm:0008 $000E <IN> <L> `,` _( <C> )_
+diff m_in_osaoa.bin m_in_osaoa.exp
+E: Illegal IN instruction. ... OK
+E: Illegal IN instruction. ... OK
+Normal case: 153
+Error case: 200
+Total: 353

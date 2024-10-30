@@ -155,6 +155,14 @@ mnemonic:
 	${MAK} mnemonic_im_tests
 	${MAK} mnemonic_inc_tests
 	${MAK} mnemonic_dec_tests
+	${MAK} mnemonic_in_tests
+
+mnemonic_in_tests: check ../vgsasm
+	${MAK} normal_case src=m_in_osana
+	@./check "`../vgsasm m_in_osana_range.asm`" "Numerical range incorrect: 256"
+	${MAK} normal_case src=m_in_osaoa
+	@./check "`../vgsasm m_in_osaoa_ill.asm`" "Illegal IN instruction."
+	@./check "`../vgsasm m_in_ill.asm`" "Illegal IN instruction."
 
 mnemonic_dec_tests: check ../vgsasm
 	${MAK} normal_case src=m_dec_o
