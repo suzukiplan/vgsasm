@@ -1342,6 +1342,29 @@ N: m_shift_aoasn
 ../vgsasm m_shift_aoasn.asm -v
 m_shift_aoasn.asm:0001 $0000 <SLA> _( <HL> )_ `,` 0x3
 diff m_shift_aoasn.bin m_shift_aoasn.exp
-Normal case: 172
+N: m_shift_aopna
+../vgsasm m_shift_aopna.asm -v
+m_shift_aopna.asm:0001 $0000 <SLA> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0002 $0004 <SLA> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0004 $0008 <SLL> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0005 $000C <SLL> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0007 $0010 <SRA> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0008 $0014 <SRA> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0010 $0018 <SRL> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0011 $001C <SRL> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0013 $0020 <RLC> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0014 $0024 <RLC> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0016 $0028 <RL> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0017 $002C <RL> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0019 $0030 <RRC> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0020 $0034 <RRC> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0022 $0038 <RR> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0023 $003C <RR> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0025 $0040 <SL> _( <IX> `+` 0x7F )_
+m_shift_aopna.asm:0026 $0044 <SL> _( <IY> `-` 0x80 )_
+m_shift_aopna.asm:0028 $0048 <SR> _( <IX> `+` 0x7F )_
+m_shift_aopna.asm:0029 $004C <SR> _( <IY> `-` 0x80 )_
+diff m_shift_aopna.bin m_shift_aopna.exp
+Normal case: 173
 Error case: 213
-Total: 385
+Total: 386
