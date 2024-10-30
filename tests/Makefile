@@ -160,6 +160,10 @@ mnemonic:
 	${MAK} mnemonic_jp_tests
 	${MAK} mnemonic_jr_tests
 	${MAK} mnemonic_rst_tests
+	${MAK} mnemonic_shift_tests
+
+mnemonic_shift_tests: check ../vgsasm
+	${MAK} normal_case src=m_shift_o
 
 mnemonic_rst_tests: check ../vgsasm
 	${MAK} normal_case src=m_rst
