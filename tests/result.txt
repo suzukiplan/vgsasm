@@ -1206,6 +1206,25 @@ N: m_jr_osl
 diff m_jr_osl.bin m_jr_osl.exp
 E: Invalid condition: PO ... OK
 E: Illegal JR instruction. ... OK
-Normal case: 167
+N: m_rst
+../vgsasm m_rst.asm -v
+       m_rst.asm:0001 $0000 <RST> 0x0
+       m_rst.asm:0002 $0001 <RST> 0x1
+       m_rst.asm:0003 $0002 <RST> 0x2
+       m_rst.asm:0004 $0003 <RST> 0x3
+       m_rst.asm:0005 $0004 <RST> 0x4
+       m_rst.asm:0006 $0005 <RST> 0x5
+       m_rst.asm:0007 $0006 <RST> 0x6
+       m_rst.asm:0008 $0007 <RST> 0x7
+       m_rst.asm:0010 $0008 <RST> 0x0
+       m_rst.asm:0011 $0009 <RST> 0x8
+       m_rst.asm:0012 $000A <RST> 0x10
+       m_rst.asm:0013 $000B <RST> 0x18
+       m_rst.asm:0014 $000C <RST> 0x20
+       m_rst.asm:0015 $000D <RST> 0x28
+       m_rst.asm:0016 $000E <RST> 0x30
+       m_rst.asm:0017 $000F <RST> 0x38
+diff m_rst.bin m_rst.exp
+Normal case: 168
 Error case: 210
-Total: 377
+Total: 378
