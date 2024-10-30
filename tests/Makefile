@@ -157,6 +157,17 @@ mnemonic:
 	${MAK} mnemonic_dec_tests
 	${MAK} mnemonic_in_tests
 	${MAK} mnemonic_out_tests
+	${MAK} mnemonic_jp_tests
+
+mnemonic_jp_tests: check ../vgsasm
+	${MAK} normal_case src=m_jp_n
+	@./check "`../vgsasm m_jp_n_range.asm`" "Numerical range incorrect: 65536"
+	${MAK} normal_case src=m_jp_l
+	${MAK} normal_case src=m_jp_osn
+	${MAK} normal_case src=m_jp_osl
+	${MAK} normal_case src=m_jp_aoa
+	${MAK} normal_case src=m_jp_o
+	@./check "`../vgsasm m_jp_ill.asm`" "Illegal JP instruction."
 
 mnemonic_out_tests: check ../vgsasm
 	${MAK} normal_case src=m_out_anaso

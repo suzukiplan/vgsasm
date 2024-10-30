@@ -1110,6 +1110,64 @@ N: m_out_aoa
    m_out_aoa.asm:0001 $0000 <OUT> _( <C> )_
 diff m_out_aoa.bin m_out_aoa.exp
 E: Illegal OUT instruction. ... OK
-Normal case: 157
-Error case: 203
-Total: 360
+N: m_jp_n
+../vgsasm m_jp_n.asm -v
+      m_jp_n.asm:0001 $0000 <JP> 0x0
+      m_jp_n.asm:0002 $0003 <JP> 0xFFFF
+diff m_jp_n.bin m_jp_n.exp
+E: Numerical range incorrect: 65536 ... OK
+N: m_jp_l
+../vgsasm m_jp_l.asm -v
+      m_jp_l.asm:0001 $0000 LABEL:
+      m_jp_l.asm:0002 $0000 <NOP>
+      m_jp_l.asm:0003 $0001 FOO@LABEL:
+      m_jp_l.asm:0004 $0001 <NOP>
+      m_jp_l.asm:0006 $0002 <JP> `LABEL`
+      m_jp_l.asm:0007 $0005 <JP> `FOO@LABEL`
+      m_jp_l.asm:0008 $0008 <JP> `FOO@LABEL`
+diff m_jp_l.bin m_jp_l.exp
+N: m_jp_osn
+../vgsasm m_jp_osn.asm -v
+    m_jp_osn.asm:0001 $0000 <JP> <Z> `,` 0x0
+    m_jp_osn.asm:0002 $0003 <JP> <Z> `,` 0xFFFF
+    m_jp_osn.asm:0003 $0006 <JP> <NZ> `,` 0x1
+    m_jp_osn.asm:0004 $0009 <JP> <C> `,` 0x2
+    m_jp_osn.asm:0005 $000C <JP> <NC> `,` 0x3
+    m_jp_osn.asm:0006 $000F <JP> <PE> `,` 0x4
+    m_jp_osn.asm:0007 $0012 <JP> <PO> `,` 0x5
+    m_jp_osn.asm:0008 $0015 <JP> <M> `,` 0x6
+    m_jp_osn.asm:0009 $0018 <JP> <P> `,` 0x7
+diff m_jp_osn.bin m_jp_osn.exp
+N: m_jp_osl
+../vgsasm m_jp_osl.asm -v
+    m_jp_osl.asm:0001 $0000 LABEL:
+    m_jp_osl.asm:0002 $0000 <NOP>
+    m_jp_osl.asm:0004 $0001 <JP> <NZ> `,` `LABEL`
+    m_jp_osl.asm:0005 $0004 <JP> <Z> `,` `LABEL`
+    m_jp_osl.asm:0006 $0007 <JP> <NC> `,` `LABEL`
+    m_jp_osl.asm:0007 $000A <JP> <C> `,` `LABEL`
+    m_jp_osl.asm:0008 $000D <JP> <PO> `,` `LABEL`
+    m_jp_osl.asm:0009 $0010 <JP> <PE> `,` `LABEL`
+    m_jp_osl.asm:0010 $0013 <JP> <M> `,` `LABEL`
+    m_jp_osl.asm:0011 $0016 <JP> <P> `,` `LABEL`
+diff m_jp_osl.bin m_jp_osl.exp
+N: m_jp_aoa
+../vgsasm m_jp_aoa.asm -v
+    m_jp_aoa.asm:0001 $0000 <JP> _( <HL> )_
+    m_jp_aoa.asm:0002 $0001 <JP> _( <IX> )_
+    m_jp_aoa.asm:0003 $0003 <JP> _( <IY> )_
+    m_jp_aoa.asm:0004 $0005 <JP> _( <BC> )_
+    m_jp_aoa.asm:0005 $0007 <JP> _( <DE> )_
+diff m_jp_aoa.bin m_jp_aoa.exp
+N: m_jp_o
+../vgsasm m_jp_o.asm -v
+      m_jp_o.asm:0001 $0000 <JP> <HL>
+      m_jp_o.asm:0002 $0001 <JP> <IX>
+      m_jp_o.asm:0003 $0003 <JP> <IY>
+      m_jp_o.asm:0004 $0005 <JP> <BC>
+      m_jp_o.asm:0005 $0007 <JP> <DE>
+diff m_jp_o.bin m_jp_o.exp
+E: Illegal JP instruction. ... OK
+Normal case: 163
+Error case: 205
+Total: 368
