@@ -150,6 +150,11 @@ mnemonic:
 	${MAK} mnemonic_bit_tests
 	${MAK} mnemonic_calc_tests
 	${MAK} mnemonic_data_tests
+	${MAK} mnemonic_djnz_tests
+
+mnemonic_djnz_tests: check ../vgsasm
+	@echo Testing: mnemonic djnz
+	${MAK} normal_case src=m_djnz
 
 mnemonic_data_tests: check ../vgsasm
 	@echo Testing: mnemonic data
@@ -285,3 +290,6 @@ normal_case:
 	@echo N: ${src}
 	../vgsasm ${src}.asm -v
 	diff ${src}.bin ${src}.exp
+	z88dk-dis ${src}.bin > ${src}.tmp
+	diff ${src}.tmp ${src}.dis
+	@rm ${src}.tmp

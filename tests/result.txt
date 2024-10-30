@@ -396,6 +396,8 @@ N: struct_noaddr2
 ../vgsasm struct_noaddr2.asm -v
 struct_noaddr2.asm:0005 $0000 <LD> <HL> `,` 0x0
 diff struct_noaddr2.bin struct_noaddr2.exp
+z88dk-dis struct_noaddr2.bin > struct_noaddr2.tmp
+diff struct_noaddr2.tmp struct_noaddr2.dis
 E: Invalid `}` without corresponding `{`. ... OK
 E: The scope `{` specified in this line is not closed with `}`. ... OK
 E: It must be defined on the line after the definition of struct specified by the arrow operator. ... OK
@@ -427,6 +429,8 @@ struct_normal.asm:0031 $001B <LD> <BC> `,` 0xC01E
 struct_normal.asm:0032 $001E <LD> <BC> `,` 0xC01F
 struct_normal.asm:0033 $0021 <LD> <BC> `,` 0xC021
 diff struct_normal.bin struct_normal.exp
+z88dk-dis struct_normal.bin > struct_normal.tmp
+diff struct_normal.tmp struct_normal.dis
 Testing: macro
 E: `#macro` must appear at the beginning of the line. ... OK
 E: Invalid #macro syntax. ... OK
@@ -480,6 +484,8 @@ macro_normal.asm:0021 $0036 <RET>
                 :0000 $0037 $0:
                 :0000 $0037 <DB> 0x53 `,` 0x74 `,` 0x72 `,` 0x69 `,` 0x6E `,` 0x67 `,` 0x0
 diff macro_normal.bin macro_normal.exp
+z88dk-dis macro_normal.bin > macro_normal.tmp
+diff macro_normal.tmp macro_normal.dis
 Testing: mnemonic bits
 N: m_bit_nso
 ../vgsasm m_bit_nso.asm -v
@@ -493,6 +499,8 @@ N: m_bit_nso
    m_bit_nso.asm:0008 $000E <SET> 0x7 `,` <A>
    m_bit_nso.asm:0009 $0010 <RES> 0x0 `,` <B>
 diff m_bit_nso.bin m_bit_nso.exp
+z88dk-dis m_bit_nso.bin > m_bit_nso.tmp
+diff m_bit_nso.tmp m_bit_nso.dis
 E: Numerical range incorrect: 8 ... OK
 E: Illegal BIT/SET/RES instruction. ... OK
 N: m_bit_nsaoa
@@ -503,6 +511,8 @@ N: m_bit_nsaoa
  m_bit_nsaoa.asm:0004 $000A <SET> 0x6 `,` _( <IX> )_
  m_bit_nsaoa.asm:0005 $000E <RES> 0x4 `,` _( <IY> )_
 diff m_bit_nsaoa.bin m_bit_nsaoa.exp
+z88dk-dis m_bit_nsaoa.bin > m_bit_nsaoa.tmp
+diff m_bit_nsaoa.tmp m_bit_nsaoa.dis
 E: Numerical range incorrect: 8 ... OK
 E: Illegal BIT/SET/RES instruction. ... OK
 N: m_bit_nsaopna
@@ -512,6 +522,8 @@ m_bit_nsaopna.asm:0002 $0004 <BIT> 0x7 `,` _( <IX> `+` 0x7F )_
 m_bit_nsaopna.asm:0003 $0008 <BIT> 0x4 `,` _( <IY> `+` 0x0 )_
 m_bit_nsaopna.asm:0004 $000C <BIT> 0x5 `,` _( <IY> `-` 0x1 )_
 diff m_bit_nsaopna.bin m_bit_nsaopna.exp
+z88dk-dis m_bit_nsaopna.bin > m_bit_nsaopna.tmp
+diff m_bit_nsaopna.tmp m_bit_nsaopna.dis
 E: Numerical range incorrect: 8 ... OK
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
@@ -608,6 +620,8 @@ N: m_calc8_o
    m_calc8_o.asm:0094 $0074 <XOR> <IYH>
    m_calc8_o.asm:0095 $0076 <XOR> <IYL>
 diff m_calc8_o.bin m_calc8_o.exp
+z88dk-dis m_calc8_o.bin > m_calc8_o.tmp
+diff m_calc8_o.tmp m_calc8_o.dis
 E: Illegal 8-bit arithmetic instruction. ... OK
 N: m_calc8_n
 ../vgsasm m_calc8_n.asm -v
@@ -620,6 +634,8 @@ N: m_calc8_n
    m_calc8_n.asm:0007 $000C <OR> 0x0
    m_calc8_n.asm:0008 $000E <XOR> 0x0
 diff m_calc8_n.bin m_calc8_n.exp
+z88dk-dis m_calc8_n.bin > m_calc8_n.tmp
+diff m_calc8_n.tmp m_calc8_n.dis
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
 N: m_calc8_n_range3
@@ -632,6 +648,8 @@ m_calc8_n_range3.asm:0005 $0008 <ADD> 0x7F
 m_calc8_n_range3.asm:0006 $000A <ADD> 0x80
 m_calc8_n_range3.asm:0007 $000C <ADD> 0xFF
 diff m_calc8_n_range3.bin m_calc8_n_range3.exp
+z88dk-dis m_calc8_n_range3.bin > m_calc8_n_range3.tmp
+diff m_calc8_n_range3.tmp m_calc8_n_range3.dis
 N: m_calc8_ao
 ../vgsasm m_calc8_ao.asm -v
   m_calc8_ao.asm:0001 $0000 <ADD> _( <HL> )_
@@ -691,6 +709,8 @@ N: m_calc8_ao
   m_calc8_ao.asm:0062 $0092 <XOR> _( <IX> `+` 0x7F )_
   m_calc8_ao.asm:0063 $0095 <XOR> _( <IY> `+` 0x7F )_
 diff m_calc8_ao.bin m_calc8_ao.exp
+z88dk-dis m_calc8_ao.bin > m_calc8_ao.tmp
+diff m_calc8_ao.tmp m_calc8_ao.dis
 E: Illegal 8-bit arithmetic instruction. ... OK
 E: Illegal 8-bit arithmetic instruction. ... OK
 E: Illegal 8-bit arithmetic instruction. ... OK
@@ -785,6 +805,8 @@ N: m_calc8_os
   m_calc8_os.asm:0094 $0074 <XOR> <IYH>
   m_calc8_os.asm:0095 $0076 <XOR> <IYL>
 diff m_calc8_os.bin m_calc8_os.exp
+z88dk-dis m_calc8_os.bin > m_calc8_os.tmp
+diff m_calc8_os.tmp m_calc8_os.dis
 E: Illegal 8-bit arithmetic instruction. ... OK
 E: Illegal 8-bit arithmetic instruction. ... OK
 Testing: mnemonic calc16
@@ -792,14 +814,20 @@ N: m_calc16_add_bc_a
 ../vgsasm m_calc16_add_bc_a.asm -v
 m_calc16_add_bc_a.asm:0001 $0000 <ADD> <BC> `,` <A>
 diff m_calc16_add_bc_a.bin m_calc16_add_bc_a.exp
+z88dk-dis m_calc16_add_bc_a.bin > m_calc16_add_bc_a.tmp
+diff m_calc16_add_bc_a.tmp m_calc16_add_bc_a.dis
 N: m_calc16_add_de_a
 ../vgsasm m_calc16_add_de_a.asm -v
 m_calc16_add_de_a.asm:0001 $0000 <ADD> <DE> `,` <A>
 diff m_calc16_add_de_a.bin m_calc16_add_de_a.exp
+z88dk-dis m_calc16_add_de_a.bin > m_calc16_add_de_a.tmp
+diff m_calc16_add_de_a.tmp m_calc16_add_de_a.dis
 N: m_calc16_add_hl_a
 ../vgsasm m_calc16_add_hl_a.asm -v
 m_calc16_add_hl_a.asm:0001 $0000 <ADD> <HL> `,` <A>
 diff m_calc16_add_hl_a.bin m_calc16_add_hl_a.exp
+z88dk-dis m_calc16_add_hl_a.bin > m_calc16_add_hl_a.tmp
+diff m_calc16_add_hl_a.tmp m_calc16_add_hl_a.dis
 N: m_calc16_hl_rr
 ../vgsasm m_calc16_hl_rr.asm -v
 m_calc16_hl_rr.asm:0001 $0000 <ADD> <HL> `,` <BC>
@@ -815,6 +843,8 @@ m_calc16_hl_rr.asm:0012 $000E <SBC> <HL> `,` <DE>
 m_calc16_hl_rr.asm:0013 $0010 <SBC> <HL> `,` <HL>
 m_calc16_hl_rr.asm:0014 $0012 <SBC> <HL> `,` <SP>
 diff m_calc16_hl_rr.bin m_calc16_hl_rr.exp
+z88dk-dis m_calc16_hl_rr.bin > m_calc16_hl_rr.tmp
+diff m_calc16_hl_rr.tmp m_calc16_hl_rr.dis
 E: Illegal 16-bit arithmetic instruction. ... OK
 N: m_calc16_ix_rr
 ../vgsasm m_calc16_ix_rr.asm -v
@@ -823,6 +853,8 @@ m_calc16_ix_rr.asm:0002 $0002 <ADD> <IX> `,` <DE>
 m_calc16_ix_rr.asm:0003 $0004 <ADD> <IX> `,` <IX>
 m_calc16_ix_rr.asm:0004 $0006 <ADD> <IX> `,` <SP>
 diff m_calc16_ix_rr.bin m_calc16_ix_rr.exp
+z88dk-dis m_calc16_ix_rr.bin > m_calc16_ix_rr.tmp
+diff m_calc16_ix_rr.tmp m_calc16_ix_rr.dis
 E: Illegal 16-bit arithmetic instruction. ... OK
 N: m_calc16_iy_rr
 ../vgsasm m_calc16_iy_rr.asm -v
@@ -831,6 +863,8 @@ m_calc16_iy_rr.asm:0002 $0002 <ADD> <IY> `,` <DE>
 m_calc16_iy_rr.asm:0003 $0004 <ADD> <IY> `,` <IY>
 m_calc16_iy_rr.asm:0004 $0006 <ADD> <IY> `,` <SP>
 diff m_calc16_iy_rr.bin m_calc16_iy_rr.exp
+z88dk-dis m_calc16_iy_rr.bin > m_calc16_iy_rr.tmp
+diff m_calc16_iy_rr.tmp m_calc16_iy_rr.dis
 E: Illegal 16-bit arithmetic instruction. ... OK
 E: Illegal 16-bit arithmetic instruction. ... OK
 N: m_calc16_osn
@@ -857,6 +891,8 @@ m_calc16_osn.asm:0021 $0089 <ADD> <IX> `,` 0x7FFF
 m_calc16_osn.asm:0022 $0091 <ADD> <IX> `,` 0x8000
 m_calc16_osn.asm:0023 $0099 <ADD> <IX> `,` 0xFFFF
 diff m_calc16_osn.bin m_calc16_osn.exp
+z88dk-dis m_calc16_osn.bin > m_calc16_osn.tmp
+diff m_calc16_osn.tmp m_calc16_osn.dis
 E: Numerical range incorrect: -32769 ... OK
 E: Numerical range incorrect: 65536 ... OK
 E: Illegal 16-bit arithmetic instruction. ... OK
@@ -865,6 +901,8 @@ N: m_calc16_osaoa
 m_calc16_osaoa.asm:0001 $0000 <ADD> <HL> `,` _( <IX> )_
 m_calc16_osaoa.asm:0002 $0009 <ADD> <HL> `,` _( <IY> )_
 diff m_calc16_osaoa.bin m_calc16_osaoa.exp
+z88dk-dis m_calc16_osaoa.bin > m_calc16_osaoa.tmp
+diff m_calc16_osaoa.tmp m_calc16_osaoa.dis
 E: Illegal 16-bit arithmetic instruction. ... OK
 N: m_calc16_osaopna
 ../vgsasm m_calc16_osaopna.asm -v
@@ -879,6 +917,8 @@ m_calc16_osaopna.asm:0009 $003F <ADD> <HL> `,` _( <IY> `+` 0x0 )_
 m_calc16_osaopna.asm:0010 $0048 <ADD> <HL> `,` _( <IY> `+` 0x1 )_
 m_calc16_osaopna.asm:0011 $0051 <ADD> <HL> `,` _( <IY> `+` 0x7E )_
 diff m_calc16_osaopna.bin m_calc16_osaopna.exp
+z88dk-dis m_calc16_osaopna.bin > m_calc16_osaopna.tmp
+diff m_calc16_osaopna.tmp m_calc16_osaopna.dis
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 127 ... OK
 E: Illegal 16-bit arithmetic instruction. ... OK
@@ -896,6 +936,8 @@ N: m_calc_ana
   m_calc_ana.asm:0007 $002A <SBC> _( 0x0 )_
   m_calc_ana.asm:0008 $0031 <SBC> _( 0xFFFF )_
 diff m_calc_ana.bin m_calc_ana.exp
+z88dk-dis m_calc_ana.bin > m_calc_ana.tmp
+diff m_calc_ana.tmp m_calc_ana.dis
 E: Numerical range incorrect: 65536 ... OK
 Testing: mnemonic data
 N: m_db
@@ -903,6 +945,8 @@ N: m_db
         m_db.asm:0001 $0000 <DB> 0xFFFFFF80 `,` 0xFFFFFFFF `,` 0x0 `,` 0x1 `,` 0xFF
         m_db.asm:0002 $0005 <DB> `Hello, World!`
 diff m_db.bin m_db.exp
+z88dk-dis m_db.bin > m_db.tmp
+diff m_db.tmp m_db.dis
 E: No binary data. ... OK
 E: An invalid range of number specified: -129 ... OK
 E: An invalid range of number specified: 256 ... OK
@@ -919,6 +963,8 @@ N: m_dw
         m_dw.asm:0006 $000E <DW> `Hello, World!` `,` 0x0
         m_dw.asm:0007 $002A <DW> `LABEL1` `,` `LABEL2` `,` `LABEL3@LABEL2` `,` `LABEL3@LABEL2`
 diff m_dw.bin m_dw.exp
+z88dk-dis m_dw.bin > m_dw.tmp
+diff m_dw.tmp m_dw.dis
 E: No binary data. ... OK
 E: An invalid range of number specified: -32769 ... OK
 E: An invalid range of number specified: 65536 ... OK
@@ -927,6 +973,19 @@ E: Symbols are not specified as comma-separated: 2 ... OK
 E: No symbol is specified after the comma. ... OK
 E: String literals are not closed with double quotes. ... OK
 E: Label `@LABEL3` is undefined in `LABEL1`. ... OK
-Normal case: 139
+Testing: mnemonic djnz
+N: m_djnz
+../vgsasm m_djnz.asm -v
+      m_djnz.asm:0001 $0000 LABEL:
+      m_djnz.asm:0002 $0000 <DJNZ> 0xFFFFFF80
+      m_djnz.asm:0003 $0002 <DJNZ> 0xFFFFFFFF
+      m_djnz.asm:0004 $0004 <DJNZ> 0x0
+      m_djnz.asm:0005 $0006 <DJNZ> 0x1
+      m_djnz.asm:0006 $0008 <DJNZ> 0x7F
+      m_djnz.asm:0007 $000A <DJNZ> `LABEL`
+diff m_djnz.bin m_djnz.exp
+z88dk-dis m_djnz.bin > m_djnz.tmp
+diff m_djnz.tmp m_djnz.dis
+Normal case: 140
 Error case: 173
-Total: 312
+Total: 313
