@@ -1188,6 +1188,13 @@ N: m_jr_l
       m_jr_l.asm:0010 $0007 <JR> `FOO@LABEL2`
       m_jr_l.asm:0011 $0009 <JR> `FOO@LABEL2`
 diff m_jr_l.bin m_jr_l.exp
-Normal case: 165
+N: m_jr_osn
+../vgsasm m_jr_osn.asm -v
+    m_jr_osn.asm:0001 $0000 <JR> <NZ> `,` 0xFFFFFF80
+    m_jr_osn.asm:0002 $0002 <JR> <Z> `,` 0xFFFFFFFF
+    m_jr_osn.asm:0003 $0004 <JR> <NC> `,` 0x1
+    m_jr_osn.asm:0004 $0006 <JR> <C> `,` 0x7F
+diff m_jr_osn.bin m_jr_osn.exp
+Normal case: 166
 Error case: 207
-Total: 372
+Total: 373
