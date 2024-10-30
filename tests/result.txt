@@ -1205,6 +1205,7 @@ N: m_jr_osl
     m_jr_osl.asm:0006 $0006 <JR> <C> `,` `LABEL`
 diff m_jr_osl.bin m_jr_osl.exp
 E: Invalid condition: PO ... OK
+E: Illegal JR instruction. ... OK
 Normal case: 167
-Error case: 209
-Total: 376
+Error case: 210
+Total: 377

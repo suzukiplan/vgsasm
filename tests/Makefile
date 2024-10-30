@@ -169,6 +169,7 @@ mnemonic_jr_tests: check ../vgsasm
 	@./check "`../vgsasm m_jr_osn_ill.asm`" "Invalid condition: PE"
 	${MAK} normal_case src=m_jr_osl
 	@./check "`../vgsasm m_jr_osl_ill.asm`" "Invalid condition: PO"
+	@./check "`../vgsasm m_jr_ill.asm`" "Illegal JR instruction."
 
 mnemonic_jp_tests: check ../vgsasm
 	${MAK} normal_case src=m_jp_n
