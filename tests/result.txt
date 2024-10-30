@@ -1300,6 +1300,10 @@ N: m_shift_o
    m_shift_o.asm:0079 $008A <SR> <L>
 diff m_shift_o.bin m_shift_o.exp
 E: Illegal shift/rotate instruction. ... OK
-Normal case: 169
+N: m_shift_osn
+../vgsasm m_shift_osn.asm -v
+ m_shift_osn.asm:0001 $0000 <SL> <A> `,` 0x5
+diff m_shift_osn.bin m_shift_osn.exp
+Normal case: 170
 Error case: 212
-Total: 381
+Total: 382
