@@ -3,6 +3,7 @@
 ## Version 0.12 (beta-12)
 
 - Fixed a bug at the beginning of file parsing that caused errors in lines that failed to parse to be ignored.
+- Correct error message of `DW`
 
 ## Version 0.11 (beta-11)
 
