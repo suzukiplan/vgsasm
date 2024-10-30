@@ -942,6 +942,23 @@ E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
 E: Illegal DJNZ instruction. ... OK
 E: Illegal DJNZ instruction. ... OK
-Normal case: 140
-Error case: 177
-Total: 317
+N: m_ex
+../vgsasm m_ex.asm -v
+        m_ex.asm:0001 $0000 <EX> <DE> `,` <HL>
+        m_ex.asm:0002 $0001 <EX> <AF> `,` <AF'>
+diff m_ex.bin m_ex.exp
+E: Excessive or insufficient number of operands. ... OK
+E: Unexpected operand: B ... OK
+E: Incorrect EX syntax. ... OK
+E: Incorrect EX syntax. ... OK
+N: m_ex_aoaso
+../vgsasm m_ex_aoaso.asm -v
+  m_ex_aoaso.asm:0001 $0000 <EX> _( <SP> )_ `,` <HL>
+  m_ex_aoaso.asm:0002 $0001 <EX> _( <SP> )_ `,` <IX>
+  m_ex_aoaso.asm:0003 $0003 <EX> _( <SP> )_ `,` <IY>
+diff m_ex_aoaso.bin m_ex_aoaso.exp
+E: Unexpected operand: 4660 ... OK
+E: Incorrect EX syntax. ... OK
+Normal case: 142
+Error case: 183
+Total: 325

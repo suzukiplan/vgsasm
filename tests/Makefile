@@ -151,6 +151,17 @@ mnemonic:
 	${MAK} mnemonic_calc_tests
 	${MAK} mnemonic_data_tests
 	${MAK} mnemonic_djnz_tests
+	${MAK} mnemonic_ex_tests
+
+mnemonic_ex_tests: check ../vgsasm
+	${MAK} normal_case src=m_ex
+	@./check "`../vgsasm m_ex_ill1.asm`" "Excessive or insufficient number of operands."
+	@./check "`../vgsasm m_ex_ill2.asm`" "Unexpected operand: B"
+	@./check "`../vgsasm m_ex_ill3.asm`" "Incorrect EX syntax."
+	@./check "`../vgsasm m_ex_ill4.asm`" "Incorrect EX syntax."
+	${MAK} normal_case src=m_ex_aoaso
+	@./check "`../vgsasm m_ex_aoaso_ill1.asm`" "Unexpected operand: 4660"
+	@./check "`../vgsasm m_ex_aoaso_ill2.asm`" "Incorrect EX syntax."
 
 mnemonic_djnz_tests: check ../vgsasm
 	@echo Testing: mnemonic djnz
