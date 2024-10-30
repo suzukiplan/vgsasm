@@ -1337,6 +1337,7 @@ N: m_shift_aoa
  m_shift_aoa.asm:0038 $005C <SR> _( <IX> )_
  m_shift_aoa.asm:0039 $0060 <SR> _( <IY> )_
 diff m_shift_aoa.bin m_shift_aoa.exp
+E: Illegal shift/rotate instruction. ... OK
 Normal case: 171
-Error case: 212
-Total: 383
+Error case: 213
+Total: 384

@@ -167,6 +167,7 @@ mnemonic_shift_tests: check ../vgsasm
 	@./check "`../vgsasm m_shift_o_ill.asm`" "Illegal shift/rotate instruction."
 	${MAK} normal_case src=m_shift_osn
 	${MAK} normal_case src=m_shift_aoa
+	@./check "`../vgsasm m_shift_aoa_ill.asm`" "Illegal shift/rotate instruction."
 
 mnemonic_rst_tests: check ../vgsasm
 	${MAK} normal_case src=m_rst
