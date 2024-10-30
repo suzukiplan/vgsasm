@@ -163,6 +163,7 @@ mnemonic:
 
 mnemonic_rst_tests: check ../vgsasm
 	${MAK} normal_case src=m_rst
+	@./check "`../vgsasm m_rst_ill.asm`" "Illegal RST instruction."
 
 mnemonic_jr_tests: check ../vgsasm
 	${MAK} normal_case src=m_jr_n

@@ -1225,6 +1225,7 @@ N: m_rst
        m_rst.asm:0016 $000E <RST> 0x30
        m_rst.asm:0017 $000F <RST> 0x38
 diff m_rst.bin m_rst.exp
+E: Illegal RST instruction. ... OK
 Normal case: 168
-Error case: 210
-Total: 378
+Error case: 211
+Total: 379
