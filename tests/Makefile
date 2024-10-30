@@ -169,6 +169,7 @@ mnemonic_stack_tests: check ../vgsasm
 	@./check "`../vgsasm m_push_ill.asm`" "Excessive or insufficient number of operands."
 	${MAK} normal_case src=m_pop_o
 	@./check "`../vgsasm m_pop_o_ill.asm`" "Unsupported POP operand: SP"
+	@./check "`../vgsasm m_pop_ill.asm`" "Excessive or insufficient number of operands."
 
 mnemonic_shift_tests: check ../vgsasm
 	${MAK} normal_case src=m_shift_o

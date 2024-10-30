@@ -1408,6 +1408,7 @@ N: m_pop_o
      m_pop_o.asm:0006 $0006 <POP> <IY>
 diff m_pop_o.bin m_pop_o.exp
 E: Unsupported POP operand: SP ... OK
+E: Excessive or insufficient number of operands. ... OK
 Normal case: 176
-Error case: 220
-Total: 396
+Error case: 221
+Total: 397
