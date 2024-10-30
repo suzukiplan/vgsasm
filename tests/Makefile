@@ -155,6 +155,10 @@ mnemonic:
 mnemonic_djnz_tests: check ../vgsasm
 	@echo Testing: mnemonic djnz
 	${MAK} normal_case src=m_djnz
+	@./check "`../vgsasm m_djnz_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_djnz_range2.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_djnz_ill1.asm`" "Illegal DJNZ instruction."
+	@./check "`../vgsasm m_djnz_ill2.asm`" "Illegal DJNZ instruction."
 
 mnemonic_data_tests: check ../vgsasm
 	@echo Testing: mnemonic data

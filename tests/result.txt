@@ -938,6 +938,10 @@ N: m_djnz
       m_djnz.asm:0006 $0008 <DJNZ> 0x7F
       m_djnz.asm:0007 $000A <DJNZ> `LABEL`
 diff m_djnz.bin m_djnz.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Illegal DJNZ instruction. ... OK
+E: Illegal DJNZ instruction. ... OK
 Normal case: 140
-Error case: 173
-Total: 313
+Error case: 177
+Total: 317
