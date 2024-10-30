@@ -153,6 +153,19 @@ mnemonic:
 	${MAK} mnemonic_djnz_tests
 	${MAK} mnemonic_ex_tests
 	${MAK} mnemonic_im_tests
+	${MAK} mnemonic_inc_tests
+
+mnemonic_inc_tests: check ../vgsasm
+	${MAK} normal_case src=m_inc_o
+	@./check "`../vgsasm m_inc_o_ill.asm`" "Illegal INC instruction."
+	${MAK} normal_case src=m_inc_aoa
+	@./check "`../vgsasm m_inc_aoa_ill.asm`" "Illegal INC instruction."
+	${MAK} normal_case src=m_inc_ana
+	@./check "`../vgsasm m_inc_ana_range.asm`" "Numerical range incorrect: 65536"
+	${MAK} normal_case src=m_inc_aopna
+	@./check "`../vgsasm m_inc_aopna_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_inc_aopna_range2.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_inc_aopna_ill.asm`" "Illegal INC instruction."
 
 mnemonic_im_tests: check ../vgsasm
 	${MAK} normal_case src=m_im

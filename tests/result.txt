@@ -967,6 +967,55 @@ N: m_im
 diff m_im.bin m_im.exp
 E: Unsupported interrupt mode: 3 ... OK
 E: Unexpected operand: A ... OK
-Normal case: 143
-Error case: 185
-Total: 328
+N: m_inc_o
+../vgsasm m_inc_o.asm -v
+     m_inc_o.asm:0001 $0000 <INC> <A>
+     m_inc_o.asm:0002 $0001 <INC> <B>
+     m_inc_o.asm:0003 $0002 <INC> <C>
+     m_inc_o.asm:0004 $0003 <INC> <D>
+     m_inc_o.asm:0005 $0004 <INC> <E>
+     m_inc_o.asm:0006 $0005 <INC> <H>
+     m_inc_o.asm:0007 $0006 <INC> <L>
+     m_inc_o.asm:0008 $0007 <INC> <IXH>
+     m_inc_o.asm:0009 $0009 <INC> <IXL>
+     m_inc_o.asm:0010 $000B <INC> <IYH>
+     m_inc_o.asm:0011 $000D <INC> <IYL>
+     m_inc_o.asm:0012 $000F <INC> <BC>
+     m_inc_o.asm:0013 $0010 <INC> <DE>
+     m_inc_o.asm:0014 $0011 <INC> <HL>
+     m_inc_o.asm:0015 $0012 <INC> <SP>
+     m_inc_o.asm:0016 $0013 <INC> <IX>
+     m_inc_o.asm:0017 $0015 <INC> <IY>
+diff m_inc_o.bin m_inc_o.exp
+E: Illegal INC instruction. ... OK
+N: m_inc_aoa
+../vgsasm m_inc_aoa.asm -v
+   m_inc_aoa.asm:0001 $0000 <INC> _( <HL> )_
+   m_inc_aoa.asm:0002 $0001 <INC> _( <IX> )_
+   m_inc_aoa.asm:0003 $0004 <INC> _( <IY> )_
+diff m_inc_aoa.bin m_inc_aoa.exp
+E: Illegal INC instruction. ... OK
+N: m_inc_ana
+../vgsasm m_inc_ana.asm -v
+   m_inc_ana.asm:0001 $0000 <INC> _( 0x1234 )_
+diff m_inc_ana.bin m_inc_ana.exp
+E: Numerical range incorrect: 65536 ... OK
+N: m_inc_aopna
+../vgsasm m_inc_aopna.asm -v
+ m_inc_aopna.asm:0001 $0000 <INC> _( <IX> `-` 0x80 )_
+ m_inc_aopna.asm:0002 $0003 <INC> _( <IX> `-` 0x1 )_
+ m_inc_aopna.asm:0003 $0006 <INC> _( <IX> `+` 0x0 )_
+ m_inc_aopna.asm:0004 $0009 <INC> _( <IX> `+` 0x1 )_
+ m_inc_aopna.asm:0005 $000C <INC> _( <IX> `+` 0x7F )_
+ m_inc_aopna.asm:0006 $000F <INC> _( <IY> `-` 0x80 )_
+ m_inc_aopna.asm:0007 $0012 <INC> _( <IY> `-` 0x1 )_
+ m_inc_aopna.asm:0008 $0015 <INC> _( <IY> `+` 0x0 )_
+ m_inc_aopna.asm:0009 $0018 <INC> _( <IY> `+` 0x1 )_
+ m_inc_aopna.asm:0010 $001B <INC> _( <IY> `+` 0x7F )_
+diff m_inc_aopna.bin m_inc_aopna.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Illegal INC instruction. ... OK
+Normal case: 147
+Error case: 191
+Total: 338
