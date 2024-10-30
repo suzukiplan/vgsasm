@@ -1173,6 +1173,8 @@ N: m_jr_n
       m_jr_n.asm:0001 $0000 <JR> 0xFFFFFF80
       m_jr_n.asm:0002 $0002 <JR> 0x7F
 diff m_jr_n.bin m_jr_n.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
 Normal case: 164
-Error case: 205
-Total: 369
+Error case: 207
+Total: 371
