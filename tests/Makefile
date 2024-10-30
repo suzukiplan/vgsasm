@@ -166,6 +166,7 @@ mnemonic:
 mnemonic_stack_tests: check ../vgsasm
 	${MAK} normal_case src=m_push_o
 	@./check "`../vgsasm m_push_o_ill.asm`" "Unsupported PUSH operand: A"
+	@./check "`../vgsasm m_push_ill.asm`" "Excessive or insufficient number of operands."
 
 mnemonic_shift_tests: check ../vgsasm
 	${MAK} normal_case src=m_shift_o

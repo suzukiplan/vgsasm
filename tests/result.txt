@@ -1397,6 +1397,7 @@ N: m_push_o
     m_push_o.asm:0006 $0006 <PUSH> <IY>
 diff m_push_o.bin m_push_o.exp
 E: Unsupported PUSH operand: A ... OK
+E: Excessive or insufficient number of operands. ... OK
 Normal case: 175
-Error case: 218
-Total: 393
+Error case: 219
+Total: 394
