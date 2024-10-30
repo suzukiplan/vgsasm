@@ -1,5 +1,7 @@
 # Change log
 
+## Version 0.13 (beta-13)
+
 ## Version 0.12 (beta-12)
 
 - Fixed a bug at the beginning of file parsing that caused errors in lines that failed to parse to be ignored.
