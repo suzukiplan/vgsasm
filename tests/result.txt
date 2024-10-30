@@ -1407,6 +1407,7 @@ N: m_pop_o
      m_pop_o.asm:0005 $0004 <POP> <IX>
      m_pop_o.asm:0006 $0006 <POP> <IY>
 diff m_pop_o.bin m_pop_o.exp
+E: Unsupported POP operand: SP ... OK
 Normal case: 176
-Error case: 219
-Total: 395
+Error case: 220
+Total: 396
