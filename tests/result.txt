@@ -1387,6 +1387,15 @@ m_shift_aopna_o.asm:0015 $0034 <SLL> _( <IX> `+` 0x1 )_ `&` <B>
 m_shift_aopna_o.asm:0016 $0038 <SRL> _( <IX> `+` 0x1 )_ `&` <B>
 diff m_shift_aopna_o.bin m_shift_aopna_o.exp
 E: Illegal shift/rotate instruction. ... OK
-Normal case: 174
+N: m_push_o
+../vgsasm m_push_o.asm -v
+    m_push_o.asm:0001 $0000 <PUSH> <AF>
+    m_push_o.asm:0002 $0001 <PUSH> <BC>
+    m_push_o.asm:0003 $0002 <PUSH> <DE>
+    m_push_o.asm:0004 $0003 <PUSH> <HL>
+    m_push_o.asm:0005 $0004 <PUSH> <IX>
+    m_push_o.asm:0006 $0006 <PUSH> <IY>
+diff m_push_o.bin m_push_o.exp
+Normal case: 175
 Error case: 217
-Total: 391
+Total: 392
