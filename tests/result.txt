@@ -897,6 +897,315 @@ N: m_calc_ana
   m_calc_ana.asm:0008 $0031 <SBC> _( 0xFFFF )_
 diff m_calc_ana.bin m_calc_ana.exp
 E: Numerical range incorrect: 65536 ... OK
-Normal case: 137
-Error case: 158
-Total: 295
+Testing: mnemonic data
+N: m_db
+../vgsasm m_db.asm -v
+        m_db.asm:0001 $0000 <DB> 0xFFFFFF80 `,` 0xFFFFFFFF `,` 0x0 `,` 0x1 `,` 0xFF
+        m_db.asm:0002 $0005 <DB> `Hello, World!`
+diff m_db.bin m_db.exp
+E: No binary data. ... OK
+E: An invalid range of number specified: -129 ... OK
+E: An invalid range of number specified: 256 ... OK
+E: Unexpected symbols detected in DB: HL ... OK
+E: Symbols are not specified as comma-separated: 2 ... OK
+E: No symbol is specified after the comma. ... OK
+E: String literals are not closed with double quotes. ... OK
+N: m_dw
+../vgsasm m_dw.asm -v
+        m_dw.asm:0001 $0000 LABEL1:
+        m_dw.asm:0002 $0000 LABEL2:
+        m_dw.asm:0003 $0000 LABEL3@LABEL2:
+        m_dw.asm:0005 $0000 <DW> 0xFFFF8000 `,` 0xFFFFFFFF `,` 0x0 `,` 0x1 `,` 0x7FFF `,` 0x8000 `,` 0xFFFF
+        m_dw.asm:0006 $000E <DW> `Hello, World!` `,` 0x0
+        m_dw.asm:0007 $002A <DW> `LABEL1` `,` `LABEL2` `,` `LABEL3@LABEL2` `,` `LABEL3@LABEL2`
+diff m_dw.bin m_dw.exp
+E: No binary data. ... OK
+E: An invalid range of number specified: -32769 ... OK
+E: An invalid range of number specified: 65536 ... OK
+E: Unexpected symbols detected in DW: BC ... OK
+E: Symbols are not specified as comma-separated: 2 ... OK
+E: No symbol is specified after the comma. ... OK
+E: String literals are not closed with double quotes. ... OK
+E: Label `@LABEL3` is undefined in `LABEL1`. ... OK
+Testing: mnemonic djnz
+N: m_djnz
+../vgsasm m_djnz.asm -v
+      m_djnz.asm:0001 $0000 LABEL:
+      m_djnz.asm:0002 $0000 <DJNZ> 0xFFFFFF80
+      m_djnz.asm:0003 $0002 <DJNZ> 0xFFFFFFFF
+      m_djnz.asm:0004 $0004 <DJNZ> 0x0
+      m_djnz.asm:0005 $0006 <DJNZ> 0x1
+      m_djnz.asm:0006 $0008 <DJNZ> 0x7F
+      m_djnz.asm:0007 $000A <DJNZ> `LABEL`
+diff m_djnz.bin m_djnz.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Illegal DJNZ instruction. ... OK
+E: Illegal DJNZ instruction. ... OK
+N: m_ex
+../vgsasm m_ex.asm -v
+        m_ex.asm:0001 $0000 <EX> <DE> `,` <HL>
+        m_ex.asm:0002 $0001 <EX> <AF> `,` <AF'>
+diff m_ex.bin m_ex.exp
+E: Excessive or insufficient number of operands. ... OK
+E: Unexpected operand: B ... OK
+E: Incorrect EX syntax. ... OK
+E: Incorrect EX syntax. ... OK
+N: m_ex_aoaso
+../vgsasm m_ex_aoaso.asm -v
+  m_ex_aoaso.asm:0001 $0000 <EX> _( <SP> )_ `,` <HL>
+  m_ex_aoaso.asm:0002 $0001 <EX> _( <SP> )_ `,` <IX>
+  m_ex_aoaso.asm:0003 $0003 <EX> _( <SP> )_ `,` <IY>
+diff m_ex_aoaso.bin m_ex_aoaso.exp
+E: Unexpected operand: 4660 ... OK
+E: Incorrect EX syntax. ... OK
+N: m_im
+../vgsasm m_im.asm -v
+        m_im.asm:0001 $0000 <IM> 0x0
+        m_im.asm:0002 $0002 <IM> 0x1
+        m_im.asm:0003 $0004 <IM> 0x2
+diff m_im.bin m_im.exp
+E: Unsupported interrupt mode: 3 ... OK
+E: Unexpected operand: A ... OK
+N: m_inc_o
+../vgsasm m_inc_o.asm -v
+     m_inc_o.asm:0001 $0000 <INC> <A>
+     m_inc_o.asm:0002 $0001 <INC> <B>
+     m_inc_o.asm:0003 $0002 <INC> <C>
+     m_inc_o.asm:0004 $0003 <INC> <D>
+     m_inc_o.asm:0005 $0004 <INC> <E>
+     m_inc_o.asm:0006 $0005 <INC> <H>
+     m_inc_o.asm:0007 $0006 <INC> <L>
+     m_inc_o.asm:0008 $0007 <INC> <IXH>
+     m_inc_o.asm:0009 $0009 <INC> <IXL>
+     m_inc_o.asm:0010 $000B <INC> <IYH>
+     m_inc_o.asm:0011 $000D <INC> <IYL>
+     m_inc_o.asm:0012 $000F <INC> <BC>
+     m_inc_o.asm:0013 $0010 <INC> <DE>
+     m_inc_o.asm:0014 $0011 <INC> <HL>
+     m_inc_o.asm:0015 $0012 <INC> <SP>
+     m_inc_o.asm:0016 $0013 <INC> <IX>
+     m_inc_o.asm:0017 $0015 <INC> <IY>
+diff m_inc_o.bin m_inc_o.exp
+E: Illegal INC instruction. ... OK
+N: m_inc_aoa
+../vgsasm m_inc_aoa.asm -v
+   m_inc_aoa.asm:0001 $0000 <INC> _( <HL> )_
+   m_inc_aoa.asm:0002 $0001 <INC> _( <IX> )_
+   m_inc_aoa.asm:0003 $0004 <INC> _( <IY> )_
+diff m_inc_aoa.bin m_inc_aoa.exp
+E: Illegal INC instruction. ... OK
+N: m_inc_ana
+../vgsasm m_inc_ana.asm -v
+   m_inc_ana.asm:0001 $0000 <INC> _( 0x1234 )_
+diff m_inc_ana.bin m_inc_ana.exp
+E: Numerical range incorrect: 65536 ... OK
+N: m_inc_aopna
+../vgsasm m_inc_aopna.asm -v
+ m_inc_aopna.asm:0001 $0000 <INC> _( <IX> `-` 0x80 )_
+ m_inc_aopna.asm:0002 $0003 <INC> _( <IX> `-` 0x1 )_
+ m_inc_aopna.asm:0003 $0006 <INC> _( <IX> `+` 0x0 )_
+ m_inc_aopna.asm:0004 $0009 <INC> _( <IX> `+` 0x1 )_
+ m_inc_aopna.asm:0005 $000C <INC> _( <IX> `+` 0x7F )_
+ m_inc_aopna.asm:0006 $000F <INC> _( <IY> `-` 0x80 )_
+ m_inc_aopna.asm:0007 $0012 <INC> _( <IY> `-` 0x1 )_
+ m_inc_aopna.asm:0008 $0015 <INC> _( <IY> `+` 0x0 )_
+ m_inc_aopna.asm:0009 $0018 <INC> _( <IY> `+` 0x1 )_
+ m_inc_aopna.asm:0010 $001B <INC> _( <IY> `+` 0x7F )_
+diff m_inc_aopna.bin m_inc_aopna.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Illegal INC instruction. ... OK
+N: m_dec_o
+../vgsasm m_dec_o.asm -v
+     m_dec_o.asm:0001 $0000 <DEC> <A>
+     m_dec_o.asm:0002 $0001 <DEC> <B>
+     m_dec_o.asm:0003 $0002 <DEC> <C>
+     m_dec_o.asm:0004 $0003 <DEC> <D>
+     m_dec_o.asm:0005 $0004 <DEC> <E>
+     m_dec_o.asm:0006 $0005 <DEC> <H>
+     m_dec_o.asm:0007 $0006 <DEC> <L>
+     m_dec_o.asm:0008 $0007 <DEC> <IXH>
+     m_dec_o.asm:0009 $0009 <DEC> <IXL>
+     m_dec_o.asm:0010 $000B <DEC> <IYH>
+     m_dec_o.asm:0011 $000D <DEC> <IYL>
+     m_dec_o.asm:0012 $000F <DEC> <BC>
+     m_dec_o.asm:0013 $0010 <DEC> <DE>
+     m_dec_o.asm:0014 $0011 <DEC> <HL>
+     m_dec_o.asm:0015 $0012 <DEC> <SP>
+     m_dec_o.asm:0016 $0013 <DEC> <IX>
+     m_dec_o.asm:0017 $0015 <DEC> <IY>
+diff m_dec_o.bin m_dec_o.exp
+E: Illegal DEC instruction. ... OK
+N: m_dec_aoa
+../vgsasm m_dec_aoa.asm -v
+   m_dec_aoa.asm:0001 $0000 <DEC> _( <HL> )_
+   m_dec_aoa.asm:0002 $0001 <DEC> _( <IX> )_
+   m_dec_aoa.asm:0003 $0004 <DEC> _( <IY> )_
+diff m_dec_aoa.bin m_dec_aoa.exp
+E: Illegal DEC instruction. ... OK
+N: m_dec_ana
+../vgsasm m_dec_ana.asm -v
+   m_dec_ana.asm:0001 $0000 <DEC> _( 0x1234 )_
+diff m_dec_ana.bin m_dec_ana.exp
+E: Numerical range incorrect: 65536 ... OK
+N: m_dec_aopna
+../vgsasm m_dec_aopna.asm -v
+ m_dec_aopna.asm:0001 $0000 <DEC> _( <IX> `-` 0x80 )_
+ m_dec_aopna.asm:0002 $0003 <DEC> _( <IX> `-` 0x1 )_
+ m_dec_aopna.asm:0003 $0006 <DEC> _( <IX> `+` 0x0 )_
+ m_dec_aopna.asm:0004 $0009 <DEC> _( <IX> `+` 0x1 )_
+ m_dec_aopna.asm:0005 $000C <DEC> _( <IX> `+` 0x7F )_
+ m_dec_aopna.asm:0006 $000F <DEC> _( <IY> `-` 0x80 )_
+ m_dec_aopna.asm:0007 $0012 <DEC> _( <IY> `-` 0x1 )_
+ m_dec_aopna.asm:0008 $0015 <DEC> _( <IY> `+` 0x0 )_
+ m_dec_aopna.asm:0009 $0018 <DEC> _( <IY> `+` 0x1 )_
+ m_dec_aopna.asm:0010 $001B <DEC> _( <IY> `+` 0x7F )_
+diff m_dec_aopna.bin m_dec_aopna.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Illegal DEC instruction. ... OK
+N: m_in_osana
+../vgsasm m_in_osana.asm -v
+  m_in_osana.asm:0001 $0000 <IN> <A> `,` _( 0x0 )_
+  m_in_osana.asm:0002 $0002 <IN> <A> `,` _( 0xFF )_
+diff m_in_osana.bin m_in_osana.exp
+E: Numerical range incorrect: 256 ... OK
+N: m_in_osaoa
+../vgsasm m_in_osaoa.asm -v
+  m_in_osaoa.asm:0001 $0000 <IN> <A> `,` _( <C> )_
+  m_in_osaoa.asm:0002 $0002 <IN> <B> `,` _( <C> )_
+  m_in_osaoa.asm:0003 $0004 <IN> <C> `,` _( <C> )_
+  m_in_osaoa.asm:0004 $0006 <IN> <D> `,` _( <C> )_
+  m_in_osaoa.asm:0005 $0008 <IN> <E> `,` _( <C> )_
+  m_in_osaoa.asm:0006 $000A <IN> <F> `,` _( <C> )_
+  m_in_osaoa.asm:0007 $000C <IN> <H> `,` _( <C> )_
+  m_in_osaoa.asm:0008 $000E <IN> <L> `,` _( <C> )_
+diff m_in_osaoa.bin m_in_osaoa.exp
+E: Illegal IN instruction. ... OK
+E: Illegal IN instruction. ... OK
+N: m_out_anaso
+../vgsasm m_out_anaso.asm -v
+ m_out_anaso.asm:0001 $0000 <OUT> _( 0x0 )_ `,` <A>
+ m_out_anaso.asm:0002 $0002 <OUT> _( 0xFF )_ `,` <A>
+diff m_out_anaso.bin m_out_anaso.exp
+E: Numerical range incorrect: 256 ... OK
+N: m_out_aoaso
+../vgsasm m_out_aoaso.asm -v
+ m_out_aoaso.asm:0001 $0000 <OUT> _( <C> )_ `,` <A>
+ m_out_aoaso.asm:0002 $0002 <OUT> _( <C> )_ `,` <B>
+ m_out_aoaso.asm:0003 $0004 <OUT> _( <C> )_ `,` <C>
+ m_out_aoaso.asm:0004 $0006 <OUT> _( <C> )_ `,` <D>
+ m_out_aoaso.asm:0005 $0008 <OUT> _( <C> )_ `,` <E>
+ m_out_aoaso.asm:0006 $000A <OUT> _( <C> )_ `,` <H>
+ m_out_aoaso.asm:0007 $000C <OUT> _( <C> )_ `,` <L>
+diff m_out_aoaso.bin m_out_aoaso.exp
+E: Illegal OUT instruction. ... OK
+N: m_out_osaoa
+../vgsasm m_out_osaoa.asm -v
+ m_out_osaoa.asm:0001 $0000 <OUT> <F> `,` _( <C> )_
+diff m_out_osaoa.bin m_out_osaoa.exp
+N: m_out_aoa
+../vgsasm m_out_aoa.asm -v
+   m_out_aoa.asm:0001 $0000 <OUT> _( <C> )_
+diff m_out_aoa.bin m_out_aoa.exp
+E: Illegal OUT instruction. ... OK
+N: m_jp_n
+../vgsasm m_jp_n.asm -v
+      m_jp_n.asm:0001 $0000 <JP> 0x0
+      m_jp_n.asm:0002 $0003 <JP> 0xFFFF
+diff m_jp_n.bin m_jp_n.exp
+E: Numerical range incorrect: 65536 ... OK
+N: m_jp_l
+../vgsasm m_jp_l.asm -v
+      m_jp_l.asm:0001 $0000 LABEL:
+      m_jp_l.asm:0002 $0000 <NOP>
+      m_jp_l.asm:0003 $0001 FOO@LABEL:
+      m_jp_l.asm:0004 $0001 <NOP>
+      m_jp_l.asm:0006 $0002 <JP> `LABEL`
+      m_jp_l.asm:0007 $0005 <JP> `FOO@LABEL`
+      m_jp_l.asm:0008 $0008 <JP> `FOO@LABEL`
+diff m_jp_l.bin m_jp_l.exp
+N: m_jp_osn
+../vgsasm m_jp_osn.asm -v
+    m_jp_osn.asm:0001 $0000 <JP> <Z> `,` 0x0
+    m_jp_osn.asm:0002 $0003 <JP> <Z> `,` 0xFFFF
+    m_jp_osn.asm:0003 $0006 <JP> <NZ> `,` 0x1
+    m_jp_osn.asm:0004 $0009 <JP> <C> `,` 0x2
+    m_jp_osn.asm:0005 $000C <JP> <NC> `,` 0x3
+    m_jp_osn.asm:0006 $000F <JP> <PE> `,` 0x4
+    m_jp_osn.asm:0007 $0012 <JP> <PO> `,` 0x5
+    m_jp_osn.asm:0008 $0015 <JP> <M> `,` 0x6
+    m_jp_osn.asm:0009 $0018 <JP> <P> `,` 0x7
+diff m_jp_osn.bin m_jp_osn.exp
+N: m_jp_osl
+../vgsasm m_jp_osl.asm -v
+    m_jp_osl.asm:0001 $0000 LABEL:
+    m_jp_osl.asm:0002 $0000 <NOP>
+    m_jp_osl.asm:0004 $0001 <JP> <NZ> `,` `LABEL`
+    m_jp_osl.asm:0005 $0004 <JP> <Z> `,` `LABEL`
+    m_jp_osl.asm:0006 $0007 <JP> <NC> `,` `LABEL`
+    m_jp_osl.asm:0007 $000A <JP> <C> `,` `LABEL`
+    m_jp_osl.asm:0008 $000D <JP> <PO> `,` `LABEL`
+    m_jp_osl.asm:0009 $0010 <JP> <PE> `,` `LABEL`
+    m_jp_osl.asm:0010 $0013 <JP> <M> `,` `LABEL`
+    m_jp_osl.asm:0011 $0016 <JP> <P> `,` `LABEL`
+diff m_jp_osl.bin m_jp_osl.exp
+N: m_jp_aoa
+../vgsasm m_jp_aoa.asm -v
+    m_jp_aoa.asm:0001 $0000 <JP> _( <HL> )_
+    m_jp_aoa.asm:0002 $0001 <JP> _( <IX> )_
+    m_jp_aoa.asm:0003 $0003 <JP> _( <IY> )_
+    m_jp_aoa.asm:0004 $0005 <JP> _( <BC> )_
+    m_jp_aoa.asm:0005 $0007 <JP> _( <DE> )_
+diff m_jp_aoa.bin m_jp_aoa.exp
+N: m_jp_o
+../vgsasm m_jp_o.asm -v
+      m_jp_o.asm:0001 $0000 <JP> <HL>
+      m_jp_o.asm:0002 $0001 <JP> <IX>
+      m_jp_o.asm:0003 $0003 <JP> <IY>
+      m_jp_o.asm:0004 $0005 <JP> <BC>
+      m_jp_o.asm:0005 $0007 <JP> <DE>
+diff m_jp_o.bin m_jp_o.exp
+E: Illegal JP instruction. ... OK
+N: m_jr_n
+../vgsasm m_jr_n.asm -v
+      m_jr_n.asm:0001 $0000 <JR> 0xFFFFFF80
+      m_jr_n.asm:0002 $0002 <JR> 0x7F
+diff m_jr_n.bin m_jr_n.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+N: m_jr_l
+../vgsasm m_jr_l.asm -v
+      m_jr_l.asm:0001 $0000 LABEL1:
+      m_jr_l.asm:0002 $0000 <NOP>
+      m_jr_l.asm:0003 $0001 LABEL2:
+      m_jr_l.asm:0004 $0001 <NOP>
+      m_jr_l.asm:0005 $0002 FOO@LABEL2:
+      m_jr_l.asm:0006 $0002 <NOP>
+      m_jr_l.asm:0008 $0003 <JR> `LABEL1`
+      m_jr_l.asm:0009 $0005 <JR> `LABEL2`
+      m_jr_l.asm:0010 $0007 <JR> `FOO@LABEL2`
+      m_jr_l.asm:0011 $0009 <JR> `FOO@LABEL2`
+diff m_jr_l.bin m_jr_l.exp
+N: m_jr_osn
+../vgsasm m_jr_osn.asm -v
+    m_jr_osn.asm:0001 $0000 <JR> <NZ> `,` 0xFFFFFF80
+    m_jr_osn.asm:0002 $0002 <JR> <Z> `,` 0xFFFFFFFF
+    m_jr_osn.asm:0003 $0004 <JR> <NC> `,` 0x1
+    m_jr_osn.asm:0004 $0006 <JR> <C> `,` 0x7F
+diff m_jr_osn.bin m_jr_osn.exp
+E: Invalid condition: PE ... OK
+N: m_jr_osl
+../vgsasm m_jr_osl.asm -v
+    m_jr_osl.asm:0001 $0000 LABEL:
+    m_jr_osl.asm:0003 $0000 <JR> <NZ> `,` `LABEL`
+    m_jr_osl.asm:0004 $0002 <JR> <Z> `,` `LABEL`
+    m_jr_osl.asm:0005 $0004 <JR> <NC> `,` `LABEL`
+    m_jr_osl.asm:0006 $0006 <JR> <C> `,` `LABEL`
+diff m_jr_osl.bin m_jr_osl.exp
+E: Invalid condition: PO ... OK
+E: Illegal JR instruction. ... OK
+Normal case: 167
+Error case: 210
+Total: 377

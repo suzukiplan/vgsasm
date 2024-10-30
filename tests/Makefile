@@ -149,6 +149,120 @@ check: check.cpp
 mnemonic:
 	${MAK} mnemonic_bit_tests
 	${MAK} mnemonic_calc_tests
+	${MAK} mnemonic_data_tests
+	${MAK} mnemonic_djnz_tests
+	${MAK} mnemonic_ex_tests
+	${MAK} mnemonic_im_tests
+	${MAK} mnemonic_inc_tests
+	${MAK} mnemonic_dec_tests
+	${MAK} mnemonic_in_tests
+	${MAK} mnemonic_out_tests
+	${MAK} mnemonic_jp_tests
+	${MAK} mnemonic_jr_tests
+
+mnemonic_jr_tests: check ../vgsasm
+	${MAK} normal_case src=m_jr_n
+	@./check "`../vgsasm m_jr_n_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_jr_n_range2.asm`" "Numerical range incorrect: 128"
+	${MAK} normal_case src=m_jr_l
+	${MAK} normal_case src=m_jr_osn
+	@./check "`../vgsasm m_jr_osn_ill.asm`" "Invalid condition: PE"
+	${MAK} normal_case src=m_jr_osl
+	@./check "`../vgsasm m_jr_osl_ill.asm`" "Invalid condition: PO"
+	@./check "`../vgsasm m_jr_ill.asm`" "Illegal JR instruction."
+
+mnemonic_jp_tests: check ../vgsasm
+	${MAK} normal_case src=m_jp_n
+	@./check "`../vgsasm m_jp_n_range.asm`" "Numerical range incorrect: 65536"
+	${MAK} normal_case src=m_jp_l
+	${MAK} normal_case src=m_jp_osn
+	${MAK} normal_case src=m_jp_osl
+	${MAK} normal_case src=m_jp_aoa
+	${MAK} normal_case src=m_jp_o
+	@./check "`../vgsasm m_jp_ill.asm`" "Illegal JP instruction."
+
+mnemonic_out_tests: check ../vgsasm
+	${MAK} normal_case src=m_out_anaso
+	@./check "`../vgsasm m_out_anaso_range.asm`" "Numerical range incorrect: 256"
+	${MAK} normal_case src=m_out_aoaso
+	@./check "`../vgsasm m_out_aoaso_ill.asm`" "Illegal OUT instruction."
+	${MAK} normal_case src=m_out_osaoa
+	${MAK} normal_case src=m_out_aoa
+	@./check "`../vgsasm m_out_ill.asm`" "Illegal OUT instruction."
+
+mnemonic_in_tests: check ../vgsasm
+	${MAK} normal_case src=m_in_osana
+	@./check "`../vgsasm m_in_osana_range.asm`" "Numerical range incorrect: 256"
+	${MAK} normal_case src=m_in_osaoa
+	@./check "`../vgsasm m_in_osaoa_ill.asm`" "Illegal IN instruction."
+	@./check "`../vgsasm m_in_ill.asm`" "Illegal IN instruction."
+
+mnemonic_dec_tests: check ../vgsasm
+	${MAK} normal_case src=m_dec_o
+	@./check "`../vgsasm m_dec_o_ill.asm`" "Illegal DEC instruction."
+	${MAK} normal_case src=m_dec_aoa
+	@./check "`../vgsasm m_dec_aoa_ill.asm`" "Illegal DEC instruction."
+	${MAK} normal_case src=m_dec_ana
+	@./check "`../vgsasm m_dec_ana_range.asm`" "Numerical range incorrect: 65536"
+	${MAK} normal_case src=m_dec_aopna
+	@./check "`../vgsasm m_dec_aopna_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_dec_aopna_range2.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_dec_aopna_ill.asm`" "Illegal DEC instruction."
+
+mnemonic_inc_tests: check ../vgsasm
+	${MAK} normal_case src=m_inc_o
+	@./check "`../vgsasm m_inc_o_ill.asm`" "Illegal INC instruction."
+	${MAK} normal_case src=m_inc_aoa
+	@./check "`../vgsasm m_inc_aoa_ill.asm`" "Illegal INC instruction."
+	${MAK} normal_case src=m_inc_ana
+	@./check "`../vgsasm m_inc_ana_range.asm`" "Numerical range incorrect: 65536"
+	${MAK} normal_case src=m_inc_aopna
+	@./check "`../vgsasm m_inc_aopna_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_inc_aopna_range2.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_inc_aopna_ill.asm`" "Illegal INC instruction."
+
+mnemonic_im_tests: check ../vgsasm
+	${MAK} normal_case src=m_im
+	@./check "`../vgsasm m_im_ill1.asm`" "Unsupported interrupt mode: 3"
+	@./check "`../vgsasm m_im_ill2.asm`" "Unexpected operand: A"
+
+mnemonic_ex_tests: check ../vgsasm
+	${MAK} normal_case src=m_ex
+	@./check "`../vgsasm m_ex_ill1.asm`" "Excessive or insufficient number of operands."
+	@./check "`../vgsasm m_ex_ill2.asm`" "Unexpected operand: B"
+	@./check "`../vgsasm m_ex_ill3.asm`" "Incorrect EX syntax."
+	@./check "`../vgsasm m_ex_ill4.asm`" "Incorrect EX syntax."
+	${MAK} normal_case src=m_ex_aoaso
+	@./check "`../vgsasm m_ex_aoaso_ill1.asm`" "Unexpected operand: 4660"
+	@./check "`../vgsasm m_ex_aoaso_ill2.asm`" "Incorrect EX syntax."
+
+mnemonic_djnz_tests: check ../vgsasm
+	@echo Testing: mnemonic djnz
+	${MAK} normal_case src=m_djnz
+	@./check "`../vgsasm m_djnz_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_djnz_range2.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_djnz_ill1.asm`" "Illegal DJNZ instruction."
+	@./check "`../vgsasm m_djnz_ill2.asm`" "Illegal DJNZ instruction."
+
+mnemonic_data_tests: check ../vgsasm
+	@echo Testing: mnemonic data
+	${MAK} normal_case src=m_db
+	@./check "`../vgsasm m_db_nodata.asm`" "No binary data."
+	@./check "`../vgsasm m_db_range1.asm`" "An invalid range of number specified: -129"
+	@./check "`../vgsasm m_db_range2.asm`" "An invalid range of number specified: 256"
+	@./check "`../vgsasm m_db_unex.asm`" "Unexpected symbols detected in DB: HL"
+	@./check "`../vgsasm m_db_nosp.asm`" "Symbols are not specified as comma-separated: 2"
+	@./check "`../vgsasm m_db_nosym.asm`" "No symbol is specified after the comma."
+	@./check "`../vgsasm m_db_nodq.asm`" "String literals are not closed with double quotes."
+	${MAK} normal_case src=m_dw
+	@./check "`../vgsasm m_dw_nodata.asm`" "No binary data."
+	@./check "`../vgsasm m_dw_range1.asm`" "An invalid range of number specified: -32769"
+	@./check "`../vgsasm m_dw_range2.asm`" "An invalid range of number specified: 65536"
+	@./check "`../vgsasm m_dw_unex.asm`" "Unexpected symbols detected in DW: BC"
+	@./check "`../vgsasm m_dw_nosp.asm`" "Symbols are not specified as comma-separated: 2"
+	@./check "`../vgsasm m_dw_nosym.asm`" "No symbol is specified after the comma."
+	@./check "`../vgsasm m_dw_nodq.asm`" "String literals are not closed with double quotes."
+	@./check "`../vgsasm m_dw_nolabel.asm`" "Label \`@LABEL3\` is undefined in \`LABEL1\`."
 
 mnemonic_calc_tests: check ../vgsasm
 	@echo Testing: mnemonic calc8
@@ -264,3 +378,4 @@ normal_case:
 	@echo N: ${src}
 	../vgsasm ${src}.asm -v
 	diff ${src}.bin ${src}.exp
+	@#z88dk-dis ${src}.exp > ${src}.dis
