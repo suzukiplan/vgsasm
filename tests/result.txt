@@ -1016,6 +1016,55 @@ diff m_inc_aopna.bin m_inc_aopna.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
 E: Illegal INC instruction. ... OK
-Normal case: 147
-Error case: 191
-Total: 338
+N: m_dec_o
+../vgsasm m_dec_o.asm -v
+     m_dec_o.asm:0001 $0000 <DEC> <A>
+     m_dec_o.asm:0002 $0001 <DEC> <B>
+     m_dec_o.asm:0003 $0002 <DEC> <C>
+     m_dec_o.asm:0004 $0003 <DEC> <D>
+     m_dec_o.asm:0005 $0004 <DEC> <E>
+     m_dec_o.asm:0006 $0005 <DEC> <H>
+     m_dec_o.asm:0007 $0006 <DEC> <L>
+     m_dec_o.asm:0008 $0007 <DEC> <IXH>
+     m_dec_o.asm:0009 $0009 <DEC> <IXL>
+     m_dec_o.asm:0010 $000B <DEC> <IYH>
+     m_dec_o.asm:0011 $000D <DEC> <IYL>
+     m_dec_o.asm:0012 $000F <DEC> <BC>
+     m_dec_o.asm:0013 $0010 <DEC> <DE>
+     m_dec_o.asm:0014 $0011 <DEC> <HL>
+     m_dec_o.asm:0015 $0012 <DEC> <SP>
+     m_dec_o.asm:0016 $0013 <DEC> <IX>
+     m_dec_o.asm:0017 $0015 <DEC> <IY>
+diff m_dec_o.bin m_dec_o.exp
+E: Illegal DEC instruction. ... OK
+N: m_dec_aoa
+../vgsasm m_dec_aoa.asm -v
+   m_dec_aoa.asm:0001 $0000 <DEC> _( <HL> )_
+   m_dec_aoa.asm:0002 $0001 <DEC> _( <IX> )_
+   m_dec_aoa.asm:0003 $0004 <DEC> _( <IY> )_
+diff m_dec_aoa.bin m_dec_aoa.exp
+E: Illegal DEC instruction. ... OK
+N: m_dec_ana
+../vgsasm m_dec_ana.asm -v
+   m_dec_ana.asm:0001 $0000 <DEC> _( 0x1234 )_
+diff m_dec_ana.bin m_dec_ana.exp
+E: Numerical range incorrect: 65536 ... OK
+N: m_dec_aopna
+../vgsasm m_dec_aopna.asm -v
+ m_dec_aopna.asm:0001 $0000 <DEC> _( <IX> `-` 0x80 )_
+ m_dec_aopna.asm:0002 $0003 <DEC> _( <IX> `-` 0x1 )_
+ m_dec_aopna.asm:0003 $0006 <DEC> _( <IX> `+` 0x0 )_
+ m_dec_aopna.asm:0004 $0009 <DEC> _( <IX> `+` 0x1 )_
+ m_dec_aopna.asm:0005 $000C <DEC> _( <IX> `+` 0x7F )_
+ m_dec_aopna.asm:0006 $000F <DEC> _( <IY> `-` 0x80 )_
+ m_dec_aopna.asm:0007 $0012 <DEC> _( <IY> `-` 0x1 )_
+ m_dec_aopna.asm:0008 $0015 <DEC> _( <IY> `+` 0x0 )_
+ m_dec_aopna.asm:0009 $0018 <DEC> _( <IY> `+` 0x1 )_
+ m_dec_aopna.asm:0010 $001B <DEC> _( <IY> `+` 0x7F )_
+diff m_dec_aopna.bin m_dec_aopna.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Illegal DEC instruction. ... OK
+Normal case: 151
+Error case: 197
+Total: 348

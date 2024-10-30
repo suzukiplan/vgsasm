@@ -154,6 +154,19 @@ mnemonic:
 	${MAK} mnemonic_ex_tests
 	${MAK} mnemonic_im_tests
 	${MAK} mnemonic_inc_tests
+	${MAK} mnemonic_dec_tests
+
+mnemonic_dec_tests: check ../vgsasm
+	${MAK} normal_case src=m_dec_o
+	@./check "`../vgsasm m_dec_o_ill.asm`" "Illegal DEC instruction."
+	${MAK} normal_case src=m_dec_aoa
+	@./check "`../vgsasm m_dec_aoa_ill.asm`" "Illegal DEC instruction."
+	${MAK} normal_case src=m_dec_ana
+	@./check "`../vgsasm m_dec_ana_range.asm`" "Numerical range incorrect: 65536"
+	${MAK} normal_case src=m_dec_aopna
+	@./check "`../vgsasm m_dec_aopna_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_dec_aopna_range2.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_dec_aopna_ill.asm`" "Illegal DEC instruction."
 
 mnemonic_inc_tests: check ../vgsasm
 	${MAK} normal_case src=m_inc_o
