@@ -1175,6 +1175,19 @@ N: m_jr_n
 diff m_jr_n.bin m_jr_n.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
-Normal case: 164
+N: m_jr_l
+../vgsasm m_jr_l.asm -v
+      m_jr_l.asm:0001 $0000 LABEL1:
+      m_jr_l.asm:0002 $0000 <NOP>
+      m_jr_l.asm:0003 $0001 LABEL2:
+      m_jr_l.asm:0004 $0001 <NOP>
+      m_jr_l.asm:0005 $0002 FOO@LABEL2:
+      m_jr_l.asm:0006 $0002 <NOP>
+      m_jr_l.asm:0008 $0003 <JR> `LABEL1`
+      m_jr_l.asm:0009 $0005 <JR> `LABEL2`
+      m_jr_l.asm:0010 $0007 <JR> `FOO@LABEL2`
+      m_jr_l.asm:0011 $0009 <JR> `FOO@LABEL2`
+diff m_jr_l.bin m_jr_l.exp
+Normal case: 165
 Error case: 207
-Total: 371
+Total: 372
