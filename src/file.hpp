@@ -557,11 +557,7 @@ std::vector<LineData*> readFile(const char* filePath)
                     }
                 }
             } else {
-                if (line->token.empty()) {
-                    delete line;
-                } else {
-                    result.push_back(line);
-                }
+                result.push_back(line);
             }
 
             first = last + 1;

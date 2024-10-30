@@ -2,6 +2,8 @@
 
 ## Version 0.12 (beta-12)
 
+- Fixed a bug at the beginning of file parsing that caused errors in lines that failed to parse to be ignored.
+
 ## Version 0.11 (beta-11)
 
 - `#macro` must appear at the beginning of the line.
