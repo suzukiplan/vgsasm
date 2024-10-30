@@ -1396,6 +1396,7 @@ N: m_push_o
     m_push_o.asm:0005 $0004 <PUSH> <IX>
     m_push_o.asm:0006 $0006 <PUSH> <IY>
 diff m_push_o.bin m_push_o.exp
+E: Unsupported PUSH operand: A ... OK
 Normal case: 175
-Error case: 217
-Total: 392
+Error case: 218
+Total: 393
