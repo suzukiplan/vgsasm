@@ -4,6 +4,7 @@
 
 - Fixed a bug at the beginning of file parsing that caused errors in lines that failed to parse to be ignored.
 - Correct error message of `DW`
+- Correct error message of `EX`
 
 ## Version 0.11 (beta-11)
 
