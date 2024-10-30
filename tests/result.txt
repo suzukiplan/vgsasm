@@ -1084,6 +1084,32 @@ N: m_in_osaoa
 diff m_in_osaoa.bin m_in_osaoa.exp
 E: Illegal IN instruction. ... OK
 E: Illegal IN instruction. ... OK
-Normal case: 153
-Error case: 200
-Total: 353
+N: m_out_anaso
+../vgsasm m_out_anaso.asm -v
+ m_out_anaso.asm:0001 $0000 <OUT> _( 0x0 )_ `,` <A>
+ m_out_anaso.asm:0002 $0002 <OUT> _( 0xFF )_ `,` <A>
+diff m_out_anaso.bin m_out_anaso.exp
+E: Numerical range incorrect: 256 ... OK
+N: m_out_aoaso
+../vgsasm m_out_aoaso.asm -v
+ m_out_aoaso.asm:0001 $0000 <OUT> _( <C> )_ `,` <A>
+ m_out_aoaso.asm:0002 $0002 <OUT> _( <C> )_ `,` <B>
+ m_out_aoaso.asm:0003 $0004 <OUT> _( <C> )_ `,` <C>
+ m_out_aoaso.asm:0004 $0006 <OUT> _( <C> )_ `,` <D>
+ m_out_aoaso.asm:0005 $0008 <OUT> _( <C> )_ `,` <E>
+ m_out_aoaso.asm:0006 $000A <OUT> _( <C> )_ `,` <H>
+ m_out_aoaso.asm:0007 $000C <OUT> _( <C> )_ `,` <L>
+diff m_out_aoaso.bin m_out_aoaso.exp
+E: Illegal OUT instruction. ... OK
+N: m_out_osaoa
+../vgsasm m_out_osaoa.asm -v
+ m_out_osaoa.asm:0001 $0000 <OUT> <F> `,` _( <C> )_
+diff m_out_osaoa.bin m_out_osaoa.exp
+N: m_out_aoa
+../vgsasm m_out_aoa.asm -v
+   m_out_aoa.asm:0001 $0000 <OUT> _( <C> )_
+diff m_out_aoa.bin m_out_aoa.exp
+E: Illegal OUT instruction. ... OK
+Normal case: 157
+Error case: 203
+Total: 360
