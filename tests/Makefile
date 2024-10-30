@@ -170,6 +170,8 @@ mnemonic_shift_tests: check ../vgsasm
 	@./check "`../vgsasm m_shift_aoa_ill.asm`" "Illegal shift/rotate instruction."
 	${MAK} normal_case src=m_shift_aoasn
 	${MAK} normal_case src=m_shift_aopna
+	@./check "`../vgsasm m_shift_aopna_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_shift_aopna_range2.asm`" "Numerical range incorrect: 128"
 
 mnemonic_rst_tests: check ../vgsasm
 	${MAK} normal_case src=m_rst

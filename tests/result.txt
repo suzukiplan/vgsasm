@@ -1365,6 +1365,8 @@ m_shift_aopna.asm:0026 $0044 <SL> _( <IY> `-` 0x80 )_
 m_shift_aopna.asm:0028 $0048 <SR> _( <IX> `+` 0x7F )_
 m_shift_aopna.asm:0029 $004C <SR> _( <IY> `-` 0x80 )_
 diff m_shift_aopna.bin m_shift_aopna.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
 Normal case: 173
-Error case: 213
-Total: 386
+Error case: 215
+Total: 388
