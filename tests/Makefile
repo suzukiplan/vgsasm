@@ -152,6 +152,12 @@ mnemonic:
 	${MAK} mnemonic_data_tests
 	${MAK} mnemonic_djnz_tests
 	${MAK} mnemonic_ex_tests
+	${MAK} mnemonic_im_tests
+
+mnemonic_im_tests: check ../vgsasm
+	${MAK} normal_case src=m_im
+	@./check "`../vgsasm m_im_ill1.asm`" "Unsupported interrupt mode: 3"
+	@./check "`../vgsasm m_im_ill2.asm`" "Unexpected operand: A"
 
 mnemonic_ex_tests: check ../vgsasm
 	${MAK} normal_case src=m_ex

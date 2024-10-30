@@ -959,6 +959,14 @@ N: m_ex_aoaso
 diff m_ex_aoaso.bin m_ex_aoaso.exp
 E: Unexpected operand: 4660 ... OK
 E: Incorrect EX syntax. ... OK
-Normal case: 142
-Error case: 183
-Total: 325
+N: m_im
+../vgsasm m_im.asm -v
+        m_im.asm:0001 $0000 <IM> 0x0
+        m_im.asm:0002 $0002 <IM> 0x1
+        m_im.asm:0003 $0004 <IM> 0x2
+diff m_im.bin m_im.exp
+E: Unsupported interrupt mode: 3 ... OK
+E: Unexpected operand: A ... OK
+Normal case: 143
+Error case: 185
+Total: 328
