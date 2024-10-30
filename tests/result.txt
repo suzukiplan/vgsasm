@@ -1204,6 +1204,7 @@ N: m_jr_osl
     m_jr_osl.asm:0005 $0004 <JR> <NC> `,` `LABEL`
     m_jr_osl.asm:0006 $0006 <JR> <C> `,` `LABEL`
 diff m_jr_osl.bin m_jr_osl.exp
+E: Invalid condition: PO ... OK
 Normal case: 167
-Error case: 208
-Total: 375
+Error case: 209
+Total: 376
