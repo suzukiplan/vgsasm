@@ -910,6 +910,23 @@ E: Unexpected symbols detected in DB: HL ... OK
 E: Symbols are not specified as comma-separated: 2 ... OK
 E: No symbol is specified after the comma. ... OK
 E: String literals are not closed with double quotes. ... OK
-Normal case: 138
-Error case: 165
-Total: 303
+N: m_dw
+../vgsasm m_dw.asm -v
+        m_dw.asm:0001 $0000 LABEL1:
+        m_dw.asm:0002 $0000 LABEL2:
+        m_dw.asm:0003 $0000 LABEL3@LABEL2:
+        m_dw.asm:0005 $0000 <DW> 0xFFFF8000 `,` 0xFFFFFFFF `,` 0x0 `,` 0x1 `,` 0x7FFF `,` 0x8000 `,` 0xFFFF
+        m_dw.asm:0006 $000E <DW> `Hello, World!` `,` 0x0
+        m_dw.asm:0007 $002A <DW> `LABEL1` `,` `LABEL2` `,` `LABEL3@LABEL2` `,` `LABEL3@LABEL2`
+diff m_dw.bin m_dw.exp
+E: No binary data. ... OK
+E: An invalid range of number specified: -32769 ... OK
+E: An invalid range of number specified: 65536 ... OK
+E: Unexpected symbols detected in DW: BC ... OK
+E: Symbols are not specified as comma-separated: 2 ... OK
+E: No symbol is specified after the comma. ... OK
+E: String literals are not closed with double quotes. ... OK
+E: Label `@LABEL3` is undefined in `LABEL1`. ... OK
+Normal case: 139
+Error case: 173
+Total: 312

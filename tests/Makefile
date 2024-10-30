@@ -161,6 +161,15 @@ mnemonic_data_tests: check ../vgsasm
 	@./check "`../vgsasm m_db_nosp.asm`" "Symbols are not specified as comma-separated: 2"
 	@./check "`../vgsasm m_db_nosym.asm`" "No symbol is specified after the comma."
 	@./check "`../vgsasm m_db_nodq.asm`" "String literals are not closed with double quotes."
+	${MAK} normal_case src=m_dw
+	@./check "`../vgsasm m_dw_nodata.asm`" "No binary data."
+	@./check "`../vgsasm m_dw_range1.asm`" "An invalid range of number specified: -32769"
+	@./check "`../vgsasm m_dw_range2.asm`" "An invalid range of number specified: 65536"
+	@./check "`../vgsasm m_dw_unex.asm`" "Unexpected symbols detected in DW: BC"
+	@./check "`../vgsasm m_dw_nosp.asm`" "Symbols are not specified as comma-separated: 2"
+	@./check "`../vgsasm m_dw_nosym.asm`" "No symbol is specified after the comma."
+	@./check "`../vgsasm m_dw_nodq.asm`" "String literals are not closed with double quotes."
+	@./check "`../vgsasm m_dw_nolabel.asm`" "Label \`@LABEL3\` is undefined in \`LABEL1\`."
 
 mnemonic_calc_tests: check ../vgsasm
 	@echo Testing: mnemonic calc8
