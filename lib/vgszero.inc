@@ -31,8 +31,8 @@ enum IO {
 // IN A, (IO.joypad)
 // BIT {below}, A
 enum PAD {
-    b_button                ; B button (Fire, Dash)
-    a_button                ; A button (Bomber, Jump)
+    b                       ; B button (Fire, Dash)
+    a                       ; A button (Bomber, Jump)
     start                   ; START button
     select                  ; SELECT button
     right                   ; Right cursor
