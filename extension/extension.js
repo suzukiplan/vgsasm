@@ -19,11 +19,11 @@ function getStructMemberList(name, document) {
         name = token[token.length - 2];
         const regex = new RegExp('struct\\s+' + name, 'i');
         let source = document.getText();
-        getStructMemberListR(regex, source, document, [], resolve);
+        getMemberListR({ type: "struct", regex: regex }, source, document, [], resolve);
     });
 }
 
-function getStructMemberListR(regex, source, document, documentList, resolve) {
+function getMemberListR(config, source, document, documentList, resolve) {
     for (var i = 0; i < documentList.length; i++) {
         if (documentList[i] == document.uri.path) {
             console.log("ignored dup: " + document.uri.path);
@@ -32,7 +32,7 @@ function getStructMemberListR(regex, source, document, documentList, resolve) {
         }
     }
     documentList.push(document.uri.path);
-    const structPosition = source.search(regex);
+    const structPosition = source.search(config.regex);
     if (-1 == structPosition) {
         const uriEndPos = document.uri.path.lastIndexOf('/');
         if (-1 == uriEndPos) {
@@ -51,7 +51,7 @@ function getStructMemberListR(regex, source, document, documentList, resolve) {
                         const uri = document.uri.with({ path: basePath + tokens[j].substr(1, tokens[j].length - 2) });
                         vscode.workspace.openTextDocument(uri).then((includeDocument) => {
                             const includeSource = includeDocument.getText();
-                            return getStructMemberListR(regex, includeSource, includeDocument, documentList, resolve);
+                            return getMemberListR(config, includeSource, includeDocument, documentList, resolve);
                         });
                     }
                 }
@@ -77,18 +77,18 @@ function getStructMemberListR(regex, source, document, documentList, resolve) {
     const list = [];
     for (var i = 1; i < lines.length - 1; i++) {
         const line = lines[i].trim();
-        const token = line.split(/[ \t]/);
-        if (3 <= token.length) {
-            var detail = undefined;
-            const commentPos = line.indexOf(';');
+        var detail = undefined;
+        const commentPos = line.indexOf(';');
+        if (-1 != commentPos) {
+            detail = line.substr(commentPos + 1).trim();
+        } else {
+            commentPos = line.indexOf('//');
             if (-1 != commentPos) {
-                detail = line.substr(commentPos + 1).trim();
-            } else {
-                commentPos = line.indexOf('//');
-                if (-1 != commentPos) {
-                    detail = line.substr(commentPos + 2).trim();
-                }
+                detail = line.substr(commentPos + 2).trim();
             }
+        }
+        const token = line.split(/[ \t]/);
+        if (3 <= token.length && config.type == "struct") {
             list.push({ label: token[0], kind: vscode.CompletionItemKind.Field, detail: detail });
         }
     }
