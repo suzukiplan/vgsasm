@@ -32,7 +32,6 @@ function getStructMemberListR(regex, source, document, documentList, resolve) {
         }
     }
     documentList.push(document.uri.path);
-    console.log("search from " + document.uri.path);
     const structPosition = source.search(regex);
     if (-1 == structPosition) {
         const uriEndPos = document.uri.path.lastIndexOf('/');
