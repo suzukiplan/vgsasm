@@ -1,5 +1,7 @@
 # Change log
 
+## Version 0.15 (beta-15)
+
 ## Version 0.14 (beta-14)
 
 - Split [vgsasm-extension](https://github.com/suzukiplan/vgsasm-extension) repository.
