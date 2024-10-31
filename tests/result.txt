@@ -1453,6 +1453,7 @@ N: m_call_osl
   m_call_osl.asm:0012 $0012 <CALL> <M> `,` `LABEL3@LABEL2`
   m_call_osl.asm:0013 $0015 <CALL> <P> `,` `LABEL3@LABEL2`
 diff m_call_osl.bin m_call_osl.exp
+E: Illegal CALL instruction. ... OK
 Normal case: 180
-Error case: 224
-Total: 404
+Error case: 225
+Total: 405
