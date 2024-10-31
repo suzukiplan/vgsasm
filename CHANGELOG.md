@@ -2,6 +2,8 @@
 
 ## Version 0.14 (beta-14)
 
+- Split [vgsasm-extension](https://github.com/suzukiplan/vgsasm-extension) repository.
+
 ## Version 0.13 (beta-13)
 
 - Added vscode extension (WIP)
