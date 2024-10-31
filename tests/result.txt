@@ -1425,6 +1425,17 @@ N: m_call_l
     m_call_l.asm:0007 $0006 <CALL> `LABEL3@LABEL2`
     m_call_l.asm:0008 $0009 <CALL> `LABEL3@LABEL2`
 diff m_call_l.bin m_call_l.exp
-Normal case: 178
+N: m_call_osn
+../vgsasm m_call_osn.asm -v
+  m_call_osn.asm:0001 $0000 <CALL> <NZ> `,` 0x0
+  m_call_osn.asm:0002 $0003 <CALL> <Z> `,` 0x1
+  m_call_osn.asm:0003 $0006 <CALL> <NC> `,` 0x7FFF
+  m_call_osn.asm:0004 $0009 <CALL> <C> `,` 0x8000
+  m_call_osn.asm:0005 $000C <CALL> <PO> `,` 0xFFFF
+  m_call_osn.asm:0006 $000F <CALL> <PE> `,` 0x0
+  m_call_osn.asm:0007 $0012 <CALL> <M> `,` 0x64
+  m_call_osn.asm:0008 $0015 <CALL> <P> `,` 0xC8
+diff m_call_osn.bin m_call_osn.exp
+Normal case: 179
 Error case: 222
-Total: 400
+Total: 401
