@@ -167,6 +167,7 @@ mnemonic:
 mnemonic_sub_tests: check ../vgsasm
 	${MAK} normal_case src=m_call_n
 	@./check "`../vgsasm m_call_n_range.asm`" "Numerical range incorrect: 65536"
+	${MAK} normal_case src=m_call_l
 
 mnemonic_stack_tests: check ../vgsasm
 	${MAK} normal_case src=m_push_o

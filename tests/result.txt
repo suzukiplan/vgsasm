@@ -1415,6 +1415,16 @@ N: m_call_n
     m_call_n.asm:0002 $0003 <CALL> 0xFFFF
 diff m_call_n.bin m_call_n.exp
 E: Numerical range incorrect: 65536 ... OK
-Normal case: 177
+N: m_call_l
+../vgsasm m_call_l.asm -v
+    m_call_l.asm:0001 $0000 LABEL1:
+    m_call_l.asm:0002 $0000 LABEL2:
+    m_call_l.asm:0003 $0000 LABEL3@LABEL2:
+    m_call_l.asm:0005 $0000 <CALL> `LABEL1`
+    m_call_l.asm:0006 $0003 <CALL> `LABEL2`
+    m_call_l.asm:0007 $0006 <CALL> `LABEL3@LABEL2`
+    m_call_l.asm:0008 $0009 <CALL> `LABEL3@LABEL2`
+diff m_call_l.bin m_call_l.exp
+Normal case: 178
 Error case: 222
-Total: 399
+Total: 400
