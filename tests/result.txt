@@ -1454,6 +1454,34 @@ N: m_call_osl
   m_call_osl.asm:0013 $0015 <CALL> <P> `,` `LABEL3@LABEL2`
 diff m_call_osl.bin m_call_osl.exp
 E: Illegal CALL instruction. ... OK
-Normal case: 180
+N: m_hage_oso_hl
+../vgsasm m_hage_oso_hl.asm -v
+m_hage_oso_hl.asm:0001 $0000 <MUL> <HL> `,` <A>
+m_hage_oso_hl.asm:0002 $0009 <MUL> <HL> `,` <B>
+m_hage_oso_hl.asm:0003 $0012 <MUL> <HL> `,` <C>
+m_hage_oso_hl.asm:0004 $0018 <MUL> <HL> `,` <D>
+m_hage_oso_hl.asm:0005 $0021 <MUL> <HL> `,` <E>
+m_hage_oso_hl.asm:0007 $002A <MULS> <HL> `,` <A>
+m_hage_oso_hl.asm:0008 $0033 <MULS> <HL> `,` <B>
+m_hage_oso_hl.asm:0009 $003C <MULS> <HL> `,` <C>
+m_hage_oso_hl.asm:0010 $0042 <MULS> <HL> `,` <D>
+m_hage_oso_hl.asm:0011 $004B <MULS> <HL> `,` <E>
+m_hage_oso_hl.asm:0013 $0054 <DIV> <HL> `,` <A>
+m_hage_oso_hl.asm:0014 $005D <DIV> <HL> `,` <B>
+m_hage_oso_hl.asm:0015 $0066 <DIV> <HL> `,` <C>
+m_hage_oso_hl.asm:0016 $006C <DIV> <HL> `,` <D>
+m_hage_oso_hl.asm:0017 $0075 <DIV> <HL> `,` <E>
+m_hage_oso_hl.asm:0019 $007E <DIVS> <HL> `,` <A>
+m_hage_oso_hl.asm:0020 $0087 <DIVS> <HL> `,` <B>
+m_hage_oso_hl.asm:0021 $0090 <DIVS> <HL> `,` <C>
+m_hage_oso_hl.asm:0022 $0096 <DIVS> <HL> `,` <D>
+m_hage_oso_hl.asm:0023 $009F <DIVS> <HL> `,` <E>
+m_hage_oso_hl.asm:0025 $00A8 <MOD> <HL> `,` <A>
+m_hage_oso_hl.asm:0026 $00B1 <MOD> <HL> `,` <B>
+m_hage_oso_hl.asm:0027 $00BA <MOD> <HL> `,` <C>
+m_hage_oso_hl.asm:0028 $00C0 <MOD> <HL> `,` <D>
+m_hage_oso_hl.asm:0029 $00C9 <MOD> <HL> `,` <E>
+diff m_hage_oso_hl.bin m_hage_oso_hl.exp
+Normal case: 181
 Error case: 225
-Total: 405
+Total: 406

@@ -163,6 +163,10 @@ mnemonic:
 	${MAK} mnemonic_shift_tests
 	${MAK} mnemonic_stack_tests
 	${MAK} mnemonic_sub_tests
+	${MAK} mnemonic_vgs_tests
+
+mnemonic_vgs_tests: check ../vgsasm
+	${MAK} normal_case src=m_hage_oso_hl
 
 mnemonic_sub_tests: check ../vgsasm
 	${MAK} normal_case src=m_call_n
