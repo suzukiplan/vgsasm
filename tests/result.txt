@@ -1437,6 +1437,7 @@ N: m_call_osn
   m_call_osn.asm:0008 $0015 <CALL> <P> `,` 0xC8
 diff m_call_osn.bin m_call_osn.exp
 E: Invalid condition: A ... OK
+E: Numerical range incorrect: 65536 ... OK
 Normal case: 179
-Error case: 223
-Total: 402
+Error case: 224
+Total: 403
