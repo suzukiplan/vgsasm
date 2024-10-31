@@ -6,11 +6,15 @@ An extension to `vgsasm` available in VSCode.
 
 ## WIP status
 
+This package is a **Beta Version**.
+
+We plan to release a stable version (version 1.0.0) of this package at the same time as version 1.0.0 of the assembler itself (vgsasm).
+
 - [x] Text Highlight
-- [ ] Suggestion for `struct`
-- [ ] Suggestion for `enum`
+- [x] Suggestion for `struct`
+- [x] Suggestion for `enum`
 - [ ] Suggestion for `#macro`
-- [ ] Contain `#include` files for the suggestions
+- [x] Contain `#include` files for the suggestions
 - [ ] Support code formatter
 
 ## How to Debug
