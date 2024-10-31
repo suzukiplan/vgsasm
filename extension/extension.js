@@ -10,18 +10,34 @@ function getStructMemberList(name, document, position) {
     const token = name.split(/[ .,()]/);
     if (token.length < 2) { return; }
     name = token[token.length - 2];
-    console.log("search: struct " + name);
-    /* 以下、激重
-    const regex = new RegExp("\\-istruct *name");
-    const matches = regex.exec(document.getText());
-    if (matches != null) {
-        console.log("matched: ", matches);
-    }
-    */
+    const regex = new RegExp('struct\\s+' + name, 'i');
+    let source = document.getText();
+    const structPosition = source.search(regex);
+    if (-1 == structPosition) { return; }
+    const beginPosition = source.indexOf('{', structPosition);
+    if (-1 == beginPosition) { return; }
+    const endPosition = source.indexOf('}', beginPosition);
+    if (-1 == endPosition) { return; }
+    const structDefinition = source.substr(beginPosition, endPosition - beginPosition + 1);
+    const lines = structDefinition.split('\n');
     const list = [];
-    list.push({ label: 'foo', kind: vscode.CompletionItemKind.Field });
-    list.push({ label: 'hoge', kind: vscode.CompletionItemKind.Field });
-    list.push({ label: 'hige', kind: vscode.CompletionItemKind.Field });
+    for (var i = 1; i < lines.length - 1; i++) {
+        const line = lines[i].trim();
+        const token = line.split(/[ \t]/);
+        if (3 <= token.length) {
+            var detail = undefined;
+            const commentPos = line.indexOf(';');
+            if (-1 != commentPos) {
+                detail = line.substr(commentPos + 1).trim();
+            } else {
+                commentPos = line.indexOf('//');
+                if (-1 != commentPos) {
+                    detail = line.substr(commentPos + 2).trim();
+                }
+            }
+            list.push({ label: token[0], kind: vscode.CompletionItemKind.Field, detail: detail });
+        }
+    }
     return list;
 }
 
