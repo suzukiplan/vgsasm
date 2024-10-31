@@ -7,9 +7,15 @@ function helloWorld() {
 
 function getStructMemberList(name, document) {
     return new Promise((resolve) => {
-        if (!name.endsWith('.')) { return; }
+        if (!name.endsWith('.')) {
+            resolve();
+            return;
+        }
         const token = name.split(/[ .,()]/);
-        if (token.length < 2) { return; }
+        if (token.length < 2) {
+            resolve();
+            return;
+        }
         name = token[token.length - 2];
         const regex = new RegExp('struct\\s+' + name, 'i');
         let source = document.getText();
@@ -30,7 +36,10 @@ function getStructMemberListR(regex, source, document, documentList, resolve) {
     const structPosition = source.search(regex);
     if (-1 == structPosition) {
         const uriEndPos = document.uri.path.lastIndexOf('/');
-        if (-1 == uriEndPos) { return; }
+        if (-1 == uriEndPos) {
+            resolve();
+            return;
+        }
         const basePath = document.uri.path.substr(0, uriEndPos + 1);
         const lines = source.split('\n');
         var count = 0;
