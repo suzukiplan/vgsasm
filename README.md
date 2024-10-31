@@ -33,7 +33,7 @@ sudo ln -s `pwd`/vgsasm /usr/local/bin/vgsasm
 
 ### Visual Studio Code Extension
 
-This repository provides an [Extension for Visual Studio Code](./extension/) that supports struct and enum input assistance.
+We provide an [Extension for Visual Studio Code](https://github.com/suzukiplan/vgsasm-extension) that supports struct and enum input assistance.
 
 _Future support to allow installation from Visual Studio Code is under consideration._
 
