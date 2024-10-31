@@ -6,6 +6,10 @@ function helloWorld() {
 }
 
 function getStructMemberList(name, document, position) {
+    if (!name.endsWith('.')) { return; }
+    const token = name.split(/[ .,()]/);
+    if (token.length < 2) { return; }
+    name = token[token.length - 2];
     console.log("search: struct " + name);
     /* 以下、激重
     const regex = new RegExp("\\-istruct *name");
@@ -23,7 +27,7 @@ function getStructMemberList(name, document, position) {
 
 class VGSMethodCompletionItemProvider {
     provideCompletionItems(document, position, token) {
-        const structName = document.lineAt(position).text.substr(0, position.character - 1);
+        const structName = document.lineAt(position).text.substr(0, position.character);
         const completionItems = getStructMemberList(structName, document);
         let completionList = new vscode.CompletionList(completionItems, false);
         return Promise.resolve(completionList);
