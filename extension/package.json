@@ -1,4 +1,5 @@
 {
+    "publisher": "suzukiplan",
     "name": "vgsasm-vscode-extension",
     "version": "0.0.1",
     "engines": {
@@ -9,12 +10,6 @@
         "*"
     ],
     "contributes": {
-        "commands": [
-            {
-                "command": "vgsasm.helloWorld",
-                "title": "vgsasm: say hello world"
-            }
-        ],
         "languages": [
             {
                 "id": "vgsasm",

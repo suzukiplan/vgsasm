@@ -1,10 +1,6 @@
 const vscode = require('vscode');
 const VGSASM_MODE = { scheme: 'file', language: 'vgsasm' };
 
-function helloWorld() {
-    vscode.window.showInformationMessage('Hello, world!')
-}
-
 function getStructMemberList(name, document) {
     return new Promise((resolve) => {
         if (!name.endsWith('.')) {
@@ -121,7 +117,6 @@ class VGSMethodCompletionItemProvider {
 }
 
 function activate(context) {
-    context.subscriptions.push(vscode.commands.registerCommand('vgsasm.helloWorld', helloWorld));
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider(VGSASM_MODE, new VGSMethodCompletionItemProvider(), '.'));
 }
 
