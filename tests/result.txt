@@ -1436,6 +1436,7 @@ N: m_call_osn
   m_call_osn.asm:0007 $0012 <CALL> <M> `,` 0x64
   m_call_osn.asm:0008 $0015 <CALL> <P> `,` 0xC8
 diff m_call_osn.bin m_call_osn.exp
+E: Invalid condition: A ... OK
 Normal case: 179
-Error case: 222
-Total: 401
+Error case: 223
+Total: 402
