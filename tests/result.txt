@@ -451,26 +451,26 @@ N: macro_normal
 macro_normal.asm:0004 $0000 <LD> <BC> `,` 0x1
 macro_normal.asm:0005 $0003 <LD> <DE> `,` 0x5
 macro_normal.asm:0006 $0006 <LD> <HL> `,` 0xF
-../lib/vgszero.inc:0091 $0009 <PUSH> <BC>
-../lib/vgszero.inc:0092 $000A <PUSH> <DE>
-../lib/vgszero.inc:0093 $000B <PUSH> <HL>
-../lib/vgszero.inc:0094 $000C <LD> <BC> `,` 0xC000
-../lib/vgszero.inc:0095 $000F <LD> <DE> `,` `$0`
-../lib/vgszero.inc:0096 $0012 <LD> <HL> `,` 0x7
-../lib/vgszero.inc:0097 $0015 <OUT> _( 0xC3 )_ `,` <A>
-../lib/vgszero.inc:0098 $0017 <POP> <HL>
-../lib/vgszero.inc:0099 $0018 <POP> <DE>
-../lib/vgszero.inc:0100 $0019 <POP> <BC>
-../lib/vgszero.inc:0105 $001A <PUSH> <AF>
-../lib/vgszero.inc:0106 $001B <PUSH> <BC>
-../lib/vgszero.inc:0107 $001C <PUSH> <HL>
-../lib/vgszero.inc:0108 $001D <LD> <BC> `,` 0xC020
-../lib/vgszero.inc:0109 $0020 <LD> <A> `,` 0x20
-../lib/vgszero.inc:0110 $0022 <LD> <HL> `,` 0x400
-../lib/vgszero.inc:0111 $0025 <OUT> _( 0xC3 )_ `,` <A>
-../lib/vgszero.inc:0112 $0027 <POP> <HL>
-../lib/vgszero.inc:0113 $0028 <POP> <BC>
-../lib/vgszero.inc:0114 $0029 <POP> <AF>
+../lib/vgszero.inc:0102 $0009 <PUSH> <BC>
+../lib/vgszero.inc:0103 $000A <PUSH> <DE>
+../lib/vgszero.inc:0104 $000B <PUSH> <HL>
+../lib/vgszero.inc:0105 $000C <LD> <BC> `,` 0xC000
+../lib/vgszero.inc:0106 $000F <LD> <DE> `,` `$0`
+../lib/vgszero.inc:0107 $0012 <LD> <HL> `,` 0x7
+../lib/vgszero.inc:0108 $0015 <OUT> _( 0xC3 )_ `,` <A>
+../lib/vgszero.inc:0109 $0017 <POP> <HL>
+../lib/vgszero.inc:0110 $0018 <POP> <DE>
+../lib/vgszero.inc:0111 $0019 <POP> <BC>
+../lib/vgszero.inc:0116 $001A <PUSH> <AF>
+../lib/vgszero.inc:0117 $001B <PUSH> <BC>
+../lib/vgszero.inc:0118 $001C <PUSH> <HL>
+../lib/vgszero.inc:0119 $001D <LD> <BC> `,` 0xC020
+../lib/vgszero.inc:0120 $0020 <LD> <A> `,` 0x20
+../lib/vgszero.inc:0121 $0022 <LD> <HL> `,` 0x400
+../lib/vgszero.inc:0122 $0025 <OUT> _( 0xC3 )_ `,` <A>
+../lib/vgszero.inc:0123 $0027 <POP> <HL>
+../lib/vgszero.inc:0124 $0028 <POP> <BC>
+../lib/vgszero.inc:0125 $0029 <POP> <AF>
 macro_normal.asm:0017 $002A <CALL> `HIGE`
 macro_normal.asm:0004 $002D <LD> <BC> `,` 0x1
 macro_normal.asm:0005 $0030 <LD> <DE> `,` 0x2
@@ -1409,6 +1409,12 @@ N: m_pop_o
 diff m_pop_o.bin m_pop_o.exp
 E: Unsupported POP operand: SP ... OK
 E: Excessive or insufficient number of operands. ... OK
-Normal case: 176
-Error case: 221
-Total: 397
+N: m_call_n
+../vgsasm m_call_n.asm -v
+    m_call_n.asm:0001 $0000 <CALL> 0x0
+    m_call_n.asm:0002 $0003 <CALL> 0xFFFF
+diff m_call_n.bin m_call_n.exp
+E: Numerical range incorrect: 65536 ... OK
+Normal case: 177
+Error case: 222
+Total: 399
