@@ -51,23 +51,23 @@
                 },
                 {
                     "name": "constant.numeric",
-                    "match": "(?i)0b[0-1]*"
+                    "match": "\\b((?i)0b[0-1]+)\\b"
                 },
                 {
                     "name": "constant.numeric",
-                    "match": "%[0-1]*"
+                    "match": "\\b(%[0-1]+)\\b"
                 },
                 {
                     "name": "constant.numeric",
-                    "match": "(?i)0x[0-9A-Fa-f]*"
+                    "match": "\\b((?i)0x[0-9A-Fa-f]+)\\b"
                 },
                 {
                     "name": "constant.numeric",
-                    "match": "\\$[0-9A-Fa-f]*"
+                    "match": "\\$([0-9A-Fa-f]+)\\b"
                 },
                 {
                     "name": "constant.numeric",
-                    "match": "\\d+"
+                    "match": "\\b(\\d+)\\b"
                 }
             ]
         }
