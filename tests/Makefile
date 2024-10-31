@@ -159,6 +159,35 @@ mnemonic:
 	${MAK} mnemonic_out_tests
 	${MAK} mnemonic_jp_tests
 	${MAK} mnemonic_jr_tests
+	${MAK} mnemonic_rst_tests
+	${MAK} mnemonic_shift_tests
+	${MAK} mnemonic_stack_tests
+
+mnemonic_stack_tests: check ../vgsasm
+	${MAK} normal_case src=m_push_o
+	@./check "`../vgsasm m_push_o_ill.asm`" "Unsupported PUSH operand: A"
+	@./check "`../vgsasm m_push_ill.asm`" "Excessive or insufficient number of operands."
+	${MAK} normal_case src=m_pop_o
+	@./check "`../vgsasm m_pop_o_ill.asm`" "Unsupported POP operand: SP"
+	@./check "`../vgsasm m_pop_ill.asm`" "Excessive or insufficient number of operands."
+
+mnemonic_shift_tests: check ../vgsasm
+	${MAK} normal_case src=m_shift_o
+	@./check "`../vgsasm m_shift_o_ill.asm`" "Illegal shift/rotate instruction."
+	${MAK} normal_case src=m_shift_osn
+	${MAK} normal_case src=m_shift_aoa
+	@./check "`../vgsasm m_shift_aoa_ill.asm`" "Illegal shift/rotate instruction."
+	${MAK} normal_case src=m_shift_aoasn
+	${MAK} normal_case src=m_shift_aopna
+	@./check "`../vgsasm m_shift_aopna_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_shift_aopna_range2.asm`" "Numerical range incorrect: 128"
+	@./check "`../vgsasm m_shift_aopna_ill.asm`" "Illegal shift/rotate instruction."
+	${MAK} normal_case src=m_shift_aopna_o
+	@./check "`../vgsasm m_shift_ill.asm`" "Illegal shift/rotate instruction."
+
+mnemonic_rst_tests: check ../vgsasm
+	${MAK} normal_case src=m_rst
+	@./check "`../vgsasm m_rst_ill.asm`" "Illegal RST instruction."
 
 mnemonic_jr_tests: check ../vgsasm
 	${MAK} normal_case src=m_jr_n

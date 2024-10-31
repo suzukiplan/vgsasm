@@ -1206,6 +1206,209 @@ N: m_jr_osl
 diff m_jr_osl.bin m_jr_osl.exp
 E: Invalid condition: PO ... OK
 E: Illegal JR instruction. ... OK
-Normal case: 167
-Error case: 210
-Total: 377
+N: m_rst
+../vgsasm m_rst.asm -v
+       m_rst.asm:0001 $0000 <RST> 0x0
+       m_rst.asm:0002 $0001 <RST> 0x1
+       m_rst.asm:0003 $0002 <RST> 0x2
+       m_rst.asm:0004 $0003 <RST> 0x3
+       m_rst.asm:0005 $0004 <RST> 0x4
+       m_rst.asm:0006 $0005 <RST> 0x5
+       m_rst.asm:0007 $0006 <RST> 0x6
+       m_rst.asm:0008 $0007 <RST> 0x7
+       m_rst.asm:0010 $0008 <RST> 0x0
+       m_rst.asm:0011 $0009 <RST> 0x8
+       m_rst.asm:0012 $000A <RST> 0x10
+       m_rst.asm:0013 $000B <RST> 0x18
+       m_rst.asm:0014 $000C <RST> 0x20
+       m_rst.asm:0015 $000D <RST> 0x28
+       m_rst.asm:0016 $000E <RST> 0x30
+       m_rst.asm:0017 $000F <RST> 0x38
+diff m_rst.bin m_rst.exp
+E: Illegal RST instruction. ... OK
+N: m_shift_o
+../vgsasm m_shift_o.asm -v
+   m_shift_o.asm:0001 $0000 <SLA> <A>
+   m_shift_o.asm:0002 $0002 <SLA> <B>
+   m_shift_o.asm:0003 $0004 <SLA> <C>
+   m_shift_o.asm:0004 $0006 <SLA> <D>
+   m_shift_o.asm:0005 $0008 <SLA> <E>
+   m_shift_o.asm:0006 $000A <SLA> <H>
+   m_shift_o.asm:0007 $000C <SLA> <L>
+   m_shift_o.asm:0009 $000E <SLL> <A>
+   m_shift_o.asm:0010 $0010 <SLL> <B>
+   m_shift_o.asm:0011 $0012 <SLL> <C>
+   m_shift_o.asm:0012 $0014 <SLL> <D>
+   m_shift_o.asm:0013 $0016 <SLL> <E>
+   m_shift_o.asm:0014 $0018 <SLL> <H>
+   m_shift_o.asm:0015 $001A <SLL> <L>
+   m_shift_o.asm:0017 $001C <SRA> <A>
+   m_shift_o.asm:0018 $001E <SRA> <B>
+   m_shift_o.asm:0019 $0020 <SRA> <C>
+   m_shift_o.asm:0020 $0022 <SRA> <D>
+   m_shift_o.asm:0021 $0024 <SRA> <E>
+   m_shift_o.asm:0022 $0026 <SRA> <H>
+   m_shift_o.asm:0023 $0028 <SRA> <L>
+   m_shift_o.asm:0025 $002A <SRL> <A>
+   m_shift_o.asm:0026 $002C <SRL> <B>
+   m_shift_o.asm:0027 $002E <SRL> <C>
+   m_shift_o.asm:0028 $0030 <SRL> <D>
+   m_shift_o.asm:0029 $0032 <SRL> <E>
+   m_shift_o.asm:0030 $0034 <SRL> <H>
+   m_shift_o.asm:0031 $0036 <SRL> <L>
+   m_shift_o.asm:0033 $0038 <RLC> <A>
+   m_shift_o.asm:0034 $003A <RLC> <B>
+   m_shift_o.asm:0035 $003C <RLC> <C>
+   m_shift_o.asm:0036 $003E <RLC> <D>
+   m_shift_o.asm:0037 $0040 <RLC> <E>
+   m_shift_o.asm:0038 $0042 <RLC> <H>
+   m_shift_o.asm:0039 $0044 <RLC> <L>
+   m_shift_o.asm:0041 $0046 <RL> <A>
+   m_shift_o.asm:0042 $0048 <RL> <B>
+   m_shift_o.asm:0043 $004A <RL> <C>
+   m_shift_o.asm:0044 $004C <RL> <D>
+   m_shift_o.asm:0045 $004E <RL> <E>
+   m_shift_o.asm:0046 $0050 <RL> <H>
+   m_shift_o.asm:0047 $0052 <RL> <L>
+   m_shift_o.asm:0049 $0054 <RRC> <A>
+   m_shift_o.asm:0050 $0056 <RRC> <B>
+   m_shift_o.asm:0051 $0058 <RRC> <C>
+   m_shift_o.asm:0052 $005A <RRC> <D>
+   m_shift_o.asm:0053 $005C <RRC> <E>
+   m_shift_o.asm:0054 $005E <RRC> <H>
+   m_shift_o.asm:0055 $0060 <RRC> <L>
+   m_shift_o.asm:0057 $0062 <RR> <A>
+   m_shift_o.asm:0058 $0064 <RR> <B>
+   m_shift_o.asm:0059 $0066 <RR> <C>
+   m_shift_o.asm:0060 $0068 <RR> <D>
+   m_shift_o.asm:0061 $006A <RR> <E>
+   m_shift_o.asm:0062 $006C <RR> <H>
+   m_shift_o.asm:0063 $006E <RR> <L>
+   m_shift_o.asm:0065 $0070 <SL> <A>
+   m_shift_o.asm:0066 $0072 <SL> <B>
+   m_shift_o.asm:0067 $0074 <SL> <C>
+   m_shift_o.asm:0068 $0076 <SL> <D>
+   m_shift_o.asm:0069 $0078 <SL> <E>
+   m_shift_o.asm:0070 $007A <SL> <H>
+   m_shift_o.asm:0071 $007C <SL> <L>
+   m_shift_o.asm:0073 $007E <SR> <A>
+   m_shift_o.asm:0074 $0080 <SR> <B>
+   m_shift_o.asm:0075 $0082 <SR> <C>
+   m_shift_o.asm:0076 $0084 <SR> <D>
+   m_shift_o.asm:0077 $0086 <SR> <E>
+   m_shift_o.asm:0078 $0088 <SR> <H>
+   m_shift_o.asm:0079 $008A <SR> <L>
+diff m_shift_o.bin m_shift_o.exp
+E: Illegal shift/rotate instruction. ... OK
+N: m_shift_osn
+../vgsasm m_shift_osn.asm -v
+ m_shift_osn.asm:0001 $0000 <SL> <A> `,` 0x5
+diff m_shift_osn.bin m_shift_osn.exp
+N: m_shift_aoa
+../vgsasm m_shift_aoa.asm -v
+ m_shift_aoa.asm:0001 $0000 <SLA> _( <HL> )_
+ m_shift_aoa.asm:0002 $0002 <SLA> _( <IX> )_
+ m_shift_aoa.asm:0003 $0006 <SLA> _( <IY> )_
+ m_shift_aoa.asm:0005 $000A <SLL> _( <HL> )_
+ m_shift_aoa.asm:0006 $000C <SLL> _( <IX> )_
+ m_shift_aoa.asm:0007 $0010 <SLL> _( <IY> )_
+ m_shift_aoa.asm:0009 $0014 <SRA> _( <HL> )_
+ m_shift_aoa.asm:0010 $0016 <SRA> _( <IX> )_
+ m_shift_aoa.asm:0011 $001A <SRA> _( <IY> )_
+ m_shift_aoa.asm:0013 $001E <SRL> _( <HL> )_
+ m_shift_aoa.asm:0014 $0020 <SRL> _( <IX> )_
+ m_shift_aoa.asm:0015 $0024 <SRL> _( <IY> )_
+ m_shift_aoa.asm:0017 $0028 <RLC> _( <HL> )_
+ m_shift_aoa.asm:0018 $002A <RLC> _( <IX> )_
+ m_shift_aoa.asm:0019 $002E <RLC> _( <IY> )_
+ m_shift_aoa.asm:0021 $0032 <RL> _( <HL> )_
+ m_shift_aoa.asm:0022 $0034 <RL> _( <IX> )_
+ m_shift_aoa.asm:0023 $0038 <RL> _( <IY> )_
+ m_shift_aoa.asm:0025 $003C <RRC> _( <HL> )_
+ m_shift_aoa.asm:0026 $003E <RRC> _( <IX> )_
+ m_shift_aoa.asm:0027 $0042 <RRC> _( <IY> )_
+ m_shift_aoa.asm:0029 $0046 <RR> _( <HL> )_
+ m_shift_aoa.asm:0030 $0048 <RR> _( <IX> )_
+ m_shift_aoa.asm:0031 $004C <RR> _( <IY> )_
+ m_shift_aoa.asm:0033 $0050 <SL> _( <HL> )_
+ m_shift_aoa.asm:0034 $0052 <SL> _( <IX> )_
+ m_shift_aoa.asm:0035 $0056 <SL> _( <IY> )_
+ m_shift_aoa.asm:0037 $005A <SR> _( <HL> )_
+ m_shift_aoa.asm:0038 $005C <SR> _( <IX> )_
+ m_shift_aoa.asm:0039 $0060 <SR> _( <IY> )_
+diff m_shift_aoa.bin m_shift_aoa.exp
+E: Illegal shift/rotate instruction. ... OK
+N: m_shift_aoasn
+../vgsasm m_shift_aoasn.asm -v
+m_shift_aoasn.asm:0001 $0000 <SLA> _( <HL> )_ `,` 0x3
+diff m_shift_aoasn.bin m_shift_aoasn.exp
+N: m_shift_aopna
+../vgsasm m_shift_aopna.asm -v
+m_shift_aopna.asm:0001 $0000 <SLA> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0002 $0004 <SLA> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0004 $0008 <SLL> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0005 $000C <SLL> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0007 $0010 <SRA> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0008 $0014 <SRA> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0010 $0018 <SRL> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0011 $001C <SRL> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0013 $0020 <RLC> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0014 $0024 <RLC> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0016 $0028 <RL> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0017 $002C <RL> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0019 $0030 <RRC> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0020 $0034 <RRC> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0022 $0038 <RR> _( <IX> `-` 0x80 )_
+m_shift_aopna.asm:0023 $003C <RR> _( <IY> `+` 0x7F )_
+m_shift_aopna.asm:0025 $0040 <SL> _( <IX> `+` 0x7F )_
+m_shift_aopna.asm:0026 $0044 <SL> _( <IY> `-` 0x80 )_
+m_shift_aopna.asm:0028 $0048 <SR> _( <IX> `+` 0x7F )_
+m_shift_aopna.asm:0029 $004C <SR> _( <IY> `-` 0x80 )_
+diff m_shift_aopna.bin m_shift_aopna.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Illegal shift/rotate instruction. ... OK
+N: m_shift_aopna_o
+../vgsasm m_shift_aopna_o.asm -v
+m_shift_aopna_o.asm:0001 $0000 <RLC> _( <IX> `+` 0x0 )_ `&` <A>
+m_shift_aopna_o.asm:0002 $0004 <RLC> _( <IX> `+` 0x0 )_ `&` <B>
+m_shift_aopna_o.asm:0003 $0008 <RLC> _( <IX> `+` 0x0 )_ `&` <C>
+m_shift_aopna_o.asm:0004 $000C <RLC> _( <IX> `+` 0x0 )_ `&` <D>
+m_shift_aopna_o.asm:0005 $0010 <RLC> _( <IX> `+` 0x0 )_ `&` <E>
+m_shift_aopna_o.asm:0006 $0014 <RLC> _( <IX> `+` 0x0 )_ `&` <F>
+m_shift_aopna_o.asm:0007 $0018 <RLC> _( <IX> `+` 0x0 )_ `&` <H>
+m_shift_aopna_o.asm:0008 $001C <RLC> _( <IX> `+` 0x0 )_ `&` <L>
+m_shift_aopna_o.asm:0010 $0020 <RRC> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0011 $0024 <RL> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0012 $0028 <RR> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0013 $002C <SLA> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0014 $0030 <SRA> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0015 $0034 <SLL> _( <IX> `+` 0x1 )_ `&` <B>
+m_shift_aopna_o.asm:0016 $0038 <SRL> _( <IX> `+` 0x1 )_ `&` <B>
+diff m_shift_aopna_o.bin m_shift_aopna_o.exp
+E: Illegal shift/rotate instruction. ... OK
+N: m_push_o
+../vgsasm m_push_o.asm -v
+    m_push_o.asm:0001 $0000 <PUSH> <AF>
+    m_push_o.asm:0002 $0001 <PUSH> <BC>
+    m_push_o.asm:0003 $0002 <PUSH> <DE>
+    m_push_o.asm:0004 $0003 <PUSH> <HL>
+    m_push_o.asm:0005 $0004 <PUSH> <IX>
+    m_push_o.asm:0006 $0006 <PUSH> <IY>
+diff m_push_o.bin m_push_o.exp
+E: Unsupported PUSH operand: A ... OK
+E: Excessive or insufficient number of operands. ... OK
+N: m_pop_o
+../vgsasm m_pop_o.asm -v
+     m_pop_o.asm:0001 $0000 <POP> <AF>
+     m_pop_o.asm:0002 $0001 <POP> <BC>
+     m_pop_o.asm:0003 $0002 <POP> <DE>
+     m_pop_o.asm:0004 $0003 <POP> <HL>
+     m_pop_o.asm:0005 $0004 <POP> <IX>
+     m_pop_o.asm:0006 $0006 <POP> <IY>
+diff m_pop_o.bin m_pop_o.exp
+E: Unsupported POP operand: SP ... OK
+E: Excessive or insufficient number of operands. ... OK
+Normal case: 176
+Error case: 221
+Total: 397
