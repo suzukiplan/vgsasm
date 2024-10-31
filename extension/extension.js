@@ -19,14 +19,26 @@ function getStructMemberList(name, document) {
         name = token[token.length - 2];
         const regex = new RegExp('struct\\s+' + name, 'i');
         let source = document.getText();
-        getMemberListR({ type: "struct", regex: regex }, source, document, [], resolve);
+        getMemberListR({ type: "struct", regex: regex, name: name }, source, document, [], (list) => {
+            if (list) {
+                resolve(list);
+            } else {
+                getEnumMemberList(name, document, resolve);
+            }
+        });
     });
 }
 
+function getEnumMemberList(name, document, resolve) {
+    const regex = new RegExp('enum\\s+' + name, 'i');
+    let source = document.getText();
+    getMemberListR({ type: "enum", regex: regex, name: name }, source, document, [], resolve);
+}
+
 function getMemberListR(config, source, document, documentList, resolve) {
+    console.log("search " + config.type + " " + config.name + " from " + document.uri.path);
     for (var i = 0; i < documentList.length; i++) {
         if (documentList[i] == document.uri.path) {
-            console.log("ignored dup: " + document.uri.path);
             resolve();
             return;
         }
@@ -62,6 +74,7 @@ function getMemberListR(config, source, document, documentList, resolve) {
         }
         return;
     }
+    console.log("found at " + structPosition);
     const beginPosition = source.indexOf('{', structPosition);
     if (-1 == beginPosition) {
         resolve();
@@ -76,9 +89,9 @@ function getMemberListR(config, source, document, documentList, resolve) {
     const lines = structDefinition.split('\n');
     const list = [];
     for (var i = 1; i < lines.length - 1; i++) {
-        const line = lines[i].trim();
+        var line = lines[i].trim();
         var detail = undefined;
-        const commentPos = line.indexOf(';');
+        var commentPos = line.indexOf(';');
         if (-1 != commentPos) {
             detail = line.substr(commentPos + 1).trim();
         } else {
@@ -87,8 +100,13 @@ function getMemberListR(config, source, document, documentList, resolve) {
                 detail = line.substr(commentPos + 2).trim();
             }
         }
+        if (-1 != commentPos) {
+            line = line.substr(0, commentPos);
+        }
         const token = line.split(/[ \t]/);
         if (3 <= token.length && config.type == "struct") {
+            list.push({ label: token[0], kind: vscode.CompletionItemKind.Field, detail: detail });
+        } else if (1 <= token.length && config.type == "enum") {
             list.push({ label: token[0], kind: vscode.CompletionItemKind.Field, detail: detail });
         }
     }
