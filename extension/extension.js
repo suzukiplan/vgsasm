@@ -5,19 +5,65 @@ function helloWorld() {
     vscode.window.showInformationMessage('Hello, world!')
 }
 
-function getStructMemberList(name, document, position) {
-    if (!name.endsWith('.')) { return; }
-    const token = name.split(/[ .,()]/);
-    if (token.length < 2) { return; }
-    name = token[token.length - 2];
-    const regex = new RegExp('struct\\s+' + name, 'i');
-    let source = document.getText();
+function getStructMemberList(name, document) {
+    return new Promise((resolve) => {
+        if (!name.endsWith('.')) { return; }
+        const token = name.split(/[ .,()]/);
+        if (token.length < 2) { return; }
+        name = token[token.length - 2];
+        const regex = new RegExp('struct\\s+' + name, 'i');
+        let source = document.getText();
+        getStructMemberListR(regex, source, document, [], resolve);
+    });
+}
+
+function getStructMemberListR(regex, source, document, documentList, resolve) {
+    for (var i = 0; i < documentList.length; i++) {
+        if (documentList[i] == document.uri.path) {
+            console.log("ignored dup: " + document.uri.path);
+            resolve();
+            return;
+        }
+    }
+    documentList.push(document.uri.path);
+    console.log("search from " + document.uri.path);
     const structPosition = source.search(regex);
-    if (-1 == structPosition) { return; }
+    if (-1 == structPosition) {
+        const uriEndPos = document.uri.path.lastIndexOf('/');
+        if (-1 == uriEndPos) { return; }
+        const basePath = document.uri.path.substr(0, uriEndPos + 1);
+        const lines = source.split('\n');
+        var count = 0;
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].startsWith('#include')) {
+                const tokens = lines[i].split(/[ \t]/);
+                for (var j = 0; j < tokens.length; j++) {
+                    if (tokens[j].startsWith('"') && tokens[j].endsWith('"')) {
+                        count++;
+                        const uri = document.uri.with({ path: basePath + tokens[j].substr(1, tokens[j].length - 2) });
+                        vscode.workspace.openTextDocument(uri).then((includeDocument) => {
+                            const includeSource = includeDocument.getText();
+                            return getStructMemberListR(regex, includeSource, includeDocument, documentList, resolve);
+                        });
+                    }
+                }
+            }
+        }
+        if (0 == count) {
+            resolve();
+        }
+        return;
+    }
     const beginPosition = source.indexOf('{', structPosition);
-    if (-1 == beginPosition) { return; }
+    if (-1 == beginPosition) {
+        resolve();
+        return;
+    }
     const endPosition = source.indexOf('}', beginPosition);
-    if (-1 == endPosition) { return; }
+    if (-1 == endPosition) {
+        resolve();
+        return;
+    }
     const structDefinition = source.substr(beginPosition, endPosition - beginPosition + 1);
     const lines = structDefinition.split('\n');
     const list = [];
@@ -38,15 +84,13 @@ function getStructMemberList(name, document, position) {
             list.push({ label: token[0], kind: vscode.CompletionItemKind.Field, detail: detail });
         }
     }
-    return list;
+    return resolve(new vscode.CompletionList(list, false));
 }
 
 class VGSMethodCompletionItemProvider {
     provideCompletionItems(document, position, token) {
         const structName = document.lineAt(position).text.substr(0, position.character);
-        const completionItems = getStructMemberList(structName, document);
-        let completionList = new vscode.CompletionList(completionItems, false);
-        return Promise.resolve(completionList);
+        return getStructMemberList(structName, document);
     }
 }
 
