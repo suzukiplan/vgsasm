@@ -6,7 +6,8 @@ struct Foo $C000 {
     var3 ds.b 1     ; param3
 }
 
-enum Color {
+enum Color
+{
     Black       // color code 0
     Blue        // color code 1
     Red         // color code 2
@@ -18,7 +19,7 @@ enum Color {
 }
 
 .main
-    LD A, 0x123
+    LD A, 0x12
     LD (Foo.var1), $12
     SL A
     SLL A
