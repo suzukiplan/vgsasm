@@ -1482,6 +1482,7 @@ m_hage_oso_hl.asm:0027 $00BA <MOD> <HL> `,` <C>
 m_hage_oso_hl.asm:0028 $00C0 <MOD> <HL> `,` <D>
 m_hage_oso_hl.asm:0029 $00C9 <MOD> <HL> `,` <E>
 diff m_hage_oso_hl.bin m_hage_oso_hl.exp
+E: Illegal MUL instruction. ... OK
 Normal case: 181
-Error case: 225
-Total: 406
+Error case: 226
+Total: 407
