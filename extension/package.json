@@ -1,7 +1,7 @@
 {
     "publisher": "suzukiplan",
-    "name": "vgsasm-vscode-extension",
-    "version": "0.0.1",
+    "name": "vgsasm",
+    "version": "0.14",
     "engines": {
         "vscode": "^1.33.1"
     },
