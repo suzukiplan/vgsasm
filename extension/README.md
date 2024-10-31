@@ -2,6 +2,8 @@
 
 An extension to `vgsasm` available in VSCode.
 
+![preview](./preview.png)
+
 ## WIP status
 
 - [x] Text Highlight
