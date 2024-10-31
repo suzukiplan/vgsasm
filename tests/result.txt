@@ -1438,6 +1438,21 @@ N: m_call_osn
 diff m_call_osn.bin m_call_osn.exp
 E: Invalid condition: A ... OK
 E: Numerical range incorrect: 65536 ... OK
-Normal case: 179
+N: m_call_osl
+../vgsasm m_call_osl.asm -v
+  m_call_osl.asm:0001 $0000 LABEL:
+  m_call_osl.asm:0002 $0000 LABEL1:
+  m_call_osl.asm:0003 $0000 LABEL2:
+  m_call_osl.asm:0004 $0000 LABEL3@LABEL2:
+  m_call_osl.asm:0006 $0000 <CALL> <NZ> `,` `LABEL1`
+  m_call_osl.asm:0007 $0003 <CALL> <Z> `,` `LABEL2`
+  m_call_osl.asm:0008 $0006 <CALL> <NC> `,` `LABEL3@LABEL2`
+  m_call_osl.asm:0009 $0009 <CALL> <C> `,` `LABEL`
+  m_call_osl.asm:0010 $000C <CALL> <PO> `,` `LABEL1`
+  m_call_osl.asm:0011 $000F <CALL> <PE> `,` `LABEL2`
+  m_call_osl.asm:0012 $0012 <CALL> <M> `,` `LABEL3@LABEL2`
+  m_call_osl.asm:0013 $0015 <CALL> <P> `,` `LABEL3@LABEL2`
+diff m_call_osl.bin m_call_osl.exp
+Normal case: 180
 Error case: 224
-Total: 403
+Total: 404
