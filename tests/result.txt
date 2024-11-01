@@ -2027,6 +2027,22 @@ m_ld_aoaso_hl.asm:0014 $0023 <LD> _( <HL> )_ `,` <IX>
 m_ld_aoaso_hl.asm:0015 $002D <LD> _( <HL> )_ `,` <IY>
 diff m_ld_aoaso_hl.bin m_ld_aoaso_hl.exp
 E: Illegal LD instruction. ... OK
-Normal case: 213
+N: m_ld_a_bc
+../vgsasm m_ld_a_bc.asm -v
+   m_ld_a_bc.asm:0001 $0000 <LD> <A> `,` _( <BC> )_
+diff m_ld_a_bc.bin m_ld_a_bc.exp
+N: m_ld_a_de
+../vgsasm m_ld_a_de.asm -v
+   m_ld_a_de.asm:0001 $0000 <LD> <A> `,` _( <DE> )_
+diff m_ld_a_de.bin m_ld_a_de.exp
+N: m_ld_bc_a
+../vgsasm m_ld_bc_a.asm -v
+   m_ld_bc_a.asm:0001 $0000 <LD> _( <BC> )_ `,` <A>
+diff m_ld_bc_a.bin m_ld_bc_a.exp
+N: m_ld_de_a
+../vgsasm m_ld_de_a.asm -v
+   m_ld_de_a.asm:0001 $0000 <LD> _( <DE> )_ `,` <A>
+diff m_ld_de_a.bin m_ld_de_a.exp
+Normal case: 217
 Error case: 278
-Total: 491
+Total: 495
