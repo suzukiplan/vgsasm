@@ -2282,6 +2282,16 @@ m_ld_osaoa_iy.asm:0012 $0015 <LD> <BC> `,` _( <IY> )_
 m_ld_osaoa_iy.asm:0013 $001B <LD> <DE> `,` _( <IY> )_
 m_ld_osaoa_iy.asm:0014 $0021 <LD> <HL> `,` _( <IY> )_
 diff m_ld_osaoa_iy.bin m_ld_osaoa_iy.exp
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
 Normal case: 232
-Error case: 309
-Total: 541
+Error case: 319
+Total: 551
