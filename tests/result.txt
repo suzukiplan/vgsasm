@@ -2137,6 +2137,26 @@ N: m_ld_osala
   m_ld_osala.asm:0025 $005A <LD> <IY> `,` _( `LABEL1` )_
 diff m_ld_osala.bin m_ld_osala.exp
 E: Illegal LD instruction. ... OK
-Normal case: 222
+N: m_ld_anaso
+../vgsasm m_ld_anaso.asm -v
+  m_ld_anaso.asm:0001 $0000 <LD> _( 0x0 )_ `,` <A>
+  m_ld_anaso.asm:0002 $0003 <LD> _( 0x100 )_ `,` <B>
+  m_ld_anaso.asm:0003 $0009 <LD> _( 0x200 )_ `,` <C>
+  m_ld_anaso.asm:0004 $000F <LD> _( 0x400 )_ `,` <D>
+  m_ld_anaso.asm:0005 $0015 <LD> _( 0x800 )_ `,` <E>
+  m_ld_anaso.asm:0006 $001B <LD> _( 0x1000 )_ `,` <H>
+  m_ld_anaso.asm:0007 $0021 <LD> _( 0x2000 )_ `,` <L>
+  m_ld_anaso.asm:0008 $0027 <LD> _( 0x4000 )_ `,` <IXH>
+  m_ld_anaso.asm:0009 $002E <LD> _( 0x8000 )_ `,` <IXL>
+  m_ld_anaso.asm:0010 $0035 <LD> _( 0xFFFF )_ `,` <IYH>
+  m_ld_anaso.asm:0011 $003C <LD> _( 0x3E8 )_ `,` <IYL>
+  m_ld_anaso.asm:0012 $0043 <LD> _( 0x7D0 )_ `,` <BC>
+  m_ld_anaso.asm:0013 $0047 <LD> _( 0xBB8 )_ `,` <DE>
+  m_ld_anaso.asm:0014 $004B <LD> _( 0xFA0 )_ `,` <HL>
+  m_ld_anaso.asm:0015 $004E <LD> _( 0x1388 )_ `,` <SP>
+  m_ld_anaso.asm:0016 $0052 <LD> _( 0x1770 )_ `,` <IX>
+  m_ld_anaso.asm:0017 $0056 <LD> _( 0x1B58 )_ `,` <IY>
+diff m_ld_anaso.bin m_ld_anaso.exp
+Normal case: 223
 Error case: 287
-Total: 509
+Total: 510
