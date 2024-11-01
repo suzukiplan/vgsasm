@@ -2254,6 +2254,8 @@ E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
 Normal case: 230
-Error case: 307
-Total: 537
+Error case: 309
+Total: 539
