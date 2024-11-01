@@ -1728,6 +1728,7 @@ diff m_hage_osn.bin m_hage_osn.exp
 E: MOD cannot operate on negative numbers. ... OK
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
+E: Illegal MUL instruction. ... OK
 Normal case: 189
-Error case: 237
-Total: 426
+Error case: 238
+Total: 427
