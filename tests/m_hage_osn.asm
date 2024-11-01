@@ -30,3 +30,10 @@ divs e, 127
 divs h, 128
 divs l, 255
  
+mod a, 0
+mod b, 1
+mod c, 63 
+mod d, 64
+mod e, 127
+mod h, 128
+mod l, 255

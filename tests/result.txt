@@ -1717,7 +1717,17 @@ N: m_hage_osn
   m_hage_osn.asm:0029 $0127 <DIVS> <E> `,` 0x7F
   m_hage_osn.asm:0030 $0133 <DIVS> <H> `,` 0x80
   m_hage_osn.asm:0031 $013F <DIVS> <L> `,` 0xFF
+  m_hage_osn.asm:0033 $014C <MOD> <A> `,` 0x0
+  m_hage_osn.asm:0034 $0156 <MOD> <B> `,` 0x1
+  m_hage_osn.asm:0035 $0162 <MOD> <C> `,` 0x3F
+  m_hage_osn.asm:0036 $016E <MOD> <D> `,` 0x40
+  m_hage_osn.asm:0037 $017A <MOD> <E> `,` 0x7F
+  m_hage_osn.asm:0038 $0186 <MOD> <H> `,` 0x80
+  m_hage_osn.asm:0039 $0192 <MOD> <L> `,` 0xFF
 diff m_hage_osn.bin m_hage_osn.exp
+E: MOD cannot operate on negative numbers. ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
 Normal case: 189
-Error case: 234
-Total: 423
+Error case: 237
+Total: 426
