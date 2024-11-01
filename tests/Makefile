@@ -178,6 +178,26 @@ mnemonic_load_tests: check ../vgsasm
 	${MAK} normal_case src=m_ld_oso8_ixl
 	${MAK} normal_case src=m_ld_oso8_iyh
 	${MAK} normal_case src=m_ld_oso8_iyl
+	@./check "`../vgsasm m_ld_oso8_ill01.asm`" "LD {H|L},{IXH|IXL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill02.asm`" "LD {H|L},{IXH|IXL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill03.asm`" "LD {H|L},{IYH|IYL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill04.asm`" "LD {H|L},{IYH|IYL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill05.asm`" "LD {H|L},{IXH|IXL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill06.asm`" "LD {H|L},{IXH|IXL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill07.asm`" "LD {H|L},{IYH|IYL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill08.asm`" "LD {H|L},{IYH|IYL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill09.asm`" "LD {IXH|IXL},{H|L} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill10.asm`" "LD {IXH|IXL},{H|L} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill11.asm`" "LD {IXH|IXL},{IYH|IYL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill12.asm`" "LD {IXH|IXL},{IYH|IYL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill13.asm`" "LD {IXH|IXL},{H|L} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill14.asm`" "LD {IXH|IXL},{H|L} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill15.asm`" "LD {IXH|IXL},{IYH|IYL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill16.asm`" "LD {IXH|IXL},{IYH|IYL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill17.asm`" "LD {IYH|IYL},{H|L} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill18.asm`" "LD {IYH|IYL},{H|L} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill19.asm`" "LD {IYH|IYL},{IXH|IXL} is not supported."
+	@./check "`../vgsasm m_ld_oso8_ill20.asm`" "LD {IYH|IYL},{IXH|IXL} is not supported."
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl

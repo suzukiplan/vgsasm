@@ -1916,6 +1916,26 @@ m_ld_oso8_iyl.asm:0005 $0008 <LD> <IYL> `,` <E>
 m_ld_oso8_iyl.asm:0010 $000A <LD> <IYL> `,` <IYH>
 m_ld_oso8_iyl.asm:0011 $000C <LD> <IYL> `,` <IYL>
 diff m_ld_oso8_iyl.bin m_ld_oso8_iyl.exp
+E: LD {H|L},{IXH|IXL} is not supported. ... OK
+E: LD {H|L},{IXH|IXL} is not supported. ... OK
+E: LD {H|L},{IYH|IYL} is not supported. ... OK
+E: LD {H|L},{IYH|IYL} is not supported. ... OK
+E: LD {H|L},{IXH|IXL} is not supported. ... OK
+E: LD {H|L},{IXH|IXL} is not supported. ... OK
+E: LD {H|L},{IYH|IYL} is not supported. ... OK
+E: LD {H|L},{IYH|IYL} is not supported. ... OK
+E: LD {IXH|IXL},{H|L} is not supported. ... OK
+E: LD {IXH|IXL},{H|L} is not supported. ... OK
+E: LD {IXH|IXL},{IYH|IYL} is not supported. ... OK
+E: LD {IXH|IXL},{IYH|IYL} is not supported. ... OK
+E: LD {IXH|IXL},{H|L} is not supported. ... OK
+E: LD {IXH|IXL},{H|L} is not supported. ... OK
+E: LD {IXH|IXL},{IYH|IYL} is not supported. ... OK
+E: LD {IXH|IXL},{IYH|IYL} is not supported. ... OK
+E: LD {IYH|IYL},{H|L} is not supported. ... OK
+E: LD {IYH|IYL},{H|L} is not supported. ... OK
+E: LD {IYH|IYL},{IXH|IXL} is not supported. ... OK
+E: LD {IYH|IYL},{IXH|IXL} is not supported. ... OK
 Normal case: 205
-Error case: 249
-Total: 454
+Error case: 269
+Total: 474
