@@ -1729,6 +1729,12 @@ E: MOD cannot operate on negative numbers. ... OK
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
 E: Illegal MUL instruction. ... OK
-Normal case: 189
+N: m_atn2_oso
+../vgsasm m_atn2_oso.asm -v
+  m_atn2_oso.asm:0001 $0000 <ATN2> <A> `,` <HL>
+  m_atn2_oso.asm:0002 $0002 <ATN2> <A> `,` <BC>
+  m_atn2_oso.asm:0003 $0008 <ATN2> <A> `,` <DE>
+diff m_atn2_oso.bin m_atn2_oso.exp
+Normal case: 190
 Error case: 238
-Total: 427
+Total: 428

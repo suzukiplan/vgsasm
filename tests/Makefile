@@ -188,6 +188,7 @@ mnemonic_vgs_tests: check ../vgsasm
 	@./check "`../vgsasm m_hage_osn_range1.asm`" "Numerical range incorrect: -129"
 	@./check "`../vgsasm m_hage_osn_range2.asm`" "Numerical range incorrect: 256"
 	@./check "`../vgsasm m_hage_osn_ill.asm`" "Illegal MUL instruction."
+	${MAK} normal_case src=m_atn2_oso
 
 mnemonic_sub_tests: check ../vgsasm
 	${MAK} normal_case src=m_call_n
