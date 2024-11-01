@@ -2068,6 +2068,8 @@ N: m_ld_osn16
   m_ld_osn16.asm:0005 $000D <LD> <IY> `,` 0x7FFF
   m_ld_osn16.asm:0006 $0011 <LD> <SP> `,` 0xFFFF
 diff m_ld_osn16.bin m_ld_osn16.exp
+E: Numerical range incorrect: -32769 ... OK
+E: Numerical range incorrect: 65536 ... OK
 Normal case: 219
-Error case: 280
-Total: 499
+Error case: 282
+Total: 501
