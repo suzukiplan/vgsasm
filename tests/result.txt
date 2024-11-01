@@ -1989,6 +1989,24 @@ E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
-Normal case: 211
+N: m_ld_osaoa_hl
+../vgsasm m_ld_osaoa_hl.asm -v
+m_ld_osaoa_hl.asm:0001 $0000 <LD> <A> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0002 $0001 <LD> <B> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0003 $0002 <LD> <C> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0004 $0003 <LD> <D> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0005 $0004 <LD> <E> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0006 $0005 <LD> <H> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0007 $0006 <LD> <L> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0008 $0007 <LD> <IXH> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0009 $000C <LD> <IXL> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0010 $0011 <LD> <IYH> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0011 $0016 <LD> <IYL> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0012 $001B <LD> <BC> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0013 $001F <LD> <DE> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0014 $0023 <LD> <IX> `,` _( <HL> )_
+m_ld_osaoa_hl.asm:0015 $002D <LD> <IY> `,` _( <HL> )_
+diff m_ld_osaoa_hl.bin m_ld_osaoa_hl.exp
+Normal case: 212
 Error case: 276
-Total: 487
+Total: 488
