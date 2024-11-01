@@ -77,6 +77,7 @@ vgsasm [-o /path/to/output.bin]
 - [Increment and Decrement](#increment-and-decrement)
 - [Assignment](#assignment)
 - [Support Instructions](#support-instructions)
+- [Support Alies Instructions](#support-alies-instructions)
 - [Instructions Specialized for VGS-Zero](#instructions-specialized-for-vgs-zero)
 - [Auto Expand Instructions](#auto-expand-instructions)
 
@@ -516,6 +517,17 @@ VARS.posX = 123
 - Supports all Z80 instructions, including undocumented.
 - Some undocumented instructions are in a slightly special format.
 - All instructions are described in [./test/all.asm](./test/all.asm).
+
+## Support Alies Instructions
+
+| Alies | Assignment | Description |
+|:-----:|:----------:|:------------|
+| `SL`  | `SLA`      | **LOGICAL** Shift Left |
+| `SR`  | `SRL`      | Logical Shift Right |
+| `OUTIR` | `OTIR`   | There is no necessity to abbreviate, so it should be allowed. |
+| `OUTDR` | `OTDR`   | There is no necessity to abbreviate, so it should be allowed. |
+| `DEFB`, `BYTE` | `DB` | Since both patterns of assemblers exist, both are acceptable. |
+| `DEFW`, `WORD` | `DW` | Since both patterns of assemblers exist, both are acceptable. |
 
 ## Instructions Specialized for VGS-Zero
 
