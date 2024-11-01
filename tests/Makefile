@@ -263,6 +263,8 @@ mnemonic_load_tests: check ../vgsasm
 	@./check "`../vgsasm m_ld_osaopna16_iy_ill2.asm`" "Illegal LD instruction."
 	@./check "`../vgsasm m_ld_osaopna_range1.asm`" "Numerical range incorrect: -129"
 	@./check "`../vgsasm m_ld_osaopna_range2.asm`" "Numerical range incorrect: 128"
+	${MAK} normal_case src=m_ld_osaoa_ix
+	${MAK} normal_case src=m_ld_osaoa_iy
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl

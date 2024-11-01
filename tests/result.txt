@@ -2256,6 +2256,32 @@ E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
-Normal case: 230
+N: m_ld_osaoa_ix
+../vgsasm m_ld_osaoa_ix.asm -v
+m_ld_osaoa_ix.asm:0001 $0000 <LD> <A> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0002 $0003 <LD> <B> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0003 $0006 <LD> <C> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0004 $0009 <LD> <D> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0005 $000C <LD> <E> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0006 $000F <LD> <H> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0007 $0012 <LD> <L> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0012 $0015 <LD> <BC> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0013 $001B <LD> <DE> `,` _( <IX> )_
+m_ld_osaoa_ix.asm:0014 $0021 <LD> <HL> `,` _( <IX> )_
+diff m_ld_osaoa_ix.bin m_ld_osaoa_ix.exp
+N: m_ld_osaoa_iy
+../vgsasm m_ld_osaoa_iy.asm -v
+m_ld_osaoa_iy.asm:0001 $0000 <LD> <A> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0002 $0003 <LD> <B> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0003 $0006 <LD> <C> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0004 $0009 <LD> <D> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0005 $000C <LD> <E> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0006 $000F <LD> <H> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0007 $0012 <LD> <L> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0012 $0015 <LD> <BC> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0013 $001B <LD> <DE> `,` _( <IY> )_
+m_ld_osaoa_iy.asm:0014 $0021 <LD> <HL> `,` _( <IY> )_
+diff m_ld_osaoa_iy.bin m_ld_osaoa_iy.exp
+Normal case: 232
 Error case: 309
-Total: 539
+Total: 541
