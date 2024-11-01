@@ -1482,7 +1482,203 @@ m_hage_oso_hl.asm:0027 $00BA <MOD> <HL> `,` <C>
 m_hage_oso_hl.asm:0028 $00C0 <MOD> <HL> `,` <D>
 m_hage_oso_hl.asm:0029 $00C9 <MOD> <HL> `,` <E>
 diff m_hage_oso_hl.bin m_hage_oso_hl.exp
+N: m_hage_oso_a
+../vgsasm m_hage_oso_a.asm -v
+m_hage_oso_a.asm:0001 $0000 <MUL> <A> `,` <A>
+m_hage_oso_a.asm:0002 $0009 <MUL> <A> `,` <B>
+m_hage_oso_a.asm:0003 $0012 <MUL> <A> `,` <C>
+m_hage_oso_a.asm:0004 $001B <MUL> <A> `,` <D>
+m_hage_oso_a.asm:0005 $0024 <MUL> <A> `,` <E>
+m_hage_oso_a.asm:0007 $002D <MULS> <A> `,` <A>
+m_hage_oso_a.asm:0008 $0036 <MULS> <A> `,` <B>
+m_hage_oso_a.asm:0009 $003F <MULS> <A> `,` <C>
+m_hage_oso_a.asm:0010 $0048 <MULS> <A> `,` <D>
+m_hage_oso_a.asm:0011 $0051 <MULS> <A> `,` <E>
+m_hage_oso_a.asm:0013 $005A <DIV> <A> `,` <A>
+m_hage_oso_a.asm:0014 $0063 <DIV> <A> `,` <B>
+m_hage_oso_a.asm:0015 $006C <DIV> <A> `,` <C>
+m_hage_oso_a.asm:0016 $0075 <DIV> <A> `,` <D>
+m_hage_oso_a.asm:0017 $007E <DIV> <A> `,` <E>
+m_hage_oso_a.asm:0019 $0087 <DIVS> <A> `,` <A>
+m_hage_oso_a.asm:0020 $0090 <DIVS> <A> `,` <B>
+m_hage_oso_a.asm:0021 $0099 <DIVS> <A> `,` <C>
+m_hage_oso_a.asm:0022 $00A2 <DIVS> <A> `,` <D>
+m_hage_oso_a.asm:0023 $00AB <DIVS> <A> `,` <E>
+m_hage_oso_a.asm:0025 $00B4 <MOD> <A> `,` <A>
+m_hage_oso_a.asm:0026 $00BD <MOD> <A> `,` <B>
+m_hage_oso_a.asm:0027 $00C6 <MOD> <A> `,` <C>
+m_hage_oso_a.asm:0028 $00CF <MOD> <A> `,` <D>
+m_hage_oso_a.asm:0029 $00D8 <MOD> <A> `,` <E>
+diff m_hage_oso_a.bin m_hage_oso_a.exp
+N: m_hage_oso_b
+../vgsasm m_hage_oso_b.asm -v
+m_hage_oso_b.asm:0001 $0000 <MUL> <B> `,` <A>
+m_hage_oso_b.asm:0002 $000B <MUL> <B> `,` <B>
+m_hage_oso_b.asm:0003 $0016 <MUL> <B> `,` <C>
+m_hage_oso_b.asm:0004 $0021 <MUL> <B> `,` <D>
+m_hage_oso_b.asm:0005 $002C <MUL> <B> `,` <E>
+m_hage_oso_b.asm:0007 $0037 <MULS> <B> `,` <A>
+m_hage_oso_b.asm:0008 $0042 <MULS> <B> `,` <B>
+m_hage_oso_b.asm:0009 $004D <MULS> <B> `,` <C>
+m_hage_oso_b.asm:0010 $0058 <MULS> <B> `,` <D>
+m_hage_oso_b.asm:0011 $0063 <MULS> <B> `,` <E>
+m_hage_oso_b.asm:0013 $006E <DIV> <B> `,` <A>
+m_hage_oso_b.asm:0014 $0079 <DIV> <B> `,` <B>
+m_hage_oso_b.asm:0015 $0084 <DIV> <B> `,` <C>
+m_hage_oso_b.asm:0016 $008F <DIV> <B> `,` <D>
+m_hage_oso_b.asm:0017 $009A <DIV> <B> `,` <E>
+m_hage_oso_b.asm:0019 $00A5 <DIVS> <B> `,` <A>
+m_hage_oso_b.asm:0020 $00B0 <DIVS> <B> `,` <B>
+m_hage_oso_b.asm:0021 $00BB <DIVS> <B> `,` <C>
+m_hage_oso_b.asm:0022 $00C6 <DIVS> <B> `,` <D>
+m_hage_oso_b.asm:0023 $00D1 <DIVS> <B> `,` <E>
+m_hage_oso_b.asm:0025 $00DC <MOD> <B> `,` <A>
+m_hage_oso_b.asm:0026 $00E7 <MOD> <B> `,` <B>
+m_hage_oso_b.asm:0027 $00F2 <MOD> <B> `,` <C>
+m_hage_oso_b.asm:0028 $00FD <MOD> <B> `,` <D>
+m_hage_oso_b.asm:0029 $0108 <MOD> <B> `,` <E>
+diff m_hage_oso_b.bin m_hage_oso_b.exp
+N: m_hage_oso_c
+../vgsasm m_hage_oso_c.asm -v
+m_hage_oso_c.asm:0001 $0000 <MUL> <C> `,` <A>
+m_hage_oso_c.asm:0002 $000B <MUL> <C> `,` <B>
+m_hage_oso_c.asm:0003 $0016 <MUL> <C> `,` <C>
+m_hage_oso_c.asm:0004 $0021 <MUL> <C> `,` <D>
+m_hage_oso_c.asm:0005 $002C <MUL> <C> `,` <E>
+m_hage_oso_c.asm:0007 $0037 <MULS> <C> `,` <A>
+m_hage_oso_c.asm:0008 $0042 <MULS> <C> `,` <B>
+m_hage_oso_c.asm:0009 $004D <MULS> <C> `,` <C>
+m_hage_oso_c.asm:0010 $0058 <MULS> <C> `,` <D>
+m_hage_oso_c.asm:0011 $0063 <MULS> <C> `,` <E>
+m_hage_oso_c.asm:0013 $006E <DIV> <C> `,` <A>
+m_hage_oso_c.asm:0014 $0079 <DIV> <C> `,` <B>
+m_hage_oso_c.asm:0015 $0084 <DIV> <C> `,` <C>
+m_hage_oso_c.asm:0016 $008F <DIV> <C> `,` <D>
+m_hage_oso_c.asm:0017 $009A <DIV> <C> `,` <E>
+m_hage_oso_c.asm:0019 $00A5 <DIVS> <C> `,` <A>
+m_hage_oso_c.asm:0020 $00B0 <DIVS> <C> `,` <B>
+m_hage_oso_c.asm:0021 $00BB <DIVS> <C> `,` <C>
+m_hage_oso_c.asm:0022 $00C6 <DIVS> <C> `,` <D>
+m_hage_oso_c.asm:0023 $00D1 <DIVS> <C> `,` <E>
+m_hage_oso_c.asm:0025 $00DC <MOD> <C> `,` <A>
+m_hage_oso_c.asm:0026 $00E7 <MOD> <C> `,` <B>
+m_hage_oso_c.asm:0027 $00F2 <MOD> <C> `,` <C>
+m_hage_oso_c.asm:0028 $00FD <MOD> <C> `,` <D>
+m_hage_oso_c.asm:0029 $0108 <MOD> <C> `,` <E>
+diff m_hage_oso_c.bin m_hage_oso_c.exp
+N: m_hage_oso_d
+../vgsasm m_hage_oso_d.asm -v
+m_hage_oso_d.asm:0001 $0000 <MUL> <D> `,` <A>
+m_hage_oso_d.asm:0002 $000B <MUL> <D> `,` <B>
+m_hage_oso_d.asm:0003 $0016 <MUL> <D> `,` <C>
+m_hage_oso_d.asm:0004 $0021 <MUL> <D> `,` <D>
+m_hage_oso_d.asm:0005 $002C <MUL> <D> `,` <E>
+m_hage_oso_d.asm:0007 $0037 <MULS> <D> `,` <A>
+m_hage_oso_d.asm:0008 $0042 <MULS> <D> `,` <B>
+m_hage_oso_d.asm:0009 $004D <MULS> <D> `,` <C>
+m_hage_oso_d.asm:0010 $0058 <MULS> <D> `,` <D>
+m_hage_oso_d.asm:0011 $0063 <MULS> <D> `,` <E>
+m_hage_oso_d.asm:0013 $006E <DIV> <D> `,` <A>
+m_hage_oso_d.asm:0014 $0079 <DIV> <D> `,` <B>
+m_hage_oso_d.asm:0015 $0084 <DIV> <D> `,` <C>
+m_hage_oso_d.asm:0016 $008F <DIV> <D> `,` <D>
+m_hage_oso_d.asm:0017 $009A <DIV> <D> `,` <E>
+m_hage_oso_d.asm:0019 $00A5 <DIVS> <D> `,` <A>
+m_hage_oso_d.asm:0020 $00B0 <DIVS> <D> `,` <B>
+m_hage_oso_d.asm:0021 $00BB <DIVS> <D> `,` <C>
+m_hage_oso_d.asm:0022 $00C6 <DIVS> <D> `,` <D>
+m_hage_oso_d.asm:0023 $00D1 <DIVS> <D> `,` <E>
+m_hage_oso_d.asm:0025 $00DC <MOD> <D> `,` <A>
+m_hage_oso_d.asm:0026 $00E7 <MOD> <D> `,` <B>
+m_hage_oso_d.asm:0027 $00F2 <MOD> <D> `,` <C>
+m_hage_oso_d.asm:0028 $00FD <MOD> <D> `,` <D>
+m_hage_oso_d.asm:0029 $0108 <MOD> <D> `,` <E>
+diff m_hage_oso_d.bin m_hage_oso_d.exp
+N: m_hage_oso_e
+../vgsasm m_hage_oso_e.asm -v
+m_hage_oso_e.asm:0001 $0000 <MUL> <E> `,` <A>
+m_hage_oso_e.asm:0002 $000B <MUL> <E> `,` <B>
+m_hage_oso_e.asm:0003 $0016 <MUL> <E> `,` <C>
+m_hage_oso_e.asm:0004 $0021 <MUL> <E> `,` <D>
+m_hage_oso_e.asm:0005 $002C <MUL> <E> `,` <E>
+m_hage_oso_e.asm:0007 $0037 <MULS> <E> `,` <A>
+m_hage_oso_e.asm:0008 $0042 <MULS> <E> `,` <B>
+m_hage_oso_e.asm:0009 $004D <MULS> <E> `,` <C>
+m_hage_oso_e.asm:0010 $0058 <MULS> <E> `,` <D>
+m_hage_oso_e.asm:0011 $0063 <MULS> <E> `,` <E>
+m_hage_oso_e.asm:0013 $006E <DIV> <E> `,` <A>
+m_hage_oso_e.asm:0014 $0079 <DIV> <E> `,` <B>
+m_hage_oso_e.asm:0015 $0084 <DIV> <E> `,` <C>
+m_hage_oso_e.asm:0016 $008F <DIV> <E> `,` <D>
+m_hage_oso_e.asm:0017 $009A <DIV> <E> `,` <E>
+m_hage_oso_e.asm:0019 $00A5 <DIVS> <E> `,` <A>
+m_hage_oso_e.asm:0020 $00B0 <DIVS> <E> `,` <B>
+m_hage_oso_e.asm:0021 $00BB <DIVS> <E> `,` <C>
+m_hage_oso_e.asm:0022 $00C6 <DIVS> <E> `,` <D>
+m_hage_oso_e.asm:0023 $00D1 <DIVS> <E> `,` <E>
+m_hage_oso_e.asm:0025 $00DC <MOD> <E> `,` <A>
+m_hage_oso_e.asm:0026 $00E7 <MOD> <E> `,` <B>
+m_hage_oso_e.asm:0027 $00F2 <MOD> <E> `,` <C>
+m_hage_oso_e.asm:0028 $00FD <MOD> <E> `,` <D>
+m_hage_oso_e.asm:0029 $0108 <MOD> <E> `,` <E>
+diff m_hage_oso_e.bin m_hage_oso_e.exp
+N: m_hage_oso_h
+../vgsasm m_hage_oso_h.asm -v
+m_hage_oso_h.asm:0001 $0000 <MUL> <H> `,` <A>
+m_hage_oso_h.asm:0002 $000B <MUL> <H> `,` <B>
+m_hage_oso_h.asm:0003 $0016 <MUL> <H> `,` <C>
+m_hage_oso_h.asm:0004 $0021 <MUL> <H> `,` <D>
+m_hage_oso_h.asm:0005 $002C <MUL> <H> `,` <E>
+m_hage_oso_h.asm:0007 $0037 <MULS> <H> `,` <A>
+m_hage_oso_h.asm:0008 $0042 <MULS> <H> `,` <B>
+m_hage_oso_h.asm:0009 $004D <MULS> <H> `,` <C>
+m_hage_oso_h.asm:0010 $0058 <MULS> <H> `,` <D>
+m_hage_oso_h.asm:0011 $0063 <MULS> <H> `,` <E>
+m_hage_oso_h.asm:0013 $006E <DIV> <H> `,` <A>
+m_hage_oso_h.asm:0014 $0079 <DIV> <H> `,` <B>
+m_hage_oso_h.asm:0015 $0084 <DIV> <H> `,` <C>
+m_hage_oso_h.asm:0016 $008F <DIV> <H> `,` <D>
+m_hage_oso_h.asm:0017 $009A <DIV> <H> `,` <E>
+m_hage_oso_h.asm:0019 $00A5 <DIVS> <H> `,` <A>
+m_hage_oso_h.asm:0020 $00B0 <DIVS> <H> `,` <B>
+m_hage_oso_h.asm:0021 $00BB <DIVS> <H> `,` <C>
+m_hage_oso_h.asm:0022 $00C6 <DIVS> <H> `,` <D>
+m_hage_oso_h.asm:0023 $00D1 <DIVS> <H> `,` <E>
+m_hage_oso_h.asm:0025 $00DC <MOD> <H> `,` <A>
+m_hage_oso_h.asm:0026 $00E7 <MOD> <H> `,` <B>
+m_hage_oso_h.asm:0027 $00F2 <MOD> <H> `,` <C>
+m_hage_oso_h.asm:0028 $00FD <MOD> <H> `,` <D>
+m_hage_oso_h.asm:0029 $0108 <MOD> <H> `,` <E>
+diff m_hage_oso_h.bin m_hage_oso_h.exp
+N: m_hage_oso_l
+../vgsasm m_hage_oso_l.asm -v
+m_hage_oso_l.asm:0001 $0000 <MUL> <L> `,` <A>
+m_hage_oso_l.asm:0002 $000C <MUL> <L> `,` <B>
+m_hage_oso_l.asm:0003 $0018 <MUL> <L> `,` <C>
+m_hage_oso_l.asm:0004 $0024 <MUL> <L> `,` <D>
+m_hage_oso_l.asm:0005 $0030 <MUL> <L> `,` <E>
+m_hage_oso_l.asm:0007 $003C <MULS> <L> `,` <A>
+m_hage_oso_l.asm:0008 $0048 <MULS> <L> `,` <B>
+m_hage_oso_l.asm:0009 $0054 <MULS> <L> `,` <C>
+m_hage_oso_l.asm:0010 $0060 <MULS> <L> `,` <D>
+m_hage_oso_l.asm:0011 $006C <MULS> <L> `,` <E>
+m_hage_oso_l.asm:0013 $0078 <DIV> <L> `,` <A>
+m_hage_oso_l.asm:0014 $0084 <DIV> <L> `,` <B>
+m_hage_oso_l.asm:0015 $0090 <DIV> <L> `,` <C>
+m_hage_oso_l.asm:0016 $009C <DIV> <L> `,` <D>
+m_hage_oso_l.asm:0017 $00A8 <DIV> <L> `,` <E>
+m_hage_oso_l.asm:0019 $00B4 <DIVS> <L> `,` <A>
+m_hage_oso_l.asm:0020 $00C0 <DIVS> <L> `,` <B>
+m_hage_oso_l.asm:0021 $00CC <DIVS> <L> `,` <C>
+m_hage_oso_l.asm:0022 $00D8 <DIVS> <L> `,` <D>
+m_hage_oso_l.asm:0023 $00E4 <DIVS> <L> `,` <E>
+m_hage_oso_l.asm:0025 $00F0 <MOD> <L> `,` <A>
+m_hage_oso_l.asm:0026 $00FC <MOD> <L> `,` <B>
+m_hage_oso_l.asm:0027 $0108 <MOD> <L> `,` <C>
+m_hage_oso_l.asm:0028 $0114 <MOD> <L> `,` <D>
+m_hage_oso_l.asm:0029 $0120 <MOD> <L> `,` <E>
+diff m_hage_oso_l.bin m_hage_oso_l.exp
 E: Illegal MUL instruction. ... OK
-Normal case: 181
+Normal case: 188
 Error case: 226
-Total: 407
+Total: 414

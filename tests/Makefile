@@ -167,6 +167,13 @@ mnemonic:
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl
+	${MAK} normal_case src=m_hage_oso_a
+	${MAK} normal_case src=m_hage_oso_b
+	${MAK} normal_case src=m_hage_oso_c
+	${MAK} normal_case src=m_hage_oso_d
+	${MAK} normal_case src=m_hage_oso_e
+	${MAK} normal_case src=m_hage_oso_h
+	${MAK} normal_case src=m_hage_oso_l
 	@./check "`../vgsasm m_hage_oso_hl_ill.asm`" "Illegal MUL instruction."
 
 mnemonic_sub_tests: check ../vgsasm
