@@ -2208,6 +2208,8 @@ N: m_ld_alasn
   m_ld_alasn.asm:0002 $0000 <LD> _( `LABEL` )_ `,` 0xFFFFFF80
   m_ld_alasn.asm:0003 $0007 <LD> _( `LABEL` )_ `,` 0xFF
 diff m_ld_alasn.bin m_ld_alasn.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
 Normal case: 226
-Error case: 293
-Total: 519
+Error case: 295
+Total: 521
