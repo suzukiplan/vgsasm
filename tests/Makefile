@@ -204,6 +204,12 @@ mnemonic_load_tests: check ../vgsasm
 	${MAK} normal_case src=m_ld_oso16_ix
 	${MAK} normal_case src=m_ld_oso16_iy
 	${MAK} normal_case src=m_ld_oso16_sp
+	@./check "`../vgsasm m_ld_oso16_bc_ill.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_oso16_de_ill.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_oso16_hl_ill.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_oso16_ix_ill.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_oso16_iy_ill.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_oso16_sp_ill.asm`" "Illegal LD instruction."
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl

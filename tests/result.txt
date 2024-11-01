@@ -1982,6 +1982,12 @@ m_ld_oso16_sp.asm:0001 $0000 <LD> <SP> `,` <HL>
 m_ld_oso16_sp.asm:0002 $0001 <LD> <SP> `,` <IX>
 m_ld_oso16_sp.asm:0003 $0003 <LD> <SP> `,` <IY>
 diff m_ld_oso16_sp.bin m_ld_oso16_sp.exp
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
 Normal case: 211
-Error case: 269
-Total: 480
+Error case: 275
+Total: 486
