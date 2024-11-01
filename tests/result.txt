@@ -1686,6 +1686,7 @@ E: Illegal DIVS instruction. ... OK
 E: Illegal MOD instruction. ... OK
 E: Illegal MUL instruction. ... OK
 E: Illegal MULS instruction. ... OK
+E: Illegal MUL instruction. ... OK
 Normal case: 188
-Error case: 233
-Total: 421
+Error case: 234
+Total: 422

@@ -182,6 +182,7 @@ mnemonic_vgs_tests: check ../vgsasm
 	@./check "`../vgsasm m_hage_oso_e_ill.asm`" "Illegal MOD instruction."
 	@./check "`../vgsasm m_hage_oso_h_ill.asm`" "Illegal MUL instruction."
 	@./check "`../vgsasm m_hage_oso_l_ill.asm`" "Illegal MULS instruction."
+	@./check "`../vgsasm m_hage_oso_ill.asm`" "Illegal MUL instruction."
 
 mnemonic_sub_tests: check ../vgsasm
 	${MAK} normal_case src=m_call_n
