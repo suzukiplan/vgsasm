@@ -234,6 +234,7 @@ mnemonic_load_tests: check ../vgsasm
 	${MAK} normal_case src=m_ld_osala
 	@./check "`../vgsasm m_ld_osala_ill.asm`" "Illegal LD instruction."
 	${MAK} normal_case src=m_ld_anaso
+	@./check "`../vgsasm m_ld_anaso_ill.asm`" "Illegal LD instruction."
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl

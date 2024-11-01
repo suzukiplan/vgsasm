@@ -2157,6 +2157,7 @@ N: m_ld_anaso
   m_ld_anaso.asm:0016 $0052 <LD> _( 0x1770 )_ `,` <IX>
   m_ld_anaso.asm:0017 $0056 <LD> _( 0x1B58 )_ `,` <IY>
 diff m_ld_anaso.bin m_ld_anaso.exp
+E: Illegal LD instruction. ... OK
 Normal case: 223
-Error case: 287
-Total: 510
+Error case: 288
+Total: 511
