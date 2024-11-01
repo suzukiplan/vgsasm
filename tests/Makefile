@@ -230,6 +230,7 @@ mnemonic_load_tests: check ../vgsasm
 	@./check "`../vgsasm m_ld_osl_ill.asm`" "Illegal LD instruction."
 	${MAK} normal_case src=m_ld_osana
 	@./check "`../vgsasm m_ld_osana_range1.asm`" "Numerical range incorrect: 65536"
+	@./check "`../vgsasm m_ld_osana_ill.asm`" "Illegal LD instruction."
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl
