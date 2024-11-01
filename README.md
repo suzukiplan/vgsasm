@@ -479,7 +479,7 @@ Increments and decrements can be automatically inserted before and after a regis
 
 ## Assignment
 
-`LD(=)`, `ADD(+=)`, `SUB(-=)`, `AND(&=)`, `OR(|=)`, `XOR(^=)`, `SLA(<<=)`, `SRL(>>=)` can also be written in the form of assignment expressions.
+`LD(=)`, `ADD(+=)`, `SUB(-=)`, `MUL(*=)`, `DIV(/=)`, `MOD(%=)`, `AND(&=)`, `OR(|=)`, `XOR(^=)`, `SLA(<<=)`, `SRL(>>=)` can also be written in the form of assignment expressions.
 
 ```
 A = B         ; expand to -> LD A, B
