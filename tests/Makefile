@@ -219,6 +219,7 @@ mnemonic_load_tests: check ../vgsasm
 	${MAK} normal_case src=m_ld_a_de
 	${MAK} normal_case src=m_ld_bc_a
 	${MAK} normal_case src=m_ld_de_a
+	${MAK} normal_case src=m_ld_osn8
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl

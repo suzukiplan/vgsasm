@@ -2043,6 +2043,20 @@ N: m_ld_de_a
 ../vgsasm m_ld_de_a.asm -v
    m_ld_de_a.asm:0001 $0000 <LD> _( <DE> )_ `,` <A>
 diff m_ld_de_a.bin m_ld_de_a.exp
-Normal case: 217
+N: m_ld_osn8
+../vgsasm m_ld_osn8.asm -v
+   m_ld_osn8.asm:0001 $0000 <LD> <A> `,` 0xFFFFFF80
+   m_ld_osn8.asm:0002 $0002 <LD> <B> `,` 0xFFFFFFFF
+   m_ld_osn8.asm:0003 $0004 <LD> <C> `,` 0x0
+   m_ld_osn8.asm:0004 $0006 <LD> <D> `,` 0x1
+   m_ld_osn8.asm:0005 $0008 <LD> <E> `,` 0x7F
+   m_ld_osn8.asm:0006 $000A <LD> <H> `,` 0x80
+   m_ld_osn8.asm:0007 $000C <LD> <L> `,` 0xFF
+   m_ld_osn8.asm:0008 $000E <LD> <IXH> `,` 0x3F
+   m_ld_osn8.asm:0009 $0011 <LD> <IXL> `,` 0x40
+   m_ld_osn8.asm:0010 $0014 <LD> <IYH> `,` 0x64
+   m_ld_osn8.asm:0011 $0017 <LD> <IYL> `,` 0xC8
+diff m_ld_osn8.bin m_ld_osn8.exp
+Normal case: 218
 Error case: 278
-Total: 495
+Total: 496
