@@ -2087,6 +2087,26 @@ N: m_ld_osl
     m_ld_osl.asm:0013 $0013 <LD> <IY> `,` `LABEL2`
 diff m_ld_osl.bin m_ld_osl.exp
 E: Illegal LD instruction. ... OK
-Normal case: 220
+N: m_ld_osana
+../vgsasm m_ld_osana.asm -v
+  m_ld_osana.asm:0001 $0000 <LD> <A> `,` _( 0x0 )_
+  m_ld_osana.asm:0002 $0003 <LD> <B> `,` _( 0x64 )_
+  m_ld_osana.asm:0003 $0009 <LD> <C> `,` _( 0xC8 )_
+  m_ld_osana.asm:0004 $000F <LD> <D> `,` _( 0x12C )_
+  m_ld_osana.asm:0005 $0015 <LD> <E> `,` _( 0x190 )_
+  m_ld_osana.asm:0006 $001B <LD> <H> `,` _( 0x1F4 )_
+  m_ld_osana.asm:0007 $0021 <LD> <L> `,` _( 0x258 )_
+  m_ld_osana.asm:0008 $0027 <LD> <IXH> `,` _( 0x3E8 )_
+  m_ld_osana.asm:0009 $002E <LD> <IXL> `,` _( 0x7D0 )_
+  m_ld_osana.asm:0010 $0035 <LD> <IYH> `,` _( 0xBB8 )_
+  m_ld_osana.asm:0011 $003C <LD> <IYL> `,` _( 0xFA0 )_
+  m_ld_osana.asm:0012 $0043 <LD> <BC> `,` _( 0x1 )_
+  m_ld_osana.asm:0013 $0047 <LD> <DE> `,` _( 0x7FFF )_
+  m_ld_osana.asm:0014 $004B <LD> <HL> `,` _( 0x8000 )_
+  m_ld_osana.asm:0015 $004E <LD> <SP> `,` _( 0xFFFF )_
+  m_ld_osana.asm:0016 $0052 <LD> <IX> `,` _( 0x4D2 )_
+  m_ld_osana.asm:0017 $0056 <LD> <IY> `,` _( 0x162E )_
+diff m_ld_osana.bin m_ld_osana.exp
+Normal case: 221
 Error case: 284
-Total: 504
+Total: 505
