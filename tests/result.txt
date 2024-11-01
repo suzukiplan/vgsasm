@@ -1762,6 +1762,30 @@ diff m_sin_oso.bin m_sin_oso.exp
 E: Illegal SIN instruction. ... OK
 E: Illegal SIN instruction. ... OK
 E: Illegal SIN instruction. ... OK
-Normal case: 192
-Error case: 245
-Total: 437
+N: m_cos_o
+../vgsasm m_cos_o.asm -v
+     m_cos_o.asm:0001 $0000 <COS> <A>
+     m_cos_o.asm:0002 $0002 <COS> <B>
+     m_cos_o.asm:0003 $0005 <COS> <C>
+     m_cos_o.asm:0004 $0008 <COS> <D>
+     m_cos_o.asm:0005 $000B <COS> <E>
+     m_cos_o.asm:0006 $000E <COS> <H>
+     m_cos_o.asm:0007 $0011 <COS> <L>
+diff m_cos_o.bin m_cos_o.exp
+E: Illegal COS instruction. ... OK
+N: m_cos_oso
+../vgsasm m_cos_oso.asm -v
+   m_cos_oso.asm:0001 $0000 <COS> <A> `,` <A>
+   m_cos_oso.asm:0002 $0002 <COS> <A> `,` <B>
+   m_cos_oso.asm:0003 $0005 <COS> <A> `,` <C>
+   m_cos_oso.asm:0004 $0008 <COS> <A> `,` <D>
+   m_cos_oso.asm:0005 $000B <COS> <A> `,` <E>
+   m_cos_oso.asm:0006 $000E <COS> <A> `,` <H>
+   m_cos_oso.asm:0007 $0011 <COS> <A> `,` <L>
+diff m_cos_oso.bin m_cos_oso.exp
+E: Illegal COS instruction. ... OK
+E: Illegal COS instruction. ... OK
+E: Illegal COS instruction. ... OK
+Normal case: 194
+Error case: 249
+Total: 443

@@ -192,12 +192,19 @@ mnemonic_vgs_tests: check ../vgsasm
 	@./check "`../vgsasm m_atn2_oso_ill.asm`" "Illegal ATN2 instruction."
 	@./check "`../vgsasm m_atn2_oso_ill2.asm`" "Illegal ATN2 instruction."
 	@./check "`../vgsasm m_atn2_ill.asm`" "Illegal ATN2 instruction."
+
 	${MAK} normal_case src=m_sin_o
 	@./check "`../vgsasm m_sin_o_ill.asm`" "Illegal SIN instruction."
 	${MAK} normal_case src=m_sin_oso
 	@./check "`../vgsasm m_sin_oso_ill1.asm`" "Illegal SIN instruction."
 	@./check "`../vgsasm m_sin_oso_ill2.asm`" "Illegal SIN instruction."
 	@./check "`../vgsasm m_sin_ill.asm`" "Illegal SIN instruction."
+	${MAK} normal_case src=m_cos_o
+	@./check "`../vgsasm m_cos_o_ill.asm`" "Illegal COS instruction."
+	${MAK} normal_case src=m_cos_oso
+	@./check "`../vgsasm m_cos_oso_ill1.asm`" "Illegal COS instruction."
+	@./check "`../vgsasm m_cos_oso_ill2.asm`" "Illegal COS instruction."
+	@./check "`../vgsasm m_cos_ill.asm`" "Illegal COS instruction."
 
 mnemonic_sub_tests: check ../vgsasm
 	${MAK} normal_case src=m_call_n
