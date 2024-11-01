@@ -2107,6 +2107,7 @@ N: m_ld_osana
   m_ld_osana.asm:0016 $0052 <LD> <IX> `,` _( 0x4D2 )_
   m_ld_osana.asm:0017 $0056 <LD> <IY> `,` _( 0x162E )_
 diff m_ld_osana.bin m_ld_osana.exp
+E: Numerical range incorrect: 65536 ... OK
 Normal case: 221
-Error case: 284
-Total: 505
+Error case: 285
+Total: 506
