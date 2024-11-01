@@ -2086,6 +2086,7 @@ N: m_ld_osl
     m_ld_osl.asm:0012 $000F <LD> <IX> `,` `LABEL1`
     m_ld_osl.asm:0013 $0013 <LD> <IY> `,` `LABEL2`
 diff m_ld_osl.bin m_ld_osl.exp
+E: Illegal LD instruction. ... OK
 Normal case: 220
-Error case: 283
-Total: 503
+Error case: 284
+Total: 504
