@@ -3,6 +3,7 @@
 ## Version 0.15 (beta-15)
 
 - Correct LD error message
+- Support `LD {B|C|D|E|H|L|IXH|IXL|IYH|IYL}, (LABEL)`
 
 ## Version 0.14 (beta-14)
 
