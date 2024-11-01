@@ -1936,6 +1936,52 @@ E: LD {IYH|IYL},{H|L} is not supported. ... OK
 E: LD {IYH|IYL},{H|L} is not supported. ... OK
 E: LD {IYH|IYL},{IXH|IXL} is not supported. ... OK
 E: LD {IYH|IYL},{IXH|IXL} is not supported. ... OK
-Normal case: 205
+N: m_ld_oso16_bc
+../vgsasm m_ld_oso16_bc.asm -v
+m_ld_oso16_bc.asm:0001 $0000 <LD> <BC> `,` <BC>
+m_ld_oso16_bc.asm:0002 $0002 <LD> <BC> `,` <DE>
+m_ld_oso16_bc.asm:0003 $0004 <LD> <BC> `,` <HL>
+m_ld_oso16_bc.asm:0004 $0006 <LD> <BC> `,` <IX>
+m_ld_oso16_bc.asm:0005 $000A <LD> <BC> `,` <IY>
+diff m_ld_oso16_bc.bin m_ld_oso16_bc.exp
+N: m_ld_oso16_de
+../vgsasm m_ld_oso16_de.asm -v
+m_ld_oso16_de.asm:0001 $0000 <LD> <DE> `,` <BC>
+m_ld_oso16_de.asm:0002 $0002 <LD> <DE> `,` <DE>
+m_ld_oso16_de.asm:0003 $0004 <LD> <DE> `,` <HL>
+m_ld_oso16_de.asm:0004 $0006 <LD> <DE> `,` <IX>
+m_ld_oso16_de.asm:0005 $000A <LD> <DE> `,` <IY>
+diff m_ld_oso16_de.bin m_ld_oso16_de.exp
+N: m_ld_oso16_hl
+../vgsasm m_ld_oso16_hl.asm -v
+m_ld_oso16_hl.asm:0001 $0000 <LD> <HL> `,` <BC>
+m_ld_oso16_hl.asm:0002 $0002 <LD> <HL> `,` <DE>
+m_ld_oso16_hl.asm:0003 $0004 <LD> <HL> `,` <HL>
+m_ld_oso16_hl.asm:0004 $0006 <LD> <HL> `,` <IX>
+m_ld_oso16_hl.asm:0005 $0009 <LD> <HL> `,` <IY>
+diff m_ld_oso16_hl.bin m_ld_oso16_hl.exp
+N: m_ld_oso16_ix
+../vgsasm m_ld_oso16_ix.asm -v
+m_ld_oso16_ix.asm:0001 $0000 <LD> <IX> `,` <BC>
+m_ld_oso16_ix.asm:0002 $0004 <LD> <IX> `,` <DE>
+m_ld_oso16_ix.asm:0003 $0008 <LD> <IX> `,` <HL>
+m_ld_oso16_ix.asm:0004 $000B <LD> <IX> `,` <IX>
+m_ld_oso16_ix.asm:0005 $000F <LD> <IX> `,` <IY>
+diff m_ld_oso16_ix.bin m_ld_oso16_ix.exp
+N: m_ld_oso16_iy
+../vgsasm m_ld_oso16_iy.asm -v
+m_ld_oso16_iy.asm:0001 $0000 <LD> <IY> `,` <BC>
+m_ld_oso16_iy.asm:0002 $0004 <LD> <IY> `,` <DE>
+m_ld_oso16_iy.asm:0003 $0008 <LD> <IY> `,` <HL>
+m_ld_oso16_iy.asm:0004 $000B <LD> <IY> `,` <IX>
+m_ld_oso16_iy.asm:0005 $000F <LD> <IY> `,` <IY>
+diff m_ld_oso16_iy.bin m_ld_oso16_iy.exp
+N: m_ld_oso16_sp
+../vgsasm m_ld_oso16_sp.asm -v
+m_ld_oso16_sp.asm:0001 $0000 <LD> <SP> `,` <HL>
+m_ld_oso16_sp.asm:0002 $0001 <LD> <SP> `,` <IX>
+m_ld_oso16_sp.asm:0003 $0003 <LD> <SP> `,` <IY>
+diff m_ld_oso16_sp.bin m_ld_oso16_sp.exp
+Normal case: 211
 Error case: 269
-Total: 474
+Total: 480

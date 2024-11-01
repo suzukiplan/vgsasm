@@ -198,6 +198,12 @@ mnemonic_load_tests: check ../vgsasm
 	@./check "`../vgsasm m_ld_oso8_ill18.asm`" "LD {IYH|IYL},{H|L} is not supported."
 	@./check "`../vgsasm m_ld_oso8_ill19.asm`" "LD {IYH|IYL},{IXH|IXL} is not supported."
 	@./check "`../vgsasm m_ld_oso8_ill20.asm`" "LD {IYH|IYL},{IXH|IXL} is not supported."
+	${MAK} normal_case src=m_ld_oso16_bc
+	${MAK} normal_case src=m_ld_oso16_de
+	${MAK} normal_case src=m_ld_oso16_hl
+	${MAK} normal_case src=m_ld_oso16_ix
+	${MAK} normal_case src=m_ld_oso16_iy
+	${MAK} normal_case src=m_ld_oso16_sp
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl
