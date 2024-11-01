@@ -2070,6 +2070,7 @@ N: m_ld_osn16
 diff m_ld_osn16.bin m_ld_osn16.exp
 E: Numerical range incorrect: -32769 ... OK
 E: Numerical range incorrect: 65536 ... OK
+E: Illegal LD instruction. ... OK
 Normal case: 219
-Error case: 282
-Total: 501
+Error case: 283
+Total: 502

@@ -225,6 +225,7 @@ mnemonic_load_tests: check ../vgsasm
 	${MAK} normal_case src=m_ld_osn16
 	@./check "`../vgsasm m_ld_osn16_range1.asm`" "Numerical range incorrect: -32769"
 	@./check "`../vgsasm m_ld_osn16_range2.asm`" "Numerical range incorrect: 65536"
+	@./check "`../vgsasm m_ld_osn_ill.asm`" "Illegal LD instruction."
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl
