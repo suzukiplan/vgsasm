@@ -1786,6 +1786,136 @@ diff m_cos_oso.bin m_cos_oso.exp
 E: Illegal COS instruction. ... OK
 E: Illegal COS instruction. ... OK
 E: Illegal COS instruction. ... OK
-Normal case: 194
+N: m_ld_oso8_a
+../vgsasm m_ld_oso8_a.asm -v
+ m_ld_oso8_a.asm:0001 $0000 <LD> <A> `,` <A>
+ m_ld_oso8_a.asm:0002 $0001 <LD> <A> `,` <B>
+ m_ld_oso8_a.asm:0003 $0002 <LD> <A> `,` <C>
+ m_ld_oso8_a.asm:0004 $0003 <LD> <A> `,` <D>
+ m_ld_oso8_a.asm:0005 $0004 <LD> <A> `,` <E>
+ m_ld_oso8_a.asm:0006 $0005 <LD> <A> `,` <H>
+ m_ld_oso8_a.asm:0007 $0006 <LD> <A> `,` <L>
+ m_ld_oso8_a.asm:0008 $0007 <LD> <A> `,` <IXH>
+ m_ld_oso8_a.asm:0009 $0009 <LD> <A> `,` <IXL>
+ m_ld_oso8_a.asm:0010 $000B <LD> <A> `,` <IYH>
+ m_ld_oso8_a.asm:0011 $000D <LD> <A> `,` <IYL>
+diff m_ld_oso8_a.bin m_ld_oso8_a.exp
+N: m_ld_oso8_b
+../vgsasm m_ld_oso8_b.asm -v
+ m_ld_oso8_b.asm:0001 $0000 <LD> <B> `,` <A>
+ m_ld_oso8_b.asm:0002 $0001 <LD> <B> `,` <B>
+ m_ld_oso8_b.asm:0003 $0002 <LD> <B> `,` <C>
+ m_ld_oso8_b.asm:0004 $0003 <LD> <B> `,` <D>
+ m_ld_oso8_b.asm:0005 $0004 <LD> <B> `,` <E>
+ m_ld_oso8_b.asm:0006 $0005 <LD> <B> `,` <H>
+ m_ld_oso8_b.asm:0007 $0006 <LD> <B> `,` <L>
+ m_ld_oso8_b.asm:0008 $0007 <LD> <B> `,` <IXH>
+ m_ld_oso8_b.asm:0009 $0009 <LD> <B> `,` <IXL>
+ m_ld_oso8_b.asm:0010 $000B <LD> <B> `,` <IYH>
+ m_ld_oso8_b.asm:0011 $000D <LD> <B> `,` <IYL>
+diff m_ld_oso8_b.bin m_ld_oso8_b.exp
+N: m_ld_oso8_c
+../vgsasm m_ld_oso8_c.asm -v
+ m_ld_oso8_c.asm:0001 $0000 <LD> <C> `,` <A>
+ m_ld_oso8_c.asm:0002 $0001 <LD> <C> `,` <B>
+ m_ld_oso8_c.asm:0003 $0002 <LD> <C> `,` <C>
+ m_ld_oso8_c.asm:0004 $0003 <LD> <C> `,` <D>
+ m_ld_oso8_c.asm:0005 $0004 <LD> <C> `,` <E>
+ m_ld_oso8_c.asm:0006 $0005 <LD> <C> `,` <H>
+ m_ld_oso8_c.asm:0007 $0006 <LD> <C> `,` <L>
+ m_ld_oso8_c.asm:0008 $0007 <LD> <C> `,` <IXH>
+ m_ld_oso8_c.asm:0009 $0009 <LD> <C> `,` <IXL>
+ m_ld_oso8_c.asm:0010 $000B <LD> <C> `,` <IYH>
+ m_ld_oso8_c.asm:0011 $000D <LD> <C> `,` <IYL>
+diff m_ld_oso8_c.bin m_ld_oso8_c.exp
+N: m_ld_oso8_d
+../vgsasm m_ld_oso8_d.asm -v
+ m_ld_oso8_d.asm:0001 $0000 <LD> <D> `,` <A>
+ m_ld_oso8_d.asm:0002 $0001 <LD> <D> `,` <B>
+ m_ld_oso8_d.asm:0003 $0002 <LD> <D> `,` <C>
+ m_ld_oso8_d.asm:0004 $0003 <LD> <D> `,` <D>
+ m_ld_oso8_d.asm:0005 $0004 <LD> <D> `,` <E>
+ m_ld_oso8_d.asm:0006 $0005 <LD> <D> `,` <H>
+ m_ld_oso8_d.asm:0007 $0006 <LD> <D> `,` <L>
+ m_ld_oso8_d.asm:0008 $0007 <LD> <D> `,` <IXH>
+ m_ld_oso8_d.asm:0009 $0009 <LD> <D> `,` <IXL>
+ m_ld_oso8_d.asm:0010 $000B <LD> <D> `,` <IYH>
+ m_ld_oso8_d.asm:0011 $000D <LD> <D> `,` <IYL>
+diff m_ld_oso8_d.bin m_ld_oso8_d.exp
+N: m_ld_oso8_e
+../vgsasm m_ld_oso8_e.asm -v
+ m_ld_oso8_e.asm:0001 $0000 <LD> <E> `,` <A>
+ m_ld_oso8_e.asm:0002 $0001 <LD> <E> `,` <B>
+ m_ld_oso8_e.asm:0003 $0002 <LD> <E> `,` <C>
+ m_ld_oso8_e.asm:0004 $0003 <LD> <E> `,` <D>
+ m_ld_oso8_e.asm:0005 $0004 <LD> <E> `,` <E>
+ m_ld_oso8_e.asm:0006 $0005 <LD> <E> `,` <H>
+ m_ld_oso8_e.asm:0007 $0006 <LD> <E> `,` <L>
+ m_ld_oso8_e.asm:0008 $0007 <LD> <E> `,` <IXH>
+ m_ld_oso8_e.asm:0009 $0009 <LD> <E> `,` <IXL>
+ m_ld_oso8_e.asm:0010 $000B <LD> <E> `,` <IYH>
+ m_ld_oso8_e.asm:0011 $000D <LD> <E> `,` <IYL>
+diff m_ld_oso8_e.bin m_ld_oso8_e.exp
+N: m_ld_oso8_h
+../vgsasm m_ld_oso8_h.asm -v
+ m_ld_oso8_h.asm:0001 $0000 <LD> <H> `,` <A>
+ m_ld_oso8_h.asm:0002 $0001 <LD> <H> `,` <B>
+ m_ld_oso8_h.asm:0003 $0002 <LD> <H> `,` <C>
+ m_ld_oso8_h.asm:0004 $0003 <LD> <H> `,` <D>
+ m_ld_oso8_h.asm:0005 $0004 <LD> <H> `,` <E>
+ m_ld_oso8_h.asm:0006 $0005 <LD> <H> `,` <H>
+ m_ld_oso8_h.asm:0007 $0006 <LD> <H> `,` <L>
+diff m_ld_oso8_h.bin m_ld_oso8_h.exp
+N: m_ld_oso8_l
+../vgsasm m_ld_oso8_l.asm -v
+ m_ld_oso8_l.asm:0001 $0000 <LD> <L> `,` <A>
+ m_ld_oso8_l.asm:0002 $0001 <LD> <L> `,` <B>
+ m_ld_oso8_l.asm:0003 $0002 <LD> <L> `,` <C>
+ m_ld_oso8_l.asm:0004 $0003 <LD> <L> `,` <D>
+ m_ld_oso8_l.asm:0005 $0004 <LD> <L> `,` <E>
+ m_ld_oso8_l.asm:0006 $0005 <LD> <L> `,` <H>
+ m_ld_oso8_l.asm:0007 $0006 <LD> <L> `,` <L>
+diff m_ld_oso8_l.bin m_ld_oso8_l.exp
+N: m_ld_oso8_ixh
+../vgsasm m_ld_oso8_ixh.asm -v
+m_ld_oso8_ixh.asm:0001 $0000 <LD> <IXH> `,` <A>
+m_ld_oso8_ixh.asm:0002 $0002 <LD> <IXH> `,` <B>
+m_ld_oso8_ixh.asm:0003 $0004 <LD> <IXH> `,` <C>
+m_ld_oso8_ixh.asm:0004 $0006 <LD> <IXH> `,` <D>
+m_ld_oso8_ixh.asm:0005 $0008 <LD> <IXH> `,` <E>
+m_ld_oso8_ixh.asm:0008 $000A <LD> <IXH> `,` <IXH>
+m_ld_oso8_ixh.asm:0009 $000C <LD> <IXH> `,` <IXL>
+diff m_ld_oso8_ixh.bin m_ld_oso8_ixh.exp
+N: m_ld_oso8_ixl
+../vgsasm m_ld_oso8_ixl.asm -v
+m_ld_oso8_ixl.asm:0001 $0000 <LD> <IXL> `,` <A>
+m_ld_oso8_ixl.asm:0002 $0002 <LD> <IXL> `,` <B>
+m_ld_oso8_ixl.asm:0003 $0004 <LD> <IXL> `,` <C>
+m_ld_oso8_ixl.asm:0004 $0006 <LD> <IXL> `,` <D>
+m_ld_oso8_ixl.asm:0005 $0008 <LD> <IXL> `,` <E>
+m_ld_oso8_ixl.asm:0008 $000A <LD> <IXL> `,` <IXH>
+m_ld_oso8_ixl.asm:0009 $000C <LD> <IXL> `,` <IXL>
+diff m_ld_oso8_ixl.bin m_ld_oso8_ixl.exp
+N: m_ld_oso8_iyh
+../vgsasm m_ld_oso8_iyh.asm -v
+m_ld_oso8_iyh.asm:0001 $0000 <LD> <IYH> `,` <A>
+m_ld_oso8_iyh.asm:0002 $0002 <LD> <IYH> `,` <B>
+m_ld_oso8_iyh.asm:0003 $0004 <LD> <IYH> `,` <C>
+m_ld_oso8_iyh.asm:0004 $0006 <LD> <IYH> `,` <D>
+m_ld_oso8_iyh.asm:0005 $0008 <LD> <IYH> `,` <E>
+m_ld_oso8_iyh.asm:0010 $000A <LD> <IYH> `,` <IYH>
+m_ld_oso8_iyh.asm:0011 $000C <LD> <IYH> `,` <IYL>
+diff m_ld_oso8_iyh.bin m_ld_oso8_iyh.exp
+N: m_ld_oso8_iyl
+../vgsasm m_ld_oso8_iyl.asm -v
+m_ld_oso8_iyl.asm:0001 $0000 <LD> <IYL> `,` <A>
+m_ld_oso8_iyl.asm:0002 $0002 <LD> <IYL> `,` <B>
+m_ld_oso8_iyl.asm:0003 $0004 <LD> <IYL> `,` <C>
+m_ld_oso8_iyl.asm:0004 $0006 <LD> <IYL> `,` <D>
+m_ld_oso8_iyl.asm:0005 $0008 <LD> <IYL> `,` <E>
+m_ld_oso8_iyl.asm:0010 $000A <LD> <IYL> `,` <IYH>
+m_ld_oso8_iyl.asm:0011 $000C <LD> <IYL> `,` <IYL>
+diff m_ld_oso8_iyl.bin m_ld_oso8_iyl.exp
+Normal case: 205
 Error case: 249
-Total: 443
+Total: 454

@@ -164,6 +164,20 @@ mnemonic:
 	${MAK} mnemonic_stack_tests
 	${MAK} mnemonic_sub_tests
 	${MAK} mnemonic_vgs_tests
+	${MAK} mnemonic_load_tests
+
+mnemonic_load_tests: check ../vgsasm
+	${MAK} normal_case src=m_ld_oso8_a
+	${MAK} normal_case src=m_ld_oso8_b
+	${MAK} normal_case src=m_ld_oso8_c
+	${MAK} normal_case src=m_ld_oso8_d
+	${MAK} normal_case src=m_ld_oso8_e
+	${MAK} normal_case src=m_ld_oso8_h
+	${MAK} normal_case src=m_ld_oso8_l
+	${MAK} normal_case src=m_ld_oso8_ixh
+	${MAK} normal_case src=m_ld_oso8_ixl
+	${MAK} normal_case src=m_ld_oso8_iyh
+	${MAK} normal_case src=m_ld_oso8_iyl
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl
