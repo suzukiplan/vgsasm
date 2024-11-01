@@ -194,6 +194,7 @@ mnemonic_vgs_tests: check ../vgsasm
 	@./check "`../vgsasm m_atn2_ill.asm`" "Illegal ATN2 instruction."
 	${MAK} normal_case src=m_sin_o
 	@./check "`../vgsasm m_sin_o_ill.asm`" "Illegal SIN instruction."
+	${MAK} normal_case src=m_sin_oso
 
 mnemonic_sub_tests: check ../vgsasm
 	${MAK} normal_case src=m_call_n
