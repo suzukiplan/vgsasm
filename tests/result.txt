@@ -2071,6 +2071,21 @@ diff m_ld_osn16.bin m_ld_osn16.exp
 E: Numerical range incorrect: -32769 ... OK
 E: Numerical range incorrect: 65536 ... OK
 E: Illegal LD instruction. ... OK
-Normal case: 219
+N: m_ld_osl
+../vgsasm m_ld_osl.asm -v
+    m_ld_osl.asm:0001 $0000 LABEL1:
+    m_ld_osl.asm:0002 $0000 <NOP>
+    m_ld_osl.asm:0003 $0001 LABEL2:
+    m_ld_osl.asm:0004 $0001 <NOP>
+    m_ld_osl.asm:0005 $0002 LABEL3@LABEL2:
+    m_ld_osl.asm:0006 $0002 <NOP>
+    m_ld_osl.asm:0008 $0003 <LD> <BC> `,` `LABEL1`
+    m_ld_osl.asm:0009 $0006 <LD> <DE> `,` `LABEL2`
+    m_ld_osl.asm:0010 $0009 <LD> <HL> `,` `LABEL3@LABEL2`
+    m_ld_osl.asm:0011 $000C <LD> <SP> `,` `LABEL3@LABEL2`
+    m_ld_osl.asm:0012 $000F <LD> <IX> `,` `LABEL1`
+    m_ld_osl.asm:0013 $0013 <LD> <IY> `,` `LABEL2`
+diff m_ld_osl.bin m_ld_osl.exp
+Normal case: 220
 Error case: 283
-Total: 502
+Total: 503
