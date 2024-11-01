@@ -2242,6 +2242,18 @@ m_ld_osaopna16_iy.asm:0001 $0000 <LD> <BC> `,` _( <IY> `-` 0x80 )_
 m_ld_osaopna16_iy.asm:0002 $0006 <LD> <DE> `,` _( <IY> `-` 0x1 )_
 m_ld_osaopna16_iy.asm:0003 $000C <LD> <HL> `,` _( <IY> `+` 0x7F )_
 diff m_ld_osaopna16_iy.bin m_ld_osaopna16_iy.exp
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
 Normal case: 230
-Error case: 295
-Total: 525
+Error case: 307
+Total: 537

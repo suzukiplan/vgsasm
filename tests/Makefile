@@ -249,6 +249,18 @@ mnemonic_load_tests: check ../vgsasm
 	${MAK} normal_case src=m_ld_osaopna8_iy
 	${MAK} normal_case src=m_ld_osaopna16_ix
 	${MAK} normal_case src=m_ld_osaopna16_iy
+	@./check "`../vgsasm m_ld_osaopna8_ix_ill1.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna8_ix_ill2.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna8_ix_ill3.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna8_ix_ill4.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna8_iy_ill1.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna8_iy_ill2.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna8_iy_ill3.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna8_iy_ill4.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna16_ix_ill1.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna16_ix_ill2.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna16_iy_ill1.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_osaopna16_iy_ill2.asm`" "Illegal LD instruction."
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl
