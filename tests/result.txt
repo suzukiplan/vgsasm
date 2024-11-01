@@ -2210,6 +2210,38 @@ N: m_ld_alasn
 diff m_ld_alasn.bin m_ld_alasn.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
-Normal case: 226
+N: m_ld_osaopna8_ix
+../vgsasm m_ld_osaopna8_ix.asm -v
+m_ld_osaopna8_ix.asm:0001 $0000 <LD> <A> `,` _( <IX> `-` 0x80 )_
+m_ld_osaopna8_ix.asm:0002 $0003 <LD> <B> `,` _( <IX> `-` 0x1 )_
+m_ld_osaopna8_ix.asm:0003 $0006 <LD> <C> `,` _( <IX> `-` 0x0 )_
+m_ld_osaopna8_ix.asm:0004 $0009 <LD> <D> `,` _( <IX> `+` 0x1 )_
+m_ld_osaopna8_ix.asm:0005 $000C <LD> <E> `,` _( <IX> `+` 0x7F )_
+m_ld_osaopna8_ix.asm:0006 $000F <LD> <H> `,` _( <IX> `+` 0x3F )_
+m_ld_osaopna8_ix.asm:0007 $0012 <LD> <L> `,` _( <IX> `-` 0x40 )_
+diff m_ld_osaopna8_ix.bin m_ld_osaopna8_ix.exp
+N: m_ld_osaopna8_iy
+../vgsasm m_ld_osaopna8_iy.asm -v
+m_ld_osaopna8_iy.asm:0001 $0000 <LD> <A> `,` _( <IY> `-` 0x80 )_
+m_ld_osaopna8_iy.asm:0002 $0003 <LD> <B> `,` _( <IY> `-` 0x1 )_
+m_ld_osaopna8_iy.asm:0003 $0006 <LD> <C> `,` _( <IY> `-` 0x0 )_
+m_ld_osaopna8_iy.asm:0004 $0009 <LD> <D> `,` _( <IY> `+` 0x1 )_
+m_ld_osaopna8_iy.asm:0005 $000C <LD> <E> `,` _( <IY> `+` 0x7F )_
+m_ld_osaopna8_iy.asm:0006 $000F <LD> <H> `,` _( <IY> `+` 0x3F )_
+m_ld_osaopna8_iy.asm:0007 $0012 <LD> <L> `,` _( <IY> `-` 0x40 )_
+diff m_ld_osaopna8_iy.bin m_ld_osaopna8_iy.exp
+N: m_ld_osaopna16_ix
+../vgsasm m_ld_osaopna16_ix.asm -v
+m_ld_osaopna16_ix.asm:0001 $0000 <LD> <BC> `,` _( <IX> `-` 0x80 )_
+m_ld_osaopna16_ix.asm:0002 $0006 <LD> <DE> `,` _( <IX> `-` 0x1 )_
+m_ld_osaopna16_ix.asm:0003 $000C <LD> <HL> `,` _( <IX> `+` 0x7F )_
+diff m_ld_osaopna16_ix.bin m_ld_osaopna16_ix.exp
+N: m_ld_osaopna16_iy
+../vgsasm m_ld_osaopna16_iy.asm -v
+m_ld_osaopna16_iy.asm:0001 $0000 <LD> <BC> `,` _( <IY> `-` 0x80 )_
+m_ld_osaopna16_iy.asm:0002 $0006 <LD> <DE> `,` _( <IY> `-` 0x1 )_
+m_ld_osaopna16_iy.asm:0003 $000C <LD> <HL> `,` _( <IY> `+` 0x7F )_
+diff m_ld_osaopna16_iy.bin m_ld_osaopna16_iy.exp
+Normal case: 230
 Error case: 295
-Total: 521
+Total: 525
