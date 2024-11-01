@@ -1735,6 +1735,8 @@ N: m_atn2_oso
   m_atn2_oso.asm:0002 $0002 <ATN2> <A> `,` <BC>
   m_atn2_oso.asm:0003 $0008 <ATN2> <A> `,` <DE>
 diff m_atn2_oso.bin m_atn2_oso.exp
+E: Illegal ATN2 instruction. ... OK
+E: Illegal ATN2 instruction. ... OK
 Normal case: 190
-Error case: 238
-Total: 428
+Error case: 240
+Total: 430
