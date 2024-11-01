@@ -2109,6 +2109,34 @@ N: m_ld_osana
 diff m_ld_osana.bin m_ld_osana.exp
 E: Numerical range incorrect: 65536 ... OK
 E: Illegal LD instruction. ... OK
-Normal case: 221
-Error case: 286
-Total: 507
+N: m_ld_osala
+../vgsasm m_ld_osala.asm -v
+  m_ld_osala.asm:0001 $0000 <NOP>
+  m_ld_osala.asm:0002 $0001 LABEL1:
+  m_ld_osala.asm:0003 $0001 <NOP>
+  m_ld_osala.asm:0004 $0002 LABEL2:
+  m_ld_osala.asm:0005 $0002 <NOP>
+  m_ld_osala.asm:0006 $0003 LABEL3@LABEL2:
+  m_ld_osala.asm:0007 $0003 <NOP>
+  m_ld_osala.asm:0009 $0004 <LD> <A> `,` _( `LABEL1` )_
+  m_ld_osala.asm:0010 $0007 <LD> <B> `,` _( `LABEL2` )_
+  m_ld_osala.asm:0011 $000D <LD> <C> `,` _( `LABEL3@LABEL2` )_
+  m_ld_osala.asm:0012 $0013 <LD> <D> `,` _( `LABEL1` )_
+  m_ld_osala.asm:0013 $0019 <LD> <E> `,` _( `LABEL2` )_
+  m_ld_osala.asm:0014 $001F <LD> <H> `,` _( `LABEL3@LABEL2` )_
+  m_ld_osala.asm:0015 $0025 <LD> <L> `,` _( `LABEL3@LABEL2` )_
+  m_ld_osala.asm:0016 $002B <LD> <IXH> `,` _( `LABEL1` )_
+  m_ld_osala.asm:0017 $0032 <LD> <IXL> `,` _( `LABEL2` )_
+  m_ld_osala.asm:0018 $0039 <LD> <IYH> `,` _( `LABEL3@LABEL2` )_
+  m_ld_osala.asm:0019 $0040 <LD> <IYL> `,` _( `LABEL1` )_
+  m_ld_osala.asm:0020 $0047 <LD> <HL> `,` _( `LABEL2` )_
+  m_ld_osala.asm:0021 $004A <LD> <DE> `,` _( `LABEL3@LABEL2` )_
+  m_ld_osala.asm:0022 $004E <LD> <BC> `,` _( `LABEL1` )_
+  m_ld_osala.asm:0023 $0052 <LD> <SP> `,` _( `LABEL2` )_
+  m_ld_osala.asm:0024 $0056 <LD> <IX> `,` _( `LABEL3@LABEL2` )_
+  m_ld_osala.asm:0025 $005A <LD> <IY> `,` _( `LABEL1` )_
+diff m_ld_osala.bin m_ld_osala.exp
+E: Illegal LD instruction. ... OK
+Normal case: 222
+Error case: 287
+Total: 509
