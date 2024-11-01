@@ -1738,6 +1738,16 @@ diff m_atn2_oso.bin m_atn2_oso.exp
 E: Illegal ATN2 instruction. ... OK
 E: Illegal ATN2 instruction. ... OK
 E: Illegal ATN2 instruction. ... OK
-Normal case: 190
+N: m_sin_o
+../vgsasm m_sin_o.asm -v
+     m_sin_o.asm:0001 $0000 <SIN> <A>
+     m_sin_o.asm:0002 $0002 <SIN> <B>
+     m_sin_o.asm:0003 $0005 <SIN> <C>
+     m_sin_o.asm:0004 $0008 <SIN> <D>
+     m_sin_o.asm:0005 $000B <SIN> <E>
+     m_sin_o.asm:0006 $000E <SIN> <H>
+     m_sin_o.asm:0007 $0011 <SIN> <L>
+diff m_sin_o.bin m_sin_o.exp
+Normal case: 191
 Error case: 241
-Total: 431
+Total: 432
