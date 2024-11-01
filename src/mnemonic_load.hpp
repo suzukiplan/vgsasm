@@ -68,13 +68,17 @@ void mnemonic_LD(LineData* line)
         auto op2 = operandTable[line->token[3].second];
         if (isReg8(op1) && isReg8(op2)) {
             if (op1 == Operand::IXH || op1 == Operand::IXL || op1 == Operand::IYH || op1 == Operand::IYL) {
-                if (op2 == Operand::H || op2 == Operand::L) {
-                    line->error = true;
-                    line->errmsg = "LD {IXH|IXL},{H|L} is not supported.";
-                    return;
-                }
                 bool isOp1IX = op1 == Operand::IXH || op1 == Operand::IXL;
                 bool isOp1IY = op1 == Operand::IYH || op1 == Operand::IYL;
+                if (op2 == Operand::H || op2 == Operand::L) {
+                    line->error = true;
+                    if (isOp1IX) {
+                        line->errmsg = "LD {IXH|IXL},{H|L} is not supported.";
+                    } else {
+                        line->errmsg = "LD {IYH|IYL},{H|L} is not supported.";
+                    }
+                    return;
+                }
                 bool isOp2IX = op2 == Operand::IXH || op2 == Operand::IXL;
                 bool isOp2IY = op2 == Operand::IYH || op2 == Operand::IYL;
                 if (isOp1IX && isOp2IY) {
