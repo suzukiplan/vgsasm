@@ -2188,6 +2188,17 @@ N: m_ld_alaso
   m_ld_alaso.asm:0026 $005A <LD> _( `LABEL1` )_ `,` <IY>
 diff m_ld_alaso.bin m_ld_alaso.exp
 E: Illegal LD instruction. ... OK
-Normal case: 224
+N: m_ld_anasn
+../vgsasm m_ld_anasn.asm -v
+  m_ld_anasn.asm:0001 $0000 <LD> _( 0x0 )_ `,` 0xFFFFFF80
+  m_ld_anasn.asm:0002 $0007 <LD> _( 0x400 )_ `,` 0xFFFFFFFF
+  m_ld_anasn.asm:0003 $000E <LD> _( 0x800 )_ `,` 0x0
+  m_ld_anasn.asm:0004 $0015 <LD> _( 0x1000 )_ `,` 0x1
+  m_ld_anasn.asm:0005 $001C <LD> _( 0x2000 )_ `,` 0x7F
+  m_ld_anasn.asm:0006 $0023 <LD> _( 0x4000 )_ `,` 0x80
+  m_ld_anasn.asm:0007 $002A <LD> _( 0x8000 )_ `,` 0xFE
+  m_ld_anasn.asm:0008 $0031 <LD> _( 0xFFFF )_ `,` 0xFF
+diff m_ld_anasn.bin m_ld_anasn.exp
+Normal case: 225
 Error case: 290
-Total: 514
+Total: 515
