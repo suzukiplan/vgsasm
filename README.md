@@ -77,7 +77,7 @@ vgsasm [-o /path/to/output.bin]
 - [Increment and Decrement](#increment-and-decrement)
 - [Assignment](#assignment)
 - [Support Instructions](#support-instructions)
-- [Support Alies Instructions](#support-alies-instructions)
+- [Support Alias Instructions](#support-alias-instructions)
 - [Instructions Specialized for VGS-Zero](#instructions-specialized-for-vgs-zero)
 - [Auto Expand Instructions](#auto-expand-instructions)
 
@@ -518,9 +518,9 @@ VARS.posX = 123
 - Some undocumented instructions are in a slightly special format.
 - All instructions are described in [./test/all.asm](./test/all.asm).
 
-## Support Alies Instructions
+## Support Alias Instructions
 
-| Alies | Assignment | Description |
+| Alias | Assignment | Description |
 |:-----:|:----------:|:------------|
 | `SL`  | `SLA`      | **LOGICAL** Shift Left |
 | `SR`  | `SRL`      | Logical Shift Right |
