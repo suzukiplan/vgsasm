@@ -2007,6 +2007,7 @@ m_ld_osaoa_hl.asm:0013 $001F <LD> <DE> `,` _( <HL> )_
 m_ld_osaoa_hl.asm:0014 $0023 <LD> <IX> `,` _( <HL> )_
 m_ld_osaoa_hl.asm:0015 $002D <LD> <IY> `,` _( <HL> )_
 diff m_ld_osaoa_hl.bin m_ld_osaoa_hl.exp
+E: Illegal LD instruction. ... OK
 Normal case: 212
-Error case: 276
-Total: 488
+Error case: 277
+Total: 489
