@@ -1687,6 +1687,37 @@ E: Illegal MOD instruction. ... OK
 E: Illegal MUL instruction. ... OK
 E: Illegal MULS instruction. ... OK
 E: Illegal MUL instruction. ... OK
-Normal case: 188
+N: m_hage_osn
+../vgsasm m_hage_osn.asm -v
+  m_hage_osn.asm:0001 $0000 <MUL> <A> `,` 0xFFFFFF80
+  m_hage_osn.asm:0002 $000A <MUL> <B> `,` 0xFFFFFFFF
+  m_hage_osn.asm:0003 $0016 <MUL> <C> `,` 0x0
+  m_hage_osn.asm:0004 $0022 <MUL> <D> `,` 0x1
+  m_hage_osn.asm:0005 $002E <MUL> <E> `,` 0x7F
+  m_hage_osn.asm:0006 $003A <MUL> <H> `,` 0x80
+  m_hage_osn.asm:0007 $0046 <MUL> <L> `,` 0xFF
+  m_hage_osn.asm:0009 $0053 <MULS> <A> `,` 0xFFFFFF80
+  m_hage_osn.asm:0010 $005D <MULS> <B> `,` 0xFFFFFFFF
+  m_hage_osn.asm:0011 $0069 <MULS> <C> `,` 0x0
+  m_hage_osn.asm:0012 $0075 <MULS> <D> `,` 0x1
+  m_hage_osn.asm:0013 $0081 <MULS> <E> `,` 0x7F
+  m_hage_osn.asm:0014 $008D <MULS> <H> `,` 0x80
+  m_hage_osn.asm:0015 $0099 <MULS> <L> `,` 0xFF
+  m_hage_osn.asm:0017 $00A6 <DIV> <A> `,` 0xFFFFFF80
+  m_hage_osn.asm:0018 $00B0 <DIV> <B> `,` 0xFFFFFFFF
+  m_hage_osn.asm:0019 $00BC <DIV> <C> `,` 0x0
+  m_hage_osn.asm:0020 $00C8 <DIV> <D> `,` 0x1
+  m_hage_osn.asm:0021 $00D4 <DIV> <E> `,` 0x7F
+  m_hage_osn.asm:0022 $00E0 <DIV> <H> `,` 0x80
+  m_hage_osn.asm:0023 $00EC <DIV> <L> `,` 0xFF
+  m_hage_osn.asm:0025 $00F9 <DIVS> <A> `,` 0xFFFFFF80
+  m_hage_osn.asm:0026 $0103 <DIVS> <B> `,` 0xFFFFFFFF
+  m_hage_osn.asm:0027 $010F <DIVS> <C> `,` 0x0
+  m_hage_osn.asm:0028 $011B <DIVS> <D> `,` 0x1
+  m_hage_osn.asm:0029 $0127 <DIVS> <E> `,` 0x7F
+  m_hage_osn.asm:0030 $0133 <DIVS> <H> `,` 0x80
+  m_hage_osn.asm:0031 $013F <DIVS> <L> `,` 0xFF
+diff m_hage_osn.bin m_hage_osn.exp
+Normal case: 189
 Error case: 234
-Total: 422
+Total: 423
