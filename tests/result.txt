@@ -2159,6 +2159,34 @@ N: m_ld_anaso
 diff m_ld_anaso.bin m_ld_anaso.exp
 E: Numerical range incorrect: 65536 ... OK
 E: Illegal LD instruction. ... OK
-Normal case: 223
+N: m_ld_alaso
+../vgsasm m_ld_alaso.asm -v
+  m_ld_alaso.asm:0001 $0000 <NOP>
+  m_ld_alaso.asm:0002 $0001 LABEL1:
+  m_ld_alaso.asm:0003 $0001 <NOP>
+  m_ld_alaso.asm:0004 $0002 LABEL2:
+  m_ld_alaso.asm:0005 $0002 <NOP>
+  m_ld_alaso.asm:0006 $0003 LABEL3@LABEL2:
+  m_ld_alaso.asm:0007 $0003 <NOP>
+  m_ld_alaso.asm:0008 $0004 LABEL4@LABEL2:
+  m_ld_alaso.asm:0010 $0004 <LD> _( `LABEL1` )_ `,` <A>
+  m_ld_alaso.asm:0011 $0007 <LD> _( `LABEL2` )_ `,` <B>
+  m_ld_alaso.asm:0012 $000D <LD> _( `LABEL3@LABEL2` )_ `,` <C>
+  m_ld_alaso.asm:0013 $0013 <LD> _( `LABEL4@LABEL2` )_ `,` <D>
+  m_ld_alaso.asm:0014 $0019 <LD> _( `LABEL1` )_ `,` <E>
+  m_ld_alaso.asm:0015 $001F <LD> _( `LABEL2` )_ `,` <H>
+  m_ld_alaso.asm:0016 $0025 <LD> _( `LABEL3@LABEL2` )_ `,` <L>
+  m_ld_alaso.asm:0017 $002B <LD> _( `LABEL4@LABEL2` )_ `,` <IXH>
+  m_ld_alaso.asm:0018 $0032 <LD> _( `LABEL1` )_ `,` <IXL>
+  m_ld_alaso.asm:0019 $0039 <LD> _( `LABEL2` )_ `,` <IYH>
+  m_ld_alaso.asm:0020 $0040 <LD> _( `LABEL3@LABEL2` )_ `,` <IYL>
+  m_ld_alaso.asm:0021 $0047 <LD> _( `LABEL4@LABEL2` )_ `,` <BC>
+  m_ld_alaso.asm:0022 $004B <LD> _( `LABEL1` )_ `,` <DE>
+  m_ld_alaso.asm:0023 $004F <LD> _( `LABEL2` )_ `,` <HL>
+  m_ld_alaso.asm:0024 $0052 <LD> _( `LABEL3@LABEL2` )_ `,` <SP>
+  m_ld_alaso.asm:0025 $0056 <LD> _( `LABEL4@LABEL2` )_ `,` <IX>
+  m_ld_alaso.asm:0026 $005A <LD> _( `LABEL1` )_ `,` <IY>
+diff m_ld_alaso.bin m_ld_alaso.exp
+Normal case: 224
 Error case: 289
-Total: 512
+Total: 513
