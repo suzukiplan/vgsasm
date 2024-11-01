@@ -1679,6 +1679,13 @@ m_hage_oso_l.asm:0028 $0114 <MOD> <L> `,` <D>
 m_hage_oso_l.asm:0029 $0120 <MOD> <L> `,` <E>
 diff m_hage_oso_l.bin m_hage_oso_l.exp
 E: Illegal MUL instruction. ... OK
+E: Illegal MUL instruction. ... OK
+E: Illegal MULS instruction. ... OK
+E: Illegal DIV instruction. ... OK
+E: Illegal DIVS instruction. ... OK
+E: Illegal MOD instruction. ... OK
+E: Illegal MUL instruction. ... OK
+E: Illegal MULS instruction. ... OK
 Normal case: 188
-Error case: 226
-Total: 414
+Error case: 233
+Total: 421

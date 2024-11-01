@@ -175,6 +175,13 @@ mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_h
 	${MAK} normal_case src=m_hage_oso_l
 	@./check "`../vgsasm m_hage_oso_hl_ill.asm`" "Illegal MUL instruction."
+	@./check "`../vgsasm m_hage_oso_a_ill.asm`" "Illegal MUL instruction."
+	@./check "`../vgsasm m_hage_oso_b_ill.asm`" "Illegal MULS instruction."
+	@./check "`../vgsasm m_hage_oso_c_ill.asm`" "Illegal DIV instruction."
+	@./check "`../vgsasm m_hage_oso_d_ill.asm`" "Illegal DIVS instruction."
+	@./check "`../vgsasm m_hage_oso_e_ill.asm`" "Illegal MOD instruction."
+	@./check "`../vgsasm m_hage_oso_h_ill.asm`" "Illegal MUL instruction."
+	@./check "`../vgsasm m_hage_oso_l_ill.asm`" "Illegal MULS instruction."
 
 mnemonic_sub_tests: check ../vgsasm
 	${MAK} normal_case src=m_call_n
