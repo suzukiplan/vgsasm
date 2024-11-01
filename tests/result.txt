@@ -1761,6 +1761,7 @@ N: m_sin_oso
 diff m_sin_oso.bin m_sin_oso.exp
 E: Illegal SIN instruction. ... OK
 E: Illegal SIN instruction. ... OK
+E: Illegal SIN instruction. ... OK
 Normal case: 192
-Error case: 244
-Total: 436
+Error case: 245
+Total: 437
