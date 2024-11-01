@@ -462,71 +462,91 @@ void mnemonic_LD(LineData* line)
             switch (op) {
                 case Operand::B:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_B_A;
                     ML_POP_AF;
                     return;
                 case Operand::C:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_C_A;
                     ML_POP_AF;
                     return;
                 case Operand::D:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_D_A;
                     ML_POP_AF;
                     return;
                 case Operand::E:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_E_A;
                     ML_POP_AF;
                     return;
                 case Operand::H:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_H_A;
                     ML_POP_AF;
                     return;
                 case Operand::L:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_L_A;
                     ML_POP_AF;
                     return;
                 case Operand::IXH:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_IXH_A;
                     ML_POP_AF;
                     return;
                 case Operand::IXL:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_IXL_A;
                     ML_POP_AF;
                     return;
                 case Operand::IYH:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_IYH_A;
                     ML_POP_AF;
                     return;
                 case Operand::IYL:
                     ML_PUSH_AF;
+                    line->machine.push_back(0x3A);
                     tempAddrs.push_back(new TempAddr(line, line->token[4].second, line->machine.size(), false));
-                    ML_LD_A_NN(0);
+                    line->machine.push_back(0);
+                    line->machine.push_back(0);
                     ML_LD_IYL_A;
                     ML_POP_AF;
                     return;
