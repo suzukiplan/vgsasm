@@ -738,6 +738,17 @@ void mnemonic_LD(LineData* line)
             ML_POP_AF;
             return;
         }
+    } else if (mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::LabelJump, TokenType::AddressEnd, TokenType::Split, TokenType::Numeric)) {
+        // LD (LABEL),n
+        auto n = atoi(line->token[5].second.c_str());
+        if (mnemonic_range(line, n, -128, 255)) {
+            ML_PUSH_AF;
+            ML_LD_A_n(n);
+            ML_LD_NN_A(0);
+            tempAddrs.push_back(new TempAddr(line, line->token[2].second, line->machine.size() - 2, false));
+            ML_POP_AF;
+            return;
+        }
     } else if (mnemonic_format_test(line, 8, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::PlusOrMinus, TokenType::Numeric, TokenType::AddressEnd)) {
         // LD r, ({IX|IY}{+|-}d)
         auto op1 = operandTable[line->token[1].second];
