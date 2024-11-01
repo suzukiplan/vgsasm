@@ -2059,6 +2059,15 @@ N: m_ld_osn8
 diff m_ld_osn8.bin m_ld_osn8.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
-Normal case: 218
+N: m_ld_osn16
+../vgsasm m_ld_osn16.asm -v
+  m_ld_osn16.asm:0001 $0000 <LD> <BC> `,` 0xFFFF8000
+  m_ld_osn16.asm:0002 $0003 <LD> <DE> `,` 0xFFFFFFFF
+  m_ld_osn16.asm:0003 $0006 <LD> <HL> `,` 0x0
+  m_ld_osn16.asm:0004 $0009 <LD> <IX> `,` 0x1
+  m_ld_osn16.asm:0005 $000D <LD> <IY> `,` 0x7FFF
+  m_ld_osn16.asm:0006 $0011 <LD> <SP> `,` 0xFFFF
+diff m_ld_osn16.bin m_ld_osn16.exp
+Normal case: 219
 Error case: 280
-Total: 498
+Total: 499
