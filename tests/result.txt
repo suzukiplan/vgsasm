@@ -2187,6 +2187,7 @@ N: m_ld_alaso
   m_ld_alaso.asm:0025 $0056 <LD> _( `LABEL4@LABEL2` )_ `,` <IX>
   m_ld_alaso.asm:0026 $005A <LD> _( `LABEL1` )_ `,` <IY>
 diff m_ld_alaso.bin m_ld_alaso.exp
+E: Illegal LD instruction. ... OK
 Normal case: 224
-Error case: 289
-Total: 513
+Error case: 290
+Total: 514
