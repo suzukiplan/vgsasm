@@ -2057,6 +2057,8 @@ N: m_ld_osn8
    m_ld_osn8.asm:0010 $0014 <LD> <IYH> `,` 0x64
    m_ld_osn8.asm:0011 $0017 <LD> <IYL> `,` 0xC8
 diff m_ld_osn8.bin m_ld_osn8.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
 Normal case: 218
-Error case: 278
-Total: 496
+Error case: 280
+Total: 498
