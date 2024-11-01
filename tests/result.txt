@@ -1749,6 +1749,18 @@ N: m_sin_o
      m_sin_o.asm:0007 $0011 <SIN> <L>
 diff m_sin_o.bin m_sin_o.exp
 E: Illegal SIN instruction. ... OK
-Normal case: 191
-Error case: 242
-Total: 433
+N: m_sin_oso
+../vgsasm m_sin_oso.asm -v
+   m_sin_oso.asm:0001 $0000 <SIN> <A> `,` <A>
+   m_sin_oso.asm:0002 $0002 <SIN> <A> `,` <B>
+   m_sin_oso.asm:0003 $0005 <SIN> <A> `,` <C>
+   m_sin_oso.asm:0004 $0008 <SIN> <A> `,` <D>
+   m_sin_oso.asm:0005 $000B <SIN> <A> `,` <E>
+   m_sin_oso.asm:0006 $000E <SIN> <A> `,` <H>
+   m_sin_oso.asm:0007 $0011 <SIN> <A> `,` <L>
+diff m_sin_oso.bin m_sin_oso.exp
+E: Illegal SIN instruction. ... OK
+E: Illegal SIN instruction. ... OK
+Normal case: 192
+Error case: 244
+Total: 436
