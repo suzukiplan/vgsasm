@@ -1748,6 +1748,7 @@ N: m_sin_o
      m_sin_o.asm:0006 $000E <SIN> <H>
      m_sin_o.asm:0007 $0011 <SIN> <L>
 diff m_sin_o.bin m_sin_o.exp
+E: Illegal SIN instruction. ... OK
 Normal case: 191
-Error case: 241
-Total: 432
+Error case: 242
+Total: 433
