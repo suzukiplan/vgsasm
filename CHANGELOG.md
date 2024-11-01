@@ -4,6 +4,7 @@
 
 - Correct LD error message
 - Support `LD {B|C|D|E|H|L|IXH|IXL|IYH|IYL}, (LABEL)`
+- Support `LD (LABEL), {A|B|C|D|E|H|L|IXH|IXL|IYH|IYL|BC|DE|HL|SP|IX|IY}`
 
 ## Version 0.14 (beta-14)
 
