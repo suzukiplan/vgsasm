@@ -1988,6 +1988,7 @@ E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
 Normal case: 211
-Error case: 275
-Total: 486
+Error case: 276
+Total: 487
