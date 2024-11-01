@@ -2199,6 +2199,9 @@ N: m_ld_anasn
   m_ld_anasn.asm:0007 $002A <LD> _( 0x8000 )_ `,` 0xFE
   m_ld_anasn.asm:0008 $0031 <LD> _( 0xFFFF )_ `,` 0xFF
 diff m_ld_anasn.bin m_ld_anasn.exp
+E: Numerical range incorrect: 65536 ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
 Normal case: 225
-Error case: 290
-Total: 515
+Error case: 293
+Total: 518
