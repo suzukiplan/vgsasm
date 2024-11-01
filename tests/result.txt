@@ -1737,6 +1737,7 @@ N: m_atn2_oso
 diff m_atn2_oso.bin m_atn2_oso.exp
 E: Illegal ATN2 instruction. ... OK
 E: Illegal ATN2 instruction. ... OK
+E: Illegal ATN2 instruction. ... OK
 Normal case: 190
-Error case: 240
-Total: 430
+Error case: 241
+Total: 431
