@@ -1,5 +1,12 @@
 # Change log
 
+## Version 0.15 (beta-15)
+
+- Correct LD error message
+- Support `LD {B|C|D|E|H|L|IXH|IXL|IYH|IYL}, (LABEL)`
+- Support `LD (LABEL), {A|B|C|D|E|H|L|IXH|IXL|IYH|IYL|BC|DE|HL|SP|IX|IY}`
+- Support `LD (LABEL), n`
+
 ## Version 0.14 (beta-14)
 
 - Split [vgsasm-extension](https://github.com/suzukiplan/vgsasm-extension) repository.
