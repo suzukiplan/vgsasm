@@ -2415,6 +2415,45 @@ diff m_ld_aoasn.bin m_ld_aoasn.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
 E: Illegal LD instruction. ... OK
-Normal case: 239
+N: m_single
+../vgsasm m_single.asm -v
+    m_single.asm:0001 $0000 <NOP>
+    m_single.asm:0002 $0001 <DI>
+    m_single.asm:0003 $0002 <EI>
+    m_single.asm:0004 $0003 <HALT>
+    m_single.asm:0005 $0004 <EXX>
+    m_single.asm:0006 $0005 <DAA>
+    m_single.asm:0007 $0006 <CPL>
+    m_single.asm:0008 $0007 <CCF>
+    m_single.asm:0009 $0008 <SCF>
+    m_single.asm:0010 $0009 <NEG>
+    m_single.asm:0011 $000B <LDI>
+    m_single.asm:0012 $000D <LDIR>
+    m_single.asm:0013 $000F <LDD>
+    m_single.asm:0014 $0011 <LDDR>
+    m_single.asm:0015 $0013 <CPI>
+    m_single.asm:0016 $0015 <CPIR>
+    m_single.asm:0017 $0017 <CPD>
+    m_single.asm:0018 $0019 <CPDR>
+    m_single.asm:0019 $001B <OUTI>
+    m_single.asm:0020 $001D <OUTIR>
+    m_single.asm:0021 $001F <OTIR>
+    m_single.asm:0022 $0021 <OUTD>
+    m_single.asm:0023 $0023 <OUTDR>
+    m_single.asm:0024 $0025 <OTDR>
+    m_single.asm:0025 $0027 <INI>
+    m_single.asm:0026 $0029 <INIR>
+    m_single.asm:0027 $002B <IND>
+    m_single.asm:0028 $002D <INDR>
+    m_single.asm:0029 $002F <RLCA>
+    m_single.asm:0030 $0030 <RRCA>
+    m_single.asm:0031 $0031 <RLA>
+    m_single.asm:0032 $0032 <RRA>
+    m_single.asm:0033 $0033 <RLD>
+    m_single.asm:0034 $0035 <RRD>
+    m_single.asm:0035 $0037 <RETI>
+    m_single.asm:0036 $0039 <RETN>
+diff m_single.bin m_single.exp
+Normal case: 240
 Error case: 366
-Total: 605
+Total: 606

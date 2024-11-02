@@ -165,6 +165,10 @@ mnemonic:
 	${MAK} mnemonic_sub_tests
 	${MAK} mnemonic_vgs_tests
 	${MAK} mnemonic_load_tests
+	${MAK} mnemonic_other_tests
+
+mnemonic_other_tests: check ../vgsasm
+	${MAK} normal_case src=m_single
 
 mnemonic_load_tests: check ../vgsasm
 	${MAK} normal_case src=m_ld_oso8_a
