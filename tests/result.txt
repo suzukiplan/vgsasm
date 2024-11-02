@@ -2380,6 +2380,30 @@ E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
-Normal case: 236
-Error case: 355
-Total: 591
+N: m_ld_aopnasn_ix
+../vgsasm m_ld_aopnasn_ix.asm -v
+m_ld_aopnasn_ix.asm:0001 $0000 <LD> _( <IX> `-` 0x80 )_ `,` 0xFF
+m_ld_aopnasn_ix.asm:0002 $0004 <LD> _( <IX> `-` 0x1 )_ `,` 0x0
+m_ld_aopnasn_ix.asm:0003 $0008 <LD> _( <IX> `+` 0x0 )_ `,` 0x80
+m_ld_aopnasn_ix.asm:0004 $000C <LD> _( <IX> `+` 0x1 )_ `,` 0xC0
+m_ld_aopnasn_ix.asm:0005 $0010 <LD> _( <IX> `+` 0x7F )_ `,` 0x40
+diff m_ld_aopnasn_ix.bin m_ld_aopnasn_ix.exp
+N: m_ld_aopnasn_iy
+../vgsasm m_ld_aopnasn_iy.asm -v
+m_ld_aopnasn_iy.asm:0001 $0000 <LD> _( <IY> `-` 0x80 )_ `,` 0xFF
+m_ld_aopnasn_iy.asm:0002 $0004 <LD> _( <IY> `-` 0x1 )_ `,` 0x0
+m_ld_aopnasn_iy.asm:0003 $0008 <LD> _( <IY> `+` 0x0 )_ `,` 0x80
+m_ld_aopnasn_iy.asm:0004 $000C <LD> _( <IY> `+` 0x1 )_ `,` 0xC0
+m_ld_aopnasn_iy.asm:0005 $0010 <LD> _( <IY> `+` 0x7F )_ `,` 0x40
+diff m_ld_aopnasn_iy.bin m_ld_aopnasn_iy.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
+Normal case: 238
+Error case: 363
+Total: 601
