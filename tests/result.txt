@@ -2454,6 +2454,22 @@ N: m_single
     m_single.asm:0035 $0037 <RETI>
     m_single.asm:0036 $0039 <RETN>
 diff m_single.bin m_single.exp
-Normal case: 240
-Error case: 366
-Total: 606
+E: Relative jump destination address is too far away: -129 ... OK
+N: m_far_m128
+../vgsasm m_far_m128.asm -v
+  m_far_m128.asm:0001 $0000 LABEL:
+  m_far_m128.asm:0003 Binary: "bin120.dat"
+  m_far_m128.asm:0004 $0078 <DB> 0x0 `,` 0x0 `,` 0x0 `,` 0x0 `,` 0x0 `,` 0x0
+  m_far_m128.asm:0006 $007E <JR> `LABEL`
+diff m_far_m128.bin m_far_m128.exp
+N: m_far_p127
+../vgsasm m_far_p127.asm -v
+  m_far_p127.asm:0001 $0000 <JR> `LABEL`
+  m_far_p127.asm:0003 Binary: "bin120.dat"
+  m_far_p127.asm:0004 $007A <DB> 0x0 `,` 0x0 `,` 0x0 `,` 0x0 `,` 0x0 `,` 0x0 `,` 0x0
+  m_far_p127.asm:0006 $0081 LABEL:
+diff m_far_p127.bin m_far_p127.exp
+E: Relative jump destination address is too far away: 128 ... OK
+Normal case: 242
+Error case: 368
+Total: 610

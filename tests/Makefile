@@ -169,6 +169,10 @@ mnemonic:
 
 mnemonic_other_tests: check ../vgsasm
 	${MAK} normal_case src=m_single
+	@./check "`../vgsasm m_far_m129.asm`" "Relative jump destination address is too far away: -129"
+	${MAK} normal_case src=m_far_m128
+	${MAK} normal_case src=m_far_p127
+	@./check "`../vgsasm m_far_p128.asm`" "Relative jump destination address is too far away: 128"
 
 mnemonic_load_tests: check ../vgsasm
 	${MAK} normal_case src=m_ld_oso8_a
