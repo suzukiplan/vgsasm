@@ -1,5 +1,9 @@
 # Change log
 
+## Version 1.0.0
+
+WIP
+
 ## Version 0.15 (beta-15)
 
 - Correct LD error message
