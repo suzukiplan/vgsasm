@@ -297,6 +297,24 @@ mnemonic_load_tests: check ../vgsasm
 	@./check "`../vgsasm m_ld_aopnaso_ix_range2.asm`" "Numerical range incorrect: 128"
 	@./check "`../vgsasm m_ld_aopnaso_iy_range1.asm`" "Numerical range incorrect: -129"
 	@./check "`../vgsasm m_ld_aopnaso_iy_range2.asm`" "Numerical range incorrect: 128"
+	${MAK} normal_case src=m_ld_aoaso_ix
+	${MAK} normal_case src=m_ld_aoaso_iy
+	@./check "`../vgsasm m_ld_aoaso_ix_ill1.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_ix_ill2.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_ix_ill3.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_ix_ill4.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_ix_ill5.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_ix_ill6.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_ix_ill7.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_ix_ill8.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_iy_ill1.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_iy_ill2.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_iy_ill3.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_iy_ill4.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_iy_ill5.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_iy_ill6.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_iy_ill7.asm`" "Illegal LD instruction."
+	@./check "`../vgsasm m_ld_aoaso_iy_ill8.asm`" "Illegal LD instruction."
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl

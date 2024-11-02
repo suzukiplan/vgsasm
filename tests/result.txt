@@ -2338,6 +2338,48 @@ E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
-Normal case: 234
-Error case: 339
-Total: 573
+N: m_ld_aoaso_ix
+../vgsasm m_ld_aoaso_ix.asm -v
+m_ld_aoaso_ix.asm:0001 $0000 <LD> _( <IX> )_ `,` <A>
+m_ld_aoaso_ix.asm:0002 $0003 <LD> _( <IX> )_ `,` <B>
+m_ld_aoaso_ix.asm:0003 $0006 <LD> _( <IX> )_ `,` <C>
+m_ld_aoaso_ix.asm:0004 $0009 <LD> _( <IX> )_ `,` <D>
+m_ld_aoaso_ix.asm:0005 $000C <LD> _( <IX> )_ `,` <E>
+m_ld_aoaso_ix.asm:0006 $000F <LD> _( <IX> )_ `,` <H>
+m_ld_aoaso_ix.asm:0007 $0012 <LD> _( <IX> )_ `,` <L>
+m_ld_aoaso_ix.asm:0012 $0015 <LD> _( <IX> )_ `,` <BC>
+m_ld_aoaso_ix.asm:0013 $001B <LD> _( <IX> )_ `,` <DE>
+m_ld_aoaso_ix.asm:0014 $0021 <LD> _( <IX> )_ `,` <HL>
+diff m_ld_aoaso_ix.bin m_ld_aoaso_ix.exp
+N: m_ld_aoaso_iy
+../vgsasm m_ld_aoaso_iy.asm -v
+m_ld_aoaso_iy.asm:0001 $0000 <LD> _( <IY> )_ `,` <A>
+m_ld_aoaso_iy.asm:0002 $0003 <LD> _( <IY> )_ `,` <B>
+m_ld_aoaso_iy.asm:0003 $0006 <LD> _( <IY> )_ `,` <C>
+m_ld_aoaso_iy.asm:0004 $0009 <LD> _( <IY> )_ `,` <D>
+m_ld_aoaso_iy.asm:0005 $000C <LD> _( <IY> )_ `,` <E>
+m_ld_aoaso_iy.asm:0006 $000F <LD> _( <IY> )_ `,` <H>
+m_ld_aoaso_iy.asm:0007 $0012 <LD> _( <IY> )_ `,` <L>
+m_ld_aoaso_iy.asm:0012 $0015 <LD> _( <IY> )_ `,` <BC>
+m_ld_aoaso_iy.asm:0013 $001B <LD> _( <IY> )_ `,` <DE>
+m_ld_aoaso_iy.asm:0014 $0021 <LD> _( <IY> )_ `,` <HL>
+diff m_ld_aoaso_iy.bin m_ld_aoaso_iy.exp
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+Normal case: 236
+Error case: 355
+Total: 591
