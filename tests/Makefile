@@ -325,6 +325,9 @@ mnemonic_load_tests: check ../vgsasm
 	@./check "`../vgsasm m_ld_aopnasn_iy_range2.asm`" "Numerical range incorrect: 128"
 	@./check "`../vgsasm m_ld_aopnasn_iy_range3.asm`" "Numerical range incorrect: -129"
 	@./check "`../vgsasm m_ld_aopnasn_iy_range4.asm`" "Numerical range incorrect: 256"
+	${MAK} normal_case src=m_ld_aoasn
+	@./check "`../vgsasm m_ld_aoasn_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_ld_aoasn_range2.asm`" "Numerical range incorrect: 256"
 
 mnemonic_vgs_tests: check ../vgsasm
 	${MAK} normal_case src=m_hage_oso_hl

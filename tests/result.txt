@@ -2404,6 +2404,16 @@ E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 128 ... OK
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
-Normal case: 238
-Error case: 363
-Total: 601
+N: m_ld_aoasn
+../vgsasm m_ld_aoasn.asm -v
+  m_ld_aoasn.asm:0001 $0000 <LD> _( <BC> )_ `,` 0xFFFFFF80
+  m_ld_aoasn.asm:0002 $0006 <LD> _( <DE> )_ `,` 0xFFFFFFFF
+  m_ld_aoasn.asm:0003 $000C <LD> _( <HL> )_ `,` 0x1
+  m_ld_aoasn.asm:0004 $000E <LD> _( <IX> )_ `,` 0x7F
+  m_ld_aoasn.asm:0005 $0012 <LD> _( <IY> )_ `,` 0xFF
+diff m_ld_aoasn.bin m_ld_aoasn.exp
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
+Normal case: 239
+Error case: 365
+Total: 604
