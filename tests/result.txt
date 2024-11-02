@@ -2292,6 +2292,52 @@ E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
 E: Illegal LD instruction. ... OK
-Normal case: 232
-Error case: 319
-Total: 551
+N: m_ld_aopnaso_ix
+../vgsasm m_ld_aopnaso_ix.asm -v
+m_ld_aopnaso_ix.asm:0001 $0000 <LD> _( <IX> `-` 0x80 )_ `,` <A>
+m_ld_aopnaso_ix.asm:0002 $0003 <LD> _( <IX> `-` 0x1 )_ `,` <B>
+m_ld_aopnaso_ix.asm:0003 $0006 <LD> _( <IX> `+` 0x0 )_ `,` <C>
+m_ld_aopnaso_ix.asm:0004 $0009 <LD> _( <IX> `+` 0x1 )_ `,` <D>
+m_ld_aopnaso_ix.asm:0005 $000C <LD> _( <IX> `+` 0x7F )_ `,` <E>
+m_ld_aopnaso_ix.asm:0006 $000F <LD> _( <IX> `+` 0x40 )_ `,` <H>
+m_ld_aopnaso_ix.asm:0007 $0012 <LD> _( <IX> `-` 0x40 )_ `,` <L>
+m_ld_aopnaso_ix.asm:0012 $0015 <LD> _( <IX> `+` 0x3F )_ `,` <BC>
+m_ld_aopnaso_ix.asm:0013 $001B <LD> _( <IX> `+` 0x40 )_ `,` <DE>
+m_ld_aopnaso_ix.asm:0014 $0021 <LD> _( <IX> `+` 0x7F )_ `,` <HL>
+diff m_ld_aopnaso_ix.bin m_ld_aopnaso_ix.exp
+N: m_ld_aopnaso_iy
+../vgsasm m_ld_aopnaso_iy.asm -v
+m_ld_aopnaso_iy.asm:0001 $0000 <LD> _( <IY> `-` 0x80 )_ `,` <A>
+m_ld_aopnaso_iy.asm:0002 $0003 <LD> _( <IY> `-` 0x1 )_ `,` <B>
+m_ld_aopnaso_iy.asm:0003 $0006 <LD> _( <IY> `+` 0x0 )_ `,` <C>
+m_ld_aopnaso_iy.asm:0004 $0009 <LD> _( <IY> `+` 0x1 )_ `,` <D>
+m_ld_aopnaso_iy.asm:0005 $000C <LD> _( <IY> `+` 0x7F )_ `,` <E>
+m_ld_aopnaso_iy.asm:0006 $000F <LD> _( <IY> `+` 0x40 )_ `,` <H>
+m_ld_aopnaso_iy.asm:0007 $0012 <LD> _( <IY> `-` 0x40 )_ `,` <L>
+m_ld_aopnaso_iy.asm:0012 $0015 <LD> _( <IY> `+` 0x3F )_ `,` <BC>
+m_ld_aopnaso_iy.asm:0013 $001B <LD> _( <IY> `+` 0x40 )_ `,` <DE>
+m_ld_aopnaso_iy.asm:0014 $0021 <LD> _( <IY> `+` 0x7F )_ `,` <HL>
+diff m_ld_aopnaso_iy.bin m_ld_aopnaso_iy.exp
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Illegal LD instruction. ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 128 ... OK
+Normal case: 234
+Error case: 339
+Total: 573
