@@ -2414,6 +2414,7 @@ N: m_ld_aoasn
 diff m_ld_aoasn.bin m_ld_aoasn.exp
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
+E: Illegal LD instruction. ... OK
 Normal case: 239
-Error case: 365
-Total: 604
+Error case: 366
+Total: 605
