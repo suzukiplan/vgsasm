@@ -386,6 +386,24 @@ int main(int argc, char* argv[])
                         binarySize = atoi(argv[i]);
                     }
                     break;
+                case 'd':
+                    i++;
+                    if (argc <= i) {
+                        error = true;
+                        break;
+                    } else {
+                        for (int j = 0; argv[i][j]; j++) {
+                            argv[i][j] = toupper(argv[i][j]);
+                        }
+                        if (nameTable.find(argv[i]) != nameTable.end()) {
+                            printf("Duplicate or unspecified name specified: %s\n", argv[i]);
+                            error = true;
+                            break;
+                        }
+                        nametable_add(argv[i], nullptr);
+                        defineTable[argv[i]].push_back(std::make_pair(TokenType::None, ""));
+                    }
+                    break;
                 case 'v':
                     showLineDebug = true;
                     break;
@@ -406,6 +424,7 @@ int main(int argc, char* argv[])
     if (error || !in[0]) {
         puts("usage: vgsasm [-o /path/to/output.bin]");
         puts("              [-b binary_size]");
+        puts("              [-d name]");
         puts("              [-v]");
         puts("              /path/to/input.asm");
         return 1;

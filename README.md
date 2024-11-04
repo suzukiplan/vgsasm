@@ -44,6 +44,7 @@ Search for `vgsasm` in the Visual Studio Code marketplace and install it.
 ```
 vgsasm [-o /path/to/output.bin]
        [-b size_of_binary]
+       [-d name]
        [-v]
        /path/to/source.asm
 ```
@@ -57,6 +58,10 @@ vgsasm [-o /path/to/output.bin]
   - The upper limit of `size_of_binary` is `65536` (`0x10000`)
   - Assembly will fail if the specified size is exceeded.
   - Boundary areas that do not meet the specified size are filled with `0xFF`.
+- `-d name`
+  - You can specify the definition name of `#define`.
+  - You cannot specify a value for the definition.
+  - This is only intended for use with `#ifdef` decisions.
 - `-v`
   - Show line debug information.
   - When encounters an inappropriate error, it may be possible to resolve it by cutting the issue pasting the output with this option.
