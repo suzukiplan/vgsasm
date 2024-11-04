@@ -68,6 +68,10 @@ execute: ${TEST_MODULES}
 	${MAK} test56
 	${MAK} test57
 	${MAK} test58
+	${MAK} test60
+
+test60: check ../vgsasm
+	${MAK} normal_case src=test60
 
 test58: check ../vgsasm
 	${MAK} normal_case src=test58
@@ -660,7 +664,7 @@ struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_array_empty.asm`" "Illegal array structure element: ]"
 	@./check "`../vgsasm struct_array_ill.asm`" "Illegal array structure element: FOO"
 	@./check "`../vgsasm struct_array_mul.asm`" "Illegal array structure element: 2"
-	@./check "`../vgsasm struct_array_nd.asm`" "Invalid array field designation: VAR1"
+	@./check "`../vgsasm struct_array_nd.asm`" "Illegal LD instruction."
 	@./check "`../vgsasm struct_field_nf.asm`" "Unknown field name in structure HOGE: VAR2"
 	${MAK} normal_case src=struct_normal
 

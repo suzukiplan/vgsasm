@@ -197,24 +197,32 @@ static int assemble(std::vector<LineData*> lines)
     }
     clear_delete_token(&lines);
 
-    // 構造体トークンをパース
+    // 残存パース処理
     for (auto line : lines) {
-        struct_parse_name(line);
-        formulas_evaluate_array(line);
-        struct_parse_array(line);
+        struct_parse_name(line); // 構造体トークンをパース
+        struct_replace(line);    // 構造体 -> 数値
+        sizeof_replace(line);    // sizeof -> 数値
+        offset_replace(line);    // offset -> 数値
+        label_parse_jump(line);  // Other -> LabelJump
+        org_parse(line);         // Other -> org
     }
     if (check_error(lines)) {
         return -1;
     }
     clear_delete_token(&lines);
 
-    // 残存パース処理
+    // 展開された全ての数値計算を実行
     for (auto line : lines) {
-        struct_replace(line);   // 構造体 -> 数値
-        sizeof_replace(line);   // sizeof -> 数値
-        offset_replace(line);   // offset -> 数値
-        label_parse_jump(line); // Other -> LabelJump
-        org_parse(line);        // Other -> org
+        formulas_evaluate(line);
+    }
+    if (check_error(lines)) {
+        return -1;
+    }
+    clear_delete_token(&lines);
+
+    // 構造体配列を数値に置換
+    for (auto line : lines) {
+        struct_parse_array(line);
     }
     if (check_error(lines)) {
         return -1;
