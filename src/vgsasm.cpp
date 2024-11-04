@@ -14,6 +14,7 @@
 #include "enum.hpp"
 #include "file.hpp"
 #include "formulas.hpp"
+#include "ifdef.hpp"
 #include "increment.hpp"
 #include "label.hpp"
 #include "literal.hpp"
@@ -79,6 +80,13 @@ static int assemble(std::vector<LineData*> lines)
     if (error) {
         return -1;
     }
+
+    // #ifdef
+    parse_ifdef(&lines);
+    if (check_error(lines)) {
+        return -1;
+    }
+    clear_delete_token(&lines);
 
     // enum の展開
     enum_extract(&lines);

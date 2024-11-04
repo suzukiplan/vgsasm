@@ -68,10 +68,26 @@ execute: ${TEST_MODULES}
 	${MAK} test56
 	${MAK} test57
 	${MAK} test58
+	${MAK} test59
 	${MAK} test60
 
 test60: check ../vgsasm
 	${MAK} normal_case src=test60
+
+test59: check ../vgsasm
+	${MAK} normal_case src=ifdef
+	@./check "`../vgsasm ifdef_err1.asm`" "#ifdef must appear at the beginning of the line."
+	@./check "`../vgsasm ifdef_err2.asm`" "Definition name not specified in #ifdef."
+	@./check "`../vgsasm ifdef_err3.asm`" "Multiple definition names specified in #ifdef: B"
+	@./check "`../vgsasm ifdef_err4.asm`" "The corresponding #ifdef is not defined."
+	@./check "`../vgsasm ifdef_err5.asm`" "The corresponding #ifdef is not defined."
+	@./check "`../vgsasm ifdef_err6.asm`" "#else must appear at the beginning of the line."
+	@./check "`../vgsasm ifdef_err7.asm`" "Unexpected symbol has specified: B"
+	@./check "`../vgsasm ifdef_err8.asm`" "#endif must appear at the beginning of the line."
+	@./check "`../vgsasm ifdef_err9.asm`" "Unexpected symbol has specified: Y"
+	@./check "`../vgsasm ifdef_err10.asm`" "#ifdef is specified as nested."
+	@./check "`../vgsasm ifdef_err11.asm`" "#ifdef is specified as nested."
+	@./check "`../vgsasm ifdef_err12.asm`" "#ifdef is not closed with #endif."
 
 test58: check ../vgsasm
 	${MAK} normal_case src=test58
