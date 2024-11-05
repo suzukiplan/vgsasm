@@ -78,6 +78,10 @@ test61: check ../vgsasm
 	@./check "`../vgsasm m_add_anasn_range1.asm`" "Numerical range incorrect: 65536"
 	@./check "`../vgsasm m_add_anasn_range2.asm`" "Numerical range incorrect: -129"
 	@./check "`../vgsasm m_add_anasn_range3.asm`" "Numerical range incorrect: 256"
+	${MAK} normal_case src=m_add_nsn
+	@./check "`../vgsasm m_add_nsn_range1.asm`" "Numerical range incorrect: 65536"
+	@./check "`../vgsasm m_add_nsn_range2.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_add_nsn_range3.asm`" "Numerical range incorrect: 256"
 
 test60: check ../vgsasm
 	${MAK} normal_case src=test60

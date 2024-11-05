@@ -328,6 +328,21 @@ void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
             ML_POP_HL;
             ML_POP_AF;
         }
+    } else if (m == Mnemonic::ADD && mnemonic_format_test(line, 4, TokenType::Numeric, TokenType::Split, TokenType::Numeric)) {
+        // ADD nn, n ... same as ADD (nn), n
+        auto addr = atoi(line->token[1].second.c_str());
+        auto n = atoi(line->token[3].second.c_str());
+        if (mnemonic_range(line, addr, 0, 0xFFFF) && mnemonic_range(line, n, -128, 255)) {
+            ML_PUSH_AF;
+            ML_PUSH_HL;
+            ML_LD_A_n(n);
+            ML_LD_H_n((addr & 0xFF00) >> 8);
+            ML_LD_L_n(addr & 0xFF);
+            ML_ADD_HL;
+            ML_LD_HL_A;
+            ML_POP_HL;
+            ML_POP_AF;
+        }
     } else if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd)) {
         // 即値アドレス演算（auto-expand）
         auto addr = atoi(line->token[2].second.c_str());

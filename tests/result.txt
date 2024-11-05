@@ -3945,6 +3945,14 @@ diff m_add_anasn.bin m_add_anasn.exp
 E: Numerical range incorrect: 65536 ... OK
 E: Numerical range incorrect: -129 ... OK
 E: Numerical range incorrect: 256 ... OK
-Normal case: 256
-Error case: 396
-Total: 652
+N: m_add_nsn
+../vgsasm m_add_nsn.asm -v
+   m_add_nsn.asm:0001 $0000 <ADD> 0x0 `,` 0xFFFFFF80
+   m_add_nsn.asm:0002 $000C <ADD> 0xFFFF `,` 0xFF
+diff m_add_nsn.bin m_add_nsn.exp
+E: Numerical range incorrect: 65536 ... OK
+E: Numerical range incorrect: -129 ... OK
+E: Numerical range incorrect: 256 ... OK
+Normal case: 257
+Error case: 399
+Total: 656
