@@ -44,6 +44,7 @@ Search for `vgsasm` in the Visual Studio Code marketplace and install it.
 ```
 vgsasm [-o /path/to/output.bin]
        [-b size_of_binary]
+       [-d name]
        [-v]
        /path/to/source.asm
 ```
@@ -57,6 +58,10 @@ vgsasm [-o /path/to/output.bin]
   - The upper limit of `size_of_binary` is `65536` (`0x10000`)
   - Assembly will fail if the specified size is exceeded.
   - Boundary areas that do not meet the specified size are filled with `0xFF`.
+- `-d name`
+  - You can specify the definition name of `#define`.
+  - You cannot specify a value for the definition.
+  - This is only intended for use with `#ifdef` decisions.
 - `-v`
   - Show line debug information.
   - When encounters an inappropriate error, it may be possible to resolve it by cutting the issue pasting the output with this option.
@@ -67,6 +72,7 @@ vgsasm [-o /path/to/output.bin]
 - [`#include`](#include)
 - [`#binary`](#binary)
 - [`#define`](#define)
+- [`#ifdef`](#ifdef)
 - [`#macro`](#macro)
 - [`struct`](#struct)
 - [`enum`](#enum)
@@ -131,6 +137,26 @@ You can specify the size at which to start reading by `, number` after the offse
 
 - The `DEFINITION_NAME` in the source code is expanded to an `Expanded expression`.
 - The first character of `DEFINITION_NAME` must be an alphabetic letter.
+
+## `#ifdef`
+
+```
+#ifdef DEBUG
+    call debug_code
+#else
+    call release_code
+#endif
+
+#ifndef RELEASE
+    call debug_code
+#else
+    call release_code
+#endif
+```
+
+- You can output code to enable and/or disable only if a specific `#define` is defined.
+- `#ifdef` cannot be nested.
+- Only one definition name may be specified for `#ifdef`.
 
 ## `#macro`
 
@@ -516,7 +542,7 @@ VARS.posX = 123
 
 - Supports all Z80 instructions, including undocumented.
 - Some undocumented instructions are in a slightly special format.
-- All instructions are described in [./test/all.asm](./test/all.asm).
+- All instructions are described in [./tests/all.asm](./tests/all.asm).
 
 ## Support Alias Instructions
 
@@ -687,6 +713,14 @@ In vgsasm, instructions that __do not exist in the Z80__ are complemented by exi
 | `LD (nn), n` | `PUSH AF`, `LD A, n`, `LD (nn), A`, `POP AF` |
 | `LD r, (nn)` <br>`r`: 8bit reg exclude `A` | `PUSH AF`, `LD A, (nn)`, `LD r, A`, `POP AF` |
 | `LD (nn), r` <br>`r`: 8bit reg exclude `A` | `PUSH AF`, `LD A, r`, `LD (nn),A`, `POP AF` |
+| `ADD B,n` | `PUSH AF`, `LD A,n`, `ADD B`, `LD B,A`, `POP AF` <br> Flag does not change |
+| `ADD C,n` | `PUSH AF`, `LD A,n`, `ADD C`, `LD C,A`, `POP AF` <br> Flag does not change |
+| `ADD D,n` | `PUSH AF`, `LD A,n`, `ADD D`, `LD D,A`, `POP AF` <br> Flag does not change |
+| `ADD E,n` | `PUSH AF`, `LD A,n`, `ADD E`, `LD E,A`, `POP AF` <br> Flag does not change |
+| `ADD H,n` | `PUSH AF`, `LD A,n`, `ADD H`, `LD H,A`, `POP AF` <br> Flag does not change |
+| `ADD L,n` | `PUSH AF`, `LD A,n`, `ADD L`, `LD L,A`, `POP AF` <br> Flag does not change |
+| `ADD BC,nn` | `PUSH HL`, `LD HL, nn`, `ADD HL,BC`, `LD BC, HL`, `POP HL` |
+| `ADD DE,nn` | `PUSH HL`, `LD HL, nn`, `ADD HL,DE`, `LD DE, HL`, `POP HL` |
 | `ADD HL,nn` | `PUSH DE`, `LD DE,nn`, `ADD HL,DE`, `POP DE`|
 | `ADD IX,nn` | `PUSH DE`, `LD DE,nn`, `ADD IX,DE`, `POP DE`|
 | `ADD IY,nn` | `PUSH DE`, `LD DE,nn`, `ADD IY,DE`, `POP DE`|
@@ -701,6 +735,7 @@ In vgsasm, instructions that __do not exist in the Z80__ are complemented by exi
 | `SBC (nn)` | `PUSH HL`, `LD L,nL`, `LD H,nH`, `SBC (HL)`, `POP HL` |
 | `INC (nn)` | `PUSH HL`, `LD HL,nn`, `INC (HL)` `POP HL`|
 | `DEC (nn)` | `PUSH HL`, `LD HL,nn`, `DEC (HL)` `POP HL`|
+| `ADD (nn), n` | `PUSH AF`, `PUSH HL`, `LD A,n`, `LD HL,nn`, `ADD (HL)`, `LD (HL),A`, `POP HL`, `POP AF` |
 | `SHIFT r, n` | `SHIFT r` x n times (n bits) |
 | `SHIFT (HL), n` | `SHIFT (HL)` x n times (n bits) |
 | `SHIFT (IX+d), n` | `SHIFT (IX+d)` x n times (n bits) |

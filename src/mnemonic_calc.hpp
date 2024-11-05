@@ -83,10 +83,70 @@ void mnemonic_calc8(LineData* line, uint8_t code)
     } else if (3 < line->token.size() && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split) {
         auto op = operandTable[line->token[1].second];
         if (op == Operand::A) {
-            auto it = line->token.begin() + 1;
-            line->token.erase(it);
-            line->token.erase(it);
-            mnemonic_calc8(line, code);
+            if (line->token[3].first == TokenType::Operand && 4 != line->token.size()) {
+                line->error = true;
+                line->errmsg = "Illegal 8-bit arithmetic instruction.";
+            } else {
+                auto it = line->token.begin() + 1;
+                line->token.erase(it);
+                line->token.erase(it);
+                mnemonic_calc8(line, code);
+            }
+        } else if (mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Numeric)) {
+            auto m = mnemonicTable[line->token[0].second];
+            auto n = atoi(line->token[3].second.c_str());
+            if (mnemonic_range(line, n, -128, 255)) {
+                if (m == Mnemonic::ADD) {
+                    switch (op) {
+                        case Operand::B:
+                            ML_PUSH_AF;
+                            ML_LD_A_n(n);
+                            ML_ADD_A_B;
+                            ML_LD_B_A;
+                            ML_POP_AF;
+                            return;
+                        case Operand::C:
+                            ML_PUSH_AF;
+                            ML_LD_A_n(n);
+                            ML_ADD_A_C;
+                            ML_LD_C_A;
+                            ML_POP_AF;
+                            return;
+                        case Operand::D:
+                            ML_PUSH_AF;
+                            ML_LD_A_n(n);
+                            ML_ADD_A_D;
+                            ML_LD_D_A;
+                            ML_POP_AF;
+                            return;
+                        case Operand::E:
+                            ML_PUSH_AF;
+                            ML_LD_A_n(n);
+                            ML_ADD_A_E;
+                            ML_LD_E_A;
+                            ML_POP_AF;
+                            return;
+                        case Operand::H:
+                            ML_PUSH_AF;
+                            ML_LD_A_n(n);
+                            ML_ADD_A_H;
+                            ML_LD_H_A;
+                            ML_POP_AF;
+                            return;
+                        case Operand::L:
+                            ML_PUSH_AF;
+                            ML_LD_A_n(n);
+                            ML_ADD_A_L;
+                            ML_LD_L_A;
+                            ML_POP_AF;
+                            return;
+                    }
+                }
+            }
+            if (!line->error) {
+                line->error = true;
+                line->errmsg = "Illegal 8-bit arithmetic instruction.";
+            }
         } else {
             line->error = true;
             line->errmsg = "Illegal 8-bit arithmetic instruction.";
@@ -168,7 +228,7 @@ void mnemonic_calc16(LineData* line, uint8_t code)
                mnemonic_format_test(line, 4, TokenType::Operand, TokenType::Split, TokenType::Numeric)) {
         auto op = operandTable[line->token[1].second];
         auto nn = atoi(line->token[3].second.c_str());
-        if (op != Operand::HL && op != Operand::IX && op != Operand::IY) {
+        if (op != Operand::BC && op != Operand::DE && op != Operand::HL && op != Operand::IX && op != Operand::IY) {
             line->error = true;
             line->errmsg = "Illegal 16-bit arithmetic instruction.";
             return;
@@ -176,15 +236,31 @@ void mnemonic_calc16(LineData* line, uint8_t code)
         if (mnemonic_range(line, nn, -32768, 65535)) {
             uint8_t nl = nn & 0xFF;
             uint8_t nh = (nn & 0xFF00) >> 8;
-            ML_PUSH_DE;
-            ML_LD_D_n(nh);
-            ML_LD_E_n(nl);
-            switch (op) {
-                case Operand::IX: line->machine.push_back(0xDD); break;
-                case Operand::IY: line->machine.push_back(0xFD); break;
+            if (op == Operand::BC) {
+                ML_PUSH_HL;
+                ML_LD_H_n(nh);
+                ML_LD_L_n(nl);
+                ML_ADD_HL_BC;
+                ML_LD_BC_HL;
+                ML_POP_HL;
+            } else if (op == Operand::DE) {
+                ML_PUSH_HL;
+                ML_LD_H_n(nh);
+                ML_LD_L_n(nl);
+                ML_ADD_HL_DE;
+                ML_LD_DE_HL;
+                ML_POP_HL;
+            } else {
+                ML_PUSH_DE;
+                ML_LD_D_n(nh);
+                ML_LD_E_n(nl);
+                switch (op) {
+                    case Operand::IX: line->machine.push_back(0xDD); break;
+                    case Operand::IY: line->machine.push_back(0xFD); break;
+                }
+                line->machine.push_back(code | 0x10);
+                ML_POP_DE;
             }
-            line->machine.push_back(code | 0x10);
-            ML_POP_DE;
         }
     } else if (mne == Mnemonic::ADD && mnemonic_format_test(line, 6, TokenType::Operand, TokenType::Split, TokenType::AddressBegin, TokenType::Operand, TokenType::AddressEnd)) {
         auto op1 = operandTable[line->token[1].second];
@@ -236,7 +312,38 @@ void mnemonic_calc16(LineData* line, uint8_t code)
 
 void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
 {
-    if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd)) {
+    auto m = mnemonicTable[line->token[0].second];
+    if (m == Mnemonic::ADD && mnemonic_format_test(line, 6, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd, TokenType::Split, TokenType::Numeric)) {
+        // ADD (nn), n
+        auto addr = atoi(line->token[2].second.c_str());
+        auto n = atoi(line->token[5].second.c_str());
+        if (mnemonic_range(line, addr, 0, 0xFFFF) && mnemonic_range(line, n, -128, 255)) {
+            ML_PUSH_AF;
+            ML_PUSH_HL;
+            ML_LD_A_n(n);
+            ML_LD_H_n((addr & 0xFF00) >> 8);
+            ML_LD_L_n(addr & 0xFF);
+            ML_ADD_HL;
+            ML_LD_HL_A;
+            ML_POP_HL;
+            ML_POP_AF;
+        }
+    } else if (m == Mnemonic::ADD && mnemonic_format_test(line, 4, TokenType::Numeric, TokenType::Split, TokenType::Numeric)) {
+        // ADD nn, n ... same as ADD (nn), n
+        auto addr = atoi(line->token[1].second.c_str());
+        auto n = atoi(line->token[3].second.c_str());
+        if (mnemonic_range(line, addr, 0, 0xFFFF) && mnemonic_range(line, n, -128, 255)) {
+            ML_PUSH_AF;
+            ML_PUSH_HL;
+            ML_LD_A_n(n);
+            ML_LD_H_n((addr & 0xFF00) >> 8);
+            ML_LD_L_n(addr & 0xFF);
+            ML_ADD_HL;
+            ML_LD_HL_A;
+            ML_POP_HL;
+            ML_POP_AF;
+        }
+    } else if (mnemonic_format_test(line, 4, TokenType::AddressBegin, TokenType::Numeric, TokenType::AddressEnd)) {
         // 即値アドレス演算（auto-expand）
         auto addr = atoi(line->token[2].second.c_str());
         if (mnemonic_range(line, addr, 0, 0xFFFF)) {
@@ -285,9 +392,16 @@ void mnemonic_calcOH(LineData* line, uint8_t code8, uint8_t code16)
     } else if (3 < line->token.size() && line->token[1].first == TokenType::Operand && line->token[2].first == TokenType::Split) {
         auto op = operandTable[line->token[1].second];
         if (op == Operand::A) {
-            auto it = line->token.begin() + 1;
-            line->token.erase(it);
-            line->token.erase(it);
+            if (line->token[3].first == TokenType::Operand && 4 != line->token.size()) {
+                line->error = true;
+                line->errmsg = "Illegal arithmetic instruction.";
+            } else {
+                auto it = line->token.begin() + 1;
+                line->token.erase(it);
+                line->token.erase(it);
+                mnemonic_calc8(line, code8);
+            }
+        } else if (op == Operand::B || op == Operand::C || op == Operand::D || op == Operand::E || op == Operand::H || op == Operand::L) {
             mnemonic_calc8(line, code8);
         } else if (mnemonic_is_reg16(op)) {
             mnemonic_calc16(line, code16);

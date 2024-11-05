@@ -38,6 +38,8 @@ show_result_count:
 	@echo Total: `cat result.txt | grep -o -c "^[NE]:"`
 
 execute: ${TEST_MODULES}
+	${MAK} all_instructions
+	${MAK} msx
 	./assignment
 	./binary
 	./bracket_to_address
@@ -64,6 +66,79 @@ execute: ${TEST_MODULES}
 	${MAK} struct_tests
 	${MAK} macro_tests
 	${MAK} mnemonic
+	${MAK} test55
+	${MAK} test56
+	${MAK} test57
+	${MAK} test58
+	${MAK} test59
+	${MAK} test60
+	${MAK} test61
+
+test61: check ../vgsasm
+	${MAK} normal_case src=m_add_anasn
+	@./check "`../vgsasm m_add_anasn_range1.asm`" "Numerical range incorrect: 65536"
+	@./check "`../vgsasm m_add_anasn_range2.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_add_anasn_range3.asm`" "Numerical range incorrect: 256"
+	${MAK} normal_case src=m_add_nsn
+	@./check "`../vgsasm m_add_nsn_range1.asm`" "Numerical range incorrect: 65536"
+	@./check "`../vgsasm m_add_nsn_range2.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_add_nsn_range3.asm`" "Numerical range incorrect: 256"
+
+test60: check ../vgsasm
+	${MAK} normal_case src=test60
+
+test59: check ../vgsasm
+	${MAK} normal_case src=ifdef
+	@./check "`../vgsasm ifdef_err1.asm`" "#ifdef must appear at the beginning of the line."
+	@./check "`../vgsasm ifdef_err2.asm`" "Definition name not specified in #ifdef."
+	@./check "`../vgsasm ifdef_err3.asm`" "Multiple definition names specified in #ifdef: B"
+	@./check "`../vgsasm ifdef_err4.asm`" "The corresponding #ifdef is not defined."
+	@./check "`../vgsasm ifdef_err5.asm`" "The corresponding #ifdef is not defined."
+	@./check "`../vgsasm ifdef_err6.asm`" "#else must appear at the beginning of the line."
+	@./check "`../vgsasm ifdef_err7.asm`" "Unexpected symbol has specified: B"
+	@./check "`../vgsasm ifdef_err8.asm`" "#endif must appear at the beginning of the line."
+	@./check "`../vgsasm ifdef_err9.asm`" "Unexpected symbol has specified: Y"
+	@./check "`../vgsasm ifdef_err10.asm`" "#ifdef is specified as nested."
+	@./check "`../vgsasm ifdef_err11.asm`" "#ifdef is specified as nested."
+	@./check "`../vgsasm ifdef_err12.asm`" "#ifdef is not closed with #endif."
+
+test58: check ../vgsasm
+	${MAK} normal_case src=test58
+
+test57: check ../vgsasm
+	${MAK} normal_case src=m_add_b_n
+	${MAK} normal_case src=m_add_c_n
+	${MAK} normal_case src=m_add_d_n
+	${MAK} normal_case src=m_add_e_n
+	${MAK} normal_case src=m_add_h_n
+	${MAK} normal_case src=m_add_l_n
+	@./check "`../vgsasm m_add_b_n_range1.asm`" "Numerical range incorrect: -129"
+	@./check "`../vgsasm m_add_b_n_range2.asm`" "Numerical range incorrect: 256"
+	@./check "`../vgsasm m_adc_b_n.asm`" "Illegal 8-bit arithmetic instruction."
+	@./check "`../vgsasm m_add_ixh_n.asm`" "Illegal arithmetic instruction."
+	@./check "`../vgsasm m_add_ixl_n.asm`" "Illegal arithmetic instruction."
+	@./check "`../vgsasm m_add_iyh_n.asm`" "Illegal arithmetic instruction."
+	@./check "`../vgsasm m_add_iyl_n.asm`" "Illegal arithmetic instruction."
+
+
+test56: check ../vgsasm
+	${MAK} normal_case src=m_add_bc_nn
+	${MAK} normal_case src=m_add_de_nn
+	@./check "`../vgsasm m_add_bc_nn_range1.asm`" "Numerical range incorrect: -32769"
+	@./check "`../vgsasm m_add_bc_nn_range2.asm`" "Numerical range incorrect: 65536"
+	@./check "`../vgsasm m_add_de_nn_range1.asm`" "Numerical range incorrect: -32769"
+	@./check "`../vgsasm m_add_de_nn_range2.asm`" "Numerical range incorrect: 65536"
+
+test55: check ../vgsasm
+	${MAK} normal_case src=m_sizeof
+	@./check "`../vgsasm m_sizeof_nofield.asm`" "Undefined field XXXX of strcture VRAM is specified in sizeof."
+	@./check "`../vgsasm m_sizeof_nostr.asm`" "Undefined structure YYYYY is specified in sizeof."
+
+all_instructions: check ../vgsasm
+	${MAK} normal_case src=all
+
+msx: check ../vgsasm
+	${MAK} normal_case src=msx
 
 single: sizeof_replace
 	./sizeof_replace
@@ -531,7 +606,7 @@ mnemonic_calc_tests: check ../vgsasm
 	@./check "`../vgsasm m_calc8_ao_ill2.asm`" "Illegal 8-bit arithmetic instruction."
 	@./check "`../vgsasm m_calc8_ao_ill3.asm`" "Illegal 8-bit arithmetic instruction."
 	${MAK} normal_case src=m_calc8_os
-	@./check "`../vgsasm m_calc8_os_ill.asm`" "Illegal 8-bit arithmetic instruction."
+	@./check "`../vgsasm m_calc8_os_ill.asm`" "Illegal arithmetic instruction."
 	@./check "`../vgsasm m_calc8_ill.asm`" "Illegal 8-bit arithmetic instruction."
 	@echo Testing: mnemonic calc16
 	${MAK} normal_case src=m_calc16_add_bc_a
@@ -555,7 +630,7 @@ mnemonic_calc_tests: check ../vgsasm
 	@./check "`../vgsasm m_calc16_osaopna_range2.asm`" "Numerical range incorrect: 127"
 	@./check "`../vgsasm m_calc16_osaopna_ill.asm`" "Illegal 16-bit arithmetic instruction."
 	@./check "`../vgsasm m_calc16_ill.asm`" "Illegal 16-bit arithmetic instruction."
-	@./check "`../vgsasm m_calc_ill1.asm`" "Illegal arithmetic instruction."
+	@./check "`../vgsasm m_calc_ill1.asm`" "Illegal 8-bit arithmetic instruction."
 	@./check "`../vgsasm m_calc_ill2.asm`" "Illegal arithmetic instruction."
 	${MAK} normal_case src=m_calc_ana
 	@./check "`../vgsasm m_calc_ana_range.asm`" "Numerical range incorrect: 65536"
@@ -624,7 +699,7 @@ struct_tests: check ../vgsasm
 	@./check "`../vgsasm struct_array_empty.asm`" "Illegal array structure element: ]"
 	@./check "`../vgsasm struct_array_ill.asm`" "Illegal array structure element: FOO"
 	@./check "`../vgsasm struct_array_mul.asm`" "Illegal array structure element: 2"
-	@./check "`../vgsasm struct_array_nd.asm`" "Invalid array field designation: VAR1"
+	@./check "`../vgsasm struct_array_nd.asm`" "Illegal LD instruction."
 	@./check "`../vgsasm struct_field_nf.asm`" "Unknown field name in structure HOGE: VAR2"
 	${MAK} normal_case src=struct_normal
 
