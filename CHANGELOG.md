@@ -1,5 +1,9 @@
 # Change log
 
+## Version 1.2.1
+
+bugfix: do not extract the `struct` in the `macro` #68
+
 ## Version 1.2.0
 
 Support nested struct access #66

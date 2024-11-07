@@ -4078,6 +4078,10 @@ N: nest
         nest.asm:0026 $002A <LD> <HL> `,` 0xC00A
         nest.asm:0027 $002D <LD> <HL> `,` 0xC00B
 diff nest.bin nest.exp
-Normal case: 264
+N: ld_str_macro
+../vgsasm ld_str_macro.asm -v
+ld_str_macro.asm:0006 $0000 <LD> <A> `,` _( 0xC000 )_
+diff ld_str_macro.bin ld_str_macro.exp
+Normal case: 265
 Error case: 399
-Total: 663
+Total: 664

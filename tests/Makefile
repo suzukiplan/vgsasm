@@ -76,6 +76,10 @@ execute: ${TEST_MODULES}
 	${MAK} test62
 	${MAK} test64
 	${MAK} test66
+	${MAK} test68
+
+test68: check ../vgsasm
+	${MAK} normal_case src=ld_str_macro
 
 test66: check ../vgsasm
 	${MAK} normal_case src=nest
