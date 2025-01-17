@@ -1,5 +1,9 @@
 # Change log
 
+## Version 1.2.5
+
+Fixed no warnings when building on macOS.
+
 ## Version 1.2.4
 
 `offset` calculation results for multi-count fields are not as expected. #74
