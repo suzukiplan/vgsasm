@@ -4,5 +4,6 @@ vgsasm
 *.bin
 *.rom
 test/all_disassemble.asm
+vgsasm.dSYM
 
 
